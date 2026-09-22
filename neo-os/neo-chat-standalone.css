@@ -1,0 +1,455 @@
+/* NEO Chat keeps Lunchbreak's feature-rich layout while its paint follows NEO OS. */
+html[data-neo-app="chat"] {
+  background: var(--desktop-bg, #08090b);
+  color-scheme: inherit;
+}
+
+html[data-neo-app="chat"] body {
+  --bg: var(--desktop-surface, #17191d);
+  --bg2: color-mix(in srgb, var(--desktop-surface, #17191d) 86%, var(--desktop-bg, #08090b));
+  --bg3: color-mix(in srgb, var(--desktop-surface, #17191d) 72%, var(--desktop-bg, #08090b));
+  --bg4: color-mix(in srgb, var(--desktop-surface, #17191d) 92%, var(--desktop-text, #f5f7fa) 8%);
+  --desktop: var(--desktop-bg, #08090b);
+  --bhi: color-mix(in srgb, var(--desktop-text, #f5f7fa) 28%, var(--desktop-surface, #17191d));
+  --blo: var(--desktop-line, #343943);
+  --bout: color-mix(in srgb, var(--desktop-line, #343943) 58%, var(--desktop-bg, #08090b));
+  --tbfrom: color-mix(in srgb, var(--desktop-accent, #6f8cff) 70%, var(--desktop-bg, #08090b));
+  --tbto: var(--desktop-accent, #6f8cff);
+  --tbtxt: #ffffff;
+  --acc: color-mix(in srgb, var(--desktop-accent, #6f8cff) 78%, var(--desktop-bg, #08090b));
+  --acc2: var(--desktop-accent, #6f8cff);
+  --txt: var(--desktop-text, #f5f7fa);
+  --txt2: var(--desktop-text, #f5f7fa);
+  --txt3: var(--desktop-muted, #9ca4b1);
+  --inp: color-mix(in srgb, var(--desktop-bg, #08090b) 72%, var(--desktop-surface, #17191d));
+  --face: color-mix(in srgb, var(--desktop-surface, #17191d) 88%, var(--desktop-text, #f5f7fa) 12%);
+  --dan: #a82832;
+  --dan2: #e25761;
+  --mown: color-mix(in srgb, var(--desktop-accent, #6f8cff) 15%, var(--desktop-surface, #17191d));
+  --moth: color-mix(in srgb, var(--desktop-accent, #6f8cff) 8%, var(--desktop-surface, #17191d));
+  --msys: color-mix(in srgb, var(--desktop-surface, #17191d) 84%, var(--desktop-bg, #08090b));
+  --sbg: color-mix(in srgb, var(--desktop-surface, #17191d) 82%, var(--desktop-bg, #08090b));
+  --lnk: var(--desktop-accent, #6f8cff);
+  --scbg: color-mix(in srgb, var(--desktop-bg, #08090b) 78%, var(--desktop-surface, #17191d));
+  --scfg: var(--desktop-muted, #9ca4b1);
+  --mention-bg: color-mix(in srgb, var(--desktop-accent, #6f8cff) 14%, transparent);
+  --ping-bg: color-mix(in srgb, var(--desktop-accent, #6f8cff) 26%, transparent);
+  background: var(--desktop-bg, #08090b);
+  color: var(--desktop-text, #f5f7fa);
+}
+
+html[data-neo-app="chat"] #desk {
+  background-color: var(--desktop-bg, #08090b);
+}
+
+html[data-neo-app="chat"] #desk-bg {
+  opacity: .16 !important;
+}
+
+html[data-neo-app="chat"] .neo-theme-sync-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  color: var(--txt);
+  background: var(--bg2);
+  border: 1px solid var(--blo);
+}
+
+html[data-neo-app="chat"] .neo-theme-sync-card strong {
+  font-size: 15px;
+  color: var(--txt2);
+}
+
+html[data-neo-app="chat"] .neo-theme-sync-card p {
+  max-width: 54ch;
+  color: var(--txt3);
+  line-height: 1.55;
+}
+
+html[data-neo-app="chat"] .neo-theme-sync-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+html[data-neo-app="chat"] .neo-theme-sync-values span {
+  padding: 5px 9px;
+  color: var(--txt2);
+  background: var(--bg3);
+  border: 1px solid var(--blo);
+}
+
+html[data-neo-app="chat"] #sthemes .theme-group-lbl,
+html[data-neo-app="chat"] #tgrid-dark {
+  display: none !important;
+}
+
+html[data-neo-app="chat"] #tgrid-light {
+  display: block;
+}
+
+html[data-interface-style="retro"][data-neo-app="chat"] .win,
+html[data-interface-style="retro"][data-neo-app="chat"] .btn,
+html[data-interface-style="retro"][data-neo-app="chat"] input,
+html[data-interface-style="retro"][data-neo-app="chat"] select,
+html[data-interface-style="retro"][data-neo-app="chat"] textarea {
+  border-radius: 0;
+}
+
+/* Modern changes the material language, not the app's established layout. */
+html[data-interface-style="modern"][data-neo-app="chat"] body,
+html[data-interface-style="modern"][data-neo-app="chat"] button,
+html[data-interface-style="modern"][data-neo-app="chat"] input,
+html[data-interface-style="modern"][data-neo-app="chat"] select,
+html[data-interface-style="modern"][data-neo-app="chat"] textarea {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] #desk {
+  background-image: none;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] #area {
+  padding: 14px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .win {
+  overflow: hidden;
+  border: 1px solid var(--blo);
+  border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .34), 0 0 0 1px color-mix(in srgb, var(--desktop-text, #fff) 5%, transparent);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .titlebar {
+  min-height: 44px;
+  padding: 8px 12px;
+  color: var(--txt2);
+  background: color-mix(in srgb, var(--bg) 92%, var(--desktop-accent, #6f8cff) 8%);
+  border-bottom: 1px solid var(--blo);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .tbi {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--desktop-accent, #6f8cff) 17%, transparent);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .tbbtns {
+  gap: 5px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .tbbtn {
+  width: 30px;
+  height: 28px;
+  color: var(--txt3);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .tbbtn:hover {
+  color: var(--txt2);
+  background: var(--bg3);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .tbbtn:active {
+  border: 0;
+  transform: scale(.96);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .btn,
+html[data-interface-style="modern"][data-neo-app="chat"] .tbstart,
+html[data-interface-style="modern"][data-neo-app="chat"] .sni,
+html[data-interface-style="modern"][data-neo-app="chat"] .wtab,
+html[data-interface-style="modern"][data-neo-app="chat"] .rtab,
+html[data-interface-style="modern"][data-neo-app="chat"] .rltab {
+  border: 1px solid var(--blo);
+  border-radius: 9px;
+  box-shadow: none;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .btn {
+  min-height: 34px;
+  padding: 6px 12px;
+  background: var(--face);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .btn:hover {
+  color: var(--txt2);
+  background: var(--bg4);
+  border-color: color-mix(in srgb, var(--desktop-accent, #6f8cff) 55%, var(--blo));
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .btn:active {
+  padding: 6px 12px;
+  transform: translateY(1px);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .btna {
+  color: #fff;
+  background: var(--acc);
+  border-color: var(--acc2);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] input[type="text"],
+html[data-interface-style="modern"][data-neo-app="chat"] input[type="password"],
+html[data-interface-style="modern"][data-neo-app="chat"] textarea,
+html[data-interface-style="modern"][data-neo-app="chat"] select {
+  min-height: 38px;
+  padding: 8px 10px;
+  background: var(--inp);
+  border: 1px solid var(--blo);
+  border-radius: 9px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] input:focus,
+html[data-interface-style="modern"][data-neo-app="chat"] textarea:focus,
+html[data-interface-style="modern"][data-neo-app="chat"] select:focus {
+  outline: 2px solid color-mix(in srgb, var(--desktop-accent, #6f8cff) 72%, transparent);
+  outline-offset: 1px;
+  border-color: var(--desktop-accent, #6f8cff);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .sunken,
+html[data-interface-style="modern"][data-neo-app="chat"] .raised,
+html[data-interface-style="modern"][data-neo-app="chat"] .tpanel,
+html[data-interface-style="modern"][data-neo-app="chat"] .gbox,
+html[data-interface-style="modern"][data-neo-app="chat"] .msubmenu,
+html[data-interface-style="modern"][data-neo-app="chat"] .reaction-picker-popup {
+  border: 1px solid var(--blo);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .menubar {
+  gap: 4px;
+  padding: 5px 8px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--blo);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .mdrop > .mi,
+html[data-interface-style="modern"][data-neo-app="chat"] .msub {
+  border-radius: 7px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .mdrop > .mi:hover,
+html[data-interface-style="modern"][data-neo-app="chat"] .mdrop:hover > .mi,
+html[data-interface-style="modern"][data-neo-app="chat"] .msub:hover {
+  color: #fff;
+  background: var(--acc);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .statusbar,
+html[data-interface-style="modern"][data-neo-app="chat"] .tbar {
+  background: var(--bg2);
+  border-color: var(--blo);
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .tbtray {
+  border: 1px solid var(--blo);
+  border-radius: 8px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .alogo {
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  text-shadow: none;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .reaction-chip,
+html[data-interface-style="modern"][data-neo-app="chat"] .msg,
+html[data-interface-style="modern"][data-neo-app="chat"] .frm-reply,
+html[data-interface-style="modern"][data-neo-app="chat"] .frm-thread {
+  border-radius: 9px;
+}
+
+html[data-interface-style="modern"][data-neo-app="chat"] .neo-theme-sync-card,
+html[data-interface-style="modern"][data-neo-app="chat"] .neo-theme-sync-values span {
+  border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+  html[data-interface-style="modern"][data-neo-app="chat"] #area { padding: 0; }
+  html[data-interface-style="modern"][data-neo-app="chat"] .win { border-radius: 0; border-width: 0; }
+  html[data-interface-style="modern"][data-neo-app="chat"] .titlebar { min-height: 42px; }
+}
+
+/* Authentication layout and interaction polish, shared by Modern and Retro. */
+html[data-neo-app="chat"] #desk > .tbar {
+  display: none !important;
+}
+
+html[data-neo-app="chat"] #aw {
+  width: min(440px, calc(100vw - 28px));
+  max-width: calc(100vw - 28px);
+}
+
+html[data-neo-app="chat"] #aw .abody,
+html[data-neo-app="chat"] #aw .tpanel,
+html[data-neo-app="chat"] #aw .field,
+html[data-neo-app="chat"] #aw .register-fields {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+html[data-neo-app="chat"] #aw .wtabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+html[data-neo-app="chat"] #aw .wtab {
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: var(--txt);
+  font: inherit;
+  cursor: pointer;
+  transform-origin: center;
+  transition: transform 140ms ease, background-color 170ms ease,
+    border-color 170ms ease, color 170ms ease, box-shadow 170ms ease;
+}
+
+html[data-neo-app="chat"] #aw .wtab:hover {
+  border-color: color-mix(in srgb, var(--acc) 55%, var(--blo));
+}
+
+html[data-neo-app="chat"] #aw .wtab:active {
+  transform: translateY(1px) scale(.97);
+}
+
+html[data-neo-app="chat"] #aw .wtab.on {
+  animation: neo-auth-tab-pop 220ms cubic-bezier(.2, .9, .2, 1);
+}
+
+html[data-neo-app="chat"] #aw .tpanel {
+  width: 100%;
+  overflow: hidden;
+}
+
+html[data-neo-app="chat"] #aw .tpanel.on {
+  animation: neo-auth-panel-in 260ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+html[data-neo-app="chat"] #aw .register-layout {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+html[data-neo-app="chat"] #aw .auth-avatar-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+html[data-neo-app="chat"] #aw .auth-avatar-caption {
+  color: var(--txt3);
+  font-size: 9px;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+html[data-neo-app="chat"] #aw input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html[data-neo-app="chat"] #aw .avbox,
+html[data-neo-app="chat"] #aw .avbox span,
+html[data-neo-app="chat"] #aw .avbox img,
+html[data-neo-app="chat"] #aw .neo-avatar-placeholder {
+  background: transparent !important;
+}
+
+html[data-neo-app="chat"] #aw .avbox img,
+html[data-neo-app="chat"] #aw .neo-avatar-placeholder {
+  object-fit: contain;
+}
+
+html[data-neo-app="chat"] #aw .titlebar .tbi {
+  background-color: transparent !important;
+  background-image: url("./assets/imessage-logo.png?v=20260908-imessage-logo-v2") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  box-shadow: none !important;
+}
+
+html[data-neo-app="chat"] #aw .titlebar .tbi > img {
+  visibility: hidden !important;
+}
+
+html[data-neo-app="chat"] #aw .auth-submit {
+  width: 100%;
+  min-height: 36px;
+  margin-top: 8px;
+  justify-content: center;
+  transform-origin: center;
+  transition: transform 140ms ease, filter 160ms ease, box-shadow 160ms ease;
+}
+
+html[data-neo-app="chat"] #aw .auth-submit:hover {
+  filter: brightness(1.06);
+}
+
+html[data-neo-app="chat"] #aw .auth-submit:active {
+  transform: translateY(1px) scale(.985) !important;
+}
+
+@keyframes neo-auth-tab-pop {
+  0% { transform: scale(.96); }
+  60% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+
+@keyframes neo-auth-panel-in {
+  from { opacity: 0; transform: translateY(8px) scale(.992); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 700px) {
+  html[data-neo-app="chat"] #aw .abody {
+    padding: 12px;
+  }
+
+  html[data-neo-app="chat"] #aw .register-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  html[data-neo-app="chat"] #aw .auth-avatar-column {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-neo-app="chat"] #aw .wtab,
+  html[data-neo-app="chat"] #aw .tpanel.on,
+  html[data-neo-app="chat"] #aw .auth-submit {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

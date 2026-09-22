@@ -1,0 +1,199 @@
+.taskbar-quick-button {
+  width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.taskbar-quick-button .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.taskbar-quick-settings {
+  position: fixed;
+  right: 10px;
+  bottom: calc(70px + env(safe-area-inset-bottom));
+  z-index: 6600;
+  width: min(340px, calc(100vw - 20px));
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  color: var(--desktop-text, #f5f7fb);
+  background: color-mix(in srgb, var(--desktop-surface, #11151b) 88%, transparent);
+  border: 1px solid var(--desktop-line, rgba(255, 255, 255, 0.15));
+  border-radius: 18px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.46);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  backdrop-filter: blur(24px) saturate(145%);
+}
+
+.taskbar-quick-settings[hidden] { display: none; }
+
+.taskbar-quick-settings > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+}
+
+.taskbar-quick-settings h2 {
+  margin: 2px 0 0;
+  color: inherit;
+  font-size: 18px;
+}
+
+.taskbar-quick-settings .eyebrow {
+  color: var(--desktop-accent, #79cfff);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.taskbar-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.taskbar-quick-grid > button {
+  min-height: 62px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  color: inherit;
+  text-align: left;
+  background: color-mix(in srgb, var(--desktop-text, #fff) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--desktop-line, #fff) 80%, transparent);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.taskbar-quick-grid > button:hover,
+.taskbar-quick-grid > button:focus-visible {
+  background: color-mix(in srgb, var(--desktop-text, #fff) 12%, transparent);
+  outline: none;
+}
+
+.taskbar-quick-grid > button.is-active,
+.taskbar-quick-grid > button[aria-pressed="true"] {
+  color: #071017;
+  background: var(--desktop-accent, #79cfff);
+  border-color: transparent;
+}
+
+.taskbar-quick-grid .icon {
+  width: 20px;
+  height: 20px;
+  justify-self: center;
+}
+
+.taskbar-quick-grid span {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+}
+.taskbar-quick-grid strong,
+.taskbar-quick-grid small {
+  display: block;
+  margin: 0;
+  line-height: 1.2;
+}
+.taskbar-quick-grid strong { font-size: 12px; }
+.taskbar-quick-grid small {
+  overflow: hidden;
+  color: currentColor;
+  font-size: 9px;
+  opacity: 0.68;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskbar-quick-sliders {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 12px;
+  background: color-mix(in srgb, var(--desktop-text, #fff) 5%, transparent);
+  border-radius: 12px;
+}
+
+.taskbar-quick-sliders label {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.taskbar-quick-sliders .icon {
+  width: 17px;
+  height: 17px;
+  justify-self: center;
+}
+.taskbar-quick-sliders input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  accent-color: var(--desktop-accent, #79cfff);
+}
+.taskbar-quick-sliders output {
+  color: var(--desktop-muted, #aab3c0);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.neo-night-light-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  background: #ff9d3d;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+html[data-night-light="true"] .neo-night-light-layer { opacity: 0.1; }
+html[data-neo-dnd="true"] .toast-region,
+html[data-neo-dnd="true"] [data-notification-dot] { visibility: hidden !important; }
+
+html[data-taskbar-position="top"] .taskbar-quick-settings {
+  top: calc(70px + env(safe-area-inset-top));
+  right: 10px;
+  bottom: auto;
+}
+
+html[data-taskbar-position="left"] .taskbar-quick-settings {
+  right: auto;
+  bottom: 10px;
+  left: 72px;
+}
+
+html[data-taskbar-position="right"] .taskbar-quick-settings {
+  right: 72px;
+  bottom: 10px;
+}
+
+html[data-performance-mode="ultimate"] .taskbar-quick-settings {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+@media (max-width: 620px) {
+  .taskbar-quick-settings,
+  html[data-taskbar-position] .taskbar-quick-settings {
+    top: auto;
+    right: 8px;
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    left: 8px;
+    width: auto;
+  }
+}

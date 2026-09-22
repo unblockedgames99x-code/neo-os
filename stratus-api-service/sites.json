@@ -1,0 +1,16 @@
+{
+  "sites": {
+    "neo": {
+      "api_key": "sk_live_neo_21c3aa84317445fa850319adfa895999",
+      "enabled": true,
+      "max_concurrent_sessions": 4,
+      "max_session_seconds": 900,
+      "limits": {
+        "per_minute": 60,
+        "per_hour": 1000,
+        "per_day": 10000,
+        "per_month": 100000
+      }
+    }
+  }
+}

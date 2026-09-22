@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Bouncemasters Fullscreen</title>
+
+<base href="https://cdn.jsdelivr.net/gh/bubbls/youtube-playables@main/bouncemasters/">
+
+<link rel="stylesheet" href="style/index.css">
+
+<style>
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+  user-select: none !important;
+}
+
+#game {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+#game canvas,
+canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  display: block !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: #000 !important;
+  touch-action: none !important;
+}
+
+/* remove sidebars / ad leftovers */
+#sidebarad1,
+#sidebarad2,
+.sidebar-close,
+.sidebar-frame,
+iframe,
+div[id^="bb"],
+div[id^="b6"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+
+<script src="https://cdn.jsdelivr.net/gh/bubbls/youtube-playables@main/ytgame.js"></script>
+<script src="game.js"></script>
+
+<script>
+function forceGameFit() {
+  document.documentElement.style.width = "100vw";
+  document.documentElement.style.height = "100vh";
+  document.documentElement.style.overflow = "hidden";
+
+  document.body.style.width = "100vw";
+  document.body.style.height = "100vh";
+  document.body.style.overflow = "hidden";
+  document.body.style.margin = "0";
+  document.body.style.padding = "0";
+
+  const game = document.getElementById("game");
+  if (game) {
+    game.style.position = "fixed";
+    game.style.inset = "0";
+    game.style.width = "100vw";
+    game.style.height = "100vh";
+    game.style.overflow = "hidden";
+    game.style.background = "#000";
+  }
+
+  document.querySelectorAll("canvas").forEach(canvas => {
+    canvas.style.position = "absolute";
+    canvas.style.inset = "0";
+    canvas.style.width = "100vw";
+    canvas.style.height = "100vh";
+    canvas.style.maxWidth = "100vw";
+    canvas.style.maxHeight = "100vh";
+    canvas.style.display = "block";
+    canvas.style.margin = "0";
+    canvas.style.padding = "0";
+    canvas.style.border = "0";
+    canvas.style.outline = "0";
+  });
+
+  document.querySelectorAll("#sidebarad1,#sidebarad2,.sidebar-close,.sidebar-frame,iframe").forEach(el => {
+    el.remove();
+  });
+}
+
+window.addEventListener("load", function () {
+  if (typeof window.runGame === "function") {
+    window.runGame();
+  }
+
+  forceGameFit();
+  setTimeout(forceGameFit, 250);
+  setTimeout(forceGameFit, 1000);
+  setTimeout(forceGameFit, 2500);
+});
+
+window.addEventListener("resize", forceGameFit);
+window.addEventListener("orientationchange", function () {
+  setTimeout(forceGameFit, 300);
+});
+
+setInterval(forceGameFit, 500);
+</script>
+</body>
+</html>

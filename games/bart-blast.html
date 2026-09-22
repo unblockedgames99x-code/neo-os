@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>BART BLAST</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+  }
+
+  #canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block;
+    background: #000;
+    outline: none;
+  }
+
+  #loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 22px;
+  }
+
+  #loader-card {
+    width: min(560px, 92vw);
+  }
+
+  #loading-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  #loading-text {
+    font-size: 15px;
+    line-height: 1.45;
+    opacity: 0.92;
+    margin-bottom: 16px;
+  }
+
+  #bar {
+    width: 100%;
+    height: 16px;
+    border-radius: 999px;
+    background: #222;
+    overflow: hidden;
+    border: 1px solid #444;
+  }
+
+  #bar-fill {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.2s linear;
+  }
+
+  #small-note {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  #error-box {
+    display: none;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
+    color: #ffb3b3;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+
+  #status,
+  #status-progress,
+  #status-notice {
+    display: none !important;
+  }
+</style>
+</head>
+
+<body>
+<canvas id="canvas" tabindex="0">Your browser does not support canvas.</canvas>
+
+<div id="loader-screen">
+  <div id="loader-card">
+    <div id="loading-title">Loading BART BLAST...</div>
+    <div id="loading-text">Starting loader. Do not refresh.</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">First load can take a while on Chromebooks.</div>
+    <div id="error-box"></div>
+  </div>
+</div>
+
+<div id="status">
+  <progress id="status-progress"></progress>
+  <div id="status-notice"></div>
+</div>
+
+<script>
+(() => {
+  const BASE = "https://fastly.jsdelivr.net/gh/genizy/google-class@main/bart-blast/";
+  const EXPECTED_TOTAL_BYTES = 50031416 + 36145869;
+
+  const canvas = document.getElementById("canvas");
+  const loaderScreen = document.getElementById("loader-screen");
+  const loadingText = document.getElementById("loading-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+
+  const originalFetch = window.fetch.bind(window);
+  let loadedBytes = 0;
+  let totalBytes = EXPECTED_TOTAL_BYTES;
+  let gameStarted = false;
+
+  function setProgress(percent, text) {
+    barFill.style.width = Math.max(0, Math.min(100, percent || 0)) + "%";
+    if (text) loadingText.textContent = text;
+  }
+
+  function formatSize(bytes) {
+    if (bytes >= 1024 * 1024 * 1024) return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+    if (bytes >= 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+    if (bytes >= 1024) return (bytes / 1024).toFixed(2) + " KB";
+    return bytes + " B";
+  }
+
+  function showError(message) {
+    errorBox.style.display = "block";
+    errorBox.textContent = String(message || "Unknown loading error");
+    loadingText.textContent = "The game could not finish loading. The error is shown below.";
+    barFill.style.width = "100%";
+  }
+
+  function fitCanvas() {
+    canvas.style.width = "100vw";
+    canvas.style.height = "100vh";
+    canvas.setAttribute("tabindex", "0");
+  }
+
+  function hideLoader() {
+    if (loaderScreen.style.display === "none") return;
+    setProgress(100, "Loaded.");
+    setTimeout(() => {
+      loaderScreen.style.display = "none";
+      fitCanvas();
+      canvas.focus();
+    }, 500);
+  }
+
+  function getParts(file, start, end) {
+    const parts = [];
+    for (let i = start; i <= end; i++) {
+      parts.push(BASE + file + ".part" + i);
+    }
+    return parts;
+  }
+
+  async function fetchWithProgress(url) {
+    const response = await originalFetch(url, { cache: "force-cache" });
+
+    if (!response.ok) {
+      throw new Error("Could not load: " + url + " — HTTP " + response.status);
+    }
+
+    if (!response.body || !response.body.getReader) {
+      const buffer = await response.arrayBuffer();
+      loadedBytes += buffer.byteLength;
+      setProgress((loadedBytes / totalBytes) * 80, `Loading files... ${formatSize(loadedBytes)} / ${formatSize(totalBytes)}`);
+      return buffer;
+    }
+
+    const reader = response.body.getReader();
+    const chunks = [];
+    let received = 0;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      chunks.push(value);
+      received += value.length;
+      loadedBytes += value.length;
+
+      setProgress((loadedBytes / totalBytes) * 80, `Loading files... ${formatSize(loadedBytes)} / ${formatSize(totalBytes)}`);
+    }
+
+    const fullBuffer = new Uint8Array(received);
+    let offset = 0;
+
+    for (const chunk of chunks) {
+      fullBuffer.set(chunk, offset);
+      offset += chunk.length;
+    }
+
+    return fullBuffer.buffer;
+  }
+
+  async function mergeFiles(fileParts, mimeType) {
+    const buffers = [];
+    for (const part of fileParts) {
+      buffers.push(await fetchWithProgress(part));
+    }
+    return URL.createObjectURL(new Blob(buffers, { type: mimeType || "application/octet-stream" }));
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Could not load script: " + src));
+      document.body.appendChild(script);
+    });
+  }
+
+  function setFetchRedirects(pckUrl, wasmUrl) {
+    window.fetch = function(url, ...args) {
+      const value = typeof url === "string" ? url : (url && url.url ? url.url : "");
+
+      if (value.endsWith("index.pck") || value.includes("/index.pck")) {
+        return originalFetch(pckUrl, ...args);
+      }
+
+      if (value.endsWith("index.wasm") || value.includes("/index.wasm")) {
+        return originalFetch(wasmUrl, ...args);
+      }
+
+      return originalFetch(url, ...args);
+    };
+  }
+
+  function makeGodotRunner(engine, config) {
+    return function () {
+      try {
+        const missing = Engine.getMissingFeatures({ threads: false });
+
+        if (missing.length) {
+          showError("Missing browser features required by Godot:\\n" + missing.join("\\n"));
+          return;
+        }
+
+        setProgress(88, "Starting Godot WebGL...");
+
+        engine.startGame({
+          onProgress: function(current, total) {
+            if (total > 0) {
+              const pct = 88 + (current / total) * 10;
+              setProgress(pct, "Starting game... " + Math.round(pct) + "%");
+            }
+          }
+        }).then(() => {
+          gameStarted = true;
+          hideLoader();
+        }).catch((err) => {
+          showError(err && err.message ? err.message : err);
+        });
+      } catch (err) {
+        showError(err && err.message ? err.message : err);
+      }
+    };
+  }
+
+  async function startGame() {
+    try {
+      fitCanvas();
+      setProgress(5, "Loading game pieces...");
+
+      const [pckUrl, wasmUrl] = await Promise.all([
+        mergeFiles(getParts("index.pck", 1, 3), "application/octet-stream"),
+        mergeFiles(getParts("index.wasm", 1, 2), "application/wasm")
+      ]);
+
+      setProgress(82, "Loading Godot engine...");
+
+      setFetchRedirects(pckUrl, wasmUrl);
+
+      await loadScript(BASE + "index.js");
+
+      const GODOT_CONFIG = {
+        args: [],
+        canvasResizePolicy: 2,
+        emscriptenPoolSize: 8,
+        ensureCrossOriginIsolationHeaders: false,
+        executable: "index",
+        experimentalVK: false,
+        fileSizes: {
+          "index.pck": 50031416,
+          "index.wasm": 36145869
+        },
+        focusCanvas: true,
+        gdextensionLibs: [],
+        godotPoolSize: 4,
+        serviceWorker: ""
+      };
+
+      const engine = new Engine(GODOT_CONFIG);
+      window.godotrunfunction = makeGodotRunner(engine, GODOT_CONFIG);
+
+      window.godotrunfunction();
+
+      setTimeout(() => {
+        if (!gameStarted) {
+          loadingText.textContent = "Still loading Godot. Keep waiting; first load can take a while.";
+        }
+      }, 16000);
+
+    } catch (err) {
+      showError(err && err.message ? err.message : err);
+    }
+  }
+
+  window.addEventListener("resize", fitCanvas);
+  window.addEventListener("click", () => canvas.focus());
+
+  startGame();
+})();
+</script>
+</body>
+</html>

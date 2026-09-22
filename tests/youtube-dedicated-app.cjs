@@ -1,0 +1,57 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+
+const root = path.resolve(__dirname, '..');
+const read = (...parts) => fs.readFileSync(path.join(root, ...parts), 'utf8');
+const apps = read('neo-os', 'neo-apps.js');
+const html = read('neo-os', 'neo-youtube', 'index.html');
+const client = read('neo-os', 'neo-youtube', 'app.js');
+const styles = read('neo-os', 'neo-youtube', 'app.css');
+const shell = read('neo-os', 'neo-os.js');
+const shellStyles = read('neo-os', 'neo-os.css');
+
+new vm.Script(apps, { filename: 'neo-apps.js' });
+new vm.Script(client, { filename: 'neo-youtube/app.js' });
+new vm.Script(shell, { filename: 'neo-os.js' });
+
+assert.match(apps, /"youtube-app":\s*\{[\s\S]*?route: "\.\/neo-youtube\/index\.html\?build=20260912-shorts-feed-v1"/);
+assert.match(apps, /neo_os_restore_youtube_app_v4/);
+assert.match(apps, /"youtube-app":\s*\{[\s\S]*?core:\s*true/);
+assert.doesNotMatch(apps, /retiredAppIds\s*=\s*\[[^\]]*"youtube-app"/);
+assert.match(client, /iframe\.dataset\.neoTrustedEmbed = 'youtube'/, 'YouTube playback must recover when the proxied player does not render');
+assert.match(client, /iframe\.dataset\.neoPlaybackRecovered = 'true'/, 'YouTube playback recovery must be observable');
+assert.doesNotMatch(apps, /"youtube-app":\s*\{[\s\S]*?neo-app-target=https%3A%2F%2Fwww\.youtube\.com/);
+assert.match(html, /data-neo-app="youtube"/);
+assert.match(html, /neo-ad-shield\.js/);
+assert.match(html, /data-home-view/);
+assert.match(html, /data-results-view/);
+assert.match(html, /data-watch-view/);
+assert.match(html, /data-shorts-view/);
+assert.match(html, /<div class="masthead-end" aria-hidden="true"><\/div>/);
+assert.doesNotMatch(html, /aria-label="Settings"/);
+assert.doesNotMatch(html, /More from YouTube|YouTube Premium|YouTube Music|YouTube Kids/);
+assert.doesNotMatch(html, /data-view="(?:subscriptions|you)"|>Subscriptions<|>You</);
+assert.doesNotMatch(html, /signin-panel|>Sign in</);
+assert.doesNotMatch(html, /when you sign in to YouTube/);
+assert.doesNotMatch(client, /Sign in to see subscriptions|accounts\.google\.com\/ServiceLogin/);
+assert.match(client, /else if \(view === 'history'\) \{\s*showHistory\(\{ fromRoute: true \}\);/);
+assert.doesNotMatch(html, /video-popout-bar|data-popout-title|data-popout-stage/);
+assert.match(client, /neo-shell:youtube-popout/);
+assert.match(client, /neo-shell:youtube-popout-drag/);
+assert.match(shell, /data\.type === "neo-shell:youtube-popout"/);
+assert.match(shell, /data\.type === "neo-shell:youtube-popout-drag"/);
+assert.match(shellStyles, /\.neo-window\.is-youtube-popout/);
+assert.match(shellStyles, /\.neo-window\.is-youtube-popout \.window-chrome/);
+assert.match(client, /pipedapi\.ducks\.party/);
+assert.match(client, /api\.piped\.private\.coffee/);
+assert.match(client, /Promise\.any\(API_BASES\.map/);
+assert.match(client, /videoIdFrom\(params\.get\('v'\) \|\| ''\)/);
+assert.doesNotMatch(client, /OpenView featured video|Big Buck Bunny|Creative Commons animation showcase/);
+assert.match(client, /Live video search could not connect/);
+assert.match(client, /mode: 'cors'/);
+assert.match(client, /youtube-nocookie\.com\/embed/);
+assert.match(styles, /--yt-bg:\s*var\(--desktop-bg/);
+
+console.log('Dedicated lightweight YouTube app checks passed.');

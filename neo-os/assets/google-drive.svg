@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87 76" role="img" aria-labelledby="drive-title">
+  <title id="drive-title">Google Drive</title>
+  <path fill="#ffba00" d="M43.5 0 0 76 21.75 63.3 43.5 25.3Z"/>
+  <path fill="#00ac47" d="M43.5 0 87 76 65.25 63.3 43.5 25.3Z"/>
+  <path fill="#2684fc" d="M0 76h87L65.25 63.3h-43.5Z"/>
+</svg>

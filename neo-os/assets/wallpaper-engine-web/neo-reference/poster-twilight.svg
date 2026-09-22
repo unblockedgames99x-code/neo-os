@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Twilight Drift preview">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#08101d"/><stop offset=".55" stop-color="#344966"/><stop offset="1" stop-color="#251b3a"/></linearGradient>
+    <radialGradient id="g"><stop stop-color="#c29bda" stop-opacity=".64"/><stop offset="1" stop-color="#c29bda" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bg)"/><ellipse cx="350" cy="90" rx="250" ry="165" fill="url(#g)"/>
+  <path d="M-35 78C88 8 194 166 515 76M-20 150C131 84 244 204 508 121" fill="none" stroke="#d6e8ff" stroke-opacity=".18" stroke-width="26"/>
+  <g fill="#dbe8ff"><circle cx="65" cy="208" r="2"/><circle cx="228" cy="45" r="2"/><circle cx="425" cy="160" r="3"/></g>
+</svg>

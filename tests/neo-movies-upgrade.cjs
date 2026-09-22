@@ -1,0 +1,56 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+
+const root = path.resolve(__dirname, "..");
+const read = (...parts) => fs.readFileSync(path.join(root, ...parts), "utf8");
+const html = read("neo-os", "neo-tv", "index.html");
+const app = read("neo-os", "neo-tv", "app.js");
+const css = read("neo-os", "neo-tv", "app.css");
+const catalogSource = read("neo-os", "neo-tv", "catalog.js");
+const shell = read("neo-os", "neo-os.js");
+const sitesBuild = read("scripts", "build-sites-static.cjs");
+const context = { window: {} };
+vm.runInNewContext(catalogSource, context);
+
+assert.match(html, /<title>NEO Movies<\/title>/, "The app was not renamed to NEO Movies");
+assert.match(html, /profile-logo[\s\S]*movies-icon\.webp/, "The supplied Movies logo is not shown above profiles");
+assert.match(html, /neo-ad-shield\.js\?v=20260912-sitewide-v2/, "Sitewide ad shielding is not loaded");
+assert.match(html, /neo-link-proxy\.js[\s\S]*neo-proxy-client\.js/, "The shared link and resource proxy clients are not loaded");
+assert.match(html, /data-avatar-upload/, "Profile picture uploads are unavailable");
+assert.match(html, /data-video-upload[\s\S]*data-video-file/, "User-owned video uploads are unavailable");
+assert.equal((app.match(/id: "classic-\d{2}"/g) || []).length, 23, "All 23 local classic avatar choices are not exposed");
+assert.match(app, /profile-classics\/scarlett-chilleez\.png/, "The local classic profile collection is not used");
+assert.doesNotMatch(app + html, /nflxso\.net|vidking|vidsrc|2embed|drfrost/i, "A remote profile/playback source was bundled");
+assert.match(app, /catalogApi = "https:\/\/cirrusbk6l\.planet35\.com"/, "The ScholarNook Cirrus catalogue endpoint is missing");
+assert.match(app, /\/_o\/v\/trending/, "ScholarNook trending discovery is missing");
+assert.match(app, /\/_o\/v\/search\?q=/, "ScholarNook movie search is missing");
+assert.match(app, /\/_o\/v\/details\//, "ScholarNook title details are missing");
+assert.match(app, /\/_o\/v\/img\//, "ScholarNook artwork routing is missing");
+assert.match(html, /<strong><span class="visually-hidden">N<\/span>EO<\/strong>/, "The Netflix N is not used as the N in the NEO wordmark");
+assert.doesNotMatch(app + html, /smartpop\.js|core\/ads\.js/, "ScholarNook ad loaders were imported into NEO Movies");
+assert.match(app, /proxyFetch\(catalogUrl\(path, params\)/, "Public catalogue requests bypass the shared proxy client");
+assert.match(app, /fetchCatalogPage\("discover"[\s\S]*page: state\.page \+ 1/, "The catalogue cannot load every page");
+assert.match(app, /fetchCatalogPage\("search"[\s\S]*page: state\.page \+ 1/, "Full-catalogue search pagination is missing");
+assert.match(app, /proxyRoute\(activeMediaSources\[index\], "media"\)/, "Film playback bypasses the shared proxy client");
+assert.match(app, /proxyRoute\(value, "image"\)/, "Artwork bypasses the shared proxy client");
+assert.match(app, /proxyRoute\(title\.officialUrl, "link"\)[\s\S]*neo-shell:proxy-open/, "Official pages are not proxy-gated before opening");
+assert.match(app, /window\.parent !== window\) return Promise\.reject\(new Error\("The NEO web proxy is unavailable\."\)\)/, "Embedded requests can silently fall back to the public network");
+assert.match(app, /type: "neo-shell:media-popout"/, "Shell media pop-out is missing");
+assert.match(app, /type: "neo-shell:media-popout-drag"/, "Shell pop-out drag support is missing");
+assert.match(shell, /supportsShellMediaPopout = app\.id === "youtube-app" \|\| app\.id === "movies"/, "The shell does not permit Movies pop-out");
+assert.match(shell, /data\.type === "neo-shell:youtube-popout" \|\| data\.type === "neo-shell:media-popout"/, "The shell does not receive Movies pop-out messages");
+assert.match(shell, /data\.type === "neo-shell:youtube-popout-drag" \|\| data\.type === "neo-shell:media-popout-drag"/, "The shell does not receive Movies drag messages");
+assert.match(sitesBuild, /isClassicProfile[\s\S]*?neo-tv\/assets\/profile-classics/, "The Sites build removes the Movies classic profile collection");
+assert.match(css, /\.media-popout \.player-top\{display:none!important\}/, "The full player bar remains visible in pop-out mode");
+assert.match(html, /data-restore-popout/, "Pop-out mode has no compact Restore control");
+assert.match(css, /content-visibility:auto/, "Large movie rails are not render-contained");
+assert.match(css, /\.library-grid[\s\S]*repeat\(auto-fill/, "The full catalogue grid is missing");
+assert.doesNotMatch(app, /\/v3\/playback|\/playback\?/, "A third-party playback resolver was bundled with catalogue metadata");
+assert.ok(Array.isArray(context.window.NEO_MOVIES_CATALOG) && context.window.NEO_MOVIES_CATALOG.length >= 4, "The lawful open-film catalogue is missing");
+context.window.NEO_MOVIES_CATALOG.forEach((title) => {
+  assert.match(title.officialUrl, /^https:\/\/studio\.blender\.org\//, `${title.title} lacks its official film page`);
+});
+
+console.log("NEO Movies profiles, proxy routing, lawful playback, uploads, and pop-out checks passed.");

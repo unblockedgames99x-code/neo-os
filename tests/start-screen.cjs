@@ -1,0 +1,51 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const root = path.resolve(__dirname, "..");
+const html = fs.readFileSync(path.join(root, "neo-os", "index.html"), "utf8");
+const css = fs.readFileSync(path.join(root, "neo-os", "neo-os.css"), "utf8");
+const shell = fs.readFileSync(path.join(root, "neo-os", "neo-os.js"), "utf8");
+
+assert.match(html, /id="neo-start-screen"/);
+assert.match(html, />How do you want to start\?</);
+assert.match(html, /data-start-mode="laptop"/);
+assert.match(html, /data-start-mode="mobile"/);
+assert.match(html, /data-start-fullscreen/);
+assert.match(html, /data-start-blank/);
+assert.match(html, /<video[^>]*class="boot-screen-video"[^>]*data-universal-loading-video[^>]*autoplay[^>]*muted[^>]*playsinline[^>]*preload="auto"/);
+assert.match(html, /<source src="\.\/assets\/neo-os-loading\.mp4" type="video\/mp4"/);
+assert.match(html, /class="boot-screen-copy"[^>]*data-universal-loading-copy[\s\S]*?<strong>NEO OS<\/strong>[\s\S]*?Loading your desktop/);
+assert.doesNotMatch(html, /universal-loading-screen-white\.webp/);
+assert.doesNotMatch(html, /Laptop Lite|Mobile Lite|Master Copier/i);
+const loginAppRail = html.match(/<div class="neo-login-app-rail"[\s\S]*?<\/div>/)?.[0] || "";
+assert.ok(loginAppRail, "The decorative login app rail should remain present.");
+assert.doesNotMatch(loginAppRail, /#i-image/, "The removed picture tile must not return to the login app rail.");
+assert.match(css, /\.boot-screen\s*\{[\s\S]*?background:\s*#ffffff;/);
+assert.match(css, /\.boot-screen-video[\s\S]*?object-fit:\s*cover;/);
+assert.match(css, /\.boot-screen-video[\s\S]*?background:\s*#ffffff;/);
+assert.match(css, /\.boot-screen-copy\s*\{[\s\S]*?color:\s*#101010;/);
+assert.match(css, /\.boot-screen-progress\s*>\s*i\s*\{[\s\S]*?background:\s*#111;/);
+assert.match(css, /html\[data-universal-loading="true"\] \.boot-screen[\s\S]*?visibility:\s*visible;/);
+assert.match(css, /\.neo-start-screen[\s\S]*?background: #050505;/);
+assert.match(css, /\.neo-start-panel[\s\S]*?justify-items: center;/);
+assert.match(shell, /function initStartScreen\(onComplete\)/);
+assert.match(shell, /function playBootVideo\(video, restart\)/);
+assert.match(shell, /document\.querySelector\("\[data-universal-loading-video\]"\)/);
+assert.match(shell, /video\.play\(\)/);
+assert.match(shell, /video\.pause\(\)/);
+assert.match(shell, /function waitForBootVideo\(\)/);
+assert.match(shell, /return new Promise\(function \(resolve\) \{ requestAnimationFrame\(resolve\); \}\)/);
+assert.doesNotMatch(shell, /waitForBootVideo\([^)]*, 1400\)/);
+assert.doesNotMatch(shell, /universal-loading-screen-white\.webp/);
+assert.match(shell, /initStartScreen\(initAccountGate\);/);
+assert.match(shell, /root\.dataset\.startMode = mode/);
+assert.match(shell, /root\.dataset\.universalLoading = "true"/);
+assert.match(shell, /delete root\.dataset\.universalLoading/);
+
+const videoPath = path.join(root, "neo-os", "assets", "neo-os-loading.mp4");
+assert.ok(fs.existsSync(videoPath), "The animated loading-screen video should be bundled.");
+const videoSize = fs.statSync(videoPath).size;
+assert.ok(videoSize > 0 && videoSize < 1024 * 1024, "The loading video should stay non-empty and lightweight.");
+
+console.log("NEO start-screen checks passed.");

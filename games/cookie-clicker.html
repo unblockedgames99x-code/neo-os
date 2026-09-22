@@ -1,0 +1,54 @@
+<html>
+<head><base target="_blank"></head>
+<body>
+<div id="container">
+  <iframe id="fr" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
+  <p id="unblocked-text">Nblocked Games</p>
+</div>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  #fr {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  #unblocked-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: fantasy;
+    font-size: 20px;
+    color: #fff;
+    z-index: 1;
+    text-shadow: 0 0 5px #000;
+  }
+</style>
+<script>
+  window.onload = function() {
+    var iframe = document.getElementById("fr");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        iframe.contentDocument.open();
+        iframe.contentDocument.write(xhr.responseText);
+        iframe.contentDocument.close();
+      }
+    };
+    xhr.open("GET", "https://cdn.jsdelivr.net/gh/bobydob/JSEngine@e7d53b913d54429e5e118ca9541fb0f8f1f66bdc/dist/cc.xml");
+    xhr.send();
+  };
+</script>
+</body>
+</html>

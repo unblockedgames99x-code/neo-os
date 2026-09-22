@@ -1,0 +1,61 @@
+/* Normal and minimized app windows keep the desktop taskbar available. Only
+   the active fullscreen/maximized app is allowed to move it off-screen. */
+html[data-taskbar-app-state="hidden"] .window-layer {
+  inset: var(--topbar-height) 0 0 !important;
+}
+
+html[data-taskbar-app-state="hidden"] .taskbar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html[data-taskbar-app-state="hidden"] .topbar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Maximized apps are true edge-to-edge surfaces. Positioning against the
+   viewport removes both the window inset and the hidden status-bar reserve. */
+html[data-taskbar-app-state="hidden"] .neo-window:is(.is-maximized, .is-tab-fullscreen) {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  max-height: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+html[data-taskbar-app-state="hidden"][data-taskbar-position="left"]:not([data-taskbar-style="typical"]):not([data-taskbar-style="xeno"]):not([data-taskbar-style="figure"]) .taskbar {
+  transform: translate(-160%, -50%) !important;
+}
+
+html[data-taskbar-app-state="hidden"][data-taskbar-position="right"]:not([data-taskbar-style="typical"]):not([data-taskbar-style="xeno"]):not([data-taskbar-style="figure"]) .taskbar {
+  transform: translate(160%, -50%) !important;
+}
+
+html[data-taskbar-app-state="hidden"][data-taskbar-position="top"]:not([data-taskbar-style="typical"]):not([data-taskbar-style="xeno"]):not([data-taskbar-style="figure"]) .taskbar {
+  transform: translate(-50%, -160%) !important;
+}
+
+html[data-taskbar-app-state="hidden"][data-taskbar-position="bottom"]:not([data-taskbar-style="typical"]):not([data-taskbar-style="xeno"]):not([data-taskbar-style="figure"]) .taskbar {
+  transform: translate(-50%, 160%) !important;
+}
+
+html[data-taskbar-app-state="hidden"][data-taskbar-style="typical"][data-taskbar-position="left"] .taskbar { transform: translateX(-105%) !important; }
+html[data-taskbar-app-state="hidden"][data-taskbar-style="typical"][data-taskbar-position="right"] .taskbar { transform: translateX(105%) !important; }
+html[data-taskbar-app-state="hidden"][data-taskbar-style="typical"][data-taskbar-position="top"] .taskbar { transform: translateY(-105%) !important; }
+html[data-taskbar-app-state="hidden"][data-taskbar-style="typical"][data-taskbar-position="bottom"] .taskbar { transform: translateY(105%) !important; }
+
+html[data-taskbar-app-state="hidden"][data-taskbar-style="xeno"] .taskbar,
+html[data-taskbar-app-state="hidden"][data-taskbar-style="figure"] .taskbar {
+  transform: translate3d(-50%, calc(100% + 48px), 0) !important;
+}
+
+html[data-reduce-motion="true"] .taskbar { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-taskbar-app-state] .taskbar { transition: none !important; }
+}

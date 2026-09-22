@@ -1,0 +1,2221 @@
+/*
+ * NEO OS production polish
+ *
+ * This is the final shell layer: one theme-aware component language for the
+ * desktop, windows, settings, launcher, menus and taskbar. Keep app-specific
+ * layout in its own stylesheet; keep palette values in neo-theme-system.css.
+ */
+
+:root {
+  --neo-polish-ease: cubic-bezier(.22, .8, .24, 1);
+  --neo-polish-fast: 140ms;
+  --neo-polish-normal: 220ms;
+  --neo-window-open-duration: 300ms;
+  --neo-window-restore-duration: 260ms;
+  --neo-window-close-duration: 210ms;
+  --neo-window-open-ease: cubic-bezier(.18, .9, .24, 1);
+  --neo-window-close-ease: cubic-bezier(.55, 0, .9, .45);
+  --neo-radius-control: 10px;
+  --neo-radius-card: 14px;
+  --neo-radius-panel: 18px;
+  --neo-control-height: 40px;
+}
+
+:root,
+html[data-neo-theme] {
+  --neo-glass: color-mix(in srgb, var(--desktop-surface) 88%, transparent);
+  --neo-glass-strong: color-mix(in srgb, var(--desktop-surface) 95%, transparent);
+  --neo-glass-soft: color-mix(in srgb, var(--desktop-text) 7%, transparent);
+  --neo-glass-hover: color-mix(in srgb, var(--desktop-text) 11%, transparent);
+  --neo-hairline: color-mix(in srgb, var(--desktop-line) 72%, var(--desktop-text) 28%);
+  --neo-elevation-low: 0 10px 28px rgba(0, 0, 0, .22);
+  --neo-elevation-high: 0 28px 80px rgba(0, 0, 0, .44);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  scrollbar-color: color-mix(in srgb, var(--desktop-text) 28%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+html[data-neo-theme="frost"] {
+  --neo-elevation-low: 0 10px 30px rgba(34, 45, 62, .13);
+  --neo-elevation-high: 0 28px 80px rgba(34, 45, 62, .22);
+  color-scheme: light;
+}
+
+html[data-neo-theme="glass"] {
+  --neo-glass: color-mix(in srgb, var(--desktop-surface) 68%, transparent);
+  --neo-glass-strong: color-mix(in srgb, var(--desktop-surface) 78%, transparent);
+  --neo-glass-soft: color-mix(in srgb, var(--desktop-text) 5%, transparent);
+  --neo-glass-hover: color-mix(in srgb, var(--desktop-text) 10%, transparent);
+  --neo-hairline: color-mix(in srgb, var(--desktop-text) 22%, transparent);
+}
+
+::selection {
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-accent) 34%, transparent);
+}
+
+:where(button, input, select, textarea, a, [role="button"]) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(button, input, select, textarea, a, [role="button"]):focus-visible {
+  outline: 2px solid var(--desktop-accent);
+  outline-offset: 2px;
+}
+
+:where(button, input, select, textarea):disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+:where(button, [role="button"]):not(:disabled) { cursor: pointer; }
+
+/* Desktop chrome */
+.topbar {
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-bg) 44%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--desktop-text) 8%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.topbar-brand,
+.active-app-label {
+  color: color-mix(in srgb, var(--desktop-text) 82%, transparent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.topbar .icon-button.quiet {
+  width: 32px;
+  height: 32px;
+  color: var(--desktop-muted);
+  border-radius: 9px;
+}
+
+.topbar .icon-button.quiet:hover {
+  color: var(--desktop-text);
+  background: var(--neo-glass-hover);
+}
+
+/* Windows */
+.neo-window {
+  grid-template-rows: 46px minmax(0, 1fr);
+  color: var(--desktop-text);
+  background: var(--neo-glass-strong);
+  border-color: var(--neo-hairline);
+  border-radius: var(--neo-radius-panel);
+  box-shadow: var(--neo-elevation-high), inset 0 1px color-mix(in srgb, var(--desktop-text) 14%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(1.16);
+  backdrop-filter: blur(28px) saturate(1.16);
+  opacity: 0;
+  transform: translate3d(var(--neo-window-enter-x, 0px), var(--neo-window-enter-y, 14px), 0) scale(.94);
+  transform-origin: var(--neo-window-motion-origin-x, 50%) var(--neo-window-motion-origin-y, 50%);
+  transition:
+    opacity var(--neo-window-close-duration) var(--neo-window-close-ease),
+    transform var(--neo-window-close-duration) var(--neo-window-close-ease),
+    border-color var(--neo-polish-fast) var(--neo-polish-ease),
+    box-shadow var(--neo-polish-normal) var(--neo-polish-ease);
+}
+
+.neo-window.is-open {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity var(--neo-window-open-duration) var(--neo-window-open-ease),
+    transform var(--neo-window-open-duration) var(--neo-window-open-ease),
+    border-color var(--neo-polish-fast) var(--neo-polish-ease),
+    box-shadow var(--neo-polish-normal) var(--neo-polish-ease);
+}
+
+.neo-window.is-closing,
+.neo-window.is-minimized {
+  opacity: 0;
+  transform: translate3d(var(--neo-window-exit-x, 0px), var(--neo-window-exit-y, 18px), 0) scale(.92);
+  pointer-events: none;
+  transition:
+    opacity var(--neo-window-close-duration) var(--neo-window-close-ease),
+    transform var(--neo-window-close-duration) var(--neo-window-close-ease),
+    border-color var(--neo-polish-fast) var(--neo-polish-ease),
+    box-shadow var(--neo-window-close-duration) var(--neo-window-close-ease);
+}
+
+.neo-window.is-minimized {
+  visibility: hidden;
+  transition:
+    opacity var(--neo-window-close-duration) var(--neo-window-close-ease),
+    transform var(--neo-window-close-duration) var(--neo-window-close-ease),
+    visibility 0s linear var(--neo-window-close-duration);
+}
+
+.neo-window:is(.is-opening, .is-restoring, .is-minimizing, .is-closing) {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.neo-window.is-open.is-opening {
+  animation: neo-window-open var(--neo-window-open-duration) var(--neo-window-open-ease) both;
+}
+
+.neo-window.is-open.is-restoring {
+  animation: neo-window-restore var(--neo-window-restore-duration) var(--neo-window-open-ease) both;
+}
+
+.neo-window.is-open.is-minimizing {
+  animation: neo-window-minimize var(--neo-window-close-duration) var(--neo-window-close-ease) both;
+}
+
+.neo-window.is-closing {
+  animation: neo-window-close var(--neo-window-close-duration) var(--neo-window-close-ease) both;
+}
+
+.neo-window:is(.is-opening, .is-restoring, .is-minimizing, .is-closing)::after {
+  position: absolute;
+  z-index: 1000;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  pointer-events: none;
+  content: "";
+}
+
+.neo-window:is(.is-opening, .is-restoring)::after {
+  animation: neo-window-brighten var(--neo-window-open-duration) ease-out both;
+}
+
+.neo-window:is(.is-minimizing, .is-closing)::after {
+  animation: neo-window-dim var(--neo-window-close-duration) ease-in both;
+}
+
+@keyframes neo-window-open {
+  0% { opacity: 0; transform: translate3d(var(--neo-window-enter-x, 0px), var(--neo-window-enter-y, 14px), 0) scale(.94); }
+  58% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes neo-window-restore {
+  0% { opacity: 0; transform: translate3d(var(--neo-window-enter-x, 0px), var(--neo-window-enter-y, 14px), 0) scale(.92); }
+  62% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes neo-window-minimize {
+  0% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  100% { opacity: 0; transform: translate3d(var(--neo-window-exit-x, 0px), var(--neo-window-exit-y, 18px), 0) scale(.92); }
+}
+
+@keyframes neo-window-close {
+  0% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  100% { opacity: 0; transform: translate3d(var(--neo-window-exit-x, 0px), var(--neo-window-exit-y, 18px), 0) scale(.92); }
+}
+
+@keyframes neo-window-brighten {
+  0% { opacity: .2; }
+  100% { opacity: 0; }
+}
+
+@keyframes neo-window-dim {
+  0% { opacity: 0; }
+  100% { opacity: .16; }
+}
+
+.neo-window.is-active {
+  border-color: color-mix(in srgb, var(--desktop-accent) 34%, var(--neo-hairline));
+  box-shadow:
+    var(--neo-elevation-high),
+    0 0 0 1px color-mix(in srgb, var(--desktop-accent) 12%, transparent),
+    inset 0 1px color-mix(in srgb, var(--desktop-text) 16%, transparent);
+}
+
+.neo-window.is-dragging {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  box-shadow: 0 22px 58px rgba(0, 0, 0, .46), 0 0 0 2px color-mix(in srgb, var(--desktop-accent) 34%, transparent);
+  animation: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  backface-visibility: hidden;
+  filter: none !important;
+  isolation: isolate;
+  transition: none !important;
+  will-change: transform;
+}
+
+.neo-window.is-dragging > .window-chrome {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.neo-window.is-dragging > .window-body {
+  contain: paint;
+  pointer-events: none !important;
+}
+
+.neo-window.is-dragging iframe {
+  pointer-events: none !important;
+}
+
+.neo-window.is-maximized { border-radius: 12px; }
+
+.window-chrome {
+  gap: 11px;
+  padding: 0 8px 0 12px;
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-surface) 82%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--desktop-text) 10%, transparent);
+}
+
+.window-app-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--desktop-text);
+  background: var(--neo-glass-soft);
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 10%, transparent);
+  border-radius: 9px;
+}
+
+.window-title strong {
+  color: var(--desktop-text);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+.window-title small {
+  color: var(--desktop-muted);
+  font-size: 11px;
+}
+
+.window-controls { gap: 3px; }
+
+.window-control {
+  width: 32px;
+  height: 32px;
+  color: var(--desktop-muted);
+  border-radius: 9px;
+}
+
+.window-control:hover {
+  color: var(--desktop-text);
+  background: var(--neo-glass-hover);
+}
+
+.window-control.close:hover {
+  color: #fff;
+  background: #d83b45;
+}
+
+.window-body {
+  color: var(--desktop-text);
+  background: var(--desktop-bg);
+  border-color: var(--desktop-line);
+}
+
+/* Optional centered application bar. It keeps its own grid row so the glass
+   capsule never overlays buttons, text fields, or embedded app content. */
+@media (min-width: 701px) {
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] {
+    --neo-window-chrome-height: 44px;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-chrome-revealed,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-dragging,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:has(> .window-chrome:focus-within) {
+    grid-template-rows: var(--neo-window-chrome-height) minmax(0, 1fr) !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window::before {
+    display: none;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-chrome-revealed > .window-chrome,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-dragging > .window-chrome,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome:focus-within {
+    width: min(560px, calc(100% - 28px));
+    height: 34px;
+    min-height: 34px;
+    justify-self: center;
+    align-self: start;
+    margin-top: 5px;
+    padding: 0 6px 0 10px;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--desktop-text) 8%, transparent), transparent),
+      color-mix(in srgb, var(--desktop-surface) 82%, transparent);
+    border: 1px solid color-mix(in srgb, var(--desktop-text) 14%, transparent);
+    border-radius: 999px;
+    box-shadow:
+      0 9px 26px rgba(0, 0, 0, .24),
+      inset 0 1px color-mix(in srgb, var(--desktop-text) 13%, transparent);
+    -webkit-backdrop-filter: blur(24px) saturate(1.28);
+    backdrop-filter: blur(24px) saturate(1.28);
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .window-app-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .window-title small { display: none; }
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .window-control { width: 28px; height: 28px; border-radius: 50%; }
+}
+
+/* Floating-pill mode is a real control island: app content fills the window
+   beneath it, while only the draggable controls remain visible above. */
+@media (min-width: 701px) {
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-chrome-revealed,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-dragging,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:has(> .window-chrome:focus-within) {
+    grid-template-rows: minmax(0, 1fr) !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-body {
+    grid-row: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-chrome-revealed > .window-chrome,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-dragging > .window-chrome,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome:focus-within {
+    position: absolute !important;
+    z-index: 35;
+    top: 0;
+    left: 50%;
+    width: min(560px, calc(100% - 28px));
+    margin: 0;
+    grid-template-columns: 24px minmax(0, 1fr) auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome > .window-app-icon {
+    display: grid !important;
+    grid-column: 1;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border-radius: 7px;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome > .window-app-icon .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome > .window-title {
+    grid-column: 2;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome > .window-controls {
+    grid-column: 3;
+  }
+}
+
+/* Keep the pill entirely outside a normal window. Maximized and true
+   fullscreen windows collapse it to a single, unobtrusive exit control. */
+@media (min-width: 701px) {
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:not(.is-maximized):not(.is-tab-fullscreen):not(.is-youtube-popout) {
+    grid-template-rows: var(--neo-window-chrome-height) minmax(0, 1fr) !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:not(.is-maximized):not(.is-tab-fullscreen):not(.is-youtube-popout) > .window-body {
+    grid-row: 2;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:not(.is-maximized):not(.is-tab-fullscreen):not(.is-youtube-popout) > .window-chrome {
+    position: relative !important;
+    top: auto;
+    left: auto;
+    margin: 5px 0;
+    transform: none !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-youtube-popout {
+    grid-template-rows: minmax(0, 1fr) !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-youtube-popout > .window-body {
+    grid-row: 1 !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome {
+    position: absolute !important;
+    z-index: 90;
+    top: 12px;
+    left: 12px;
+    width: 38px;
+    height: 38px;
+    min-height: 38px;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: 1fr !important;
+    place-items: center;
+    color: var(--desktop-text);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--desktop-text) 10%, transparent), transparent),
+      color-mix(in srgb, var(--desktop-surface) 84%, transparent);
+    border: 1px solid color-mix(in srgb, var(--desktop-text) 18%, transparent);
+    border-radius: 999px;
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, .34),
+      inset 0 1px color-mix(in srgb, var(--desktop-text) 14%, transparent);
+    -webkit-backdrop-filter: blur(22px) saturate(1.24);
+    backdrop-filter: blur(22px) saturate(1.24);
+    opacity: 1;
+    pointer-events: auto;
+    transform: none !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome > :not(.window-controls),
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome .window-control,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome .neo-snap-layouts {
+    display: none !important;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome > .window-controls {
+    width: 100%;
+    height: 100%;
+    display: grid !important;
+    grid-column: 1;
+    place-items: center;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-maximized:not(.is-tab-fullscreen) > .window-chrome .window-control.maximize,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-tab-fullscreen > .window-chrome .window-control.fullscreen {
+    width: 36px;
+    height: 36px;
+    display: grid !important;
+    place-items: center;
+    color: var(--desktop-text);
+    background: transparent;
+    border-radius: 50%;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-maximized:not(.is-tab-fullscreen) > .window-chrome .window-control.maximize:hover,
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-tab-fullscreen > .window-chrome .window-control.fullscreen:hover {
+    color: #fff;
+    background: #d83b45;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome .window-control:is(.maximize,.fullscreen) .icon {
+    display: none;
+  }
+
+  html.neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome .window-control:is(.maximize,.fullscreen)::before {
+    content: "×";
+    font-size: 25px;
+    font-weight: 360;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+}
+
+/* Ultra-thin mode keeps a complete, edge-to-edge title strip while giving the
+   app nearly the entire window. It remains a reliable drag target when the
+   user restores a maximized app. */
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] {
+  --neo-window-chrome-height: 32px;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window,
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window.is-chrome-revealed,
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window.is-dragging,
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window:has(> .window-chrome:focus-within) {
+  grid-template-rows: 32px minmax(0, 1fr) !important;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window:not(.is-youtube-popout) {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window[data-app-id="youtube-app"].is-youtube-popout {
+  grid-template-rows: minmax(0, 1fr) !important;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window.is-maximized {
+  border-radius: 0;
+}
+
+/* A maximized app must meet the physical right edge. The shared seven-pixel
+   inset is useful on the other sides, but it exposed a wallpaper-colored seam
+   along the right side of every maximized window. */
+html[data-taskbar-position] .neo-window.is-maximized {
+  right: 0 !important;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window > .window-chrome,
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window.is-chrome-revealed > .window-chrome,
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window.is-dragging > .window-chrome,
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window > .window-chrome:focus-within {
+  width: 100%;
+  height: 32px;
+  min-height: 32px;
+  grid-template-columns: 18px minmax(0, 1fr) auto !important;
+  gap: 6px;
+  padding: 0 0 0 7px;
+  background: color-mix(in srgb, var(--desktop-bg) 91%, var(--desktop-surface) 9%);
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--desktop-text) 10%, transparent);
+  border-radius: 0;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 5%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  backdrop-filter: blur(18px) saturate(1.08);
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .neo-window > .window-chrome > .window-app-icon {
+  width: 18px;
+  height: 18px;
+  display: grid !important;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-app-icon :is(.icon, img) {
+  width: 14px;
+  height: 14px;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-title {
+  min-width: 0;
+  display: block;
+  line-height: 1;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-title strong {
+  display: block;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--desktop-text) 78%, transparent);
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 31px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-title small {
+  display: none;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-controls {
+  align-self: stretch;
+  gap: 0;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-control {
+  width: 34px;
+  height: 31px;
+  color: color-mix(in srgb, var(--desktop-text) 58%, transparent);
+  border-radius: 0;
+}
+
+html.neo-auto-hide-bars[data-window-bar-style="ultra"] .window-control .icon {
+  width: 13px;
+  height: 13px;
+}
+
+/* The four-corner app-fullscreen control is retired. Apps already launch
+   maximized, while the square control remains available for restore. */
+.neo-window > .window-chrome .window-control.fullscreen {
+  display: none !important;
+}
+
+/* Old in-memory Settings windows may still contain the retired shortcut row.
+   Never allow that stale row to reappear over the integrated settings. */
+.desktop-settings-shortcuts { display: none !important; }
+
+/* Native apps and system settings */
+.native-app {
+  min-height: 100%;
+  padding: clamp(20px, 2.4vw, 30px);
+  color: var(--desktop-text);
+  background:
+    radial-gradient(circle at 88% -12%, color-mix(in srgb, var(--desktop-accent) 10%, transparent), transparent 38%),
+    var(--desktop-bg);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.native-app-heading {
+  gap: 24px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom-color: var(--desktop-line);
+}
+
+.native-app-heading h2 {
+  margin-top: 5px;
+  color: var(--desktop-text);
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.08;
+}
+
+.eyebrow {
+  color: color-mix(in srgb, var(--desktop-accent) 70%, var(--desktop-muted));
+  font-size: 11px;
+  letter-spacing: .12em;
+  line-height: 1.2;
+}
+
+.native-app-heading p,
+.section-heading p,
+.about-section p {
+  color: var(--desktop-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.control-settings-search {
+  width: min(100%, 960px);
+  min-height: 46px;
+  margin: 0 auto 16px;
+  padding: 0 8px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--desktop-muted);
+  background: color-mix(in srgb, var(--desktop-surface) 88%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: 12px;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 6%, transparent);
+  transition: border-color var(--neo-fast) var(--neo-ease), box-shadow var(--neo-fast) var(--neo-ease), background var(--neo-fast) var(--neo-ease);
+}
+
+.control-settings-search:focus-within {
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-surface-2) 92%, transparent);
+  border-color: color-mix(in srgb, var(--desktop-accent) 58%, var(--desktop-line));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--desktop-accent) 14%, transparent), inset 0 1px color-mix(in srgb, var(--desktop-text) 8%, transparent);
+}
+
+.control-settings-search > .icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.control-center .control-settings-search > input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  color: var(--desktop-text);
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0;
+  outline: 0 !important;
+  box-shadow: none !important;
+  font: inherit;
+  font-size: 14px;
+}
+
+.control-center .control-settings-search > input:focus { outline: 0 !important; box-shadow: none !important; }
+.control-center .control-settings-search > input::placeholder { color: var(--desktop-muted); }
+.control-center .control-settings-search > input::-webkit-search-cancel-button { display: none; }
+
+.control-settings-search-clear {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--desktop-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+}
+
+.control-settings-search-clear:hover {
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-text) 10%, transparent);
+}
+
+.control-settings-search-clear .icon { width: 16px; height: 16px; }
+.control-settings-search-clear[hidden] { display: none !important; }
+
+.settings-search-empty {
+  width: min(100%, 960px);
+  min-height: 190px;
+  margin: 0 auto 14px;
+  padding: 28px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  text-align: center;
+  color: var(--desktop-muted);
+  background: color-mix(in srgb, var(--desktop-surface) 82%, transparent);
+  border: 1px dashed var(--desktop-line);
+  border-radius: var(--neo-radius-card);
+}
+
+.settings-search-empty[hidden],
+.is-settings-search-hidden { display: none !important; }
+.settings-search-empty .icon { width: 22px; height: 22px; }
+.settings-search-empty strong { color: var(--desktop-text); font-size: 16px; }
+.settings-search-empty p { margin: 0; font-size: 13px; }
+
+.control-center.is-settings-searching .is-settings-search-match > h2,
+.control-center.is-settings-searching .is-settings-search-match .section-heading h3,
+.control-center.is-settings-searching .is-settings-search-match > .taskbar-option-title strong {
+  color: var(--desktop-accent);
+}
+
+.section-heading h3,
+.about-section h3 {
+  color: var(--desktop-text);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.control-center > .settings-section,
+.settings-section.compact {
+  margin: 0 0 14px;
+  padding: 20px;
+  background: color-mix(in srgb, var(--desktop-surface) 88%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: var(--neo-radius-card);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 7%, transparent);
+}
+
+.control-center > .taskbar-settings-only {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 14px;
+}
+
+.control-center > .integrated-personalization-settings {
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  margin: 0 auto 14px;
+  overflow: visible;
+  padding: 20px;
+  background: color-mix(in srgb, var(--desktop-surface) 88%, transparent);
+}
+
+.integrated-personalization-settings > .desktop-section:first-child { padding-top: 0; }
+.integrated-personalization-settings > .desktop-section:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.devtools-settings-section .desktop-note,
+.browser-settings-section .desktop-note { margin-bottom: 14px; }
+.devtools-enable-row {
+  min-height: 58px;
+  padding: 12px 14px;
+  background: var(--neo-theme-soft);
+  border: 1px solid var(--desktop-line);
+  border-radius: 11px;
+}
+.devtools-position-field,
+.browser-search-engine-field {
+  display: grid;
+  gap: 9px;
+  margin-top: 12px;
+}
+.devtools-position-copy,
+.browser-search-engine-copy { display: grid; gap: 2px; }
+.devtools-position-copy strong,
+.browser-search-engine-copy strong { color: var(--desktop-text); font-size: 14px; }
+.devtools-position-copy small,
+.browser-search-engine-copy small { color: var(--desktop-muted); font-size: 12px; }
+.devtools-position-field select,
+.browser-search-engine-field select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  color: var(--desktop-text);
+  background: var(--neo-theme-soft);
+  border: 1px solid var(--desktop-line);
+  border-radius: 10px;
+  font: inherit;
+}
+.devtools-position-field select:focus-visible,
+.browser-search-engine-field select:focus-visible {
+  outline: 2px solid var(--desktop-accent);
+  outline-offset: 2px;
+}
+.devtools-position-field select:disabled { opacity: .55; cursor: not-allowed; }
+
+.performance-settings,
+.taskbar-option-group {
+  gap: 14px;
+  padding: 16px;
+  color: var(--desktop-text);
+  background: var(--neo-theme-soft);
+  border: 1px solid var(--desktop-line);
+  border-radius: 12px;
+}
+
+.performance-status,
+.taskbar-options-status,
+.engine-state {
+  min-height: 28px;
+  padding: 0 10px;
+  color: var(--desktop-text);
+  background: var(--neo-theme-accent-soft);
+  border: 1px solid color-mix(in srgb, var(--desktop-accent) 35%, var(--desktop-line));
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.performance-mode-picker,
+.taskbar-option-picker { gap: 10px; }
+
+.performance-mode-picker button,
+.taskbar-option-picker button,
+.theme-choice {
+  color: var(--desktop-muted);
+  background: color-mix(in srgb, var(--desktop-surface) 92%, var(--desktop-bg) 8%);
+  border: 1px solid var(--desktop-line);
+  border-radius: 11px;
+  transition:
+    color var(--neo-polish-fast) var(--neo-polish-ease),
+    background-color var(--neo-polish-fast) var(--neo-polish-ease),
+    border-color var(--neo-polish-fast) var(--neo-polish-ease),
+    transform var(--neo-polish-fast) var(--neo-polish-ease),
+    box-shadow var(--neo-polish-fast) var(--neo-polish-ease);
+}
+
+.window-bar-style-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.taskbar-surface-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.window-bar-style-picker button {
+  min-height: 90px;
+  grid-template-columns: 92px minmax(0, 1fr);
+  justify-content: stretch;
+  text-align: left;
+}
+
+.window-bar-style-picker button > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.window-bar-style-preview {
+  position: relative;
+  width: 92px;
+  height: 48px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 28%, color-mix(in srgb, var(--desktop-accent) 25%, transparent), transparent 34%),
+    color-mix(in srgb, var(--desktop-bg) 88%, black 12%);
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 16%, transparent);
+  border-radius: 8px;
+}
+
+.window-bar-style-preview::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  height: 10px;
+  background: color-mix(in srgb, var(--desktop-text) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 13%, transparent);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 12%, transparent);
+}
+
+.window-bar-style-preview.is-current::before {
+  right: 5px;
+  left: 5px;
+  border-radius: 3px;
+}
+
+.window-bar-style-preview.is-ultra::before {
+  top: 4px;
+  right: 4px;
+  left: 4px;
+  height: 5px;
+  border-radius: 1px;
+}
+
+.window-bar-style-preview.is-ultra::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  left: 8px;
+  width: 3px;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--desktop-accent);
+}
+
+.window-bar-style-preview.is-pill::before {
+  left: 50%;
+  width: 62px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.window-bar-style-preview.is-pill::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 9px;
+  left: 22px;
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--desktop-accent);
+}
+
+.taskbar-surface-picker button {
+  grid-template-rows: 40px auto;
+}
+
+.taskbar-surface-picker button > span:last-child {
+  display: grid;
+  gap: 3px;
+}
+
+.taskbar-surface-preview {
+  position: relative;
+  width: 76px;
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 22%, transparent);
+  border-radius: 11px;
+  box-shadow: 0 7px 16px rgba(0, 0, 0, .2), inset 0 1px rgba(255, 255, 255, .16);
+}
+
+.taskbar-surface-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, currentColor 0 2px, transparent 2.5px) center / 13px 13px repeat-x;
+  opacity: .82;
+}
+
+.taskbar-surface-preview.is-glass {
+  color: #fff;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .018) 42%, rgba(0, 0, 0, .08)),
+    rgba(var(--neo-taskbar-tint, 118, 124, 132), calc(var(--neo-taskbar-opacity, .38) * .82));
+  border-color: rgba(255, 255, 255, .34);
+  -webkit-backdrop-filter: blur(10px) saturate(1.35);
+  backdrop-filter: blur(10px) saturate(1.35);
+}
+
+.taskbar-surface-preview.is-solid {
+  color: var(--neo-taskbar-foreground, #fff);
+  background: rgb(var(--neo-taskbar-tint, 118, 124, 132));
+}
+
+.taskbar-surface-preview.is-gradient {
+  color: var(--neo-taskbar-foreground, #fff);
+  background: linear-gradient(110deg, rgb(var(--neo-taskbar-tint, 118, 124, 132)), rgb(var(--neo-taskbar-gradient-end, 49, 95, 155)));
+}
+
+.performance-mode-picker button:hover,
+.taskbar-option-picker button:hover,
+.theme-choice:hover {
+  color: var(--desktop-text);
+  background: var(--neo-theme-hover);
+  border-color: var(--neo-hairline);
+  transform: translateY(-1px);
+}
+
+.performance-mode-picker button.is-selected,
+.performance-mode-picker button[aria-pressed="true"],
+.taskbar-option-picker button.is-selected {
+  color: var(--desktop-text);
+  background: var(--neo-theme-accent-soft);
+  border-color: var(--desktop-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--desktop-accent) 16%, transparent);
+}
+
+.performance-mode-picker strong,
+.taskbar-option-title strong,
+.range-field strong,
+.toggle-row strong,
+.select-row strong,
+.settings-app-link strong {
+  color: var(--desktop-text);
+  font-size: 14px;
+  font-weight: 620;
+}
+
+.performance-mode-picker small,
+.performance-mode-note,
+.taskbar-option-title small,
+.taskbar-style-picker button small,
+.toggle-row small,
+.select-row small,
+.settings-app-link small {
+  color: var(--desktop-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.performance-mode-picker button { min-height: 76px; }
+.taskbar-option-picker button { min-height: 82px; }
+.taskbar-option-picker button > strong,
+.taskbar-style-picker button > span strong,
+.taskbar-surface-picker button > span strong { font-size: 13px; }
+
+.taskbar-gradient-color {
+  min-height: 62px;
+  padding: 11px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--desktop-line) 74%, transparent);
+}
+
+.taskbar-gradient-color > span { display: grid; gap: 3px; }
+.taskbar-gradient-color strong { color: var(--desktop-text); font-size: 14px; font-weight: 620; }
+.taskbar-gradient-color small { color: var(--desktop-muted); font-size: 12px; line-height: 1.45; }
+.taskbar-gradient-color input[type="color"] { width: 48px; min-width: 48px; height: 38px; padding: 3px; }
+
+[data-taskbar-glass-control],
+[data-taskbar-gradient-control] {
+  transition: opacity var(--neo-polish-fast) var(--neo-polish-ease);
+}
+
+[data-taskbar-glass-control].is-disabled,
+[data-taskbar-gradient-control].is-disabled { opacity: .42; }
+
+.range-field,
+.toggle-row,
+.select-row { border-bottom-color: color-mix(in srgb, var(--desktop-line) 74%, transparent); }
+
+.range-field { gap: 11px; padding: 14px 0; }
+.range-field output { color: var(--desktop-muted); font-size: 12px; }
+
+.animation-speed-setting {
+  display: grid;
+  gap: 8px;
+  padding: 8px 0 2px;
+}
+
+.animation-speed-heading,
+.animation-speed-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.animation-speed-copy strong {
+  color: var(--desktop-text);
+  font-size: 14px;
+  font-weight: 620;
+}
+
+.animation-speed-copy small,
+.animation-speed-endpoint,
+.animation-speed-value {
+  color: var(--desktop-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.animation-speed-scale {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.animation-speed-track {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  padding-top: 20px;
+}
+
+.animation-speed-track input[type="range"] {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.animation-speed-value {
+  position: absolute;
+  top: 0;
+  left: clamp(28px, var(--neo-range-progress, 33.333%), calc(100% - 28px));
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+  .animation-speed-scale { grid-template-columns: auto minmax(90px, 1fr) auto; gap: 8px; }
+}
+
+.toggle-row,
+.select-row { min-height: 62px; padding: 11px 0; }
+
+.select-row select,
+.native-app select,
+.native-app input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.native-app textarea {
+  min-height: var(--neo-control-height);
+  color: var(--desktop-text);
+  background: var(--neo-theme-soft);
+  border: 1px solid var(--desktop-line);
+  border-radius: var(--neo-radius-control);
+  font-size: 14px;
+}
+
+.switch {
+  width: 44px;
+  height: 26px;
+  background: color-mix(in srgb, var(--desktop-text) 16%, transparent);
+  border-color: color-mix(in srgb, var(--desktop-text) 18%, transparent);
+}
+
+.switch::after {
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: color-mix(in srgb, var(--desktop-text) 88%, var(--desktop-bg));
+}
+
+.toggle-row input:checked + .switch {
+  background: var(--desktop-accent);
+  border-color: var(--desktop-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--desktop-accent) 13%, transparent);
+}
+
+.toggle-row input:checked + .switch::after {
+  background: var(--desktop-bg);
+  transform: translateX(18px);
+}
+
+.button,
+.settings-app-link,
+.notification-center > footer button {
+  min-height: var(--neo-control-height);
+  border-radius: var(--neo-radius-control);
+  font-size: 14px;
+}
+
+.button:not(.primary),
+.settings-app-link {
+  color: var(--desktop-text);
+  background: var(--neo-theme-soft);
+  border-color: var(--desktop-line);
+}
+
+.button:hover,
+.settings-app-link:hover {
+  color: var(--desktop-text);
+  background: var(--neo-theme-hover);
+  border-color: var(--neo-hairline);
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  color: var(--desktop-bg);
+  background: var(--desktop-accent);
+  border-color: var(--desktop-accent);
+}
+
+/* Theme chooser */
+.theme-grid {
+  grid-template-columns: repeat(auto-fill, minmax(154px, 1fr));
+  gap: 12px;
+}
+
+.desktop-app .theme-choice {
+  display: grid;
+  min-height: 126px;
+  padding: 50px 14px 14px;
+  align-content: end;
+  gap: 10px;
+  border-radius: 13px;
+  font-size: 14px;
+}
+
+.desktop-app .theme-choice::before {
+  inset: 0 0 auto;
+  height: 38px;
+  background: var(--theme-preview-surface);
+  border-bottom: 1px solid var(--theme-preview-line);
+}
+
+.theme-choice-label {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 14px;
+  left: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-palette-preview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.theme-palette-preview i {
+  display: block;
+  height: 28px;
+  border: 1px solid color-mix(in srgb, var(--theme-preview-text) 4%, transparent);
+  border-radius: 8px;
+}
+
+.theme-accent-preview {
+  display: flex;
+  gap: 9px;
+}
+
+.theme-accent-preview i {
+  display: block;
+  width: 20px;
+  height: 7px;
+  border-radius: 999px;
+}
+
+/* Launcher */
+.app-launcher {
+  --launcher-glass: color-mix(in srgb, var(--desktop-surface) 90%, transparent);
+  --launcher-glass-strong: color-mix(in srgb, var(--desktop-surface) 96%, transparent);
+  --launcher-glass-soft: color-mix(in srgb, var(--desktop-text) 7%, transparent);
+  --launcher-stroke: color-mix(in srgb, var(--desktop-line) 68%, var(--desktop-text) 32%);
+  --launcher-line: color-mix(in srgb, var(--desktop-text) 11%, transparent);
+  --launcher-ink: var(--desktop-text);
+  --launcher-muted: var(--desktop-muted);
+  --launcher-accent: var(--desktop-accent);
+  color-scheme: inherit;
+  color: var(--desktop-text);
+  background: var(--launcher-glass);
+  border-color: var(--launcher-stroke);
+  border-radius: 20px;
+  box-shadow: var(--neo-elevation-high), inset 0 1px color-mix(in srgb, var(--desktop-text) 16%, transparent);
+  -webkit-backdrop-filter: blur(36px) saturate(1.2);
+  backdrop-filter: blur(36px) saturate(1.2);
+}
+
+.app-launcher::before {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--desktop-text) 7%, transparent), transparent 34%);
+}
+
+.launcher-search {
+  top: 18px;
+  right: 28px;
+  left: 28px;
+  height: 42px;
+  grid-template-columns: 30px minmax(0, 1fr) 30px;
+  color: var(--desktop-text);
+  background: var(--neo-glass-soft);
+  border-color: var(--desktop-line);
+  border-bottom-color: color-mix(in srgb, var(--desktop-accent) 55%, var(--desktop-line));
+  border-radius: 13px;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 8%, transparent);
+}
+
+.launcher-search:focus-within {
+  background: var(--neo-theme-accent-soft);
+  border-color: var(--desktop-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--desktop-accent) 14%, transparent);
+}
+
+.launcher-search input {
+  height: 40px;
+  color: var(--desktop-text);
+  font-size: 15px;
+}
+
+.launcher-search input::placeholder { color: var(--desktop-muted); }
+.launcher-local { color: var(--desktop-muted); }
+.launcher-scroll-region { inset: 76px 0 70px; border-top-color: var(--launcher-line); }
+.launcher-section { padding-right: 48px; padding-left: 48px; }
+.pinned-section { padding-top: 26px; }
+.pinned-app-grid { gap: 14px 12px; }
+
+.launcher-section-title h3 {
+  color: var(--desktop-text);
+  font-size: 16px;
+}
+
+.launcher-section-title > span,
+.launcher-text-button { color: var(--desktop-muted); font-size: 13px; }
+
+.launcher-app {
+  min-height: 86px;
+  grid-template-rows: 44px auto;
+  padding: 7px 4px;
+  color: var(--desktop-text);
+  border-radius: 12px;
+}
+
+.launcher-app:hover,
+.launcher-app:focus-visible {
+  color: var(--desktop-text);
+  background: var(--neo-glass-hover);
+  box-shadow: var(--neo-elevation-low), inset 0 1px color-mix(in srgb, var(--desktop-text) 9%, transparent);
+  transform: translateY(-2px);
+}
+
+.launcher-app > span:last-child,
+.recent-app strong,
+.search-result strong,
+.category-group > span {
+  color: var(--desktop-text);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.recent-app,
+.search-result {
+  min-height: 60px;
+  padding: 9px;
+  color: var(--desktop-text);
+  border-radius: 11px;
+}
+
+.recent-app small,
+.search-result small { color: var(--desktop-muted); font-size: 12px; }
+
+.recent-app:hover,
+.recent-app:focus-visible,
+.search-result:hover,
+.search-result:focus-visible,
+.search-result.is-selected {
+  background: var(--neo-glass-hover);
+  border-color: var(--desktop-line);
+  box-shadow: var(--neo-elevation-low);
+}
+
+.category-icons {
+  background: var(--neo-glass-soft);
+  border-color: var(--desktop-line);
+  border-radius: 13px;
+}
+
+.launcher-footer {
+  height: 70px;
+  padding: 0 48px;
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-surface) 94%, transparent);
+  border-top-color: var(--launcher-line);
+}
+
+.launcher-profile strong,
+.launcher-profile small,
+.launcher-power { color: var(--desktop-text); }
+
+.launcher-profile strong { font-size: 13px; }
+.launcher-profile small { color: var(--desktop-muted); font-size: 12px; }
+.launcher-power { width: 38px; height: 38px; border-radius: 10px; }
+.launcher-power:hover { background: var(--neo-glass-hover); }
+
+/* Menus, notifications and transient feedback */
+.notification-center,
+.desktop-context-menu,
+.context-submenu,
+.desktop-palette,
+.neo-toast {
+  color: var(--desktop-text);
+  background: var(--neo-glass-strong);
+  border-color: var(--neo-hairline);
+  border-radius: var(--neo-radius-card);
+  box-shadow: var(--neo-elevation-high), inset 0 1px color-mix(in srgb, var(--desktop-text) 10%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(1.18);
+  backdrop-filter: blur(28px) saturate(1.18);
+}
+
+.notification-center { width: min(390px, calc(100vw - 20px)); }
+.notification-center > header,
+.notification-center > footer { border-color: var(--desktop-line); }
+.notification-center h2 { color: var(--desktop-text); font-size: 20px; }
+.notification-center .eyebrow { color: var(--desktop-accent); }
+
+.notification-item { min-height: 68px; padding: 12px; border-radius: 11px; }
+.notification-item:hover { background: var(--neo-glass-hover); }
+.notification-copy strong { color: var(--desktop-text); font-size: 14px; }
+.notification-copy small { color: var(--desktop-muted); font-size: 12px; }
+.notification-item time { color: var(--desktop-muted); font-size: 11px; }
+.notification-empty { color: var(--desktop-muted); }
+.notification-empty strong { color: var(--desktop-text); font-size: 14px; }
+.notification-empty p { font-size: 12px; }
+
+.desktop-context-menu { width: 252px; padding: 8px; }
+.context-submenu { width: 214px; background: var(--neo-glass-strong); }
+.desktop-context-menu button {
+  min-height: 40px;
+  color: var(--desktop-text);
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.desktop-context-menu button:hover,
+.desktop-context-menu button:focus-visible,
+.desktop-context-menu button[aria-expanded="true"] {
+  color: var(--desktop-text);
+  background: var(--neo-theme-accent-soft);
+}
+
+.desktop-context-menu .icon,
+.desktop-context-menu .context-arrow { color: var(--desktop-muted); }
+.context-separator { background: var(--desktop-line); }
+
+.neo-toast {
+  min-height: 60px;
+  padding: 13px 14px;
+}
+
+.neo-toast strong { color: var(--desktop-text); font-size: 14px; }
+.neo-toast small { color: var(--desktop-muted); font-size: 12px; }
+
+/* Taskbar interactions: geometry and four-edge behavior remain in
+   neo-vertical-taskbar.css. */
+html[data-taskbar-position] .taskbar {
+  transition:
+    opacity var(--neo-polish-fast) var(--neo-polish-ease),
+    transform var(--neo-polish-normal) var(--neo-polish-ease),
+    background-color var(--neo-polish-normal) var(--neo-polish-ease),
+    border-color var(--neo-polish-normal) var(--neo-polish-ease),
+    box-shadow var(--neo-polish-normal) var(--neo-polish-ease);
+}
+
+html[data-taskbar-position] .taskbar-start-button,
+html[data-taskbar-position] .taskbar .dock-button {
+  border-radius: 11px;
+  transition:
+    background-color var(--neo-polish-fast) var(--neo-polish-ease),
+    border-color var(--neo-polish-fast) var(--neo-polish-ease),
+    box-shadow var(--neo-polish-fast) var(--neo-polish-ease),
+    transform var(--neo-polish-fast) var(--neo-polish-ease);
+}
+
+html[data-taskbar-position] .taskbar .dock-button::before {
+  padding: 6px 9px;
+  color: var(--desktop-text);
+  background: var(--neo-glass-strong);
+  border: 1px solid var(--neo-hairline);
+  border-radius: 8px;
+  box-shadow: var(--neo-elevation-low);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Performance profiles keep the same palette while dropping costly effects. */
+html[data-performance-mode="performance"] :is(.topbar,.taskbar,.app-launcher,.notification-center,.desktop-context-menu,.context-submenu,.neo-taskbar-menu),
+html[data-performance-mode="ultimate"] :is(.taskbar,.app-launcher,.notification-center,.desktop-context-menu,.context-submenu,.neo-taskbar-menu) {
+  background: var(--desktop-surface) !important;
+}
+
+html[data-performance-mode="performance"] :is(.neo-window,.window-chrome),
+html[data-performance-mode="ultimate"] :is(.neo-window,.window-chrome) {
+  background: var(--desktop-surface) !important;
+  border-color: var(--desktop-line) !important;
+}
+
+html[data-performance-mode="ultimate"] body,
+html[data-performance-mode="ultimate"] .desktop { background: var(--desktop-bg) !important; }
+
+html[data-taskbar-outline="false"] .taskbar {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Local browser-tab appearance presets */
+.tab-appearance-section > .desktop-note {
+  margin: 6px 0 14px;
+  max-width: 64ch;
+}
+
+.tab-appearance-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(112px, 1fr));
+  gap: 10px;
+}
+
+.desktop-app .tab-appearance-choice {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 88px;
+  padding: 12px 8px 11px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-surface-2) 88%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: 13px;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 4%, transparent);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+  transition:
+    transform var(--neo-polish-fast) var(--neo-polish-ease),
+    background-color var(--neo-polish-fast) var(--neo-polish-ease),
+    border-color var(--neo-polish-fast) var(--neo-polish-ease),
+    box-shadow var(--neo-polish-fast) var(--neo-polish-ease);
+}
+
+.desktop-app .tab-appearance-choice:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--desktop-surface-2) 78%, var(--desktop-text) 7%);
+  border-color: color-mix(in srgb, var(--desktop-text) 24%, transparent);
+}
+
+.desktop-app .tab-appearance-choice.is-selected,
+.desktop-app .tab-appearance-choice[aria-pressed="true"] {
+  background: var(--neo-theme-accent-soft);
+  border-color: var(--desktop-accent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--desktop-accent) 28%, transparent),
+    inset 0 1px color-mix(in srgb, var(--desktop-text) 8%, transparent);
+}
+
+.tab-appearance-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+}
+
+.tab-appearance-icon img,
+.tab-appearance-custom-preview {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.tab-appearance-label {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-appearance-status {
+  min-height: 18px;
+  margin: 12px 0 0;
+  color: var(--desktop-muted);
+  font-size: 12px;
+}
+
+.tab-appearance-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.desktop-palette.tab-appearance-dialog { max-width: 760px; }
+
+.tab-appearance-custom-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tab-appearance-field {
+  display: grid;
+  gap: 8px;
+  color: var(--desktop-text);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.tab-appearance-field > input[type="text"],
+.tab-appearance-field > input[type="url"] {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  color: var(--desktop-text);
+  background: var(--desktop-surface-2);
+  border: 1px solid var(--desktop-line);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 500;
+}
+
+.tab-appearance-icon-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.tab-appearance-custom-preview {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  background: color-mix(in srgb, var(--desktop-surface-2) 88%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: 10px;
+}
+
+.tab-appearance-icon-row input[type="file"] {
+  min-width: 0;
+  color: var(--desktop-muted);
+  font-size: 13px;
+}
+
+.tab-appearance-icon-row input[type="file"]::file-selector-button {
+  min-height: 36px;
+  margin-right: 10px;
+  padding: 0 12px;
+  color: var(--desktop-text);
+  background: var(--desktop-surface-2);
+  border: 1px solid var(--desktop-line);
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.tab-appearance-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.tab-appearance-actions button:last-child {
+  color: var(--neo-accent-contrast, #000000);
+  background: var(--neo-accent-visible, var(--desktop-accent));
+  border-color: var(--neo-accent-visible, var(--desktop-accent));
+}
+
+/* Widget library */
+.widget-manager {
+  padding: 0;
+  background:
+    radial-gradient(circle at 86% -10%, color-mix(in srgb, var(--desktop-accent) 10%, transparent), transparent 36%),
+    var(--desktop-bg);
+}
+
+.widget-manager-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 26px 28px 20px;
+}
+
+.widget-manager-heading-icon,
+.widget-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--desktop-text);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--desktop-accent) 28%, var(--desktop-surface)), var(--desktop-surface));
+  border: 1px solid color-mix(in srgb, var(--desktop-accent) 35%, var(--desktop-line));
+  border-radius: 13px;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 12%, transparent);
+}
+
+.widget-manager-heading-icon .icon,
+.widget-empty-icon .icon { width: 22px; height: 22px; }
+
+.widget-manager-heading h1 {
+  margin: 0;
+  color: var(--desktop-text);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 760;
+  letter-spacing: -.035em;
+}
+
+.widget-manager-heading p,
+.widget-section-heading p {
+  margin: 3px 0 0;
+  color: var(--desktop-muted);
+  font-size: 14px;
+}
+
+.widget-manager-total,
+.widget-installed-count {
+  padding: 6px 10px;
+  color: var(--desktop-muted);
+  background: color-mix(in srgb, var(--desktop-surface-2) 82%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 680;
+  white-space: nowrap;
+}
+
+.widget-builtin-section,
+.widget-library-section,
+.widget-installed-section {
+  margin: 0 24px 20px;
+  padding: 18px;
+  background: color-mix(in srgb, var(--desktop-surface) 74%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: 18px;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 6%, transparent);
+}
+
+.widget-builtin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.widget-builtin-card {
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+}
+
+.desktop-app .widget-builtin-card .widget-action-button[role="switch"] {
+  min-width: 66px;
+}
+
+.desktop-app .widget-builtin-card .widget-action-button.is-enabled {
+  color: var(--neo-accent-contrast, #071015);
+  background: var(--neo-accent-visible, var(--desktop-accent));
+  border-color: var(--neo-accent-visible, var(--desktop-accent));
+}
+
+.widget-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 15px;
+}
+
+.widget-section-heading h2 {
+  margin: 0;
+  color: var(--desktop-text);
+  font-size: 19px;
+  font-weight: 720;
+  letter-spacing: -.015em;
+}
+
+.widget-style-field {
+  display: grid !important;
+  grid-template-columns: auto 148px;
+  align-items: center;
+  gap: 9px !important;
+  margin: 0 !important;
+  color: var(--desktop-muted);
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.widget-style-field select {
+  min-height: 36px;
+  padding: 0 32px 0 11px;
+  color: var(--desktop-text);
+  background-color: var(--desktop-surface-2);
+  border-color: var(--desktop-line);
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+
+.widget-category-filter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.widget-category-filter::-webkit-scrollbar { display: none; }
+
+.desktop-app .widget-category-button {
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 0 12px;
+  color: var(--desktop-muted);
+  background: transparent;
+  border-color: transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 680;
+}
+
+.desktop-app .widget-category-button:hover {
+  color: var(--desktop-text);
+  background: var(--neo-theme-hover);
+}
+
+.desktop-app .widget-category-button[aria-pressed="true"] {
+  color: var(--desktop-text);
+  background: color-mix(in srgb, var(--desktop-accent) 16%, var(--desktop-surface-2));
+  border-color: color-mix(in srgb, var(--desktop-accent) 42%, transparent);
+  outline: 0;
+}
+
+.widget-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.desktop-app .widget-library-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 26px;
+  align-items: center;
+  gap: 11px;
+  min-height: 82px;
+  padding: 12px;
+  overflow: hidden;
+  color: var(--desktop-text);
+  background:
+    radial-gradient(circle at 0 0, color-mix(in srgb, var(--widget-accent) 12%, transparent), transparent 48%),
+    var(--desktop-surface-2);
+  border-color: color-mix(in srgb, var(--desktop-line) 88%, transparent);
+  border-radius: 13px;
+  text-align: left;
+}
+
+.desktop-app .widget-library-card:hover {
+  border-color: color-mix(in srgb, var(--widget-accent) 58%, var(--desktop-line));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16), inset 0 1px color-mix(in srgb, var(--desktop-text) 7%, transparent);
+  transform: translateY(-2px);
+}
+
+.desktop-app .widget-library-card:active { transform: translateY(0) scale(.99); }
+
+.widget-library-icon,
+.widget-installed-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--widget-accent);
+  background: color-mix(in srgb, var(--widget-accent) 13%, var(--desktop-surface));
+  border: 1px solid color-mix(in srgb, var(--widget-accent) 24%, transparent);
+  border-radius: 11px;
+}
+
+.widget-library-icon .icon,
+.widget-installed-icon .icon { width: 20px; height: 20px; }
+
+.widget-library-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.widget-library-copy strong,
+.widget-installed-copy strong {
+  overflow: hidden;
+  color: var(--desktop-text);
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.widget-library-copy small,
+.widget-installed-copy small {
+  overflow: hidden;
+  color: var(--desktop-muted);
+  font-size: 12px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.widget-library-add {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  color: var(--desktop-muted);
+  background: color-mix(in srgb, var(--desktop-text) 5%, transparent);
+  border: 1px solid var(--desktop-line);
+  border-radius: 50%;
+  transition: color var(--neo-polish-fast) var(--neo-polish-ease), background-color var(--neo-polish-fast) var(--neo-polish-ease);
+}
+
+.widget-library-add .icon { width: 14px; height: 14px; }
+
+.widget-library-card:hover .widget-library-add {
+  color: #071015;
+  background: var(--widget-accent);
+  border-color: var(--widget-accent);
+}
+
+.widget-installed-list { display: grid; gap: 8px; }
+
+.widget-installed-card {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  padding: 11px 12px;
+  background: var(--desktop-surface-2);
+  border: 1px solid color-mix(in srgb, var(--desktop-line) 88%, transparent);
+  border-radius: 13px;
+}
+
+.widget-installed-copy { display: grid; min-width: 0; gap: 2px; }
+
+.widget-installed-actions { display: flex; align-items: center; gap: 6px; }
+
+.desktop-app .widget-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 10px;
+  color: var(--desktop-muted);
+  background: transparent;
+  border-color: transparent;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 680;
+}
+
+.desktop-app .widget-action-button .icon { width: 15px; height: 15px; }
+.desktop-app .widget-action-button:hover { color: var(--desktop-text); background: var(--neo-theme-hover); }
+.desktop-app .widget-action-button.is-primary { color: var(--desktop-text); background: color-mix(in srgb, var(--desktop-text) 7%, transparent); border-color: var(--desktop-line); }
+
+.widget-empty-state {
+  display: grid;
+  justify-items: center;
+  padding: 27px 18px;
+  text-align: center;
+  background: color-mix(in srgb, var(--desktop-bg) 26%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--desktop-line) 88%, transparent);
+  border-radius: 13px;
+}
+
+.widget-empty-icon { width: 40px; height: 40px; margin-bottom: 10px; border-radius: 12px; }
+.widget-empty-state h3 { margin: 0; color: var(--desktop-text); font-size: 16px; }
+.widget-empty-state p { max-width: 380px; margin: 4px 0 13px; font-size: 13px; }
+.desktop-app .widget-empty-action { min-height: 35px; padding: 0 14px; color: #071015; background: var(--desktop-accent); border-color: var(--desktop-accent); border-radius: 9px; font-size: 13px; font-weight: 720; }
+
+.widget-customizer {
+  width: min(540px, calc(100vw - 32px));
+  max-height: min(760px, calc(100vh - 32px));
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.widget-customizer > h2 { font-size: 23px; text-transform: capitalize; }
+.widget-customizer > .desktop-note { margin: 0 0 12px; }
+
+.widget-customizer > label {
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--desktop-line) 72%, transparent);
+  font-size: 13px;
+  font-weight: 620;
+}
+
+.widget-customizer > label > select,
+.widget-customizer > label > textarea { width: min(240px, 52%); }
+.widget-customizer > label > input[type="range"] { width: min(240px, 52vw); }
+.widget-customizer > label > textarea { min-height: 70px; resize: vertical; }
+
+.widget-customizer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.widget-customizer-actions button { width: auto; min-height: 38px; margin: 0; text-align: center; }
+.widget-customizer-actions .is-danger { color: #ff8c96; }
+.widget-customizer-actions .is-primary { color: #071015; background: var(--desktop-accent); border-color: var(--desktop-accent); }
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .neo-window,
+  .app-launcher,
+  .notification-center,
+  .desktop-context-menu,
+  .context-submenu,
+  .desktop-palette,
+  .neo-toast { background: var(--desktop-surface); }
+}
+
+@media (max-width: 760px) {
+  :root { --neo-radius-panel: 14px; }
+
+  .neo-window,
+  .neo-window.is-maximized { border-radius: 10px; }
+
+  .native-app { padding: 18px; }
+  .native-app-heading { gap: 16px; }
+  .native-app-heading h2 { font-size: 24px; }
+
+  .control-center > .settings-section,
+  .settings-section.compact { padding: 16px; }
+
+  .app-launcher { border-radius: 16px; }
+  .launcher-search { right: 16px; left: 16px; }
+  .launcher-section,
+  .launcher-footer { padding-right: 20px; padding-left: 20px; }
+  .launcher-scroll-region { top: 74px; }
+
+  .tab-appearance-grid { grid-template-columns: repeat(3, minmax(104px, 1fr)); }
+  .widget-manager-heading { padding: 20px 18px 16px; }
+  .widget-builtin-section,
+  .widget-library-section,
+  .widget-installed-section { margin-right: 14px; margin-left: 14px; padding: 15px; }
+  .widget-builtin-grid { grid-template-columns: 1fr; }
+  .widget-library-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .native-app-heading { display: grid; }
+  .taskbar-placement-picker,
+  .taskbar-style-picker,
+  .taskbar-surface-picker,
+  .window-bar-style-picker,
+  .performance-mode-picker { grid-template-columns: 1fr; }
+  .taskbar-option-picker button { min-height: 68px; }
+  .theme-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tab-appearance-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tab-appearance-custom-fields { grid-template-columns: 1fr; }
+  .tab-appearance-icon-row { grid-template-columns: 44px minmax(0, 1fr); }
+  .tab-appearance-clear { grid-column: 1 / -1; }
+  .widget-manager-heading { grid-template-columns: auto minmax(0, 1fr); }
+  .widget-manager-total { display: none; }
+  .widget-section-heading { display: grid; }
+  .widget-style-field { grid-template-columns: minmax(0, 1fr) 148px; }
+  .widget-library-grid { grid-template-columns: 1fr; }
+  .widget-installed-card { grid-template-columns: 40px minmax(0, 1fr); }
+  .widget-installed-actions { grid-column: 1 / -1; }
+  .desktop-app .widget-action-button { flex: 1; }
+  .widget-customizer > label { align-items: flex-start; }
+}
+
+@media (max-height: 620px) {
+  .launcher-scroll-region { top: 70px; }
+  .pinned-section { padding-top: 18px; }
+  .launcher-app { min-height: 76px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-window { transform: none !important; }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+html[data-reduce-motion="true"] .neo-window,
+html[data-desktop-motion="reduced"] .neo-window {
+  transform: none !important;
+}
+
+@media (forced-colors: active) {
+  .neo-window,
+  .app-launcher,
+  .notification-center,
+  .desktop-context-menu,
+  .context-submenu,
+  .neo-toast { border: 1px solid CanvasText; }
+}
+
+/* Launcher motion and its taskbar entry point. The shell keeps the elements
+   mounted through the exit transition so open and close feel equally smooth. */
+.launcher-dismiss-layer {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 240ms cubic-bezier(.2, .8, .2, 1), visibility 0s linear 260ms !important;
+}
+
+.launcher-dismiss-layer:is(.is-opening, .is-open, .is-closing) {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.launcher-dismiss-layer.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition-delay: 0s !important;
+}
+
+.app-launcher {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translate3d(0, 16px, 0) scale(.985) !important;
+  transform-origin: 50% 50% !important;
+  transition:
+    opacity 240ms cubic-bezier(.2, .8, .2, 1),
+    transform 320ms cubic-bezier(.16, 1, .3, 1),
+    visibility 0s linear 320ms !important;
+}
+
+.app-launcher:is(.is-opening, .is-open, .is-closing) {
+  visibility: visible !important;
+}
+
+.app-launcher.is-open {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  transition-delay: 0s !important;
+}
+
+html[data-taskbar-position="left"] .app-launcher:not(.is-open) {
+  transform: translate3d(-18px, 0, 0) scale(.985) !important;
+  transform-origin: 0 50% !important;
+}
+
+html[data-taskbar-position="right"] .app-launcher:not(.is-open) {
+  transform: translate3d(18px, 0, 0) scale(.985) !important;
+  transform-origin: 100% 50% !important;
+}
+
+html[data-taskbar-position="top"] .app-launcher:not(.is-open) {
+  transform: translate3d(0, -18px, 0) scale(.985) !important;
+  transform-origin: 50% 0 !important;
+}
+
+html[data-taskbar-position="bottom"] .app-launcher:not(.is-open) {
+  transform: translate3d(0, 18px, 0) scale(.985) !important;
+  transform-origin: 50% 100% !important;
+}
+
+html[data-taskbar-position] .app-launcher.is-open {
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+html.neo-launcher-open .taskbar-start-button {
+  color: #fff !important;
+  background: rgba(255, 255, 255, .16) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .2), 0 7px 18px rgba(0, 0, 0, .24) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-launcher,
+  .launcher-dismiss-layer {
+    transition: none !important;
+  }
+}

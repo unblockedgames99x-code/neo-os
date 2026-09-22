@@ -1,0 +1,183 @@
+{
+	"approved" : true,
+	"contentrating" : "Everyone",
+	"description" : "Watch color calmly drip down your desktop.",
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"color0" : 
+			{
+				"index" : 7,
+				"order" : 107,
+				"text" : "Color 1",
+				"type" : "color",
+				"value" : "1 0.156862 0.39215"
+			},
+			"color1" : 
+			{
+				"index" : 8,
+				"order" : 108,
+				"text" : "Color 2",
+				"type" : "color",
+				"value" : "1 1 0"
+			},
+			"color2" : 
+			{
+				"index" : 9,
+				"order" : 109,
+				"text" : "Color 3",
+				"type" : "color",
+				"value" : "1 0.58823 0"
+			},
+			"color3" : 
+			{
+				"index" : 10,
+				"order" : 110,
+				"text" : "Color 4",
+				"type" : "color",
+				"value" : "0.58823 0 1"
+			},
+			"color4" : 
+			{
+				"index" : 11,
+				"order" : 111,
+				"text" : "Color 5",
+				"type" : "color",
+				"value" : "0.58823 1 0.39215"
+			},
+			"color5" : 
+			{
+				"index" : 12,
+				"order" : 112,
+				"text" : "Color 6",
+				"type" : "color",
+				"value" : "1 0 0.78431"
+			},
+			"color6" : 
+			{
+				"index" : 13,
+				"order" : 113,
+				"text" : "Color 7",
+				"type" : "color",
+				"value" : "0.156862 0.39215 1"
+			},
+			"colorspeed" : 
+			{
+				"editable" : false,
+				"index" : 5,
+				"max" : 600,
+				"min" : 0,
+				"order" : 105,
+				"text" : "Color Rate",
+				"type" : "slider",
+				"value" : 30
+			},
+			"direction" : 
+			{
+				"index" : 1,
+				"options" : 
+				[
+					{
+						"label" : "Down",
+						"value" : "0"
+					},
+					{
+						"label" : "Up",
+						"value" : "180"
+					}
+				],
+				"order" : 101,
+				"text" : "Direction",
+				"type" : "combo",
+				"value" : "0"
+			},
+			"fpslock" : 
+			{
+				"condition" : "true",
+				"index" : 15,
+				"order" : 115,
+				"text" : "Lock Frame Rate",
+				"type" : "bool",
+				"value" : true
+			},
+			"gradient" : 
+			{
+				"index" : 6,
+				"order" : 106,
+				"text" : "Gradient",
+				"type" : "bool",
+				"value" : true
+			},
+			"linecount" : 
+			{
+				"editable" : false,
+				"index" : 2,
+				"max" : 400,
+				"min" : 1,
+				"order" : 102,
+				"text" : "Coverage",
+				"type" : "slider",
+				"value" : 100
+			},
+			"lineheight" : 
+			{
+				"editable" : false,
+				"index" : 3,
+				"max" : 2048,
+				"min" : 32,
+				"order" : 103,
+				"text" : "Length",
+				"type" : "slider",
+				"value" : 1024
+			},
+			"linespeed" : 
+			{
+				"editable" : false,
+				"index" : 0,
+				"max" : 500,
+				"min" : 0,
+				"order" : 100,
+				"text" : "Speed",
+				"type" : "slider",
+				"value" : 30
+			},
+			"linewidth" : 
+			{
+				"editable" : false,
+				"index" : 4,
+				"max" : 6,
+				"min" : 1,
+				"order" : 104,
+				"text" : "Width",
+				"type" : "slider",
+				"value" : 2
+			},
+			"schemecolor" : 
+			{
+				"order" : 7,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"tint" : 
+			{
+				"index" : 14,
+				"order" : 114,
+				"text" : "Background Tint",
+				"type" : "color",
+				"value" : "0 0 0"
+			}
+		}
+	},
+	"monetization" : false,
+	"preview" : "preview.gif",
+	"tags" : [ "Abstract" ],
+	"title" : "Chroma Drencher",
+	"type" : "Web",
+	"version" : 0,
+	"visibility" : "public",
+	"workshopid" : 1153238076,
+	"workshopurl" : "steam://url/CommunityFilePage/1153238076"
+}

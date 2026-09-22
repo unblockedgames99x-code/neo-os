@@ -1,0 +1,408 @@
+/* Modern launcher geometry -------------------------------------------------
+   Keep the default launcher compact and use one sizing system for every
+   section. Figure and the alternate desktop interfaces own their layouts. */
+
+@media (min-width: 701px) {
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"])[data-taskbar-position] #neo-desktop #app-launcher {
+    width: min(760px, calc(100vw - 40px)) !important;
+    height: min(620px, calc(100dvh - var(--topbar-height, 34px) - 38px)) !important;
+    min-height: min(520px, calc(100dvh - var(--topbar-height, 34px) - 38px)) !important;
+    border-radius: 16px !important;
+  }
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-search {
+  top: 16px !important;
+  right: 20px !important;
+  left: 20px !important;
+  width: auto !important;
+  max-width: none !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  grid-template-columns: 40px minmax(0, 1fr) 40px !important;
+  column-gap: 0 !important;
+  padding: 0 10px !important;
+  margin: 0 !important;
+  border-radius: 11px !important;
+  transform: none !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-search input {
+  height: 40px !important;
+  font-size: 13px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-search > .icon:first-child {
+  width: 18px !important;
+  height: 18px !important;
+  place-self: center !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-local {
+  place-self: center !important;
+  margin: 0 !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-scroll-region {
+  inset: 72px 0 0 !important;
+  display: block !important;
+  align-content: normal !important;
+  justify-content: normal !important;
+  place-items: normal !important;
+  padding: 0 0 22px !important;
+  scrollbar-gutter: stable !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-section {
+  width: auto !important;
+  padding-right: 28px !important;
+  padding-left: 28px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .pinned-section {
+  padding-top: 20px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-section-title {
+  min-height: 20px !important;
+  gap: 16px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-section-title h3 {
+  font-size: 13px !important;
+  line-height: 20px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-section-title > span {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  font-size: 11px !important;
+  line-height: 20px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .pinned-app-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  justify-content: stretch !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+  margin-top: 10px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app,
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app[data-app="browser"] {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 70px !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-rows: 40px 20px !important;
+  justify-self: stretch !important;
+  place-items: center !important;
+  gap: 2px !important;
+  padding: 4px !important;
+  border: 1px solid transparent !important;
+  border-radius: 9px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app:is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, currentColor 10%, transparent) !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app > span:last-child,
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app[data-app="browser"] > span:last-child {
+  width: 100% !important;
+  max-width: 100% !important;
+  grid-column: 1 !important;
+  justify-self: stretch !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  font-size: 11px !important;
+  line-height: 16px !important;
+  text-align: center !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  -webkit-line-clamp: 1 !important;
+}
+
+/* A uniform artwork box prevents brand-specific icon CSS from moving labels. */
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app > .launcher-app-icon,
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app[data-app="browser"] > .launcher-app-icon.app-icon-duckduckgo {
+  width: 38px !important;
+  min-width: 38px !important;
+  max-width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  grid-column: 1 !important;
+  place-self: center !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-app > .launcher-app-icon > :is(.app-image-icon, img, svg, .icon) {
+  max-width: 34px !important;
+  max-height: 34px !important;
+  place-self: center !important;
+  object-fit: contain !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher :is(.recent-section, .category-section) {
+  margin-top: 20px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-rows: 50px !important;
+  gap: 6px 10px !important;
+  margin-top: 10px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 50px !important;
+  gap: 9px !important;
+  padding: 6px 8px !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app .launcher-detail-icon {
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  flex-basis: 32px !important;
+  border-radius: 7px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app :is(strong, small) {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app strong {
+  font-size: 11px !important;
+  line-height: 16px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app small {
+  font-size: 10px !important;
+  line-height: 14px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-section .launcher-empty {
+  min-height: 54px !important;
+  margin-top: 6px !important;
+  font-size: 11px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-section {
+  padding-bottom: 0 !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px 10px !important;
+  margin-top: 12px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-group {
+  min-width: 0 !important;
+  min-height: 76px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  grid-template-areas:
+    "category-name category-browse"
+    "category-icons category-browse" !important;
+  align-items: center !important;
+  justify-items: stretch !important;
+  gap: 4px 12px !important;
+  padding: 10px 11px 10px 12px !important;
+  overflow: hidden !important;
+  background: color-mix(in srgb, var(--desktop-surface, #15171c) 74%, transparent) !important;
+  border: 1px solid color-mix(in srgb, currentColor 9%, transparent) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px color-mix(in srgb, currentColor 4%, transparent) !important;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms cubic-bezier(.2, .8, .2, 1) !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-group:is(:hover, :focus-within) {
+  background: color-mix(in srgb, var(--desktop-surface, #15171c) 88%, currentColor 4%) !important;
+  border-color: color-mix(in srgb, currentColor 17%, transparent) !important;
+  transform: translateY(-1px) !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-group > span {
+  grid-area: category-name !important;
+  justify-self: start !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding-left: 4px !important;
+  overflow: hidden !important;
+  font-size: 12px !important;
+  font-weight: 680 !important;
+  line-height: 18px !important;
+  text-align: left !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-category-browse {
+  grid-area: category-browse !important;
+  align-self: stretch !important;
+  justify-self: end !important;
+  min-width: 70px !important;
+  min-height: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  padding: 0 8px !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-left: 1px solid color-mix(in srgb, currentColor 9%, transparent) !important;
+  border-radius: 0 !important;
+  font-size: 10px !important;
+  font-weight: 620 !important;
+  line-height: 1 !important;
+  opacity: .62 !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-category-browse::after {
+  content: none;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-category-browse:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, currentColor 6%, transparent) !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-icons {
+  grid-area: category-icons !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 5px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-icons button {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  padding: 2px !important;
+  border-radius: 8px !important;
+}
+
+html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-category-icon {
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  flex-basis: 28px !important;
+  border-radius: 6px !important;
+}
+
+/* Every launcher mode gets a designed category action. Without this shared
+   rule, non-Modern modes fall back to the browser's gray default button. */
+#app-launcher .launcher-category-browse {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 8px 5px 10px;
+  color: color-mix(in srgb, var(--desktop-text, #f5f5f7) 76%, transparent);
+  background: color-mix(in srgb, var(--desktop-surface, #15171c) 82%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 620;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms cubic-bezier(.2, .8, .2, 1);
+}
+
+#app-launcher .launcher-category-browse::after {
+  content: none !important;
+}
+
+#app-launcher .launcher-category-browse-icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+#app-launcher .launcher-category-browse:is(:hover, :focus-visible) {
+  color: var(--desktop-text, #f5f5f7);
+  background: color-mix(in srgb, var(--desktop-accent, #4aa6ff) 16%, var(--desktop-surface, #15171c));
+  border-color: color-mix(in srgb, var(--desktop-accent, #4aa6ff) 44%, transparent);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+#app-launcher .launcher-category-browse:active {
+  transform: translateY(0) scale(.97);
+}
+
+@media (max-width: 760px) {
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-section {
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+  }
+
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .pinned-app-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 440px) {
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-search {
+    right: 12px !important;
+    left: 12px !important;
+  }
+
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .launcher-section {
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+  }
+
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .pinned-app-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .recent-app-grid,
+  html[data-interface-style="modern"]:not([data-taskbar-style="figure"]) #app-launcher .category-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}

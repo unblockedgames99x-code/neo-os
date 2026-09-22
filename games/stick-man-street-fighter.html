@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stickman Street Fighter</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
+    #container {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+
+  <!-- Ruffle Flash Emulator -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+
+<body>
+
+<div id="container"></div>
+
+<script>
+window.addEventListener("load", () => {
+
+  const ruffle = window.RufflePlayer.newest();
+  const player = ruffle.createPlayer();
+
+  document.getElementById("container").appendChild(player);
+
+  player.load(
+    "https://cdn.jsdelivr.net/gh/KrMattsson/q-system@b360cf31a1f9ce6ec1869a0b2e0929950bbb4955/proto/stickman-street-fighter.swf"
+  );
+
+  player.style.width = "100%";
+  player.style.height = "100%";
+});
+</script>
+
+</body>
+</html>

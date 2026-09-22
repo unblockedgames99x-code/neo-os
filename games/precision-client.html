@@ -1,0 +1,38 @@
+<!-- shxyder -->
+<!-- ultimate game stash file -->
+<!-- takes like 1 min to load just wait lmao -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>precision client</title>
+</head>
+<body>
+  <script>
+    async function loadAndRun() {
+      const urls = [
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part1",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part2",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part3",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part4",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part5",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part6",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part7",
+        "https://cdn.jsdelivr.net/gh/shayderrr/eaglercraft@main/precision/clprecisionclient.html.part8"
+      ];
+
+      let fullHtml = "";
+      for (const u of urls) {
+        const res = await fetch(u);
+        fullHtml += await res.text();
+      }
+
+      document.open();
+      document.write(fullHtml);
+      document.close();
+    }
+
+    loadAndRun();
+  </script>
+</body>
+</html>

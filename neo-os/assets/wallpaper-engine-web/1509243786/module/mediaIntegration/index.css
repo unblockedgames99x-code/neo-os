@@ -1,0 +1,21 @@
+.mediaIntegration {
+	height: 100%;
+	transform: translate(0, 0);
+}
+
+.mediaIntegration .mI-img {
+	transform: translate(-50%, -50%);
+}
+
+.mediaIntegration .mI-line {
+	height: 15px;
+}
+
+.mediaIntegration .mI-progress {
+	border-radius: inherit;
+	height: inherit;
+}
+
+.mediaIntegration.paused {
+	opacity: 0;
+}

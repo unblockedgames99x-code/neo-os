@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d151c">
+  <title>Snow Rider 3D</title>
+  <style>
+    html, body, #gameContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #0d151c;
+    }
+
+    canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #dbe7ef;
+      font: 600 14px/1.4 system-ui, sans-serif;
+      pointer-events: none;
+    }
+
+    .is-ready .loading { display: none; }
+  </style>
+  <script>
+    (function () {
+      "use strict";
+
+      var nativeRequestAnimationFrame = window.requestAnimationFrame.bind(window);
+      var nativeCancelAnimationFrame = window.cancelAnimationFrame.bind(window);
+      var pendingFrames = new Map();
+      var nextFrameId = 1;
+      var minimumFrameTime = 1000 / 60;
+      var lastDeliveredFrameTime = 0;
+
+      // The old Unity player advances Snow Rider's controls too aggressively
+      // on high-refresh displays. Cap only this game's animation callbacks.
+      window.requestAnimationFrame = function (callback) {
+        var frameId = nextFrameId++;
+
+        function tick(time) {
+          if (!pendingFrames.has(frameId)) return;
+          if (!lastDeliveredFrameTime || time - lastDeliveredFrameTime >= minimumFrameTime - 0.75) {
+            pendingFrames.delete(frameId);
+            lastDeliveredFrameTime = time;
+            callback(time);
+            return;
+          }
+          pendingFrames.set(frameId, nativeRequestAnimationFrame(tick));
+        }
+
+        pendingFrames.set(frameId, nativeRequestAnimationFrame(tick));
+        return frameId;
+      };
+
+      window.cancelAnimationFrame = function (frameId) {
+        var nativeId = pendingFrames.get(frameId);
+        if (nativeId != null) nativeCancelAnimationFrame(nativeId);
+        pendingFrames.delete(frameId);
+      };
+
+      var jumpCodes = { Space: true, ArrowUp: true, KeyW: true };
+      window.addEventListener("keydown", function (event) {
+        if (jumpCodes[event.code] && event.repeat) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      }, true);
+
+      window.__neoSnowRiderCompatibility = {
+        frameRate: 60,
+        repeatedJumpInputBlocked: true
+      };
+    }());
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/Vrkids2009/snowrider3d@6b7c2b9167b592528b221428414e63f06c4640b9/Build/UnityLoader.js"></script>
+</head>
+<body>
+  <div id="gameContainer"></div>
+  <div class="loading">Loading Snow Rider 3D…</div>
+  <script>
+    UnityLoader.instantiate(
+      "gameContainer",
+      "https://cdn.jsdelivr.net/gh/Vrkids2009/snowrider3d@6b7c2b9167b592528b221428414e63f06c4640b9/Build/SnowRider3D-gd-1.json",
+      {
+        onProgress: function (_instance, progress) {
+          if (progress >= 1) document.documentElement.classList.add("is-ready");
+        }
+      }
+    );
+  </script>
+</body>
+</html>

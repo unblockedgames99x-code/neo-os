@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-label="Morning Lines: warm sun above layered geometric horizons">
+  <defs>
+    <linearGradient id="base" x2="0" y2="1"><stop stop-color="#2d201b"/><stop offset="1" stop-color="#0b0908"/></linearGradient>
+    <linearGradient id="sun" x2="0" y2="1"><stop stop-color="#f5dfb6"/><stop offset="1" stop-color="#bd8862"/></linearGradient>
+    <clipPath id="cut"><path d="M96 124h448v365H96z"/></clipPath>
+  </defs>
+  <path fill="url(#base)" d="M0 0h640v640H0z"/>
+  <g clip-path="url(#cut)">
+    <circle cx="320" cy="260" r="113" fill="url(#sun)"/>
+    <path d="m57 382 213-99 324 102v151H57Z" fill="#654438"/>
+    <path d="m58 434 285-112 252 61v148H58Z" fill="#a47656"/>
+    <path d="m68 475 213-107 319 101v57H68Z" fill="#3b2922"/>
+    <path d="m59 510 286-96 243 86v33H59Z" fill="#d4aa80"/>
+    <path d="M97 451 328 358m-232 52 175-79m28 159 128-42" stroke="#f1d4ad" stroke-opacity=".38"/>
+  </g>
+  <path d="M96 124v365h448V124" fill="none" stroke="#d9b28a" stroke-opacity=".12"/>
+  <g fill="#f0dcc4" font-family="Arial,Helvetica,sans-serif">
+    <text x="48" y="64" font-size="14" letter-spacing="5">NEO / LOCAL SESSIONS</text>
+    <text x="48" y="585" font-size="27" letter-spacing="1">MORNING LINES</text>
+    <text x="551" y="585" font-size="14" letter-spacing="3">03</text>
+  </g>
+</svg>

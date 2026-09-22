@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="theme-color" content="#000000">
+  <title>Tiny Fishing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    #gameHost {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+    #gameFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #000;
+      display: block;
+    }
+    #hud {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+      padding: 12px 8px;
+      pointer-events: auto;
+    }
+    .hud-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.65);
+      transition: transform 0.1s;
+      user-select: none;
+      width: 92px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .hud-btn:active { transform: scale(0.96); }
+    .btn-save { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: #e8f5e9; }
+    .btn-load { background: linear-gradient(135deg, #1565c0, #0d47a1); color: #e3f2fd; }
+    #toast {
+      position: fixed;
+      left: 8px;
+      top: calc(50% + 95px);
+      transform: translateY(10px);
+      background: rgba(10,10,10,0.94);
+      color: #fff;
+      padding: 16px 18px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.45;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none;
+      white-space: pre-line;
+      z-index: 9999;
+      max-width: 260px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #fileInput { display: none; }
+  </style>
+</head>
+<body>
+  <div id="gameHost" aria-label="Tiny Fishing game"></div>
+
+  <div id="hud">
+    <button id="saveBtn" class="hud-btn btn-save" type="button">💾 Save</button>
+    <button id="loadBtn" class="hud-btn btn-load" type="button">📂 Load</button>
+  </div>
+  <div id="toast"></div>
+  <input id="fileInput" type="file" accept=".tfsave,application/json">
+
+  <script>
+  (function() {
+    'use strict';
+
+    var GAME_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="https://361820596-851580422716946014.preview.editmysite.com/uploads/b/139890129-473108247243760926/files/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Tiny Fishing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    body { touch-action: none; }
+    canvas {
+      image-rendering: pixelated;
+      -webkit-interpolation-mode: nearest-neighbor;
+      -ms-touch-action: none;
+      touch-action: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      display: block;
+    }
+    div.gm4html5_div_class {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      overflow: hidden !important;
+      background: #000 !important;
+    }
+    #canvas {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      background: #000;
+    }
+    :fullscreen { width: 100%; height: 100%; }
+    :-webkit-full-screen { width: 100%; height: 100%; }
+    :fullscreen #canvas,
+    :-webkit-full-screen #canvas {
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+    }
+    #button { display: none !important; }
+  </style>
+</head>
+<body dir="ltr">
+  <script src="gamesnacks.js" type="text/javascript"><\/script>
+  <script>
+    if (!Number.isNaN && window.isNaN) Number.isNaN = isNaN;
+  <\/script>
+
+  <div class="gm4html5_div_class" id="gm4html5_div_id">
+    <canvas height="543" id="canvas" width="726">
+      <p>Your browser does not support HTML5 canvas.</p>
+    </canvas>
+  </div>
+
+  <script>
+    // Keep the CSS size in the same aspect ratio as the canvas backing store.
+    // This prevents browser-side stretching while still scaling as large as possible.
+    (function() {
+      function fitCanvas() {
+        var canvas = document.getElementById('canvas');
+        if (!canvas) return;
+
+        var sourceW = Number(canvas.width) || 726;
+        var sourceH = Number(canvas.height) || 543;
+        var viewW = window.innerWidth || document.documentElement.clientWidth || sourceW;
+        var viewH = window.innerHeight || document.documentElement.clientHeight || sourceH;
+        var scale = Math.min(viewW / sourceW, viewH / sourceH);
+
+        var cssW = Math.max(1, Math.floor(sourceW * scale));
+        var cssH = Math.max(1, Math.floor(sourceH * scale));
+
+        canvas.style.setProperty('width', cssW + 'px', 'important');
+        canvas.style.setProperty('height', cssH + 'px', 'important');
+        canvas.style.setProperty('left', '50%', 'important');
+        canvas.style.setProperty('top', '50%', 'important');
+        canvas.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      }
+
+      window.__tinyFishingFitCanvas = fitCanvas;
+      window.addEventListener('resize', fitCanvas, false);
+      window.addEventListener('orientationchange', function() { setTimeout(fitCanvas, 60); }, false);
+      document.addEventListener('fullscreenchange', fitCanvas, false);
+      document.addEventListener('webkitfullscreenchange', fitCanvas, false);
+      setTimeout(fitCanvas, 0);
+    })();
+  <\/script>
+
+  <script src="html5game/TinyFishing.js" type="text/javascript"><\/script>
+  <script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"><\/script>
+  <script src="html5game/tph_cookieManager.js" type="text/javascript"><\/script>
+  <script src="html5game/uph_HTML5Func.js" type="text/javascript"><\/script>
+  <script src="html5game/vph_API_Fullscreen.js" type="text/javascript"><\/script>
+  <script src="html5game/wph_external.js" type="text/javascript"><\/script>
+  <script src="html5game/yph_djl.js" type="text/javascript"><\/script>
+  <script src="html5game/bqh_djs.js" type="text/javascript"><\/script>
+  <script src="html5game/dqh_gamesnacks.js" type="text/javascript"><\/script>
+  <script>
+    window.addEventListener('load', function() {
+      try {
+        if (!window.AudioContext && !window.webkitAudioContext) window.g_WebAudioContext = {};
+        if (typeof GameMaker_Init === 'function') GameMaker_Init();
+        if (window.__tinyFishingFitCanvas) {
+          window.__tinyFishingFitCanvas();
+          var fitTries = 0;
+          var fitTimer = setInterval(function() {
+            window.__tinyFishingFitCanvas();
+            if (++fitTries >= 60) clearInterval(fitTimer);
+          }, 100);
+        }
+        if (!window.AudioContext && !window.webkitAudioContext) window.g_WebAudioContext = null;
+      } catch (err) {
+        console.error('Tiny Fishing start error:', err);
+      }
+    });
+  <\/script>
+</body>
+</html>`;
+
+    var gameHost = document.getElementById('gameHost');
+    var saveBtn = document.getElementById('saveBtn');
+    var loadBtn = document.getElementById('loadBtn');
+    var fileInput = document.getElementById('fileInput');
+    var toastEl = document.getElementById('toast');
+    var toastTimer = null;
+
+    function toast(message, duration) {
+      toastEl.textContent = message;
+      toastEl.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() {
+        toastEl.classList.remove('show');
+      }, duration || 4200);
+    }
+
+    function delay(ms) {
+      return new Promise(function(resolve) { setTimeout(resolve, ms); });
+    }
+
+    function startGame() {
+      stopGame();
+      var frame = document.createElement('iframe');
+      frame.id = 'gameFrame';
+      frame.title = 'Tiny Fishing';
+      frame.setAttribute('allowfullscreen', 'true');
+      frame.setAttribute('allow', 'autoplay; fullscreen; gamepad');
+      gameHost.appendChild(frame);
+      var doc = frame.contentDocument || frame.contentWindow.document;
+      doc.open();
+      doc.write(GAME_HTML);
+      doc.close();
+    }
+
+    function stopGame() {
+      var oldFrame = document.getElementById('gameFrame');
+      if (oldFrame && oldFrame.parentNode) oldFrame.parentNode.removeChild(oldFrame);
+    }
+
+    function idbReq(req) {
+      return new Promise(function(resolve, reject) {
+        req.onsuccess = function() { resolve(req.result); };
+        req.onerror = function() { reject(req.error || new Error('IndexedDB request failed')); };
+      });
+    }
+
+    function pack(value, seen) {
+      if (value === null || value === undefined) return value;
+      if (typeof value !== 'object') return value;
+      if (!seen) seen = [];
+      if (seen.indexOf(value) !== -1) return null;
+      if (value instanceof ArrayBuffer) {
+        return { __tf_type: 'ArrayBuffer', data: Array.from(new Uint8Array(value)) };
+      }
+      if (ArrayBuffer.isView(value)) {
+        return {
+          __tf_type: value.constructor.name,
+          data: Array.from(new Uint8Array(value.buffer, value.byteOffset, value.byteLength))
+        };
+      }
+      if (value instanceof Date) {
+        return { __tf_type: 'Date', data: value.toISOString() };
+      }
+      seen.push(value);
+      if (Array.isArray(value)) {
+        return value.map(function(item) { return pack(item, seen); });
+      }
+      var out = {};
+      Object.keys(value).forEach(function(key) {
+        out[key] = pack(value[key], seen);
+      });
+      seen.pop();
+      return out;
+    }
+
+    function unpack(value) {
+      if (value === null || value === undefined || typeof value !== 'object') return value;
+      if (value.__tf_type) {
+        if (value.__tf_type === 'ArrayBuffer') return new Uint8Array(value.data || []).buffer;
+        if (value.__tf_type === 'Date') return new Date(value.data);
+        var constructors = {
+          Uint8Array: Uint8Array,
+          Int8Array: Int8Array,
+          Uint16Array: Uint16Array,
+          Int16Array: Int16Array,
+          Uint32Array: Uint32Array,
+          Int32Array: Int32Array,
+          Float32Array: Float32Array,
+          Float64Array: Float64Array,
+          Uint8ClampedArray: Uint8ClampedArray
+        };
+        if (constructors[value.__tf_type]) {
+          var arr = new Uint8Array(value.data || []);
+          return new constructors[value.__tf_type](arr.buffer);
+        }
+      }
+      if (Array.isArray(value)) return value.map(unpack);
+      var out = {};
+      Object.keys(value).forEach(function(key) { out[key] = unpack(value[key]); });
+      return out;
+    }
+
+    function dumpStore(db, storeName) {
+      return new Promise(function(resolve, reject) {
+        var tx = db.transaction(storeName, 'readonly');
+        var store = tx.objectStore(storeName);
+        var rows = [];
+        var req = store.openCursor();
+        req.onsuccess = function(e) {
+          var cursor = e.target.result;
+          if (cursor) {
+            rows.push({ key: pack(cursor.key), value: pack(cursor.value) });
+            cursor.continue();
+          } else {
+            resolve(rows);
+          }
+        };
+        req.onerror = function() { reject(req.error || new Error('Could not read store')); };
+        tx.onerror = function() { reject(tx.error || new Error('Read transaction failed')); };
+      });
+    }
+
+    function storeSchema(store) {
+      var indexes = [];
+      for (var i = 0; i < store.indexNames.length; i++) {
+        var idx = store.index(store.indexNames[i]);
+        indexes.push({
+          name: idx.name,
+          keyPath: idx.keyPath,
+          multiEntry: idx.multiEntry,
+          unique: idx.unique
+        });
+      }
+      return {
+        name: store.name,
+        keyPath: store.keyPath,
+        autoIncrement: store.autoIncrement,
+        indexes: indexes
+      };
+    }
+
+    async function listDatabases() {
+      if (indexedDB.databases) {
+        var listed = await indexedDB.databases();
+        return listed.filter(function(db) { return db && db.name; });
+      }
+      return [
+        { name: 'GM_' + (location.hostname || 'TinyFishing') },
+        { name: 'TinyFishing' },
+        { name: 'GM_TinyFishing' },
+        { name: 'GM_Tiny_Fishing' }
+      ];
+    }
+
+    function getCookies() {
+      var raw = '';
+      try { raw = document.cookie || ''; } catch (err) { raw = ''; }
+      return raw.split(';').map(function(part) { return part.trim(); }).filter(Boolean);
+    }
+
+    function restoreCookies(cookies) {
+      if (!Array.isArray(cookies)) return;
+      var expires = '; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/; SameSite=None; Secure';
+      cookies.forEach(function(pair) {
+        if (typeof pair === 'string' && pair.indexOf('=') > 0) {
+          try { document.cookie = pair + expires; } catch (err) {}
+        }
+      });
+    }
+
+    async function saveGame() {
+      toast('⏳ Saving Tiny Fishing…', 3000);
+      try {
+        var dbList = await listDatabases();
+        var snapshot = {
+          meta: {
+            game: 'Tiny Fishing',
+            savedAt: new Date().toISOString(),
+            version: '3.0',
+            origin: location.origin
+          },
+          cookies: getCookies(),
+          databases: []
+        };
+
+        for (var i = 0; i < dbList.length; i++) {
+          var dbInfo = dbList[i];
+          if (!dbInfo.name) continue;
+          var db;
+          try {
+            db = await idbReq(indexedDB.open(dbInfo.name));
+          } catch (err) {
+            continue;
+          }
+          var storeNames = Array.from(db.objectStoreNames || []);
+          var schemas = [];
+          var stores = [];
+          if (storeNames.length) {
+            var schemaTx = db.transaction(storeNames, 'readonly');
+            storeNames.forEach(function(name) {
+              schemas.push(storeSchema(schemaTx.objectStore(name)));
+            });
+            for (var s = 0; s < storeNames.length; s++) {
+              stores.push({ name: storeNames[s], rows: await dumpStore(db, storeNames[s]) });
+            }
+          }
+          snapshot.databases.push({
+            name: dbInfo.name,
+            version: db.version || 1,
+            schemas: schemas,
+            stores: stores
+          });
+          db.close();
+        }
+
+        var totalRows = snapshot.databases.reduce(function(total, db) {
+          return total + db.stores.reduce(function(sum, store) { return sum + store.rows.length; }, 0);
+        }, 0);
+
+        var blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'tiny_fishing_' + new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19) + '.tfsave';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        toast('✅ Saved!\n' + snapshot.databases.length + ' DB(s), ' + totalRows + ' record(s).', 5200);
+      } catch (err) {
+        console.error('Save failed:', err);
+        toast('❌ Save failed:\n' + (err && err.message ? err.message : err), 7000);
+      }
+    }
+
+    function deleteDatabase(name) {
+      return new Promise(function(resolve, reject) {
+        var finished = false;
+        var req = indexedDB.deleteDatabase(name);
+        var timeout = setTimeout(function() {
+          if (!finished) {
+            finished = true;
+            resolve();
+          }
+        }, 5000);
+        req.onsuccess = function() {
+          if (!finished) {
+            finished = true;
+            clearTimeout(timeout);
+            resolve();
+          }
+        };
+        req.onerror = function() {
+          if (!finished) {
+            finished = true;
+            clearTimeout(timeout);
+            reject(req.error || new Error('Could not delete database ' + name));
+          }
+        };
+        req.onblocked = function() {
+          toast('⏳ Closing old game data…', 3500);
+        };
+      });
+    }
+
+    function restoreDatabase(dbSnap) {
+      return new Promise(function(resolve, reject) {
+        var version = Math.max(1, Number(dbSnap.version || 1));
+        var openReq = indexedDB.open(dbSnap.name, version);
+        openReq.onupgradeneeded = function(e) {
+          var db = e.target.result;
+          (dbSnap.schemas || []).forEach(function(schema) {
+            if (db.objectStoreNames.contains(schema.name)) return;
+            var opts = { autoIncrement: !!schema.autoIncrement };
+            if (schema.keyPath !== null && schema.keyPath !== undefined) opts.keyPath = schema.keyPath;
+            var store = db.createObjectStore(schema.name, opts);
+            (schema.indexes || []).forEach(function(idx) {
+              store.createIndex(idx.name, idx.keyPath, {
+                multiEntry: !!idx.multiEntry,
+                unique: !!idx.unique
+              });
+            });
+          });
+        };
+        openReq.onerror = function() { reject(openReq.error || new Error('Could not open database ' + dbSnap.name)); };
+        openReq.onsuccess = function() {
+          var db = openReq.result;
+          var storeNames = (dbSnap.stores || []).map(function(store) { return store.name; });
+          if (!storeNames.length) {
+            db.close();
+            resolve();
+            return;
+          }
+          var tx = db.transaction(storeNames, 'readwrite');
+          tx.oncomplete = function() { db.close(); resolve(); };
+          tx.onerror = function() { db.close(); reject(tx.error || new Error('Write failed')); };
+          tx.onabort = function() { db.close(); reject(tx.error || new Error('Write aborted')); };
+          (dbSnap.stores || []).forEach(function(storeSnap) {
+            var store = tx.objectStore(storeSnap.name);
+            (storeSnap.rows || []).forEach(function(row) {
+              var value = unpack(row.value);
+              var key = unpack(row.key);
+              if (store.keyPath || key === undefined || key === null) {
+                store.put(value);
+              } else {
+                store.put(value, key);
+              }
+            });
+          });
+        };
+      });
+    }
+
+    async function loadGame(event) {
+      var file = event.target.files && event.target.files[0];
+      event.target.value = '';
+      if (!file) return;
+
+      toast('⏳ Reading save…', 3000);
+      try {
+        var text = await new Promise(function(resolve, reject) {
+          var reader = new FileReader();
+          reader.onload = function(e) { resolve(e.target.result); };
+          reader.onerror = function() { reject(new Error('Could not read save file')); };
+          reader.readAsText(file);
+        });
+        var snapshot = JSON.parse(text);
+        if (!snapshot || !snapshot.meta || !Array.isArray(snapshot.databases)) {
+          throw new Error('Not a valid Tiny Fishing save file');
+        }
+
+        toast('⏳ Restoring save…', 4000);
+        stopGame();
+        await delay(500);
+        restoreCookies(snapshot.cookies);
+        for (var i = 0; i < snapshot.databases.length; i++) {
+          var dbSnap = snapshot.databases[i];
+          if (!dbSnap.name) continue;
+          await deleteDatabase(dbSnap.name);
+          await restoreDatabase(dbSnap);
+        }
+        await delay(300);
+        startGame();
+        var savedAt = snapshot.meta.savedAt ? new Date(snapshot.meta.savedAt).toLocaleString() : 'your save';
+        toast('✅ Loaded!\nSave from ' + savedAt, 6500);
+      } catch (err) {
+        console.error('Load failed:', err);
+        startGame();
+        toast('❌ Load failed:\n' + (err && err.message ? err.message : err), 8000);
+      }
+    }
+
+    saveBtn.addEventListener('click', saveGame);
+    loadBtn.addEventListener('click', function() { fileInput.click(); });
+    fileInput.addEventListener('change', loadGame);
+    startGame();
+  })();
+  </script>
+</body>
+</html>

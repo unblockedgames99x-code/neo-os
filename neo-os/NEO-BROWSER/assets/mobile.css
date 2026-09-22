@@ -1,0 +1,61 @@
+@media (max-width: 760px), (pointer: coarse) and (max-width: 1366px) {
+  html,
+  body,
+  .app { min-height: 100dvh; }
+
+  button,
+  .nav-btn,
+  .tool-btn,
+  .omni-btn,
+  .ext-puzzle-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    touch-action: manipulation;
+  }
+
+  .navbar {
+    min-height: 54px;
+    gap: 3px;
+    padding-inline: max(5px, env(safe-area-inset-left)) max(5px, env(safe-area-inset-right));
+    overflow: visible;
+  }
+
+  #back {
+    display: inline-grid !important;
+    visibility: visible !important;
+  }
+
+  #fwd,
+  #historyBtn,
+  #fullscreenBtn,
+  #findOmniBtn,
+  #bookmarkBtn,
+  #extBar,
+  #extPuzzleBtn,
+  .navbar > [style*="width:1px"] { display: none !important; }
+
+  .nav-pill-group { flex: 0 0 auto; }
+  .omnibox { min-width: 0; flex: 1 1 auto; min-height: 44px; }
+  .url-input { min-width: 0; font-size: 16px !important; }
+  .security-chip { max-width: 32px; padding-inline: 8px !important; }
+  .security-chip span { display: none !important; }
+  #go { display: inline-grid !important; }
+
+  #tutorialDots button {
+    min-width: 8px !important;
+    width: 8px !important;
+    min-height: 8px !important;
+    height: 8px !important;
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  #home { display: none !important; }
+  .nav-pill-group { gap: 1px; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  [title]::before,
+  [title]::after { display: none !important; }
+}

@@ -1,0 +1,576 @@
+/* NEO OS mobile compatibility layer. Loaded last so desktop styling stays unchanged. */
+:root {
+  --neo-visual-height: 100vh;
+  --neo-visual-width: 100vw;
+  --neo-mobile-keyboard-inset: 0px;
+}
+
+@supports (height: 100dvh) {
+  :root { --neo-visual-height: 100dvh; }
+}
+
+.mobile-desktop-menu,
+.mobile-notification-toggle,
+.mobile-game-controls { display: none !important; }
+
+@media (max-width: 760px), (pointer: coarse) and (max-width: 1366px), (max-height: 500px) and (max-width: 960px) {
+  :root {
+    --topbar-height: calc(50px + env(safe-area-inset-top));
+    --neo-mobile-taskbar-height: calc(66px + env(safe-area-inset-bottom));
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: var(--neo-visual-height);
+    min-height: -webkit-fill-available;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body {
+    position: fixed;
+    inset: 0;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  button,
+  [role="button"],
+  [role="menuitem"],
+  [role="menuitemcheckbox"],
+  [role="menuitemradio"],
+  select,
+  input[type="checkbox"] {
+    touch-action: manipulation;
+  }
+
+  input[type="text"],
+  input[type="search"],
+  input[type="url"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
+
+  input[type="range"] {
+    min-height: 44px;
+    touch-action: pan-x;
+  }
+
+  .desktop {
+    width: 100%;
+    height: var(--neo-visual-height);
+    min-height: -webkit-fill-available;
+  }
+
+  .topbar {
+    top: 0 !important;
+    height: var(--topbar-height) !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 6px;
+    padding: env(safe-area-inset-top) max(8px, env(safe-area-inset-right)) 0 max(8px, env(safe-area-inset-left));
+    background: rgba(0, 0, 0, 0.92);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  .topbar-cluster { gap: 5px; }
+  .topbar-left { overflow: hidden; }
+  .topbar-right { flex: 0 0 auto; }
+
+  .topbar-logo,
+  .topbar-action,
+  .topbar-battery,
+  .topbar-date {
+    min-width: 44px;
+    width: 44px;
+    min-height: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 8px;
+  }
+
+  .topbar-logo {
+    min-width: 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .topbar-logo img { width: 30px; height: 30px; margin: auto; }
+  .topbar-action[data-neo-backup-download],
+  .topbar-action[data-neo-backup-import],
+  .topbar-battery,
+  .connection-state { display: none !important; }
+  .mobile-desktop-menu,
+  .mobile-notification-toggle { display: inline-grid !important; }
+
+  .topbar-date { width: auto; min-width: 58px; padding: 0 6px; }
+  .topbar-date span { display: none; }
+  .topbar-date strong { font-size: 10px; }
+
+  .active-app-label {
+    max-width: min(27vw, 126px);
+    font-size: 11px;
+  }
+
+  .topbar-media {
+    min-width: 0;
+    max-width: min(42vw, 180px);
+    min-height: 44px;
+    padding: 4px 7px;
+  }
+
+  .topbar-media strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .topbar-media-time,
+  .topbar-media-wave { display: none !important; }
+
+  .window-layer {
+    inset: var(--topbar-height) env(safe-area-inset-right) var(--neo-mobile-taskbar-height) env(safe-area-inset-left) !important;
+    overflow: hidden;
+  }
+
+  .neo-window,
+  .neo-window.is-maximized {
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    grid-template-rows: 52px minmax(0, 1fr) !important;
+    border-width: 0 !important;
+    border-radius: 0 !important;
+    resize: none !important;
+    transform-origin: center bottom;
+  }
+
+  .neo-window.is-open { transform: none; }
+  .neo-window.is-closing,
+  .neo-window.is-minimized { transform: translateY(24px); }
+
+  .window-chrome {
+    min-height: 52px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 7px;
+    padding: 0 5px 0 8px;
+    cursor: default;
+    touch-action: manipulation;
+  }
+
+  .window-app-icon { width: 36px; height: 36px; }
+  .window-title strong { font-size: 12px; }
+  .window-title small { display: none; }
+  .window-controls { gap: 1px; }
+  .window-control {
+    width: 44px;
+    height: 44px;
+    border-radius: 7px;
+  }
+  .window-control .icon { width: 17px; height: 17px; }
+
+  .window-body,
+  .window-content,
+  .native-app {
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+  }
+
+  .window-body { overflow: auto; overscroll-behavior: contain; }
+  .window-body > iframe { width: 100% !important; height: 100% !important; min-height: 0; }
+
+  .taskbar,
+  html[data-taskbar-position="left"] .taskbar,
+  html[data-taskbar-position="right"] .taskbar,
+  html[data-taskbar-position="top"] .taskbar {
+    inset: auto 0 0 !important;
+    width: 100% !important;
+    height: var(--neo-mobile-taskbar-height) !important;
+    min-height: var(--neo-mobile-taskbar-height) !important;
+    padding: 5px max(8px, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(8px, env(safe-area-inset-left)) !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .taskbar-center,
+  html[data-taskbar-position="left"] .taskbar-center,
+  html[data-taskbar-position="right"] .taskbar-center,
+  html[data-taskbar-position="top"] .taskbar-center {
+    position: absolute !important;
+    inset: 5px 82px auto max(8px, env(safe-area-inset-left)) !important;
+    width: auto !important;
+    height: 54px !important;
+    min-width: 0;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start;
+    gap: 3px;
+    overflow: hidden;
+    transform: none !important;
+  }
+
+  .taskbar-start-button {
+    order: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    flex: 0 0 48px;
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .taskbar .dock,
+  html[data-taskbar-position="left"] .taskbar .dock,
+  html[data-taskbar-position="right"] .taskbar .dock,
+  html[data-taskbar-position="top"] .taskbar .dock {
+    order: 1 !important;
+    min-width: 0;
+    margin: 0 !important;
+    border: 0 !important;
+    height: 52px !important;
+    display: flex !important;
+    flex: 1 1 auto;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 3px !important;
+    padding: 2px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-inline: contain;
+    touch-action: pan-x;
+  }
+
+  .taskbar .dock::-webkit-scrollbar { display: none; }
+
+  .taskbar .dock-button {
+    flex: 0 0 48px !important;
+    width: 48px !important;
+    height: 48px !important;
+    scroll-snap-align: center;
+  }
+
+  .taskbar .dock-button .dock-app-art,
+  .taskbar .dock-button .app-image-icon {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .taskbar-tray {
+    position: absolute !important;
+    top: 5px !important;
+    right: max(6px, env(safe-area-inset-right)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 72px !important;
+    min-width: 72px !important;
+    height: 52px !important;
+    padding: 0 4px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end;
+    transform: none !important;
+  }
+
+  .taskbar-tray > .icon,
+  .taskbar-network { display: none !important; }
+  .taskbar-clock { min-width: 60px; justify-items: end; }
+  .taskbar-clock strong { font-size: 11px; }
+  .taskbar-clock small { font-size: 8px; }
+
+  .app-launcher {
+    position: absolute !important;
+    inset: var(--topbar-height) 0 var(--neo-mobile-taskbar-height) !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    padding: 12px max(12px, env(safe-area-inset-right)) 14px max(12px, env(safe-area-inset-left)) !important;
+    border-width: 0 !important;
+    border-radius: 0 !important;
+    background: rgba(0, 0, 0, 0.97) !important;
+  }
+
+  .launcher-search,
+  .launcher-search input { min-height: 48px; }
+  .launcher-scroll-region {
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pinned-app-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .pinned-app,
+  .search-result { min-height: 64px; }
+
+  .notification-center {
+    inset: auto max(8px, env(safe-area-inset-right)) calc(var(--neo-mobile-taskbar-height) + 8px) max(8px, env(safe-area-inset-left)) !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(70vh, calc(var(--neo-visual-height) - var(--topbar-height) - var(--neo-mobile-taskbar-height) - 24px));
+    border-radius: 12px !important;
+  }
+
+  .notification-center .icon-button,
+  .notification-center > footer button { min-height: 44px; }
+
+  .desktop-context-menu {
+    inset: auto max(8px, env(safe-area-inset-right)) calc(var(--neo-mobile-taskbar-height) + 8px) max(8px, env(safe-area-inset-left)) !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(72vh, calc(var(--neo-visual-height) - var(--topbar-height) - var(--neo-mobile-taskbar-height) - 24px));
+    padding: 8px !important;
+    overflow-y: auto;
+    border-radius: 12px !important;
+    transform-origin: center bottom;
+  }
+
+  .desktop-context-menu button { min-height: 46px; }
+  .desktop-context-menu .context-submenu {
+    inset: 0 !important;
+    width: 100% !important;
+    min-height: 100%;
+    max-height: inherit;
+    overflow-y: auto;
+  }
+
+  .desktop-context-menu.has-mobile-submenu > :not(.context-menu-branch.is-active) { display: none !important; }
+  .desktop-context-menu.has-mobile-submenu > .context-menu-branch.is-active > [data-context-submenu] { display: none !important; }
+  .desktop-context-menu.has-mobile-submenu > .context-menu-branch.is-active { width: 100%; }
+  .desktop-context-menu .context-submenu.is-mobile {
+    position: static !important;
+    width: 100% !important;
+    min-height: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .desktop-context-menu .context-submenu.is-mobile .context-back { display: grid !important; }
+  .desktop-context-menu .context-submenu.is-mobile .context-back .context-arrow { justify-self: start; transform: rotate(180deg); }
+
+  .toast-region {
+    right: max(8px, env(safe-area-inset-right));
+    bottom: calc(var(--neo-mobile-taskbar-height) + 10px);
+    left: max(8px, env(safe-area-inset-left));
+    width: auto;
+  }
+
+  .toast { width: 100%; max-width: none; }
+
+  .widget-layer {
+    top: calc(var(--topbar-height) + 8px) !important;
+    right: max(8px, env(safe-area-inset-right)) !important;
+    left: auto !important;
+    width: min(300px, calc(100vw - 16px));
+    transform: none !important;
+  }
+
+  .system-widget,
+  .active-widget { display: none !important; }
+  .now-playing-widget { width: 100%; }
+  .now-playing-volume-trigger,
+  .now-playing-controls button { min-width: 44px; min-height: 44px; }
+  .now-playing-controls { gap: 2px; margin-left: 0; justify-content: flex-end; }
+  .now-playing-volume-flyout { right: 0; width: min(240px, calc(100vw - 16px)); }
+
+  .rainmeter-clock {
+    top: calc(var(--topbar-height) + 8vh) !important;
+    width: calc(100vw - 28px) !important;
+  }
+  .rainmeter-weekday { gap: 5px; font-size: clamp(28px, 10vw, 40px); }
+  .rainmeter-date,
+  .rainmeter-time { margin-top: 16px; font-size: 12px; }
+
+  .native-app,
+  .settings-shell,
+  .file-manager,
+  .wallpaper-studio,
+  .arcade-app { max-width: 100%; }
+
+  .settings-grid,
+  .settings-control-grid,
+  .file-manager-layout,
+  .wallpaper-studio-layout,
+  .arcade-filters,
+  .arcade-spotlight { grid-template-columns: 1fr !important; }
+
+  dialog,
+  [role="dialog"] { max-width: calc(100vw - 16px); }
+
+  .feature-dialog {
+    max-height: calc(var(--neo-visual-height) - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .feature-dialog input,
+  .feature-dialog button,
+  .native-app button,
+  .native-app select { min-height: 44px; }
+
+  .mobile-game-controls {
+    position: absolute;
+    z-index: 8;
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: max(10px, env(safe-area-inset-left));
+    display: grid !important;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 12px;
+    pointer-events: none;
+  }
+
+  .mobile-game-dpad {
+    display: grid;
+    grid-template-columns: repeat(3, 48px);
+    grid-template-rows: repeat(3, 48px);
+    gap: 3px;
+  }
+  .mobile-game-dpad button:nth-child(1) { grid-column: 2; grid-row: 1; }
+  .mobile-game-dpad button:nth-child(2) { grid-column: 1; grid-row: 2; }
+  .mobile-game-dpad button:nth-child(3) { grid-column: 2; grid-row: 3; }
+  .mobile-game-dpad button:nth-child(4) { grid-column: 3; grid-row: 2; }
+
+  .mobile-game-actions {
+    grid-column: 3;
+    display: grid;
+    grid-template-columns: 58px 58px;
+    align-items: end;
+    gap: 6px;
+  }
+  .mobile-game-actions button:first-child {
+    grid-row: 1 / span 2;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+  }
+  .mobile-game-actions button:nth-child(n + 2) {
+    min-width: 58px;
+    min-height: 44px;
+    font-size: 9px;
+  }
+
+  .mobile-game-controls button {
+    min-width: 48px;
+    min-height: 48px;
+    color: #fff;
+    font: 700 16px/1 var(--neo-font-ui);
+    background: rgba(0, 0, 0, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    pointer-events: auto;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .mobile-game-controls button.is-pressed {
+    color: #000;
+    background: #fff;
+    transform: scale(0.94);
+  }
+  .mobile-game-controls-toggle {
+    position: absolute;
+    right: 0;
+    bottom: 156px;
+    min-width: 76px !important;
+    min-height: 44px !important;
+    font-size: 8px !important;
+    opacity: 0.72;
+  }
+  .mobile-game-map-toggle {
+    grid-column: 2;
+    justify-self: center;
+    align-self: end;
+    min-width: 76px !important;
+    min-height: 44px !important;
+    font-size: 8px !important;
+    opacity: 0.72;
+  }
+  .mobile-game-controls.is-collapsed > :not(.mobile-game-controls-toggle) { display: none !important; }
+  .mobile-game-controls.is-collapsed .mobile-game-controls-toggle { bottom: 0; }
+
+  html[data-mobile-keyboard="true"] .taskbar { transform: translateY(110%) !important; pointer-events: none; }
+  html[data-mobile-keyboard="true"] .window-layer { bottom: 0 !important; }
+  html[data-mobile-keyboard="true"] .app-launcher { bottom: 0 !important; }
+}
+
+@media (max-width: 430px) {
+  .topbar-date { display: none !important; }
+  .topbar-media { max-width: 34vw; }
+  .active-app-label { max-width: 23vw; }
+  .window-control.minimize,
+  .window-control.maximize { display: grid; }
+  .pinned-app-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-height: 500px) and (max-width: 960px) and (orientation: landscape) {
+  :root {
+    --topbar-height: calc(44px + env(safe-area-inset-top));
+    --neo-mobile-taskbar-height: calc(56px + env(safe-area-inset-bottom));
+  }
+  .topbar-logo,
+  .topbar-action,
+  .topbar-date { min-height: 44px; height: 44px; }
+  .neo-window,
+  .neo-window.is-maximized { grid-template-rows: 44px minmax(0, 1fr) !important; }
+  .window-chrome { min-height: 44px; }
+  .window-control { width: 44px; height: 44px; }
+  .taskbar-center { height: 46px !important; }
+  .taskbar-start-button,
+  .taskbar .dock-button { width: 44px !important; height: 44px !important; flex-basis: 44px !important; }
+  .taskbar .dock { height: 46px !important; }
+  .taskbar .dock-button .dock-app-art,
+  .taskbar .dock-button .app-image-icon { width: 30px !important; height: 30px !important; }
+  .taskbar-tray { height: 46px !important; }
+  .rainmeter-clock,
+  .widget-layer { display: none !important; }
+  .mobile-game-dpad {
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+  }
+  .mobile-game-actions { grid-template-columns: 52px 52px; }
+  .mobile-game-actions button:first-child { width: 52px; height: 52px; }
+  .mobile-game-actions button:nth-child(n + 2) { min-width: 52px; min-height: 44px; }
+  .mobile-game-controls-toggle { bottom: 136px; }
+}
+
+@media (max-width: 760px), (pointer: coarse) and (max-width: 1366px), (max-height: 500px) and (max-width: 960px) {
+  .window-resize-handle,
+  .neo-snap-layouts { display: none !important; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  [data-tooltip]::before,
+  [data-tooltip]::after { display: none !important; }
+  .topbar-logo:hover,
+  .window-control:hover,
+  .dock-button:hover,
+  .taskbar-start-button:hover,
+  .now-playing-controls button:hover { transform: none !important; }
+  .window-chrome { cursor: default; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-window,
+  .app-launcher,
+  .desktop-context-menu,
+  .notification-center,
+  .taskbar { transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,916 @@
+{
+  "note": "Only allowlisted event names, counts, numeric timing distributions, and relative time span are retained. Event arguments are omitted entirely. Nested event durations overlap and must not be added into a unique CPU total.",
+  "runs": [
+    {
+      "phase": "after",
+      "diagnostic": "coverage-timeline",
+      "inputEventCount": 12322,
+      "retainedEventCount": 5206,
+      "ignoredEventCount": 7116,
+      "relativeSpanMs": 16129.792,
+      "eventTypes": [
+        {
+          "name": "AnimationFrame",
+          "eventCount": 1632,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "EvaluateScript",
+          "eventCount": 9,
+          "completeEventCount": 9,
+          "durationMs": {
+            "sum": 245.349,
+            "count": 9,
+            "p50": 0.346,
+            "p95": 134.884,
+            "min": 0.058,
+            "max": 196.524
+          }
+        },
+        {
+          "name": "EventDispatch",
+          "eventCount": 482,
+          "completeEventCount": 428,
+          "durationMs": {
+            "sum": 327.039,
+            "count": 428,
+            "p50": 0.003,
+            "p95": 1.093,
+            "min": 0.001,
+            "max": 60.007
+          }
+        },
+        {
+          "name": "FireAnimationFrame",
+          "eventCount": 66,
+          "completeEventCount": 66,
+          "durationMs": {
+            "sum": 23.454,
+            "count": 66,
+            "p50": 0.018,
+            "p95": 1.893,
+            "min": 0.003,
+            "max": 6.557
+          }
+        },
+        {
+          "name": "FunctionCall",
+          "eventCount": 784,
+          "completeEventCount": 783,
+          "durationMs": {
+            "sum": 150.924,
+            "count": 783,
+            "p50": 0.012,
+            "p95": 0.283,
+            "min": 0.001,
+            "max": 58.011
+          }
+        },
+        {
+          "name": "Layout",
+          "eventCount": 70,
+          "completeEventCount": 70,
+          "durationMs": {
+            "sum": 66.581,
+            "count": 70,
+            "p50": 0.12,
+            "p95": 2.924,
+            "min": 0.004,
+            "max": 39.953
+          }
+        },
+        {
+          "name": "Paint",
+          "eventCount": 682,
+          "completeEventCount": 682,
+          "durationMs": {
+            "sum": 38.16,
+            "count": 682,
+            "p50": 0.037,
+            "p95": 0.139,
+            "min": 0.001,
+            "max": 0.98
+          }
+        },
+        {
+          "name": "PrePaint",
+          "eventCount": 522,
+          "completeEventCount": 522,
+          "durationMs": {
+            "sum": 24.07,
+            "count": 522,
+            "p50": 0.037,
+            "p95": 0.114,
+            "min": 0.001,
+            "max": 0.485
+          }
+        },
+        {
+          "name": "RequestAnimationFrame",
+          "eventCount": 66,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceFinish",
+          "eventCount": 35,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceivedData",
+          "eventCount": 54,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceiveResponse",
+          "eventCount": 36,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceSendRequest",
+          "eventCount": 40,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerFire",
+          "eventCount": 136,
+          "completeEventCount": 136,
+          "durationMs": {
+            "sum": 9.351,
+            "count": 136,
+            "p50": 0.054,
+            "p95": 0.146,
+            "min": 0.016,
+            "max": 0.628
+          }
+        },
+        {
+          "name": "TimerInstall",
+          "eventCount": 52,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerRemove",
+          "eventCount": 18,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "UpdateLayoutTree",
+          "eventCount": 513,
+          "completeEventCount": 513,
+          "durationMs": {
+            "sum": 966.795,
+            "count": 513,
+            "p50": 0.809,
+            "p95": 2.323,
+            "min": 0.016,
+            "max": 88.992
+          }
+        },
+        {
+          "name": "v8.compile",
+          "eventCount": 9,
+          "completeEventCount": 9,
+          "durationMs": {
+            "sum": 2.747,
+            "count": 9,
+            "p50": 0.097,
+            "p95": 1.259,
+            "min": 0.05,
+            "max": 1.985
+          }
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "diagnostic": "coverage-timeline",
+      "inputEventCount": 12331,
+      "retainedEventCount": 5587,
+      "ignoredEventCount": 6744,
+      "relativeSpanMs": 17580.774,
+      "eventTypes": [
+        {
+          "name": "AnimationFrame",
+          "eventCount": 1840,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "EvaluateScript",
+          "eventCount": 8,
+          "completeEventCount": 8,
+          "durationMs": {
+            "sum": 326.827,
+            "count": 8,
+            "p50": 1.739,
+            "p95": 186.683,
+            "min": 0.126,
+            "max": 251.174
+          }
+        },
+        {
+          "name": "EventDispatch",
+          "eventCount": 456,
+          "completeEventCount": 423,
+          "durationMs": {
+            "sum": 438.921,
+            "count": 423,
+            "p50": 0.005,
+            "p95": 1.446,
+            "min": 0.001,
+            "max": 86.216
+          }
+        },
+        {
+          "name": "FireAnimationFrame",
+          "eventCount": 73,
+          "completeEventCount": 73,
+          "durationMs": {
+            "sum": 31.588,
+            "count": 73,
+            "p50": 0.038,
+            "p95": 2.176,
+            "min": 0.003,
+            "max": 6.135
+          }
+        },
+        {
+          "name": "FunctionCall",
+          "eventCount": 772,
+          "completeEventCount": 771,
+          "durationMs": {
+            "sum": 208.993,
+            "count": 771,
+            "p50": 0.02,
+            "p95": 0.458,
+            "min": 0.001,
+            "max": 84.275
+          }
+        },
+        {
+          "name": "Layout",
+          "eventCount": 108,
+          "completeEventCount": 108,
+          "durationMs": {
+            "sum": 87.013,
+            "count": 108,
+            "p50": 0.119,
+            "p95": 1.524,
+            "min": 0.014,
+            "max": 45.946
+          }
+        },
+        {
+          "name": "Paint",
+          "eventCount": 725,
+          "completeEventCount": 725,
+          "durationMs": {
+            "sum": 68.603,
+            "count": 725,
+            "p50": 0.074,
+            "p95": 0.233,
+            "min": 0.002,
+            "max": 1.028
+          }
+        },
+        {
+          "name": "PrePaint",
+          "eventCount": 578,
+          "completeEventCount": 577,
+          "durationMs": {
+            "sum": 47.363,
+            "count": 577,
+            "p50": 0.074,
+            "p95": 0.176,
+            "min": 0.001,
+            "max": 0.794
+          }
+        },
+        {
+          "name": "RequestAnimationFrame",
+          "eventCount": 73,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceFinish",
+          "eventCount": 35,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceivedData",
+          "eventCount": 39,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceiveResponse",
+          "eventCount": 36,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceSendRequest",
+          "eventCount": 40,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerFire",
+          "eventCount": 152,
+          "completeEventCount": 152,
+          "durationMs": {
+            "sum": 13.061,
+            "count": 152,
+            "p50": 0.067,
+            "p95": 0.208,
+            "min": 0.011,
+            "max": 0.57
+          }
+        },
+        {
+          "name": "TimerInstall",
+          "eventCount": 60,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerRemove",
+          "eventCount": 18,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "UpdateLayoutTree",
+          "eventCount": 566,
+          "completeEventCount": 566,
+          "durationMs": {
+            "sum": 1327.305,
+            "count": 566,
+            "p50": 0.889,
+            "p95": 2.951,
+            "min": 0.013,
+            "max": 110.298
+          }
+        },
+        {
+          "name": "v8.compile",
+          "eventCount": 8,
+          "completeEventCount": 8,
+          "durationMs": {
+            "sum": 3.896,
+            "count": 8,
+            "p50": 0.18,
+            "p95": 1.878,
+            "min": 0.081,
+            "max": 2.775
+          }
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "diagnostic": "drag-timeline",
+      "inputEventCount": 4233,
+      "retainedEventCount": 2426,
+      "ignoredEventCount": 1807,
+      "relativeSpanMs": 411.23,
+      "eventTypes": [
+        {
+          "name": "AnimationFrame",
+          "eventCount": 516,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "EventDispatch",
+          "eventCount": 97,
+          "completeEventCount": 94,
+          "durationMs": {
+            "sum": 43.819,
+            "count": 94,
+            "p50": 0.276,
+            "p95": 0.45,
+            "min": 0.001,
+            "max": 19.946
+          }
+        },
+        {
+          "name": "FireAnimationFrame",
+          "eventCount": 313,
+          "completeEventCount": 313,
+          "durationMs": {
+            "sum": 6.29,
+            "count": 313,
+            "p50": 0.017,
+            "p95": 0.039,
+            "min": 0.005,
+            "max": 0.098
+          }
+        },
+        {
+          "name": "FunctionCall",
+          "eventCount": 802,
+          "completeEventCount": 802,
+          "durationMs": {
+            "sum": 45.707,
+            "count": 802,
+            "p50": 0.009,
+            "p95": 0.232,
+            "min": 0.001,
+            "max": 19.796
+          }
+        },
+        {
+          "name": "Layout",
+          "eventCount": 8,
+          "completeEventCount": 8,
+          "durationMs": {
+            "sum": 1.042,
+            "count": 8,
+            "p50": 0.096,
+            "p95": 0.28,
+            "min": 0.023,
+            "max": 0.302
+          }
+        },
+        {
+          "name": "Paint",
+          "eventCount": 14,
+          "completeEventCount": 14,
+          "durationMs": {
+            "sum": 5.856,
+            "count": 14,
+            "p50": 0.313,
+            "p95": 0.947,
+            "min": 0.027,
+            "max": 1.036
+          }
+        },
+        {
+          "name": "PrePaint",
+          "eventCount": 203,
+          "completeEventCount": 203,
+          "durationMs": {
+            "sum": 6.852,
+            "count": 203,
+            "p50": 0.031,
+            "p95": 0.059,
+            "min": 0.001,
+            "max": 0.975
+          }
+        },
+        {
+          "name": "RequestAnimationFrame",
+          "eventCount": 313,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceFinish",
+          "eventCount": 5,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceivedData",
+          "eventCount": 3,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceiveResponse",
+          "eventCount": 5,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceSendRequest",
+          "eventCount": 1,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerFire",
+          "eventCount": 4,
+          "completeEventCount": 4,
+          "durationMs": {
+            "sum": 0.099,
+            "count": 4,
+            "p50": 0.026,
+            "p95": 0.034,
+            "min": 0.013,
+            "max": 0.035
+          }
+        },
+        {
+          "name": "TimerInstall",
+          "eventCount": 5,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerRemove",
+          "eventCount": 2,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "UpdateLayoutTree",
+          "eventCount": 135,
+          "completeEventCount": 135,
+          "durationMs": {
+            "sum": 63.089,
+            "count": 135,
+            "p50": 0.092,
+            "p95": 0.315,
+            "min": 0.022,
+            "max": 24.172
+          }
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "diagnostic": "drag-timeline",
+      "inputEventCount": 3814,
+      "retainedEventCount": 2123,
+      "ignoredEventCount": 1691,
+      "relativeSpanMs": 405.975,
+      "eventTypes": [
+        {
+          "name": "AnimationFrame",
+          "eventCount": 516,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "EventDispatch",
+          "eventCount": 75,
+          "completeEventCount": 75,
+          "durationMs": {
+            "sum": 51.58,
+            "count": 75,
+            "p50": 0.452,
+            "p95": 0.575,
+            "min": 0.001,
+            "max": 18.903
+          }
+        },
+        {
+          "name": "FireAnimationFrame",
+          "eventCount": 251,
+          "completeEventCount": 251,
+          "durationMs": {
+            "sum": 5.281,
+            "count": 251,
+            "p50": 0.019,
+            "p95": 0.034,
+            "min": 0.006,
+            "max": 0.065
+          }
+        },
+        {
+          "name": "FunctionCall",
+          "eventCount": 670,
+          "completeEventCount": 670,
+          "durationMs": {
+            "sum": 52.007,
+            "count": 670,
+            "p50": 0.013,
+            "p95": 0.356,
+            "min": 0.001,
+            "max": 18.69
+          }
+        },
+        {
+          "name": "Layout",
+          "eventCount": 4,
+          "completeEventCount": 4,
+          "durationMs": {
+            "sum": 0.92,
+            "count": 4,
+            "p50": 0.239,
+            "p95": 0.271,
+            "min": 0.167,
+            "max": 0.276
+          }
+        },
+        {
+          "name": "Paint",
+          "eventCount": 11,
+          "completeEventCount": 11,
+          "durationMs": {
+            "sum": 5.08,
+            "count": 11,
+            "p50": 0.398,
+            "p95": 0.937,
+            "min": 0.037,
+            "max": 0.965
+          }
+        },
+        {
+          "name": "PrePaint",
+          "eventCount": 195,
+          "completeEventCount": 195,
+          "durationMs": {
+            "sum": 8.297,
+            "count": 195,
+            "p50": 0.036,
+            "p95": 0.065,
+            "min": 0.002,
+            "max": 1.123
+          }
+        },
+        {
+          "name": "RequestAnimationFrame",
+          "eventCount": 251,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceFinish",
+          "eventCount": 2,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceivedData",
+          "eventCount": 2,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "ResourceReceiveResponse",
+          "eventCount": 2,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerFire",
+          "eventCount": 6,
+          "completeEventCount": 6,
+          "durationMs": {
+            "sum": 0.169,
+            "count": 6,
+            "p50": 0.027,
+            "p95": 0.036,
+            "min": 0.022,
+            "max": 0.037
+          }
+        },
+        {
+          "name": "TimerInstall",
+          "eventCount": 3,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "TimerRemove",
+          "eventCount": 1,
+          "completeEventCount": 0,
+          "durationMs": {
+            "sum": 0,
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "name": "UpdateLayoutTree",
+          "eventCount": 134,
+          "completeEventCount": 134,
+          "durationMs": {
+            "sum": 69.601,
+            "count": 134,
+            "p50": 0.141,
+            "p95": 0.335,
+            "min": 0.031,
+            "max": 25.746
+          }
+        }
+      ]
+    }
+  ]
+}

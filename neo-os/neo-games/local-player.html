@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Local game</title>
+  <style>
+    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#050708;color:#c7d5e0;font-family:Inter,"Segoe UI",sans-serif}
+    iframe{display:block;width:100%;height:100%;border:0;background:#050708}
+    .status{position:fixed;inset:0;display:grid;place-items:center;align-content:center;gap:10px;padding:24px;text-align:center;background:radial-gradient(circle at 50% 42%,#192b3b,#090d12 62%)}
+    .status[hidden]{display:none}.status strong{font-size:16px}.status p{max-width:500px;margin:0;color:#71808e;font-size:12px;line-height:1.5}.ring{width:30px;height:30px;border:3px solid rgba(102,192,244,.17);border-top-color:#66c0f4;border-radius:50%;animation:spin .75s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <iframe data-local-game-frame title="Local game" sandbox="allow-scripts allow-forms allow-downloads allow-pointer-lock allow-modals" allow="autoplay; fullscreen; gamepad; microphone; camera; pointer-lock; clipboard-read; clipboard-write" allowfullscreen hidden></iframe>
+  <div class="status" data-local-status><span class="ring" aria-hidden="true"></span><strong>Opening local game…</strong><p>Loading the HTML game saved in this browser.</p></div>
+  <script src="./local-player.js?v=20260919-local-games-v1"></script>
+</body>
+</html>

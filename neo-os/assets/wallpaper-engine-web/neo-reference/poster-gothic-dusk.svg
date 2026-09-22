@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Gothic Dusk preview">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#03050a"/><stop offset=".6" stop-color="#1f1730"/><stop offset="1" stop-color="#091522"/></linearGradient>
+    <radialGradient id="g"><stop stop-color="#76469b" stop-opacity=".57"/><stop offset="1" stop-color="#76469b" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bg)"/><ellipse cx="307" cy="96" rx="260" ry="175" fill="url(#g)"/>
+  <path d="M-40 98C103 25 216 164 520 82M-30 181C101 107 308 231 515 131" fill="none" stroke="#a481bd" stroke-opacity=".17" stroke-width="28"/>
+  <g fill="#bd9bd5"><circle cx="53" cy="211" r="2"/><circle cx="217" cy="47" r="2"/><circle cx="415" cy="180" r="2"/></g>
+</svg>

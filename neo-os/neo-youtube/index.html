@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" data-neo-app="youtube" data-neo-theme="oled">
+<head>
+  <script src="../neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="description" content="A fast, lightweight YouTube client for NEO OS.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; connect-src 'self' https://pipedapi.ducks.party https://api.piped.private.coffee https://www.youtube.com; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com; font-src 'self' data:; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>YouTube</title>
+  <link rel="icon" href="../assets/youtube.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../neo-theme-system.css?v=20260907-theme-system-v2">
+  <link id="neo-youtube-styles" rel="stylesheet" href="./app.css?v=20260912-shorts-feed-v1">
+  <script src="../neo-app-theme.js?v=20260912-acrylic-theme-v1" defer></script>
+  <script src="../neo-link-proxy.js?v=20260912-youtube-recovery-v3"></script>
+  <script src="../neo-proxy-client.js?v=20260919-nested-bridge-v1"></script>
+  <script src="./app.js?v=20260912-shorts-feed-v1" defer></script>
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-7H9v7H3Z"/></symbol>
+    <symbol id="i-shorts" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" stroke="none" d="M15.3 1.7 7 6.5a3.6 3.6 0 0 0 .2 6.3l1 .5-1.8 1a3.6 3.6 0 0 0 3.6 6.2l7.9-4.6a3.6 3.6 0 0 0-.2-6.3l-1-.5 2.2-1.3a3.6 3.6 0 1 0-3.6-6.1ZM10 8.7v6.6l5.7-3.3L10 8.7Z"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v6l4 2"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l10-2v13M9 9l10-2"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M7 5v15M17 5v15M3 10h4M17 10h4"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h3M11 12h9M4 18h7M15 18h5"/><circle cx="16" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="13" cy="18" r="2"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-like" viewBox="0 0 24 24"><path d="M7 10v11H3V10Zm0 10h10l4-9a3 3 0 0 0-3-4h-4l1-4-1-1-7 8Z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 11 6-4M9 13l6 4"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 13v7H4V5h7"/></symbol>
+    <symbol id="i-popout" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-7 7"/><rect x="4" y="8" width="12" height="11" rx="2"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+  </svg>
+
+  <header class="masthead">
+    <div class="masthead-start">
+      <button class="icon-button guide-button" type="button" aria-label="Guide" data-guide-toggle><svg><use href="#i-menu"/></svg></button>
+      <button class="brand" type="button" data-view="home" aria-label="YouTube Home">
+        <img src="./youtube-mark.svg" alt="">
+        <span>YouTube</span>
+      </button>
+    </div>
+    <form class="search-form" role="search" data-search-form>
+      <label class="search-box">
+        <span class="sr-only">Search</span>
+        <svg class="search-leading-icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input type="search" autocomplete="off" spellcheck="false" placeholder="Search" maxlength="120" data-search-input>
+        <button class="clear-button" type="button" aria-label="Clear search" data-search-clear hidden>×</button>
+      </label>
+      <button class="search-button" type="submit" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+      <button class="icon-button voice-button" type="button" aria-label="Search with your voice" data-voice-search><svg><use href="#i-mic"/></svg></button>
+    </form>
+    <div class="masthead-end" aria-hidden="true"></div>
+  </header>
+
+  <aside class="sidebar" data-sidebar>
+    <nav aria-label="Primary">
+      <button class="nav-item is-active" type="button" data-view="home"><svg><use href="#i-home"/></svg><span>Home</span></button>
+      <button class="nav-item" type="button" data-view="shorts"><svg><use href="#i-shorts"/></svg><span>Shorts</span></button>
+      <button class="nav-item" type="button" data-view="history"><svg><use href="#i-history"/></svg><span>History</span></button>
+    </nav>
+    <section class="nav-section">
+      <h2>Explore</h2>
+      <button class="nav-item" type="button" data-search-preset="music"><svg><use href="#i-music"/></svg><span>Music</span></button>
+      <button class="nav-item" type="button" data-search-preset="movies and tv"><svg><use href="#i-film"/></svg><span>Movies &amp; TV</span></button>
+    </section>
+    <footer class="sidebar-footer">
+      <p><a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">Terms</a> <a href="https://www.youtube.com/t/privacy" target="_blank" rel="noopener noreferrer">Privacy</a></p>
+      <p>Metadata provided by community Piped instances.</p>
+    </footer>
+  </aside>
+
+  <main class="content" data-content>
+    <section class="home-view" data-home-view>
+      <div class="welcome-card">
+        <h1>Try searching to get started</h1>
+        <p>Find a video without loading the full YouTube website.</p>
+        <div class="quick-searches" aria-label="Popular searches">
+          <button type="button" data-search-preset="music">Music</button>
+          <button type="button" data-search-preset="gaming">Gaming</button>
+          <button type="button" data-search-preset="news">News</button>
+          <button type="button" data-search-preset="learning">Learning</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-view" data-results-view hidden>
+      <div class="chip-row" role="tablist" aria-label="Search filters">
+        <button class="chip is-active" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="chip" type="button" role="tab" aria-selected="false" data-filter="shorts">Shorts</button>
+        <button class="chip" type="button" role="tab" aria-selected="false" data-filter="videos">Videos</button>
+        <button class="chip" type="button" role="tab" aria-selected="false" data-filter="recent">Recently uploaded</button>
+        <button class="chip" type="button" role="tab" aria-selected="false" data-filter="live">Live</button>
+        <button class="filter-button" type="button" data-toast="Use the filter chips to narrow these results."><svg><use href="#i-filter"/></svg><span>Filters</span></button>
+      </div>
+      <div class="result-status" role="status" aria-live="polite" data-result-status></div>
+      <div class="results-list" data-results-list></div>
+    </section>
+
+    <section class="shorts-view" data-shorts-view hidden>
+      <div class="shorts-stage">
+        <article class="short-card" data-short-card>
+          <div class="short-player" data-short-player>
+            <button class="short-play" type="button" aria-label="Play Short" data-short-play><svg><use href="#i-play"/></svg></button>
+          </div>
+          <div class="short-copy">
+            <strong data-short-channel>YouTube</strong>
+            <h1 data-short-title>Shorts</h1>
+          </div>
+          <div class="short-actions">
+            <button type="button" data-toast="Likes are not saved in account-free mode."><svg><use href="#i-like"/></svg><span>Like</span></button>
+            <button type="button" data-share-short><svg><use href="#i-share"/></svg><span>Share</span></button>
+            <button type="button" data-popout-short aria-pressed="false"><svg><use href="#i-popout"/></svg><span>Pop out</span></button>
+          </div>
+        </article>
+        <div class="short-nav" aria-label="Short navigation">
+          <button type="button" aria-label="Previous Short" data-short-prev><svg><use href="#i-chevron"/></svg></button>
+          <button type="button" aria-label="Next Short" data-short-next><svg><use href="#i-chevron"/></svg></button>
+        </div>
+      </div>
+      <p class="short-status" role="status" aria-live="polite" data-short-status></p>
+    </section>
+
+    <section class="watch-view" data-watch-view hidden>
+      <button class="watch-back" type="button" data-watch-back><svg><use href="#i-back"/></svg><span>Back</span></button>
+      <div class="watch-layout">
+        <article class="watch-primary">
+          <div class="player-shell" data-player-shell>
+            <div class="player-placeholder"><svg><use href="#i-play"/></svg></div>
+          </div>
+          <h1 class="watch-title" data-watch-title>YouTube video</h1>
+          <div class="watch-details">
+            <div class="channel-block">
+              <span class="channel-avatar" data-watch-avatar></span>
+              <div><strong data-watch-channel>YouTube</strong><span data-watch-meta></span></div>
+            </div>
+            <div class="watch-actions">
+              <button type="button" data-toast="Likes are not saved in account-free mode."><svg><use href="#i-like"/></svg><span>Like</span></button>
+              <button type="button" data-share-video><svg><use href="#i-share"/></svg><span>Share</span></button>
+              <button type="button" data-popout-video aria-pressed="false"><svg><use href="#i-popout"/></svg><span>Pop out</span></button>
+              <a data-open-youtube target="_blank" rel="noopener noreferrer"><svg><use href="#i-external"/></svg><span>Open YouTube</span></a>
+            </div>
+          </div>
+          <div class="description-card" data-watch-description></div>
+        </article>
+        <aside class="watch-next" aria-label="More videos">
+          <h2>Up next</h2>
+          <div data-up-next></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <aside class="video-popout" data-video-popout hidden aria-label="Popped out video">
+    <div class="video-popout-drag" data-popout-drag aria-label="Drag popped-out video" title="Drag video">
+      <span aria-hidden="true"></span>
+    </div>
+    <div class="video-popout-controls">
+      <button type="button" data-popout-restore aria-label="Restore video" title="Restore video"><svg><use href="#i-popout"/></svg></button>
+      <button type="button" data-popout-close aria-label="Close video" title="Close video"><svg><use href="#i-close"/></svg></button>
+    </div>
+  </aside>
+
+  <div class="toast" role="status" aria-live="polite" data-toast-region hidden></div>
+</body>
+</html>

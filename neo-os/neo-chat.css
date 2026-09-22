@@ -1,0 +1,337 @@
+/* NEO Chat is deliberately monochrome so it stays legible over every wallpaper. */
+.neo-messages {
+  --messages-blue: #fff;
+  --messages-incoming: #171717;
+  --messages-label: rgba(255, 255, 255, 0.58);
+  grid-template-columns: clamp(272px, 28%, 330px) minmax(0, 1fr);
+  color: #f7f7f7;
+  color-scheme: dark;
+  background: #000;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.neo-messages [hidden] { display: none !important; }
+.neo-messages button,
+.neo-messages input,
+.neo-messages textarea { font: inherit; }
+.messages-sidebar { background: #080808; border-right-color: #242424; backdrop-filter: none; }
+.messages-sidebar-heading { min-height: 66px; justify-content: flex-start; gap: 10px; padding: 12px 14px 7px; }
+.messages-brand-mark { width: 32px; height: 32px; display: grid; flex: 0 0 32px; place-items: center; }
+.messages-brand-mark img { width: 28px; height: 28px; }
+.messages-sidebar-heading h2 { color: #fff; font-size: 20px; font-weight: 790; letter-spacing: -0.035em; }
+.messages-compose-shortcut { margin-left: auto; }
+.messages-compose-shortcut,
+.messages-back { width: 36px; height: 36px; color: #fff; background: #181818; border: 1px solid #2b2b2b; }
+.messages-compose-shortcut:hover,
+.messages-back:hover { background: #242424; }
+.messages-search { height: 40px; margin: 5px 12px 10px; padding: 0 12px; color: rgba(255,255,255,.54); background: #131313; border-color: #292929; border-radius: 10px; }
+.messages-search:focus-within { color: #fff; background: #171717; border-color: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,.12); }
+.messages-search input { color: #fff; font-size: 13px; }
+.messages-search input::placeholder { color: rgba(255,255,255,.42); }
+.messages-directory { padding: 0 8px 14px; scrollbar-color: #383838 transparent; }
+.messages-directory h3 { padding: 12px 9px 6px; color: rgba(255,255,255,.48); font-size: 10px; letter-spacing: .075em; }
+.messages-pinned-list { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.messages-pinned-room,
+.messages-room { color: #f5f5f5; border: 1px solid transparent; }
+.messages-pinned-room:hover,
+.messages-room:hover { background: #141414; }
+.messages-pinned-room.is-active,
+.messages-room.is-active { color: #000; background: #fff; border-color: #fff; }
+.messages-pinned-room.is-active .messages-avatar,
+.messages-room.is-active .messages-avatar { color: #fff; background: #000; box-shadow: none; }
+.messages-pinned-room.is-global,
+.messages-pinned-room.is-global.is-active,
+.messages-pinned-room.is-global:hover {
+  color: #fff;
+  background: transparent;
+  border-color: transparent;
+}
+.messages-pinned-room.is-global .messages-avatar,
+.messages-pinned-room.is-global.is-active .messages-avatar {
+  color: #fff;
+  background: #171717;
+  border-color: #3a3a3a;
+}
+.messages-pinned-room.is-global:hover .messages-avatar { background: #242424; border-color: #555; }
+.messages-room { min-height: 64px; padding: 7px 9px; border-radius: 11px; }
+.messages-room-copy strong { color: inherit; font-size: 13px; }
+.messages-room-copy small { color: rgba(255,255,255,.5); font-size: 11px; }
+.messages-room.is-active .messages-room-copy small,
+.messages-room.is-active time { color: rgba(0,0,0,.58); }
+.messages-room time { color: rgba(255,255,255,.38); font-size: 10px; }
+.messages-room-empty { color: rgba(255,255,255,.48); font-size: 12px; }
+.messages-avatar,
+.messages-heading-avatar { color: #0a0a0a; background: hsl(var(--avatar-hue,215) 8% 78%); border: 1px solid rgba(255,255,255,.18); box-shadow: none; }
+.messages-heading-avatar.is-global { color: #000; background: #fff; }
+.messages-connection { min-height: 54px; padding: 8px 12px; color: rgba(255,255,255,.72); background: #0a0a0a; border-top-color: #242424; font-size: 10px; }
+.messages-connection-copy small { color: rgba(255,255,255,.45); font-size: 9px; }
+.messages-connection-dot { background: #777; }
+.messages-connection-dot.is-online { background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.12); }
+.messages-connection-dot.is-connecting { background: #aaa; }
+.messages-connection-actions button,
+.messages-auth-action { min-height: 34px; padding: 0 11px; color: #000; background: #fff; border: 1px solid #fff; border-radius: 8px; font-size: 10px; font-weight: 760; text-decoration: none; }
+.messages-connection-actions .messages-sign-out { color: rgba(255,255,255,.72); background: #161616; border-color: #303030; }
+.messages-connection-actions button:hover,
+.messages-auth-action:hover { color: #fff; background: #262626; border-color: #4a4a4a; }
+.messages-conversation { background: #000; }
+.messages-conversation-heading { min-height: 76px; background: rgba(7,7,7,.96); border-bottom-color: #242424; backdrop-filter: blur(14px); }
+.messages-conversation-heading h3 { color: #fff; font-size: 13px; font-weight: 730; }
+.messages-conversation-heading p { color: rgba(255,255,255,.46); font-size: 10px; }
+.messages-thread { padding: 22px clamp(15px,3vw,42px) 16px; scrollbar-color: #383838 transparent; }
+.messages-thread-state { color: rgba(255,255,255,.48); }
+.messages-thread-state strong { color: #fff; font-size: 15px; }
+.messages-thread-state p { font-size: 12px; }
+.messages-auth-icon { color: #000; background: #fff; }
+.messages-auth-state strong { color: #fff; }
+.messages-auth-state p { color: rgba(255,255,255,.5); font-size: 12px; }
+.native-message-date { color: rgba(255,255,255,.58); font-size: 10px; }
+.native-message-author { color: rgba(255,255,255,.58); font-size: 10px; }
+.native-message-author:hover { color: #fff; }
+.native-message-bubble { color: #f7f7f7; background: #171717; border: 1px solid #2a2a2a; font-size: 13px; line-height: 1.45; }
+.native-message.is-own .native-message-bubble { color: #000; background: #fff; border-color: #fff; }
+.native-message-meta { color: rgba(255,255,255,.58); font-size: 9px; }
+.native-message.is-failed .native-message-bubble { color: #fff; background: #2d1010; border-color: #7a2929; }
+.native-message.is-failed .native-message-meta,
+.native-message-retry { color: #ff9292; }
+.messages-composer { padding: 10px 16px 14px; background: #050505; border-top: 1px solid #171717; }
+.messages-composer-shell { min-height: 44px; padding: 4px 4px 4px 14px; background: #111; border-color: #303030; border-radius: 13px; }
+.messages-composer-shell:focus-within { border-color: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,.12); }
+.messages-composer textarea { height: 34px; padding: 7px 2px; color: #fff; font-size: 13px; line-height: 20px; }
+.messages-composer textarea::placeholder { color: rgba(255,255,255,.58); }
+.messages-composer button { width: 34px; height: 34px; color: #000; background: #fff; border-radius: 10px; }
+.messages-composer button:hover:not(:disabled) { color: #fff; background: #333; }
+.messages-composer p { color: #ff9292; font-size: 10px; }
+.messages-room-loading span { background: linear-gradient(100deg,#121212 20%,#202020 42%,#121212 64%); background-size: 220% 100%; }
+.messages-pinned-loading span { background: #181818; }
+.messages-profile-sheet { color: #fff; background: #0b0b0b; border: 1px solid #313131; box-shadow: 0 24px 80px rgba(0,0,0,.75) !important; }
+.messages-profile-sheet::backdrop { background: rgba(0,0,0,.72); }
+.messages-profile-close { width: 34px; height: 34px; color: #fff; background: #181818; border: 1px solid #303030; }
+.messages-profile-copy h3 { color: #fff; }
+.messages-profile-copy p { color: rgba(255,255,255,.52); font-size: 12px; }
+.messages-profile-dm { min-height: 42px; color: #000; background: #fff; }
+.messages-profile-feedback { color: #ff9292; font-size: 11px; }
+
+.messages-auth-dialog {
+  width: min(430px, calc(100% - 28px));
+  max-width: none;
+  max-height: min(760px, calc(100% - 28px));
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  color: #fff;
+  background: #090909;
+  border: 1px solid #313131;
+  border-radius: 20px;
+  box-shadow: 0 30px 100px rgba(0,0,0,.76) !important;
+}
+.messages-auth-dialog[open] { animation: messages-auth-enter 220ms cubic-bezier(.2,.8,.2,1) both; }
+.messages-auth-dialog::backdrop {
+  background: rgba(0,0,0,.68);
+  -webkit-backdrop-filter: blur(10px) saturate(115%);
+  backdrop-filter: blur(10px) saturate(115%);
+}
+.messages-auth-dialog-shell {
+  position: relative;
+  max-height: min(760px, calc(100vh - 28px));
+  overflow: auto;
+  border-radius: inherit;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.24) transparent;
+}
+.messages-auth-dialog-close {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  color: rgba(255,255,255,.7);
+  background: #181818;
+  border: 1px solid #303030;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+.messages-auth-dialog-close:hover { color: #fff; background: #252525; transform: scale(1.04); }
+.messages-auth-dialog-close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.messages-auth-dialog-close .icon { width: 13px; height: 13px; }
+.messages-auth-dialog-mount .neo-browser-sign-in { min-height: 0; padding: 0; background: transparent; }
+.messages-auth-dialog-mount .neo-browser-sign-in-card {
+  width: 100%;
+  padding: 34px 32px 30px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+@keyframes messages-auth-enter {
+  from { opacity: 0; transform: translateY(10px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.app-icon-chat { overflow: visible !important; border-radius: 0 !important; }
+.app-icon-chat .app-image-icon { border-radius: 0 !important; image-rendering: auto; }
+.dock-button[data-app="chat"] .dock-app-art.app-icon-chat { overflow: visible; border-radius: 0; box-shadow: none; }
+.dock-button[data-app="chat"] .app-image-icon { border-radius: 0; }
+
+.neo-browser-sign-in { --neo-auth-accent: #fff; color: #fff; background: #000; }
+.neo-browser-sign-in-card { background: #090909; border-color: #2b2b2b; box-shadow: 0 18px 70px rgba(0,0,0,.55); }
+.neo-browser-sign-in-icon { color: #000; background: #fff; }
+.neo-browser-sign-in-icon img { width: 28px; height: 28px; object-fit: contain; }
+.neo-browser-sign-in-eyebrow { color: rgba(255,255,255,.48); }
+.neo-browser-sign-in-card h2 { color: #fff; }
+.neo-browser-sign-in-copy { color: rgba(255,255,255,.56); }
+.neo-auth-mode { display: inline-flex; min-height: 26px; align-items: center; margin: -9px 0 20px; padding: 0 9px; color: rgba(255,255,255,.65); background: #151515; border: 1px solid #292929; border-radius: 999px; font-size: 10px; }
+.neo-auth-mode::before { width: 6px; height: 6px; margin-right: 6px; content: ""; background: #fff; border-radius: 50%; }
+.neo-auth-tabs { display: grid; grid-template-columns: 1fr 1fr; width: 100%; margin: 0 0 14px; padding: 3px; background: #111; border: 1px solid #292929; border-radius: 10px; }
+.neo-auth-tabs button { min-height: 36px; padding: 0 12px; color: rgba(255,255,255,.62); background: transparent; border: 0; border-radius: 7px; font: 700 12px/1 inherit; cursor: pointer; }
+.neo-auth-tabs button[aria-selected="true"] { color: #050505; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.28); }
+.neo-auth-password-field { position: relative; display: block; }
+.neo-browser-sign-in-card .neo-auth-password-field input { width: 100%; padding-right: 62px; }
+.neo-auth-password-field button { position: absolute; top: 50%; right: 7px; min-width: 44px; min-height: 32px; padding: 0 8px; transform: translateY(-50%); color: rgba(255,255,255,.72); background: #202020; border: 1px solid #343434; border-radius: 7px; font: 700 10px/1 inherit; cursor: pointer; }
+.neo-auth-password-field button:hover { color: #fff; border-color: #555; }
+.neo-browser-sign-in-card label { color: rgba(255,255,255,.72); }
+.neo-browser-sign-in-card input { color: #fff; background: #111; border-color: #333; }
+.neo-browser-sign-in-card input:focus { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.12); }
+.neo-browser-sign-in-card button[type="submit"] { color: #000; background: #fff; border-color: #fff; }
+.neo-browser-sign-in-card button[type="submit"]:hover:not(:disabled) { color: #fff; background: #252525; border-color: #3b3b3b; }
+.neo-browser-sign-in-feedback { color: rgba(255,255,255,.58); }
+.neo-browser-sign-in-feedback.is-error { color: #ff9292; }
+.neo-browser-sign-in-feedback.is-success { color: #fff; }
+
+.neo-login-gate { background: radial-gradient(circle at 50% 56%,rgba(255,255,255,.08),transparent 30%),linear-gradient(145deg,#020202,#0b0b0b 54%,#000); backdrop-filter: none; }
+.neo-login-panel { width: min(440px,100%); padding: 28px 26px 32px; background: rgba(10,10,10,.94); border: 1px solid rgba(255,255,255,.16); border-radius: 18px; box-shadow: 0 30px 110px rgba(0,0,0,.72); }
+.neo-login-eyebrow { margin: 14px 0 0; color: rgba(255,255,255,.48); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
+.neo-login-panel > h1 { margin-top: 7px; font-size: 24px; }
+.neo-login-intro { max-width: 340px; margin: 1px 0 0; color: rgba(255,255,255,.56); font-size: 12px; line-height: 1.5; text-align: center; }
+.neo-login-auth-host .neo-browser-sign-in-card { padding-top: 18px; }
+.neo-login-auth-host .neo-browser-sign-in-card h2,
+.neo-login-auth-host .neo-browser-sign-in-copy { display: none; }
+.neo-login-auth-host .neo-auth-mode { margin: 0 auto 14px; }
+.neo-login-auth-host .neo-browser-sign-in-card input { min-height: 46px; background: #141414; border: 1px solid #343434; }
+.neo-login-auth-host .neo-browser-sign-in-card button[type="submit"] { min-height: 46px; }
+.neo-login-guest { min-height: 44px; margin-top: 0; padding: 0 18px; color: rgba(255,255,255,.72); background: #151515; border: 1px solid #303030; border-radius: 10px; text-decoration: none; }
+.neo-login-privacy { margin: 10px 0 0; color: rgba(255,255,255,.58); font-size: 10px; line-height: 1.4; text-align: center; }
+.neo-login-app-rail { filter: blur(4px); }
+.neo-login-app-rail span { border: 1px solid rgba(255,255,255,.16); border-radius: 10px; }
+.neo-login-app-rail img { width: 23px; height: 23px; }
+.neo-saved-accounts { display: grid; gap: 8px; width: 100%; margin: 0 0 13px; }
+.neo-saved-accounts > p { margin: 0; color: rgba(255,255,255,.62); font-size: 11px; font-weight: 750; letter-spacing: .04em; }
+.neo-saved-accounts [data-neo-saved-account-list] { display: grid; gap: 7px; }
+.neo-saved-account { display: grid; grid-template-columns: minmax(0,1fr) 42px; gap: 7px; }
+.neo-saved-account-select,
+.neo-saved-account-remove { min-height: 44px; border: 1px solid #303030; border-radius: 10px; background: #111; color: #fff; }
+.neo-saved-account-select { display: grid; grid-template-columns: 30px minmax(0,1fr); align-items: center; gap: 10px; padding: 5px 11px; text-align: left; }
+.neo-saved-account-select > span:first-child { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: #fff; color: #000; font-size: 12px; font-weight: 850; }
+.neo-saved-account-select strong { overflow: hidden; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.neo-saved-account-remove { padding: 0; color: rgba(255,255,255,.62); font-size: 19px; }
+.neo-saved-account-select:hover,
+.neo-saved-account-remove:hover { border-color: #666; background: #191919; }
+.neo-account-divider { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 9px; color: rgba(255,255,255,.34); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }
+.neo-account-divider::before,
+.neo-account-divider::after { height: 1px; background: #262626; content: ""; }
+
+/* NEO windows can be narrower than the browser viewport, so Chat also responds
+   to its own app width instead of waiting for a page-level media query. */
+.neo-messages.is-compact-layout { display: block; grid-template-columns: 1fr; }
+.neo-messages.is-compact-layout .messages-sidebar,
+.neo-messages.is-compact-layout .messages-conversation {
+  position: absolute;
+  inset: 0;
+  transition: transform 200ms cubic-bezier(.2,.8,.2,1),opacity 200ms cubic-bezier(.2,.8,.2,1);
+}
+.neo-messages.is-compact-layout .messages-conversation { z-index: 2; transform: translateX(100%); }
+.neo-messages.is-compact-layout.is-conversation-open .messages-sidebar { opacity: 0; transform: translateX(-18%); pointer-events: none; }
+.neo-messages.is-compact-layout.is-conversation-open .messages-conversation { transform: translateX(0); }
+.neo-messages.is-compact-layout .messages-back { display: grid; }
+.neo-messages.is-compact-layout .messages-compose-shortcut,
+.neo-messages.is-compact-layout .messages-back,
+.neo-messages.is-compact-layout .messages-connection-actions button,
+.neo-messages.is-compact-layout .messages-composer button { min-width: 44px; min-height: 44px; }
+.neo-messages.is-compact-layout .messages-search { height: 44px; }
+.neo-messages.is-compact-layout .messages-room { min-height: 68px; }
+.neo-messages.is-compact-layout .messages-pinned-list { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.neo-messages.is-compact-layout .messages-conversation-heading { min-height: 68px; }
+.neo-messages.is-compact-layout .messages-composer { padding-bottom: max(10px,env(safe-area-inset-bottom)); }
+.neo-messages.is-compact-layout .native-message-body { max-width: 82%; }
+
+@media (max-width:760px), (pointer:coarse) and (max-width:1366px), (max-height:500px) and (max-width:960px) {
+  .neo-messages { grid-template-columns: 1fr; }
+  .messages-compose-shortcut,
+  .messages-back,
+  .messages-connection-actions button,
+  .messages-composer button { min-width: 44px; min-height: 44px; }
+  .messages-search { height: 44px; }
+  .messages-room { min-height: 68px; }
+  .messages-pinned-list { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .messages-conversation-heading { min-height: 68px; }
+  .messages-composer { padding-bottom: max(10px,env(safe-area-inset-bottom)); }
+  .native-message-body { max-width: 82%; }
+  .neo-login-time { display: none; }
+  .neo-login-gate { grid-template-rows: 1fr; place-items: center; padding: max(16px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left)); }
+  .neo-login-panel { align-self: center; padding: 24px 18px; }
+}
+
+@media (max-width: 560px) {
+  .messages-auth-dialog { width: calc(100% - 20px); max-height: calc(100% - 20px); border-radius: 16px; }
+  .messages-auth-dialog-shell { max-height: calc(100vh - 20px); }
+  .messages-auth-dialog-mount .neo-browser-sign-in-card { padding: 30px 20px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .messages-auth-dialog[open] { animation: none; }
+  .messages-auth-dialog-close { transition: none; }
+}
+
+@media (max-width:420px) {
+  .messages-pinned-list { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .messages-connection { grid-template-columns: auto minmax(0,1fr); }
+  .messages-connection-actions { grid-column: 1/-1; }
+  .messages-connection-actions button { width: 100%; }
+}
+
+.messages-attachment-preview {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 7px;
+  padding: 7px 9px;
+  color: #fff;
+  background: #111;
+  border: 1px solid #303030;
+  border-radius: 12px;
+}
+.messages-attachment-preview[hidden] { display: none; }
+.messages-attachment-preview img,
+.messages-attachment-preview video { width: 48px; height: 48px; object-fit: cover; background: #050505; border-radius: 8px; }
+.messages-attachment-preview audio { width: min(260px,45vw); height: 34px; }
+.messages-attachment-copy { min-width: 0; flex: 1 1 auto; }
+.messages-attachment-copy strong,
+.messages-attachment-copy small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.messages-attachment-copy strong { font-size: 11px; }
+.messages-attachment-copy small { margin-top: 3px; color: rgba(255,255,255,.52); font-size: 9px; }
+.messages-attachment-remove { width: 30px !important; height: 30px !important; color: #fff !important; background: #242424 !important; }
+.messages-attach-button { color: #fff !important; background: #242424 !important; }
+.messages-attach-button .icon { transform: none !important; }
+.messages-attach-button:hover:not(:disabled) { background: #3a3a3a !important; }
+.native-message-bubble.has-attachment { padding: 5px; overflow: hidden; }
+.native-message-attachment { display: block; color: inherit; text-decoration: none; }
+.native-message-attachment img,
+.native-message-attachment video { display: block; width: min(360px,48vw); max-height: 320px; object-fit: contain; background: #050505; border-radius: 9px; }
+.native-message-attachment audio { display: block; width: min(320px,46vw); height: 36px; }
+.native-message-file { display: flex; align-items: center; gap: 9px; min-width: 180px; padding: 10px; }
+.native-message-file .icon { width: 22px; height: 22px; }
+.native-message-file span { min-width: 0; }
+.native-message-file strong,
+.native-message-file small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.native-message-file strong { font-size: 11px; }
+.native-message-file small { margin-top: 2px; opacity: .62; font-size: 9px; }
+.native-message-text { margin: 6px 7px 5px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (prefers-reduced-motion:reduce) {
+  .neo-messages *,
+  .neo-login-gate * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

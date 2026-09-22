@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Embed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0d3147;
+        }
+        /* TRUE FULLSCREEN CONTAINER */
+        #game-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0d3147;
+        }
+        /* FILL THE SCREEN EXACTLY */
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-wrap">
+        <iframe src="https://script.google.com/macros/s/AKfycbwpgLFA8CCkVpefUULez6Jcr2sQLjmilcD5OuoFHgMGVT4wY1Zd2BG2BrkRjYUEfuw/exec" allow="fullscreen; autoplay" allowfullscreen></iframe>
+    </div>
+</body>
+</html>

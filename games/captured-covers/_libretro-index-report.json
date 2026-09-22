@@ -1,0 +1,2086 @@
+{
+  "at": "2026-07-21T03:31:40.474Z",
+  "threshold": 0.92,
+  "matched": [
+    {
+      "slug": "mat-hoffman-s-pro-bmx-2",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Mat Hoffman's Pro BMX 2 (USA, Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "kirbys-dream-land-3",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Kirby's Dream Land 3 (USA).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mega-man-zero",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Mega Man Zero (USA) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "metroid-zero-mission",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Metroid - Zero Mission (Europe) (En,Fr,De,Es,It) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mega-man-7",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Mega Man 7 (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mach-rider",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Mach Rider (Europe) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "madden-nfl-94",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Madden NFL '94 (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mario-kart-64",
+      "system": "Nintendo - Nintendo 64",
+      "file": "Mario Kart 64 (Europe) (Rev 1).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mario-kart-super-circuit",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Mario Kart - Super Circuit (Europe) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "max-payne",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Max Payne (USA).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "kirbys-adventure",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Kirby's Adventure (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "lego-racers",
+      "system": "Nintendo - Nintendo 64",
+      "file": "LEGO Racers (Europe) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mickey-mania",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Mickey Mania (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mike-tysons-punch-out",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Mike Tyson's Punch-Out!! (Europe) (Rev 1).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "narc",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "NARC (USA) (Beta).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "nightshade",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Nightshade (USA).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "mr-driller-2",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Mr. Driller 2 (Europe) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "outrun",
+      "system": "Sega - Mega Drive - Genesis",
+      "file": "OutRun (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "nintendo-world-championships-1990",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Nintendo World Championships 1990 (USA).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "scrapyard-dog",
+      "system": "Atari - Lynx",
+      "file": "Scrapyard Dog (USA, Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "pac-man-world",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Pac-Man World (Europe) (En,Fr,De,Es,It).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "popeye",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Popeye (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "serious-sam-advance",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Serious Sam Advance (Europe) (En,Fr,De).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "snow-bros",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Snow Bros. (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "soccer",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Soccer (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "pokemon-black-version",
+      "system": "Nintendo - Nintendo DS",
+      "file": "Pokemon - Black Version (USA, Europe) (NDSi Enhanced).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "solstice",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Solstice (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-advance-3",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Sonic Advance 3 (Europe) (En,Ja,Fr,De,Es,It) (Beta).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-advance-2",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Sonic Advance 2 (Europe) (En,Ja,Fr,De,Es,It).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-advance",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Sonic Advance (Europe) (En,Ja,Fr,De,Es).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-blast",
+      "system": "Sega - Game Gear",
+      "file": "Sonic Blast (World).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-the-hedgehog-pocket-adventure",
+      "system": "SNK - Neo Geo Pocket Color",
+      "file": "Sonic The Hedgehog - Pocket Adventure (World).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "space-harrier",
+      "system": "Sega - Master System - Mark III",
+      "file": "Space Harrier (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "star-fox",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Star Fox (Japan) (Rev 1).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "star-fox-2",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Star Fox 2 (USA, Europe) (Classic Mini, Switch Online, Nintendo Leak).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-chaos",
+      "system": "Sega - Game Gear",
+      "file": "Sonic Chaos (USA, Europe, Brazil) (En).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-drift",
+      "system": "Sega - Game Gear",
+      "file": "Sonic Drift (Japan) (En).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "streets-of-rage",
+      "system": "Sega - Mega Drive - Genesis",
+      "file": "Streets of Rage (World) (Rev A).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-drift-2",
+      "system": "Sega - Game Gear",
+      "file": "Sonic Drift 2 (World).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-hellfire-saga",
+      "system": "Sega - Mega Drive - Genesis",
+      "file": "Sonic - Hellfire Saga.png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-spinball",
+      "system": "Sega - Mega Drive - Genesis",
+      "file": "Sonic Spinball (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-the-hedgehog-4",
+      "system": "Sega - Game Gear",
+      "file": "Sonic The Hedgehog (Japan, Europe, Brazil) (En) (Rev 1).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-bomberman-2",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Bomberman 2 (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-bomberman-3",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Bomberman 3 (Europe) (Beta).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-adventure-island",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Adventure Island (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "sonic-labyrinth",
+      "system": "Sega - Game Gear",
+      "file": "Sonic Labyrinth (USA, Europe) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-bomberman-5",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Bomberman 5 (Japan) (Caravan Event Ban).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-mario-all-stars",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Mario All-Stars (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-bomberman-4",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Bomberman 4 (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-mario-bros-2",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Super Mario Bros. 2 (Europe) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-mario-world",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Mario World (Europe) (Rev 1).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-punch-out-jp",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Punch-Out!! (Japan) (NP).png",
+      "score": 0.9333333333333333,
+      "method": "fuzzy"
+    },
+    {
+      "slug": "super-mario-world-2-yoshi-s-island",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Mario World 2 - Yoshi's Island (Europe) (En,Fr,De) (Rev 1).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "teenage-mutant-ninja-turtles-turtles-in-time",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Teenage Mutant Ninja Turtles - Turtles in Time (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tetris-attack",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Tetris Attack (Europe) (En,Ja).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tennis",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Tennis (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "the-legend-of-zelda-minish-cap",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Legend of Zelda, The - The Minish Cap (Europe) (En,Fr,De,Es,It).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "star-fox-64",
+      "system": "Nintendo - Nintendo 64",
+      "file": "Star Fox 64 (Japan).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-smash-bros",
+      "system": "Nintendo - Nintendo 64",
+      "file": "Super Smash Bros. (Europe) (En,Fr,De).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tony-hawks-pro-skater-2",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Tony Hawk's Pro Skater 2 (USA, Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tony-hawks-pro-skater-4",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Tony Hawk's Pro Skater 4 (USA, Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tony-hawks-underground",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Tony Hawk's Underground (USA, Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "yars-revenge",
+      "system": "Atari - 2600",
+      "file": "Yars' Revenge (USA).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "wrecking-crew",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "file": "Wrecking Crew (World) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-street-fighter-ii-turbo-revival",
+      "system": "Nintendo - Game Boy Advance",
+      "file": "Super Street Fighter II Turbo - Revival (Europe) (Rev 1) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tom-clancy-s-rainbow-six",
+      "system": "Sony - PlayStation",
+      "file": "Tom Clancy's Rainbow Six (Europe) (En,Fr,It).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "super-mario-kart",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "file": "Super Mario Kart (Europe).png",
+      "score": 1,
+      "method": "exact"
+    },
+    {
+      "slug": "tails-adventure",
+      "system": "Sega - Game Gear",
+      "file": "Tails Adventure (World) (En,Ja) (Virtual Console).png",
+      "score": 1,
+      "method": "exact"
+    }
+  ],
+  "missing": [
+    {
+      "slug": "100-in-1",
+      "name": "100 in 1",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "100-in-1"
+    },
+    {
+      "slug": "100-rooms-of-enemies",
+      "name": "100 Rooms Of Enemies",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Patched_100 Rooms of Enemies - 10th Anniversary Edition"
+    },
+    {
+      "slug": "akumanor-gaiden",
+      "name": "Akumanor Gaiden",
+      "system": "Nintendo - Game Boy",
+      "gameName": "Akumanor Gaiden v1.1"
+    },
+    {
+      "slug": "all-night-nippon-super-mario-bros",
+      "name": "All night nippon super mario bros",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "All Night Nippon Super Mario Bros [p1]"
+    },
+    {
+      "slug": "an-ordinary-sonic-rom-hack-sonic-exe",
+      "name": "An Ordinary Sonic rom Hack (sonic.exe)",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "An_Ordinary_Sonic_ROM_Hack_Cinossu_SHC2013"
+    },
+    {
+      "slug": "animal-forest",
+      "name": "Animal Forest",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Doubutsu_no_Mori English"
+    },
+    {
+      "slug": "apotris",
+      "name": "Apotris",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Apotris"
+    },
+    {
+      "slug": "b3313-unabandoned-a2",
+      "name": "B3313 Unabandoned A2",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "B3313 Unabandoned A2"
+    },
+    {
+      "slug": "baby-kaizo-world",
+      "name": "Baby Kaizo World",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Baby Kaizo World (V1.2) by Nowieso [2019-02-17] (SMW Hack)"
+    },
+    {
+      "slug": "castlevania-2",
+      "name": "Castlevania 2",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Castlevania II - Simon"
+    },
+    {
+      "slug": "castlevania-3",
+      "name": "Castlevania 3",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Castlevania III - Dracula"
+    },
+    {
+      "slug": "celeste-mario-dx",
+      "name": "Celeste Mario DX",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Celeste Mario DELUXE"
+    },
+    {
+      "slug": "celias-stupid-rom-hack",
+      "name": "Celia’s Stupid ROM Hack",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Celia"
+    },
+    {
+      "slug": "commander-keen-4",
+      "name": "Commander Keen 4",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "CK4GBA"
+    },
+    {
+      "slug": "commander-keen-5",
+      "name": "Commander Keen 5",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "CK5GBA"
+    },
+    {
+      "slug": "commander-keen-6",
+      "name": "Commander Keen 6",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "CK6GBA"
+    },
+    {
+      "slug": "counter-strike-ds",
+      "name": "Counter Strike DS",
+      "system": "Nintendo - Nintendo DS",
+      "gameName": "Counter Strike DS 1.0"
+    },
+    {
+      "slug": "dig-dug-3",
+      "name": "Dig Dug",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Dig Dug (USA)"
+    },
+    {
+      "slug": "donkey-kong-94",
+      "name": "Donkey Kong 94",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Donkey Kong (Japan, USA) (En) (SGB Enhanced)"
+    },
+    {
+      "slug": "donkey-kong-collection",
+      "name": "Donkey Kong Collection",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "DKNESCollection"
+    },
+    {
+      "slug": "donkey-kong-country-2",
+      "name": "Donkey Kong Country 2",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Donkey Kong Country 2 - Diddy"
+    },
+    {
+      "slug": "donkey-kong-country-3",
+      "name": "Donkey Kong Country 3",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Donkey Kong Country 3 - Dixie Kong"
+    },
+    {
+      "slug": "dragon-ball-z-the-legacy-of-goku-1-2",
+      "name": "Dragon Ball Z - The Legacy of Goku 1/2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "2 Games in 1 - Dragon Ball Z - The Legacy of Goku I & II (USA)"
+    },
+    {
+      "slug": "dragon-warrior-monsters",
+      "name": "Dragon Warrior Monsters",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Dragon Warrior Monsters (USA, Europe) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "famidash-1-2-8",
+      "name": "Famidash 1.2.8",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Famidash.v1.2.8"
+    },
+    {
+      "slug": "famidash-1-2-8-album",
+      "name": "Famidash 1.2.8 Album",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Famidash.-.The.Album.v1.2.8"
+    },
+    {
+      "slug": "famidash-1-2-8-b-sides",
+      "name": "Famidash 1.2.8 B-Sides",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Famidash.B.Sides.v1.2.8"
+    },
+    {
+      "slug": "famidash-1-2-8-c-sides",
+      "name": "Famidash 1.2.8 C-Sides",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Famidash.C.Sides.v1.2.8"
+    },
+    {
+      "slug": "famidash-1-2-8-d-sides",
+      "name": "Famidash 1.2.8 D-Sides",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Famidash.D.Sides.v1.2.8"
+    },
+    {
+      "slug": "famidash-1-2-8-e-sides",
+      "name": "Famidash 1.2.8 E-Sides",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "famidash.e-sides"
+    },
+    {
+      "slug": "famidash-2-alpha",
+      "name": "Famidash 2 Alpha",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "famidash.main-llvm"
+    },
+    {
+      "slug": "famidash-demo-version",
+      "name": "Famidash Demo version",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "famidash"
+    },
+    {
+      "slug": "fatal-fury-first-contact",
+      "name": "Fatal Fury - First Contact",
+      "system": "SNK - Neo Geo Pocket Color",
+      "gameName": "Fatal Fury - First Contact (USA)"
+    },
+    {
+      "slug": "fifa-07",
+      "name": "FIFA 07",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "FIFA 2007 # GBA"
+    },
+    {
+      "slug": "fifa-2000",
+      "name": "FIFA 2000",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "FIFA 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "fifa-road-to-world-cup-98",
+      "name": "FIFA Road To World Cup 98",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "FIFA - Road to World Cup 98 (USA) (En,Fr,De,Es,It,Nl,Sv)"
+    },
+    {
+      "slug": "final-fantasy-2",
+      "name": "Final Fantasy 2",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Final Fantasy 2 (J) [hM02][T-Eng1.03]"
+    },
+    {
+      "slug": "final-fantasy-3",
+      "name": "Final Fantasy 3",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Final Fantasy 3 (J) [T-Eng][a13]"
+    },
+    {
+      "slug": "final-fantasy-legend-2",
+      "name": "Final Fantasy Legend 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Final Fantasy Legend II (World) (Collection of SaGa)"
+    },
+    {
+      "slug": "fleur-de-lis-video",
+      "name": "Fleur de Lis (video)",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Game Boy Advance Video - Fleur de Lis"
+    },
+    {
+      "slug": "game-and-watch-collection",
+      "name": "Game And Watch Collection",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Game & Watch Gallery (USA) (SGB Enhanced)"
+    },
+    {
+      "slug": "game-and-watch-gallery-3",
+      "name": "Game and Watch Gallery 3",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Game & Watch Gallery 3"
+    },
+    {
+      "slug": "glory-hunters",
+      "name": "Glory Hunters",
+      "system": "Nintendo - Game Boy",
+      "gameName": "gloryhunters"
+    },
+    {
+      "slug": "goodboy-galaxy",
+      "name": "Goodboy Galaxy",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "goodboy-galaxy-demo-gba"
+    },
+    {
+      "slug": "grand-theft-auto-2",
+      "name": "Grand Theft Auto 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Grand Theft Auto 2 (USA)"
+    },
+    {
+      "slug": "grimaces-birthday",
+      "name": "Grimace’s Birthday",
+      "system": "Nintendo - Game Boy",
+      "gameName": "grimacebday v.1.7"
+    },
+    {
+      "slug": "gs-chronicles",
+      "name": "GS Chronicles",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "gschronicles v2.7"
+    },
+    {
+      "slug": "halo-combat-devolved",
+      "name": "Halo Combat Devolved",
+      "system": "Nintendo - Game Boy Color",
+      "gameName": "Halo Combat Devolved v2.31"
+    },
+    {
+      "slug": "harvest-moon",
+      "name": "Harvest Moon",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "harvestmoon"
+    },
+    {
+      "slug": "harvest-moon-2",
+      "name": "Harvest Moon 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Harvest Moon 2 GBC (USA) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "hollow-knight-demake",
+      "name": "Hollow Knight Demake",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Hollow Knight Beta v.2"
+    },
+    {
+      "slug": "hollow-knight-silksong-demake",
+      "name": "Hollow Knight Silksong Demake",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "skong"
+    },
+    {
+      "slug": "i-hate-you",
+      "name": "I hate you",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Ihateyou"
+    },
+    {
+      "slug": "jump",
+      "name": "JUMP",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "JUMP - Janked Up Mario Party (V1.04) by Talkhaus [2016-05-08] (SMW Hack)"
+    },
+    {
+      "slug": "kaizo-mario-world",
+      "name": "Kaizo Mario World",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Mario World (USA) (patched) (4)"
+    },
+    {
+      "slug": "kirby-64",
+      "name": "Kirby 64",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "kirby64"
+    },
+    {
+      "slug": "kirby-and-the-amazing-mirror",
+      "name": "Kirby and the Amazing Mirror",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Kirby & The Amazing Mirror (USA)"
+    },
+    {
+      "slug": "kirby-tilt-n-tumble",
+      "name": "Kirby Tilt N Tumble",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Kirby - Tilt "
+    },
+    {
+      "slug": "kirbys-dream-land",
+      "name": "Kirby’s Dream Land",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Kirby"
+    },
+    {
+      "slug": "legend-of-zelda-the-link-s-awakening",
+      "name": "Legend of Zelda, the - Link's Awakening",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Legend of Zelda, The - Link"
+    },
+    {
+      "slug": "legend-of-zelda-the-oracle-of-ages",
+      "name": "Legend of Zelda, the - Oracle of Ages",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Legend of Zelda, The_ Oracle of Ages"
+    },
+    {
+      "slug": "legend-of-zelda-the-oracle-of-seasons",
+      "name": "Legend of Zelda, the - Oracle of Seasons",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Legend of Zelda, The - Oracle of Seasons (USA, Australia)"
+    },
+    {
+      "slug": "madden-nfl",
+      "name": "Madden NFL",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Madden"
+    },
+    {
+      "slug": "mario-and-luigi-superstar-saga",
+      "name": "Mario & Luigi - Superstar Saga",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Mario & Luigi - Superstar Saga (USA)"
+    },
+    {
+      "slug": "mario-builder-64",
+      "name": "Mario Builder 64",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Mario Builder 64"
+    },
+    {
+      "slug": "mario-is-missing-done-right",
+      "name": "Mario is Missing Done Right",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Mario World (USA) (patched) (3)"
+    },
+    {
+      "slug": "mario-odyssey",
+      "name": "Mario Odyssey",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Mario Odyssey 64"
+    },
+    {
+      "slug": "mario-tennis",
+      "name": "Mario Tennis",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Mario Tennis (USA)"
+    },
+    {
+      "slug": "marios-mystery-meat",
+      "name": "Mario’s Mystery Meat",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Mario"
+    },
+    {
+      "slug": "mega-man-the-sequel-wars-episode-red",
+      "name": "Mega Man - The Sequel Wars Episode Red",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Mega Man The Sequel Wars Episode Red v1_1"
+    },
+    {
+      "slug": "mega-man-2-2",
+      "name": "Mega Man 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Mega Man II (USA)"
+    },
+    {
+      "slug": "mega-man-5-2",
+      "name": "Mega Man 5",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Mega Man V (USA) (SGB Enhanced)"
+    },
+    {
+      "slug": "megaman-and-bass-challenger-from-the-future",
+      "name": "Megaman and Bass: Challenger from the Future",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokeEliteRedux(2.65.3b)"
+    },
+    {
+      "slug": "megaman-battle-network-ws",
+      "name": "Megaman Battle Network WS",
+      "system": "Bandai - WonderSwan Color",
+      "gameName": "Mega Man Battle Network WS (Japan) [T-En by Boco & Greiga Master & Megarockexe v1.0] [n]"
+    },
+    {
+      "slug": "metal-sonic-hyperdrive",
+      "name": "Metal Sonic Hyperdrive",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Metal_Sonic_HYPERDRIVE_v4"
+    },
+    {
+      "slug": "metal-sonic-rebooted",
+      "name": "Metal Sonic Rebooted",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Metal_Sonic_Rebooted"
+    },
+    {
+      "slug": "metroid-2",
+      "name": "Metroid 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Metroid II - Return of Samus (World)"
+    },
+    {
+      "slug": "midways-greatest-hits",
+      "name": "Midway’s Greatest Hits",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Midway"
+    },
+    {
+      "slug": "mobius-evolution",
+      "name": "Mobius Evolution",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Mobius_Evolution_Version_3.6"
+    },
+    {
+      "slug": "mvp-baseball",
+      "name": "MVP Baseball",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Roger Clemens"
+    },
+    {
+      "slug": "natsuki-ddlc-64",
+      "name": "Natsuki (DDLC) 64",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "love"
+    },
+    {
+      "slug": "new-super-mario-bros-u-ds",
+      "name": "New Super Mario Bros U DS",
+      "system": "Nintendo - Nintendo DS",
+      "gameName": "NSMBUDS"
+    },
+    {
+      "slug": "new-super-mario-bros-wii-ds",
+      "name": "New Super Mario Bros Wii DS",
+      "system": "Nintendo - Nintendo DS",
+      "gameName": "NSMBWDS Final Ver. 2.1"
+    },
+    {
+      "slug": "new-super-mario-world-2-around-the-world",
+      "name": "New Super Mario World 2 - Around the World",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Mario World (USA) (patched)"
+    },
+    {
+      "slug": "newer-super-mario-bros-ds",
+      "name": "Newer Super Mario Bros DS",
+      "system": "Nintendo - Nintendo DS",
+      "gameName": "Newer Super Mario Bros. DS"
+    },
+    {
+      "slug": "nintendogs-lab-and-friends",
+      "name": "Nintendogs - Lab & Friends",
+      "system": "Nintendo - Nintendo DS",
+      "gameName": "Nintendogs - Lab & Friends (USA, Australia)"
+    },
+    {
+      "slug": "opossum-country",
+      "name": "Opossum Country",
+      "system": "Nintendo - Game Boy Color",
+      "gameName": "Opossum Country"
+    },
+    {
+      "slug": "paper-mario-dark-star-edition",
+      "name": "Paper Mario - Dark Star Edition",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Paper%20Mario%20Dark%20Star%20Edition"
+    },
+    {
+      "slug": "paper-mario-all-bosses-in-1-battle",
+      "name": "Paper Mario All Bosses In 1 Battle",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "allbossesin1"
+    },
+    {
+      "slug": "paper-mario-practice-hack",
+      "name": "Paper Mario Practice Hack",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "fp-v3.4-us"
+    },
+    {
+      "slug": "pitfall",
+      "name": "Pitfall!",
+      "system": "Atari - 2600",
+      "gameName": "Pitfall! - Pitfall Harry"
+    },
+    {
+      "slug": "pokeclassic",
+      "name": "Pokéclassic",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "cgzyuw"
+    },
+    {
+      "slug": "pokemon-a-walk-in-the-forest-version",
+      "name": "Pokemon A Walk In The Forest Version",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "A Walk in The Forest (v1.0)"
+    },
+    {
+      "slug": "pokemon-aesthetic-red",
+      "name": "Pokemon Aesthetic Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Aesthetic Red (V1.1)"
+    },
+    {
+      "slug": "pokemon-all-in",
+      "name": "Pokémon All In",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "all-in-v1"
+    },
+    {
+      "slug": "pokemon-ambrosia",
+      "name": "Pokemon Ambrosia",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokeAmbrosia(v1.11.0)"
+    },
+    {
+      "slug": "pokemon-amnesia",
+      "name": "Pokemon Amnesia",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Amnesia"
+    },
+    {
+      "slug": "pokemon-arceus-legend",
+      "name": "Pokemon Arceus Legend",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "arceuslegend"
+    },
+    {
+      "slug": "pokemon-battle-factory",
+      "name": "Pokemon Battle Factory",
+      "system": "Nintendo - Game Boy",
+      "gameName": "Pokemon Battle Factory"
+    },
+    {
+      "slug": "pokemon-blue-version",
+      "name": "Pokemon Blue Version",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Blue Version (USA, Europe) (SGB Enhanced)"
+    },
+    {
+      "slug": "pokemon-clover",
+      "name": "Pokemon Clover",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Clover v1.3.3"
+    },
+    {
+      "slug": "pokemon-crown",
+      "name": "Pokemon Crown",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Crown (Beta 1 v9) (1) (1)"
+    },
+    {
+      "slug": "pokemon-crystal",
+      "name": "Pokemon Crystal",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Crystal Version (USA)"
+    },
+    {
+      "slug": "pokemon-crystal-advance-redux",
+      "name": "Pokemon Crystal Advance Redux",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Crystal Advance Redux (25-6-26)"
+    },
+    {
+      "slug": "pokemon-crystal-clear",
+      "name": "Pokemon Crystal Clear",
+      "system": "Nintendo - Game Boy",
+      "gameName": "Pokemon Crystal Clear v2.6"
+    },
+    {
+      "slug": "pokemon-crystal-legacy",
+      "name": "Pokemon Crystal Legacy",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Crystal Legacy (1.3.1)"
+    },
+    {
+      "slug": "pokemon-dreamstone",
+      "name": "Pokemon Dreamstone",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Dreamstone Mysteries"
+    },
+    {
+      "slug": "pokemon-elysium-a",
+      "name": "Pokemon Elysium A",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Elysium_A v2.4"
+    },
+    {
+      "slug": "pokemon-elysium-b",
+      "name": "Pokemon Elysium B",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Elysium_B v2.4"
+    },
+    {
+      "slug": "pokemon-emerald-crest",
+      "name": "Pokemon Emerald Crest",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Crest_v1.0"
+    },
+    {
+      "slug": "pokemon-emerald-enhanced",
+      "name": "Pokemon Emerald Enhanced",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "enhanced v11"
+    },
+    {
+      "slug": "pokemon-emerald-extended-cut",
+      "name": "Pokemon Emerald Extended Cut",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Emerald Extended Cut (Classic+ Hotfix 1.4)"
+    },
+    {
+      "slug": "pokemon-emerald-horizons",
+      "name": "Pokémon Emerald Horizons",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "8bujzm"
+    },
+    {
+      "slug": "pokemon-emerald-imperium",
+      "name": "Pokemon Emerald Imperium",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Emerald Imperium (v1.3.1)"
+    },
+    {
+      "slug": "pokemon-emerald-kaizo",
+      "name": "Pokemon Emerald Kaizo",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonemerald (patched) (4)"
+    },
+    {
+      "slug": "pokemon-emerald-legacy",
+      "name": "Pokemon Emerald Legacy",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Yellow Legacy (1.0.10)"
+    },
+    {
+      "slug": "pokemon-emerald-randomized",
+      "name": "Pokemon Emerald Randomized",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Randomized Emerald 2"
+    },
+    {
+      "slug": "pokemon-emerald-rogue-ex",
+      "name": "Pokemon Emerald Rogue EX",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Emerald Rogue (v2.0.1-EX)"
+    },
+    {
+      "slug": "pokemon-emerald-seaglass",
+      "name": "Pokemon Emerald Seaglass",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonemerald (patched) (1)"
+    },
+    {
+      "slug": "pokemon-emerald-z",
+      "name": "Pokemon Emerald Z",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Z (v1.2.0)"
+    },
+    {
+      "slug": "pokemon-evolved",
+      "name": "Pokemon Evolved",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Leaf Green Version (U) (V1.1) (patched)"
+    },
+    {
+      "slug": "pokemon-exceeded-emerald",
+      "name": "Pokémon Exceeded Emerald",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "s3suaj"
+    },
+    {
+      "slug": "pokemon-fire-gold",
+      "name": "Pokémon Fire Gold",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "j74o55"
+    },
+    {
+      "slug": "pokemon-firered-leafgreen-plus",
+      "name": "Pokemon Firered Leafgreen Plus",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "FRLG+"
+    },
+    {
+      "slug": "pokemon-firered-randomized",
+      "name": "Pokemon Firered Randomized",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Fire Red Randomized 3"
+    },
+    {
+      "slug": "pokemon-firered-rocket-edition",
+      "name": "Pokemon Firered Rocket Edition",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon FireRed Rocket Edition"
+    },
+    {
+      "slug": "pokemon-flora-sky",
+      "name": "Pokemon Flora Sky",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Flora Sky"
+    },
+    {
+      "slug": "pokemon-fused-dimension",
+      "name": "Pokemon Fused dimension",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Fused Dimensions (v2.3) (1)"
+    },
+    {
+      "slug": "pokemon-fusion-3",
+      "name": "Pokemon Fusion 3",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Fusion 3 - Red&Blue"
+    },
+    {
+      "slug": "pokemon-gaia",
+      "name": "Pokemon Gaia",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemon_gaia_v3.2"
+    },
+    {
+      "slug": "pokemon-gold",
+      "name": "Pokemon Gold",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Gold Version (USA, Europe) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "pokemon-heart-and-soul-1-2-1",
+      "name": "Pokemon Heart & Soul 1.2.1",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Heart and Soul (v1.2.1)"
+    },
+    {
+      "slug": "pokemon-hoenns-last-wish",
+      "name": "Pokemon Hoenn’s Last Wish",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Hoenn"
+    },
+    {
+      "slug": "pokemon-kaizo-iron-fire-red",
+      "name": "Pokemon Kaizo Iron Fire Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonkaizoironfirered"
+    },
+    {
+      "slug": "pokemon-lazarus",
+      "name": "Pokemon Lazarus",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonlazarus"
+    },
+    {
+      "slug": "pokemon-light-platinum",
+      "name": "Pokemon Light Platinum",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonruby (patched)"
+    },
+    {
+      "slug": "pokemon-liquid-crystal",
+      "name": "Pokemon Liquid Crystal",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Liquid Crystal"
+    },
+    {
+      "slug": "pokemon-low-budget-crystal",
+      "name": "Pokémon Low Budget Crystal",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Low Budget Crystal (.5.14.26)"
+    },
+    {
+      "slug": "pokemon-lucid",
+      "name": "Pokemon Lucid",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "lucid_v1.2"
+    },
+    {
+      "slug": "pokemon-mega-moemon",
+      "name": "Pokemon Mega Moemon",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Mega Moemon"
+    },
+    {
+      "slug": "pokemon-modern-emerald",
+      "name": "Pokemon Modern Emerald",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonmodernemerald"
+    },
+    {
+      "slug": "pokemon-moon-emerald",
+      "name": "Pokemon Moon Emerald",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokeMoonEmerald0"
+    },
+    {
+      "slug": "pokemon-moon-emerald-extreme-randomized",
+      "name": "Pokemon Moon Emerald Extreme Randomized",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Moon Emerald Extreme Randomizer (PokéHarbor)"
+    },
+    {
+      "slug": "pokemon-moon-galaxy",
+      "name": "Pokémon Moon Galaxy",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon_Moon_Galaxy_Completed"
+    },
+    {
+      "slug": "pokemon-mystery-dungeon",
+      "name": "Pokemon Mystery Dungeon",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonmysterydungeon"
+    },
+    {
+      "slug": "pokemon-nameless",
+      "name": "Pokemon Nameless",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Nameless v5"
+    },
+    {
+      "slug": "pokemon-odyssey",
+      "name": "Pokemon Odyssey",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "odyssey v4"
+    },
+    {
+      "slug": "pokemon-perfect-emerald",
+      "name": "Pokémon Perfect Emerald",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Perfect Emerald 5.5 (5.5)"
+    },
+    {
+      "slug": "pokemon-perfect-fire-red",
+      "name": "Pokémon Perfect Fire Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "3n6c7k"
+    },
+    {
+      "slug": "pokemon-picross",
+      "name": "Pokemon Picross",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon_Picross_(English_v1.0)"
+    },
+    {
+      "slug": "pokemon-pinball",
+      "name": "Pokémon Pinball",
+      "system": "Nintendo - Game Boy",
+      "gameName": "Pokemon Pinball (USA, Australia) (Rumble Version) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "pokemon-pisces",
+      "name": "Pokémon Pisces",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pisces v1.5"
+    },
+    {
+      "slug": "pokemon-pit-of-100-trials-generation-9",
+      "name": "Pokémon Pit of 100 trials (generation 9)",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "ThePit_Gen9_v2.4"
+    },
+    {
+      "slug": "pokemon-polished-crystal",
+      "name": "Pokémon Polished Crystal",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "jm90lk"
+    },
+    {
+      "slug": "pokemon-pure-blue",
+      "name": "Pokémon Pure Blue",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokemonPureBlue"
+    },
+    {
+      "slug": "pokemon-pure-green",
+      "name": "Pokémon Pure Green",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokemonPureGreen"
+    },
+    {
+      "slug": "pokemon-pure-red",
+      "name": "Pokémon Pure Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokemonPureRed"
+    },
+    {
+      "slug": "pokemon-quetzal",
+      "name": "Pokémon Quetzal",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PokemonQuetzalEnglishAlpha8v2"
+    },
+    {
+      "slug": "pokemon-radical-red",
+      "name": "Pokémon Radical Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Radical Red (4.10)"
+    },
+    {
+      "slug": "pokemon-recharged-pink",
+      "name": "Pokémon Recharged Pink",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "rgvi1y"
+    },
+    {
+      "slug": "pokemon-recharged-yellow",
+      "name": "Pokemon Recharged Yellow",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "tqizte"
+    },
+    {
+      "slug": "pokemon-record-keepers",
+      "name": "Pokémon Record Keepers",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "3j8cbh"
+    },
+    {
+      "slug": "pokemon-red-version",
+      "name": "Pokémon Red Version",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Red Version (USA, Europe) (SGB Enhanced)"
+    },
+    {
+      "slug": "pokemon-roaring-red",
+      "name": "Pokémon Roaring Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonroaringred"
+    },
+    {
+      "slug": "pokemon-rowe",
+      "name": "Pokémon ROWE",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon R.O.W.E. - The Mega Update (2.1.1)"
+    },
+    {
+      "slug": "pokemon-saiph",
+      "name": "Pokémon Saiph",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "PK Saiph Full v2020 Patch"
+    },
+    {
+      "slug": "pokemon-saiph-2",
+      "name": "Pokémon Saiph 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "saiph 2 - normal v1.4"
+    },
+    {
+      "slug": "pokemon-sapphire",
+      "name": "Pokémon Sapphire",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonsapphire"
+    },
+    {
+      "slug": "pokemon-scarlet-violet",
+      "name": "Pokémon Scarlet Violet",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Scarlet,Violet & Indigo[COMPLETE]"
+    },
+    {
+      "slug": "pokemon-scrambled-scarlet",
+      "name": "Pokemon Scrambled Scarlet",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Scrambled Emerald"
+    },
+    {
+      "slug": "pokemon-shiny-gold-sigma",
+      "name": "Pokemon Shiny Gold Sigma",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Shiny Gold Sigma"
+    },
+    {
+      "slug": "pokemon-silver",
+      "name": "Pokemon Silver",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "pokemon-sonicmon",
+      "name": "Pokemon Sonicmon",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "SonicmonFR_V2.1 By The Pech"
+    },
+    {
+      "slug": "pokemon-sors",
+      "name": "Pokémon Sors",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "sors v1.3 "
+    },
+    {
+      "slug": "pokemon-sors-2",
+      "name": "Pokémon Sors 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "sors 2 tech demo"
+    },
+    {
+      "slug": "pokemon-sunsky",
+      "name": "Pokémon SunSky",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon_Sun_Sky_Completed"
+    },
+    {
+      "slug": "pokemon-super-luigi-green",
+      "name": "Pokemon Super Luigi Green",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "lui-green (1)"
+    },
+    {
+      "slug": "pokemon-super-mario-red",
+      "name": "Pokemon Super Mario Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "ma-red"
+    },
+    {
+      "slug": "pokemon-the-last-fire-red",
+      "name": "Pokemon the Last Fire Red",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon The Last Fire Red (v4.0.3)"
+    },
+    {
+      "slug": "pokemon-theta-emerald-ex",
+      "name": "Pokemon Theta Emerald EX",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Theta Emerald EX"
+    },
+    {
+      "slug": "pokemon-too-many-types",
+      "name": "Pokemon Too Many Types",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Too Many Types 1 (v1.6)"
+    },
+    {
+      "slug": "pokemon-too-many-types-2",
+      "name": "Pokemon Too Many Types 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Too Many Types 2 (v1.5.2)"
+    },
+    {
+      "slug": "pokemon-tourmaline-version",
+      "name": "Pokémon Tourmaline Version",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "kzh06c"
+    },
+    {
+      "slug": "pokemon-trading-card-game",
+      "name": "Pokemon Trading Card Game",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Trading Card Game (USA, Australia) (SGB Enhanced) (GB Compatible)"
+    },
+    {
+      "slug": "pokemon-trading-card-game-2",
+      "name": "Pokemon Trading Card Game 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Trading Card Game 2 - The Invasion of Team GR! (Japan) [T-En by Artemis251 & Jazz v1.0] [n]"
+    },
+    {
+      "slug": "pokemon-ultimate-fusion",
+      "name": "Pokemon Ultimate Fusion",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Ultimate Fusion (1)"
+    },
+    {
+      "slug": "pokemon-ultra-violet",
+      "name": "Pokemon Ultra Violet",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Ultra Violet"
+    },
+    {
+      "slug": "pokemon-unbound",
+      "name": "Pokemon Unbound",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pokemonunbound"
+    },
+    {
+      "slug": "pokemon-unova-emerald",
+      "name": "Pokémon Unova Emerald",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "gahrco"
+    },
+    {
+      "slug": "pokemon-unown-king",
+      "name": "Pokemon Unown King",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "the-unown-king"
+    },
+    {
+      "slug": "pokemon-vega",
+      "name": "Pokemon Vega",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Vega_20190420"
+    },
+    {
+      "slug": "pokemon-yellow-version",
+      "name": "Pokemon Yellow Version",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB+SGB Enhanced)"
+    },
+    {
+      "slug": "pokemon-lets-go-eevee",
+      "name": "Pokemon: Let’s Go, Eevee!",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokemon Lets Go Eevee (Spanish)"
+    },
+    {
+      "slug": "pokemon-lets-go-pikachu",
+      "name": "Pokemon: Let’s Go, Pikachu!",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Pokémon Let´s Go Pikachu GBA 6.0 eng 3"
+    },
+    {
+      "slug": "pokemon-moemon-emerald-vanilla-plus-v1-1-0",
+      "name": "Pokemon: Moemon Emerald Vanilla+ (v1.1.0)",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Moemon Emerald Vanilla+ (v1.1.0)"
+    },
+    {
+      "slug": "pokemon-team-rocket-edition",
+      "name": "Pokémon: Team Rocket Edition",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "kf5nb0"
+    },
+    {
+      "slug": "pyrotoad",
+      "name": "Pyrotoad",
+      "system": "Nintendo - Game Boy Color",
+      "gameName": "pyrotoad"
+    },
+    {
+      "slug": "quake-64",
+      "name": "Quake 64",
+      "system": "Sony - PlayStation",
+      "gameName": "Quake (USA)"
+    },
+    {
+      "slug": "quickie-world",
+      "name": "Quickie World",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Quickie World (V1.12) by Valdio [2018-04-23] (SMW Hack)"
+    },
+    {
+      "slug": "rocket-knight-adventures-2",
+      "name": "Rocket Knight Adventures 2",
+      "system": "Sega - Game Gear",
+      "gameName": "rocketknight2"
+    },
+    {
+      "slug": "shantae",
+      "name": "Shantae",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Shantae (USA)"
+    },
+    {
+      "slug": "simcity-64",
+      "name": "SimCity 64",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SimCity 64 (Japan) (64DD) [Hack by Zoinkity v1.1] [T-En by Ozidual v0.6.38]"
+    },
+    {
+      "slug": "snow-bros-nick-and-tom",
+      "name": "Snow Bros - Nick and Tom",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Snow Bros. - Nick & Tom (Japan) (En)"
+    },
+    {
+      "slug": "somari-64",
+      "name": "Somari 64",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Somari 64 DASH - v.1"
+    },
+    {
+      "slug": "sonic-and-knuckles-plus-sonic-the-hedgehog-3",
+      "name": "Sonic & Knuckles + Sonic The Hedgehog 3",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic & Knuckles + Sonic The Hedgehog 3 (USA) (Lock-on Combination)"
+    },
+    {
+      "slug": "sonic-1-the-super-challenges",
+      "name": "Sonic 1 - The Super Challenges",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "S1SC_-_First_Demo_Hotfix_2"
+    },
+    {
+      "slug": "sonic-1-contemporary",
+      "name": "Sonic 1 Contemporary",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "sonic-1-contemporary"
+    },
+    {
+      "slug": "sonic-1-score-rush",
+      "name": "Sonic 1 Score Rush",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic 1 - Score Rush (REV02A)"
+    },
+    {
+      "slug": "sonic-2-pink-edition",
+      "name": "Sonic 2 Pink Edition",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic_2_Pink_Edition_Rev_2.2"
+    },
+    {
+      "slug": "sonic-2-return-of-shadow",
+      "name": "Sonic 2 Return of Shadow",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "[SHC2017] [expo2017] 50 - Sonic The Return of Shadow - By JoenickROS"
+    },
+    {
+      "slug": "sonic-2-score-rush",
+      "name": "Sonic 2 Score Rush",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "[SHC] [contest2023] 787 - Sonic 2 - Score Rush (By Giovanni)"
+    },
+    {
+      "slug": "sonic-2-time-and-place",
+      "name": "Sonic 2 Time and Place",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic2TimeandPlace"
+    },
+    {
+      "slug": "sonic-3-and-knuckles",
+      "name": "Sonic 3 And Knuckles",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic_Knuckles_wSonic3"
+    },
+    {
+      "slug": "sonic-3-and-sally",
+      "name": "Sonic 3 And Sally",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic 3 And Sally Acorn - By E-122-Psi"
+    },
+    {
+      "slug": "sonic-3-complete",
+      "name": "Sonic 3 Complete",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic3C_130810"
+    },
+    {
+      "slug": "sonic-3d-blast-director-s-cut",
+      "name": "Sonic 3D Blast - Director's Cut",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic 3D Blast - Director"
+    },
+    {
+      "slug": "sonic-advance-2-sp",
+      "name": "Sonic Advance 2 SP",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Sonic Advance 2 (USA) (En,Ja,Fr,De,Es,It)-patched"
+    },
+    {
+      "slug": "sonic-and-ashuro",
+      "name": "Sonic and Ashuro",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic-Ashuro-By-Ashuro-400"
+    },
+    {
+      "slug": "sonic-and-knuckles",
+      "name": "Sonic and Knuckles",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic & Knuckles (World)"
+    },
+    {
+      "slug": "sonic-classic-heroes",
+      "name": "Sonic Classic Heroes",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "scheroes"
+    },
+    {
+      "slug": "sonic-classics",
+      "name": "Sonic Classics",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic Compilation ~ Sonic Classics (World) (v1.1)"
+    },
+    {
+      "slug": "sonic-delta-origins",
+      "name": "Sonic Delta Origins",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "sonic-delta-origins"
+    },
+    {
+      "slug": "sonic-erazor",
+      "name": "Sonic Erazor",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "s1erazor"
+    },
+    {
+      "slug": "sonic-in-smb1",
+      "name": "Sonic in SMB1",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Super Mario Bros (JU) (PRG 0) [T-Port] (patched)"
+    },
+    {
+      "slug": "sonic-in-super-mario-world",
+      "name": "Sonic in Super Mario World",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Sonic in SMW"
+    },
+    {
+      "slug": "sonic-megamix",
+      "name": "Sonic Megamix",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic_1_Megamix_v3"
+    },
+    {
+      "slug": "sonic-megamix-4-0",
+      "name": "Sonic Megamix 4.0",
+      "system": "Sega - Mega-CD - Sega CD",
+      "gameName": "S1MMU"
+    },
+    {
+      "slug": "sonic-scorched-quest",
+      "name": "Sonic Scorched Quest",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Sonic Scorched Quest - SHC"
+    },
+    {
+      "slug": "star-fox-sfx2-hack-better-performance",
+      "name": "Star Fox SFX2 hack (better performance)",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Star Fox Super FX 21 MHz Mode (v1.4)"
+    },
+    {
+      "slug": "super-diagonal-mario-2",
+      "name": "Super Diagonal mario 2",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Mario World (USA) (patched)"
+    },
+    {
+      "slug": "super-mario-64-liminal-dream",
+      "name": "Super Mario 64 - Liminal Dream",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SM64 Liminal Dream"
+    },
+    {
+      "slug": "super-mario-64-sapphire",
+      "name": "Super Mario 64 - Sapphire",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SM64 Sapphire - v.1"
+    },
+    {
+      "slug": "super-mario-64-the-green-stars",
+      "name": "Super Mario 64 - The Green Stars",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SM64 The Green Stars"
+    },
+    {
+      "slug": "super-mario-64-last-impact",
+      "name": "Super Mario 64 Last Impact",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Super Mario 64 Last Impact"
+    },
+    {
+      "slug": "super-mario-64-sunshine",
+      "name": "Super Mario 64 Sunshine",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Super Mario Sunshine 64"
+    },
+    {
+      "slug": "super-mario-64-the-hidden-stars",
+      "name": "Super Mario 64 The Hidden Stars",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SM64+The+Hidden+Stars+testbuild1hotfix5"
+    },
+    {
+      "slug": "super-mario-64-y-scaled",
+      "name": "Super Mario 64 Y Scaled",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SM64 Y Scaled"
+    },
+    {
+      "slug": "super-mario-64-ocarina-of-time",
+      "name": "Super Mario 64: Ocarina of Time",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "SM64_ Ocarina of Time - v"
+    },
+    {
+      "slug": "super-mario-74",
+      "name": "Super Mario 74",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Super Mario 74"
+    },
+    {
+      "slug": "super-mario-advance-3",
+      "name": "Super Mario Advance 3",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Super Mario Advance 3 - Yoshi"
+    },
+    {
+      "slug": "super-mario-advance-4",
+      "name": "Super Mario Advance 4",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "supermarioadvance4"
+    },
+    {
+      "slug": "super-mario-bros-deluxe",
+      "name": "Super Mario Bros Deluxe",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Super Mario Bros. Deluxe (USA, Europe)"
+    },
+    {
+      "slug": "super-mario-bros-2-the-lost-levels",
+      "name": "Super Mario Bros. 2 - The Lost Levels",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "(1986) Super Mario Bros. 2; The Lost Levels (Japan)"
+    },
+    {
+      "slug": "super-mario-bros-3-mix",
+      "name": "Super Mario Bros. 3 Mix",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Super Mario Bros. 3Mix"
+    },
+    {
+      "slug": "super-mario-galaxy-ds",
+      "name": "Super Mario Galaxy DS",
+      "system": "Nintendo - Nintendo DS",
+      "gameName": "smgds"
+    },
+    {
+      "slug": "super-mario-land",
+      "name": "Super Mario Land",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Super Mario Land (World)"
+    },
+    {
+      "slug": "super-mario-land-1-dx",
+      "name": "Super Mario Land 1 DX",
+      "system": "Nintendo - Game Boy",
+      "gameName": "Super Mario Land DX"
+    },
+    {
+      "slug": "super-mario-land-2",
+      "name": "Super Mario Land 2",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Super Mario Land 2 - 6 Golden Coins (USA, Europe)"
+    },
+    {
+      "slug": "super-mario-land-2-dx",
+      "name": "Super Mario Land 2 DX",
+      "system": "Nintendo - Game Boy",
+      "gameName": "Super Mario Land 2"
+    },
+    {
+      "slug": "super-mario-star-road",
+      "name": "Super Mario Star Road",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Super Mario Star Road"
+    },
+    {
+      "slug": "super-mario-star-road-retooled",
+      "name": "Super Mario Star Road Retooled",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Super Mario 64 Star Road Retooled"
+    },
+    {
+      "slug": "super-mario-world-a-plumber-for-all-seasons",
+      "name": "Super Mario World - A Plumber For All Seasons",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "SMW A Plumber For All Seasons"
+    },
+    {
+      "slug": "super-mario-world-the-secret-of-the-7-golden-statues",
+      "name": "Super Mario World the Secret of the 7 Golden Statues",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Mario World (USA) (patched) (1)"
+    },
+    {
+      "slug": "super-noahs-ark-3d",
+      "name": "Super Noah’s Ark 3D",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Noah"
+    },
+    {
+      "slug": "super-tilt-bros",
+      "name": "Super Tilt Bros",
+      "system": "Nintendo - Nintendo Entertainment System",
+      "gameName": "Super_Tilt_Bro_(E)"
+    },
+    {
+      "slug": "tails-skypatrol",
+      "name": "Tails Skypatrol",
+      "system": "Sega - Game Gear",
+      "gameName": "Tails-Skypatrol_Game-Gear_EN"
+    },
+    {
+      "slug": "teenage-mutant-ninja-turtles-shredder-s-re-revenge",
+      "name": "Teenage Mutant Ninja Turtles - Shredder's Re-Revenge",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "Teenage Mutant Ninja Turtles - Shredder"
+    },
+    {
+      "slug": "telocation",
+      "name": "Telocation",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "TelocationFinal"
+    },
+    {
+      "slug": "the-pit",
+      "name": "The Pit",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "pit"
+    },
+    {
+      "slug": "the-s-factor-sonia-and-silver",
+      "name": "The S Factor: Sonia and Silver",
+      "system": "Sega - Mega Drive - Genesis",
+      "gameName": "SFACTOR"
+    },
+    {
+      "slug": "waluigis-taco-stand",
+      "name": "Waluigi’s Taco Stand",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Waluigi"
+    },
+    {
+      "slug": "wario-land-1-super-mario-land-3",
+      "name": "Wario Land 1 - Super Mario Land 3",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Wario Land - Super Mario Land 3 (World)"
+    },
+    {
+      "slug": "wario-land-3",
+      "name": "Wario Land 3",
+      "system": "Nintendo - Game Boy Advance",
+      "gameName": "Wario Land 3 (World) (En,Ja)"
+    },
+    {
+      "slug": "wave-race-64",
+      "name": "Wave Race 64",
+      "system": "Nintendo - Nintendo 64",
+      "gameName": "Wave Race 64 (USA) (Rev A)"
+    },
+    {
+      "slug": "what-a-mario-world",
+      "name": "What a Mario World!",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "What A Mario World! (1.0.9)"
+    },
+    {
+      "slug": "wonder-boy-3-dragons-trap",
+      "name": "Wonder Boy 3 - Dragon’s Trap",
+      "system": "Sega - Master System - Mark III",
+      "gameName": "Wonder Boy III - The Dragon"
+    },
+    {
+      "slug": "yoshis-strange-quest",
+      "name": "Yoshi’s Strange Quest",
+      "system": "Nintendo - Super Nintendo Entertainment System",
+      "gameName": "Super Mario World (USA) (patched) (2)"
+    }
+  ]
+}

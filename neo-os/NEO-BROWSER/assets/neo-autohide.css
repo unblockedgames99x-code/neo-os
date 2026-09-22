@@ -1,0 +1,124 @@
+/* Reveal Browser chrome from the top edge without covering the loaded page. */
+.app {
+  position: relative;
+}
+
+.app > main {
+  min-height: 0;
+}
+
+.browser-chrome {
+  display: grid;
+  min-height: 0;
+  flex: 0 0 auto;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 180ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.browser-chrome-inner {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 120ms ease;
+}
+
+.browser-chrome-edge {
+  display: none;
+}
+
+.app.is-browser-chrome-autohide .browser-chrome {
+  grid-template-rows: 0fr;
+}
+
+.app.is-browser-chrome-autohide .browser-chrome-inner {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app.is-browser-chrome-autohide.is-shell-window-chrome-visible .browser-chrome {
+  grid-template-rows: 0fr !important;
+}
+
+.app.is-browser-chrome-autohide.is-shell-window-chrome-visible .browser-chrome-inner {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.app.is-browser-chrome-autohide.is-shell-window-chrome-visible > .browser-chrome-edge {
+  display: none !important;
+}
+
+.app.is-browser-chrome-autohide.is-browser-chrome-revealed .browser-chrome,
+.app.is-browser-chrome-autohide:has(.browser-chrome:focus-within) .browser-chrome {
+  grid-template-rows: 1fr;
+}
+
+.app.is-browser-chrome-autohide.is-browser-chrome-revealed .browser-chrome-inner,
+.app.is-browser-chrome-autohide .browser-chrome:focus-within .browser-chrome-inner {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.app.is-browser-chrome-autohide:not(.is-browser-chrome-revealed) > .browser-chrome-edge {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  height: 10px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.app.is-browser-chrome-autohide.is-browser-chrome-revealed > .browser-chrome-edge,
+.app.is-browser-chrome-autohide:has(.browser-chrome:focus-within) > .browser-chrome-edge,
+html.neo-app-mode .browser-chrome-edge {
+  display: none;
+}
+
+.find-bar {
+  position: absolute;
+  top: 10px;
+  right: 16px !important;
+  width: min(368px, calc(100% - 24px));
+}
+
+@media (hover: none), (pointer: coarse) {
+  .app.is-browser-chrome-autohide .browser-chrome {
+    grid-template-rows: 1fr;
+  }
+
+  .app.is-browser-chrome-autohide .browser-chrome-inner {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .app.is-browser-chrome-autohide > .browser-chrome-edge {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .find-bar {
+    right: 8px !important;
+    width: calc(100% - 16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .browser-chrome,
+  .browser-chrome-inner {
+    transition: none;
+  }
+}
+
+html[data-neo-performance-mode="performance"] .browser-chrome,
+html[data-neo-performance-mode="performance"] .browser-chrome-inner,
+html[data-neo-performance-mode="ultimate"] .browser-chrome,
+html[data-neo-performance-mode="ultimate"] .browser-chrome-inner {
+  transition: none;
+}

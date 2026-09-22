@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <title>NEO Movies</title>
+  <script><![CDATA[
+    var appFrame = null;
+
+    function waitUntilActive(registration) {
+      var worker = registration.active || registration.waiting || registration.installing;
+      if (!worker || worker.state === 'activated') return Promise.resolve();
+      return new Promise(function (resolve, reject) {
+        var timer = setTimeout(function () { reject(new Error('App worker activation timed out.')); }, 8000);
+        worker.addEventListener('statechange', function changed() {
+          if (worker.state === 'activated') {
+            clearTimeout(timer);
+            worker.removeEventListener('statechange', changed);
+            resolve();
+          }
+        });
+      });
+    }
+
+    window.addEventListener('message', function (event) {
+      if (!appFrame) return;
+      if (event.source === appFrame.contentWindow) {
+        if (parent !== window) parent.postMessage(event.data, '*');
+      } else if (event.source === parent && parent !== window) {
+        appFrame.contentWindow.postMessage(event.data, '*');
+      }
+    });
+
+    window.addEventListener('load', function () {
+      var host = document.getElementById('host');
+      if (!('serviceWorker' in navigator)) {
+        host.textContent = 'NEO Movies needs service-worker support.';
+        return;
+      }
+      var workerUrl = new URL('launcher-sw.js?v=20260912-movies-v2', location.href).href;
+      var scope = new URL('./', location.href).pathname;
+      navigator.serviceWorker.register(workerUrl, { scope: scope })
+        .then(waitUntilActive)
+        .then(function () {
+          var target = new URL('__neo_app__/', location.href);
+          target.search = location.search;
+          var frame = document.createElementNS('http://www.w3.org/1999/xhtml', 'iframe');
+          appFrame = frame;
+          frame.setAttribute('id', 'neo-app');
+          frame.setAttribute('title', 'NEO Movies');
+          frame.setAttribute('allow', 'autoplay; picture-in-picture; fullscreen');
+          frame.setAttribute('allowfullscreen', 'true');
+          frame.setAttribute('style', 'position:fixed;inset:0;width:100%;height:100%;border:0;background:#000');
+          frame.setAttribute('src', target.href);
+          host.textContent = '';
+          host.appendChild(frame);
+        })
+        .catch(function () { host.textContent = 'NEO Movies could not load. Refresh to try again.'; });
+    });
+  ]]></script>
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml" id="host" style="position:fixed;inset:0;display:grid;place-items:center;background:#000;color:#fff;font:14px system-ui,sans-serif">Loading NEO Movies…</div>
+  </foreignObject>
+</svg>

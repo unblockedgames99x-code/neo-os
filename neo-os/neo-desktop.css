@@ -1,0 +1,203 @@
+:root{--desktop-bg:#101114;--desktop-surface:#191b20;--desktop-text:#f1f3f7;--desktop-muted:#a7aebb;--desktop-line:#353a44;--desktop-accent:#8ab4ff}
+/* Desktop status cards sit directly on the wallpaper in every app theme. */
+html[data-neo-theme] #widget-layer>.neo-widget,html[data-neo-theme] #widget-layer>.neo-widget:hover{background:transparent!important;border-color:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:#fff!important}
+html[data-neo-theme] #widget-layer :is(strong,p,small,.widget-heading,.widget-menu,.widget-action){color:#fff!important;text-shadow:0 1px 4px #000,0 1px 12px #0009}
+html[data-neo-theme] #widget-layer :is(.widget-menu,.widget-action){background:transparent!important}
+.neo-minimized-tray{z-index:75}
+.chat-local-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:6px}.chat-local-tools>button{box-sizing:border-box;width:auto!important;min-width:max-content;height:34px;min-height:34px;flex:0 0 auto;padding:0 10px;font:inherit;font-size:11px;line-height:1;white-space:nowrap;color:var(--desktop-text);background:var(--desktop-surface);border:1px solid var(--desktop-line);border-radius:6px;cursor:pointer}.chat-emoji-picker{display:flex;gap:4px}.chat-unread{display:inline-block;min-width:17px;padding:2px 4px;margin-left:5px;background:var(--desktop-accent);color:#000;border-radius:20px;font-size:10px}.messages-composer>.desktop-note{font-size:10px;margin:4px 0 0}
+[hidden]{display:none!important}.desktop-settings-link{margin:12px;padding:12px;border:1px solid var(--desktop-line);border-radius:8px;background:var(--desktop-surface);color:var(--desktop-text)}
+.messages-conversation{grid-template-rows:auto auto minmax(0,1fr) auto!important}.messages-history-search{margin:8px 16px;padding:9px 12px;border:1px solid var(--desktop-line);border-radius:8px;background:var(--desktop-surface);color:var(--desktop-text);min-width:0}.connection-page{background:var(--desktop-bg);color:var(--desktop-text);min-height:100vh;display:grid;place-items:center}.connection-page main{max-width:720px;padding:24px}.connection-page a{color:var(--desktop-accent);padding:10px;border:1px solid var(--desktop-line);border-radius:8px}.desktop-app label:has(input[type=checkbox]){justify-content:flex-start;gap:10px}.desktop-app button[aria-pressed=true]{outline:1px solid var(--desktop-accent)}
+#neo-start-screen:not([hidden])~#neo-volume-bar,#neo-start-screen:not([hidden])~#neo-personalize-shortcut,body:has(.neo-login-gate:not([hidden])) #neo-volume-bar,body:has(.neo-login-gate:not([hidden])) #neo-personalize-shortcut{display:none}
+.desktop-app{height:100%;overflow:auto;background:var(--desktop-bg);color:var(--desktop-text);font:14px/1.5 system-ui;padding:22px}.desktop-app *{box-sizing:border-box}.desktop-app h2{font-size:24px;margin:0 0 6px}.desktop-app h3{font-size:16px;margin:0 0 12px}.desktop-app p{color:var(--desktop-muted)}.desktop-app button,.desktop-app select,.desktop-app input,.desktop-app textarea{font:inherit;color:var(--desktop-text);background:var(--desktop-surface);border:1px solid var(--desktop-line);border-radius:6px;padding:8px 11px}.desktop-app button{cursor:pointer}.desktop-app button:focus-visible,.desktop-app input:focus-visible,.desktop-app textarea:focus-visible,.desktop-app select:focus-visible{outline:2px solid var(--desktop-accent);outline-offset:2px}.desktop-app button[aria-pressed=true],.desktop-app button[aria-selected=true]{border-color:var(--desktop-accent)}.desktop-app label{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:12px 0}.desktop-app input[type=range]{width:min(230px,45vw)}.desktop-section{padding:20px 0;border-bottom:1px solid var(--desktop-line)}.desktop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.desktop-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.desktop-row>span{margin-left:auto}.desktop-note{font-size:12px;color:var(--desktop-muted)}.desktop-swatch{height:78px;display:block;border-radius:5px;margin-bottom:8px}.desktop-skin-gallery button{text-align:left}.desktop-skin-gallery strong{display:block}.desktop-app [hidden]{display:none!important}
+#neo-volume-bar{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;padding:8px 12px;border:1px solid var(--desktop-line);border-radius:12px;background:var(--desktop-bg);color:var(--desktop-text);z-index:9900;box-shadow:0 6px 25px #0005;font:13px system-ui}#neo-volume-bar[hidden]{display:none}#neo-volume-bar button{border:0;background:none;color:inherit;font:inherit;cursor:pointer}#neo-volume-bar input{width:min(180px,35vw);accent-color:var(--desktop-accent)}#neo-brightness-shade{position:fixed;inset:0;z-index:9800;pointer-events:none;background:#000}#neo-personalize-shortcut{position:fixed;right:14px;bottom:14px;z-index:9900;border:1px solid var(--desktop-line);border-radius:8px;background:var(--desktop-bg);color:var(--desktop-text);padding:8px 12px;cursor:pointer}
+.desktop-editor{padding:0;display:grid;grid-template-rows:38px 1fr 28px}.editor-toolbar,.editor-status{display:flex;gap:9px;align-items:center;padding:4px 10px;background:var(--desktop-surface);border-bottom:1px solid var(--desktop-line);font-size:12px}.editor-toolbar button{padding:3px 9px}.editor-main{display:grid;grid-template-columns:180px minmax(0,1fr);min-height:0}.editor-explorer{border-right:1px solid var(--desktop-line);padding:12px 7px;overflow:auto}.editor-explorer button{display:block;width:100%;border:0;text-align:left;background:none;padding:7px}.editor-work,.editor-right{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:0;min-width:0}.editor-tabs{display:flex;overflow:auto;background:var(--desktop-surface);min-height:38px}.editor-tabs button{border-radius:0;white-space:nowrap}.editor-code{display:flex;min-height:0}.editor-lines{white-space:pre;margin:0;overflow:hidden;padding:14px 8px;color:var(--desktop-muted);text-align:right;font:14px/22px Consolas,monospace;width:44px;flex-shrink:0}.editor-code textarea{resize:none;border:0!important;outline:0;border-radius:0!important;flex:1;min-width:0;padding:14px 10px;font:14px/22px Consolas,monospace;tab-size:2;background:var(--desktop-bg);white-space:pre;overflow:auto}.editor-status{border:0;border-top:1px solid var(--desktop-line);justify-content:space-between}.editor-preview{width:100%;height:280px;background:white;border:1px solid var(--desktop-line)}.desktop-palette{max-width:600px;width:90vw;background:var(--desktop-bg);color:var(--desktop-text);border:1px solid var(--desktop-line);border-radius:8px;padding:16px}.desktop-palette::backdrop{background:#0008}.desktop-palette button{display:block;width:100%;text-align:left;margin:4px 0}.terminal-tabs{display:flex;gap:6px;border-bottom:1px solid var(--desktop-line);padding-bottom:10px}.desktop-terminal{display:flex;flex-direction:column}.terminal-session-output,.terminal-log{flex:1;min-height:0;margin:0;overflow:auto;white-space:pre-wrap;font:14px/1.7 Consolas,monospace;padding:12px 0}.terminal-command,.terminal-composer{display:flex;gap:8px;align-items:center;margin:0}.terminal-command label,.terminal-composer>span{margin:0;color:var(--desktop-accent);white-space:nowrap}.terminal-command input,.terminal-composer input{flex:1;min-width:0;font-family:Consolas,monospace}.skin-layer{position:fixed;inset:0;z-index:69;pointer-events:none}.neo-skin{position:absolute;pointer-events:auto;color:var(--skin-color,var(--desktop-text));background:var(--desktop-surface);border:1px solid var(--desktop-line);border-radius:10px;min-width:160px;min-height:100px;box-sizing:border-box;overflow:visible;font-family:var(--skin-font,system-ui);box-shadow:var(--skin-shadow,none)}.skin-handle{height:28px;display:flex;gap:6px;align-items:center;padding:0 9px;font-size:12px;cursor:grab;touch-action:none;border-bottom:1px solid var(--desktop-line);user-select:none}.skin-handle strong{font-weight:500;margin-right:auto}.skin-handle button{border:0;background:none;color:inherit;cursor:pointer;padding:2px 4px}.skin-content{padding:12px;height:calc(100% - 28px);overflow:auto;font-size:calc(14px * var(--skin-scale,1))}.skin-content strong{font-size:1.6em;font-weight:500;display:block}.skin-content small{display:block;color:var(--desktop-muted);font-size:12px}.skin-content textarea{background:transparent;color:inherit;border:0;resize:none;width:100%;height:100%;font:inherit}.skin-content button{color:inherit;background:transparent;border:1px solid currentColor;border-radius:5px;padding:5px 8px;margin:3px;cursor:pointer}.skin-resize{position:absolute;z-index:150;background:transparent;border:0;padding:0;touch-action:none}.skin-resize[data-dir=n],.skin-resize[data-dir=s]{height:8px;left:12px;right:12px;cursor:ns-resize}.skin-resize[data-dir=n]{top:-4px}.skin-resize[data-dir=s]{bottom:-4px}.skin-resize[data-dir=e],.skin-resize[data-dir=w]{width:8px;top:12px;bottom:12px;cursor:ew-resize}.skin-resize[data-dir=e]{right:-4px}.skin-resize[data-dir=w]{left:-4px}.skin-resize[data-dir=ne],.skin-resize[data-dir=nw],.skin-resize[data-dir=se],.skin-resize[data-dir=sw]{width:14px;height:14px}.skin-resize[data-dir=ne]{right:-5px;top:-5px;cursor:nesw-resize}.skin-resize[data-dir=nw]{left:-5px;top:-5px;cursor:nwse-resize}.skin-resize[data-dir=se]{right:-5px;bottom:-5px;cursor:nwse-resize}.skin-resize[data-dir=sw]{left:-5px;bottom:-5px;cursor:nesw-resize}.neo-skin[data-locked=true] .skin-resize{display:none}.neo-skin[data-locked=true] .skin-handle{cursor:default}.neo-skin[data-style=glass]{background:#26313de6}.neo-skin[data-style=neon],.neo-skin[data-style=cyberpunk]{background:#100c20;border-color:#ac78f7;--skin-color:#f3d4ff}.neo-skin[data-style=retro],.neo-skin[data-style=terminal]{background:#102015;--skin-color:#ccf2b8;font-family:monospace}.neo-skin[data-style=monochrome]{background:#080808;--skin-color:#fff;border-radius:0}.skin-guide{position:fixed;pointer-events:none;background:var(--desktop-accent);z-index:9500}.skin-guide.x{top:0;bottom:0;width:1px}.skin-guide.y{left:0;right:0;height:1px}.skin-bars{display:flex;align-items:center;gap:4px;height:65px}.skin-bars i{background:currentColor;flex:1;min-height:3px}.neo-local-reference-scene{position:absolute;inset:0;background-position:center;background-repeat:no-repeat}.wallpaper:has(.neo-local-reference-scene) > :not(.neo-local-reference-scene){display:none!important}.window-resize-handle{z-index:140!important}
+.editor-preview-dialog{box-sizing:border-box;width:min(920px,calc(100vw - 32px));height:min(640px,calc(100vh - 32px));min-width:min(420px,calc(100vw - 16px));min-height:280px;max-width:calc(100vw - 16px);max-height:calc(100vh - 16px);margin:auto;padding:0!important;overflow:hidden!important;resize:both;grid-template-rows:auto minmax(0,1fr);background:var(--desktop-bg);border:1px solid var(--desktop-line);border-radius:12px;box-shadow:0 24px 90px #000b}.editor-preview-dialog[open]{display:grid}.editor-preview-dialog::backdrop{background:#0009;backdrop-filter:blur(2px)}.editor-preview-dialog.is-maximized{width:calc(100vw - 24px)!important;height:calc(100vh - 24px)!important;max-width:none;max-height:none;resize:none}.editor-preview-dialog.is-browser-fullscreen{position:fixed;inset:0;width:100vw!important;height:100vh!important;min-width:0;min-height:0;max-width:none;max-height:none;margin:0;border:0;border-radius:0;resize:none}.editor-preview-header{min-width:0;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;background:var(--desktop-surface);border-bottom:1px solid var(--desktop-line)}.editor-preview-title-group{min-width:0;display:flex;align-items:center;gap:10px}.editor-preview-title-group h2{overflow:hidden;margin:0;font-size:15px;line-height:1.2;text-overflow:ellipsis;white-space:nowrap}.editor-preview-network{flex:0 0 auto;padding:3px 7px;border:1px solid color-mix(in srgb,var(--desktop-accent) 58%,var(--desktop-line));border-radius:999px;color:var(--desktop-text);font-size:10px;line-height:1.2}.editor-preview-network::before{content:"";display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:#58d68d;box-shadow:0 0 0 2px #58d68d22}.editor-preview-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px}.editor-preview-actions button{min-height:30px;padding:4px 9px;white-space:nowrap}.editor-preview{display:block;width:100%;height:100%;min-width:0;min-height:0;background:#fff;border:0}.editor-preview-dialog::after{content:"";position:absolute;right:4px;bottom:4px;width:12px;height:12px;pointer-events:none;background:linear-gradient(135deg,transparent 0 45%,var(--desktop-muted) 46% 54%,transparent 55% 66%,var(--desktop-muted) 67% 75%,transparent 76%)}.editor-preview-dialog.is-maximized::after,.editor-preview-dialog.is-browser-fullscreen::after{display:none}
+html[data-desktop-motion=reduced] *,html[data-reduce-motion=true] *{animation:none!important;transition:none!important;scroll-behavior:auto!important}@media(prefers-reduced-motion:reduce){.neo-window,.neo-skin{animation:none!important;transition:none!important}}@media(max-width:620px){.desktop-app{padding:14px}.desktop-editor{padding:0}.editor-main{grid-template-columns:120px minmax(0,1fr)}.editor-toolbar{overflow:auto;white-space:nowrap}.desktop-app label{flex-wrap:wrap}.desktop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#neo-volume-bar{bottom:8px}.neo-skin{max-width:calc(100vw - 16px)}.editor-preview-dialog{width:calc(100vw - 12px);height:calc(100vh - 12px);min-width:0;max-width:none;max-height:none;resize:none}.editor-preview-header{align-items:flex-start;flex-direction:column;gap:8px}.editor-preview-actions{width:100%;justify-content:flex-start;overflow-x:auto}.editor-preview-title-group{width:100%}}
+
+.neo-skin[data-skin-type="equalizer"] .skin-content {
+  display: grid;
+  min-height: 0;
+  padding: 10px 12px 8px;
+  overflow: hidden;
+}
+
+.skin-equalizer {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(42px, 1fr) auto;
+  gap: 7px;
+}
+
+.neo-skin[data-skin-type="equalizer"] .skin-bars {
+  min-height: 42px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(32, minmax(2px, 1fr));
+  align-items: stretch;
+  gap: clamp(1px, .35vw, 4px);
+}
+
+.neo-skin[data-skin-type="equalizer"] .skin-bars i {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  border-radius: 999px;
+}
+
+.neo-skin[data-skin-type="equalizer"] .skin-bars i b {
+  position: absolute;
+  inset: auto 0 0;
+  height: max(2px, var(--level, 0%));
+  background: linear-gradient(180deg, color-mix(in srgb, currentColor 72%, white), currentColor);
+  border-radius: inherit;
+  box-shadow: 0 0 10px color-mix(in srgb, currentColor 38%, transparent);
+  will-change: height;
+}
+
+.neo-skin[data-skin-type="equalizer"] .skin-bars i::after {
+  position: absolute;
+  right: 0;
+  bottom: clamp(0px, calc(var(--peak, 0%) - 2px), calc(100% - 2px));
+  left: 0;
+  height: 2px;
+  background: color-mix(in srgb, currentColor 62%, white);
+  border-radius: 999px;
+  content: "";
+  opacity: .92;
+}
+
+.skin-equalizer-status {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--desktop-muted);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.skin-equalizer-status small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skin-equalizer-status span {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.neo-skin.is-equalizer-playing .skin-equalizer-status small::before {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  vertical-align: 1px;
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 7px currentColor;
+  content: "";
+}
+
+/* Keep the workspace tree visually distinct from the active editor pane. */
+.editor-main { grid-template-columns: 180px 2px minmax(0, 1fr); }
+.editor-explorer { border-right: 0; }
+.editor-divider {
+  min-width: 2px;
+  height: 100%;
+  background: var(--desktop-line, #3a3d44);
+  box-shadow: 1px 0 0 color-mix(in srgb, var(--desktop-text, #fff) 18%, transparent);
+}
+
+@media (max-width: 700px) {
+  .editor-main { grid-template-columns: 120px 2px minmax(0, 1fr); }
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-now {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-artwork {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(46px, calc(54px * var(--skin-scale, 1)), 86px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  color: color-mix(in srgb, currentColor 80%, var(--desktop-accent));
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: 12px;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-artwork-icon,
+.neo-skin[data-skin-type="music"] .skin-media-cover {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-artwork-icon {
+  box-sizing: border-box;
+  padding: 24%;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-cover {
+  display: block;
+  object-fit: cover;
+  background: var(--skin-background, var(--desktop-surface));
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-copy {
+  min-width: 0;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-copy b,
+.neo-skin[data-skin-type="music"] .skin-media-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.neo-skin[data-skin-type="music"] .skin-content .skin-media-control {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(34px, 2.2em, 50px);
+  height: clamp(34px, 2.2em, 50px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-control:hover,
+.neo-skin[data-skin-type="music"] .skin-media-control:focus-visible {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-icon {
+  width: clamp(24px, 1.3em, 34px);
+  height: clamp(24px, 1.3em, 34px);
+  pointer-events: none;
+}
+
+.neo-skin[data-skin-type="music"] .skin-media-toggle .skin-media-icon {
+  width: clamp(28px, 1.5em, 38px);
+  height: clamp(28px, 1.5em, 38px);
+}

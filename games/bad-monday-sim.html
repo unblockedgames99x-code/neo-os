@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<base href="https://fastly.jsdelivr.net/gh/genizy/biologyexams@main/bad-monday-simulator/">
+
+<title>Game</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+    background: #000;
+  }
+
+  body {
+    position: fixed;
+    inset: 0;
+  }
+
+  #gm4html5_div_id {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #canvas {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    display: block !important;
+    background: #000;
+    transform: translate(-50%, -50%) !important;
+    image-rendering: pixelated;
+    touch-action: none;
+  }
+</style>
+</head>
+
+<body>
+  <div id="gm4html5_div_id" class="gm4html5_div_class">
+    <canvas id="canvas" width="640" height="480">
+      Your browser does not support HTML5 canvas.
+    </canvas>
+  </div>
+
+  <script>
+    function fitGameNoBorder() {
+      const canvas = document.getElementById("canvas");
+      if (!canvas) return;
+
+      const gameW = 640;
+      const gameH = 480;
+
+      // Math.max removes all outside border by filling the whole Google Sites box.
+      const scale = Math.max(window.innerWidth / gameW, window.innerHeight / gameH);
+
+      canvas.style.width = Math.ceil(gameW * scale) + "px";
+      canvas.style.height = Math.ceil(gameH * scale) + "px";
+      canvas.style.top = "50%";
+      canvas.style.left = "50%";
+      canvas.style.transform = "translate(-50%, -50%)";
+    }
+
+    window.addEventListener("resize", fitGameNoBorder);
+    window.addEventListener("orientationchange", fitGameNoBorder);
+    window.addEventListener("load", fitGameNoBorder);
+
+    setInterval(fitGameNoBorder, 500);
+  </script>
+
+  <script src="html5game/Sansfield.js?MMCYB=1228645331"></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      fitGameNoBorder();
+
+      if (typeof GameMaker_Init === "function") {
+        GameMaker_Init();
+      }
+
+      setTimeout(fitGameNoBorder, 500);
+      setTimeout(fitGameNoBorder, 1500);
+      setTimeout(fitGameNoBorder, 3000);
+    });
+  </script>
+</body>
+</html>

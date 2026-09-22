@@ -1,0 +1,1691 @@
+.app-icon-stream {
+  overflow: hidden;
+  color: transparent;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.app-icon-stream .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.app-icon-stream .spotify-vector {
+  display: block;
+  shape-rendering: geometricPrecision;
+}
+
+.app-icon-zstream,
+.app-icon-discord {
+  overflow: hidden;
+  color: transparent;
+  border: 0;
+  border-radius: 22%;
+  box-shadow: none;
+}
+
+.app-icon-zstream {
+  background: #050505 !important;
+}
+
+.app-icon-discord {
+  background: #5865f2 !important;
+  border-radius: 22%;
+}
+
+.app-icon-zstream .app-image-icon,
+.app-icon-discord .app-image-icon {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+.app-icon-discord .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0;
+  border-radius: inherit;
+}
+
+.app-icon-neo-cloud {
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  box-shadow: none !important;
+}
+
+.app-icon-neo-cloud .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  transform: none !important;
+  image-rendering: auto !important;
+}
+
+.neo-window[data-app-id="neo-cloud"] .window-app-icon.app-icon-neo-cloud {
+  width: 22px;
+  height: 22px;
+}
+
+.window-app-icon.app-icon-stream,
+.neo-taskbar-menu-app-icon .app-icon-stream {
+  border-radius: 50%;
+}
+
+.app-icon-google-drive {
+  overflow: visible;
+  color: transparent;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.app-icon-google-drive .icon {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: none;
+}
+
+.window-app-icon.app-icon-google-drive,
+.neo-taskbar-menu-app-icon .app-icon-google-drive {
+  border-radius: 0;
+}
+
+/* Flat app artwork: solid color, no gradient or icon shading. */
+.dock-app-art,
+.launcher-app-icon,
+.window-app-icon,
+.launcher-detail-icon,
+.launcher-category-icon,
+.feature-brand-icon,
+.app-icon-shape,
+.app-icon-shape::before,
+.app-icon-shape::after {
+  border: 0 !important;
+  outline: 0;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.app-icon-shape .icon,
+.app-icon-shape .app-image-icon,
+.taskbar-start-button img {
+  filter: none !important;
+}
+
+.app-icon-shape .app-image-icon {
+  box-shadow: none !important;
+}
+
+.app-icon-gamepad {
+  color: #fff !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.app-icon-gamepad .icon {
+  color: #fff !important;
+  stroke: currentColor !important;
+}
+
+.taskbar .dock-button .app-icon-gamepad .icon {
+  width: 29px;
+  height: 29px;
+  stroke-width: 1.7;
+}
+
+.launcher-app-icon.app-icon-gamepad .icon,
+.launcher-detail-icon.app-icon-gamepad .icon,
+.launcher-category-icon.app-icon-gamepad .icon {
+  width: 72%;
+  height: 72%;
+  stroke-width: 1.7;
+}
+
+.neo-window .window-app-icon.app-icon-gamepad .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.app-icon-duckduckgo,
+.app-icon-zones,
+.app-icon-chat,
+.app-icon-wallpaper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Keep the official Wallpaper Engine mark intact in every shell surface. */
+.app-icon-wallpaper {
+  overflow: visible !important;
+  border-radius: 0 !important;
+}
+
+.app-icon-wallpaper .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
+
+.dock-button[data-app="wallpaper"] .dock-app-art.app-icon-wallpaper {
+  width: 34px;
+  height: 28px;
+}
+
+.launcher-app[data-app="wallpaper"] .launcher-app-icon.app-icon-wallpaper {
+  width: 40px;
+  height: 32px;
+}
+
+.neo-window .window-app-icon.app-icon-wallpaper {
+  width: 24px;
+  height: 20px;
+}
+
+/* Messages keeps the official rounded-square app artwork at every shell size. */
+.messages-auth-icon { display: grid; place-items: center; width: 44px; height: 44px; color: var(--messages-blue); background: rgba(var(--neo-accent-visible-rgb, 10, 132, 255), 0.12); border-radius: 50%; }
+.messages-auth-icon .icon { width: 21px; height: 21px; stroke-width: 1.9; }
+.messages-auth-state strong { margin-top: 13px; color: #1d1d1f; font-size: 16px; font-weight: 680; }
+.messages-auth-state p { max-width: 330px; font-size: 11px; }
+.messages-auth-action { min-width: 92px; min-height: 34px; margin-top: 16px; padding: 0 18px; color: #fff; background: var(--messages-blue); border: 0; border-radius: 17px; font: inherit; font-size: 11px; font-weight: 680; transition: background-color 180ms cubic-bezier(.2, .8, .2, 1), transform 180ms cubic-bezier(.2, .8, .2, 1); }
+.messages-auth-action:hover { background: var(--neo-accent-on-light-hover, #0077ed); }
+.messages-auth-action:active { transform: scale(.96); }
+.messages-auth-action:focus-visible { outline: 2px solid var(--messages-blue); outline-offset: 3px; }
+.neo-messages.is-signed-out .messages-search,
+.neo-messages.is-signed-out .messages-compose-shortcut,
+.neo-messages.is-signed-out .messages-composer { opacity: .58; }
+.neo-messages.is-signed-out .messages-search,
+.neo-messages.is-signed-out .messages-compose-shortcut { cursor: default; }
+.neo-messages.is-signed-out .messages-composer-shell { background: #f5f5f7; border-color: transparent; box-shadow: none; }
+.app-icon-chat {
+  overflow: hidden !important;
+  border-radius: 22% !important;
+}
+
+.app-icon-chat .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 22% !important;
+  object-fit: contain !important;
+  transform: none !important;
+}
+
+.app-icon-duckduckgo {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.app-icon-duckduckgo .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transform: none !important;
+}
+
+.launcher-app[data-app="browser"] .launcher-app-icon.app-icon-duckduckgo {
+  width: 38px !important;
+  min-width: 38px !important;
+  height: 38px !important;
+  justify-self: center;
+}
+
+.app-icon-search,
+.app-icon-settings {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.app-icon-search .icon {
+  color: #4e9ceb !important;
+}
+
+.app-icon-settings .icon {
+  color: #a6b0bd !important;
+}
+
+.app-icon-users::before,
+.app-icon-users::after {
+  background: #48b982 !important;
+}
+
+.app-icon-image {
+  background: #4ca87a !important;
+}
+
+.app-icon-info {
+  background: #d95c57 !important;
+}
+
+.app-icon-music {
+  background: #d84b65 !important;
+}
+
+.app-icon-film,
+.launcher-app[data-app="media"] .launcher-app-icon,
+.taskbar .dock-button .app-icon-film {
+  background: #35b86f !important;
+}
+
+.app-icon-folder,
+.launcher-app[data-app="files"] .launcher-app-icon,
+.taskbar .dock-button .app-icon-folder {
+  color: #111;
+  background: #fff !important;
+}
+
+.app-icon-folder .icon {
+  width: 62%;
+  height: 62%;
+}
+
+.dock-button[data-app="media"] {
+  --app-color: #35b86f !important;
+}
+
+.neo-window[data-app-id="media"] .window-app-icon {
+  --app-color: #35b86f !important;
+  background: #35b86f !important;
+}
+
+.app-icon-apps,
+.launcher-app[data-app="apps"] .launcher-app-icon,
+.taskbar .dock-button .app-icon-apps {
+  background: #2ba9a1 !important;
+}
+
+.taskbar .dock-button[data-app="apps"] .dock-app-art.app-icon-apps {
+  color: #fff;
+  background: transparent !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.taskbar .dock-button[data-app="apps"]:hover .dock-app-art.app-icon-apps,
+.taskbar .dock-button[data-app="apps"]:focus-visible .dock-app-art.app-icon-apps {
+  background: transparent !important;
+}
+
+/* My Apps uses the bare glyph everywhere, matching the clear taskbar treatment. */
+.app-icon-apps,
+.launcher-app[data-app="apps"] .launcher-app-icon,
+.taskbar .dock-button[data-app="apps"] .app-icon-apps {
+  color: var(--neo-accent-visible, #fff) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.app-icon-apps .icon,
+.launcher-app[data-app="apps"] .launcher-app-icon .icon {
+  width: 72% !important;
+  height: 72% !important;
+  color: inherit !important;
+}
+
+/* Keep the ChatGPT mark in its standard white, unboxed form. */
+.app-icon-chatgpt {
+  overflow: visible !important;
+  color: #fff !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.app-icon-chatgpt .app-image-icon {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.app-icon-widgets {
+  overflow: hidden;
+  color: transparent !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.app-icon-widgets .app-image-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.launcher-app[data-app="skins"] .launcher-app-icon.app-icon-widgets {
+  width: 44px;
+  height: 44px;
+}
+
+.launcher-app[data-app="skins"] .app-icon-widgets .app-image-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.app-icon-stream {
+  color: transparent !important;
+  background: transparent !important;
+}
+
+.taskbar .dock-button .dock-app-art.app-icon-stream,
+.launcher-app[data-app="stream"] .launcher-app-icon.app-icon-stream,
+.neo-window[data-app-id="stream"] .window-app-icon.app-icon-stream {
+  overflow: hidden;
+  background: transparent !important;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.music-unified-window-body {
+  overflow: hidden;
+  background: #000;
+}
+
+.music-unified-shell {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: 44px minmax(0, 1fr);
+  overflow: hidden;
+  color: #f7f7f7;
+  background: #000;
+}
+
+.music-unified-tabs {
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 6px 10px;
+  background: #000;
+}
+
+.music-unified-tabs button {
+  display: inline-flex;
+  min-width: 0;
+  height: 32px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  color: #a9a9a9;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(.2, .8, .2, 1), background-color 180ms cubic-bezier(.2, .8, .2, 1), transform 180ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.music-unified-tabs button:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .09);
+}
+
+.music-unified-tabs button.is-active {
+  color: #000;
+  background: #fff;
+}
+
+.music-unified-tabs button:active { transform: scale(.97); }
+.music-unified-tabs button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.music-unified-tabs .app-image-icon,
+.music-unified-tabs .icon { width: 18px; height: 18px; flex: 0 0 18px; }
+
+.music-unified-panel {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.music-unified-panel[hidden] { display: none; }
+.music-unified-panel > .neo-browser-app,
+.music-unified-panel > .feature-app,
+.music-unified-panel > .feature-loader { width: 100%; height: 100%; }
+
+.music-direct-session {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.music-direct-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.music-direct-session.is-ready .music-direct-frame { opacity: 1; }
+
+.music-direct-loader {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  margin: 0;
+  background: #000;
+  transition: opacity 140ms ease, visibility 140ms ease;
+}
+
+.music-direct-session.is-ready .music-direct-loader {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-direct-loader .button[hidden] { display: none; }
+
+.music-unified-panel .music-app {
+  color: #f5f5f5;
+  background: #000;
+}
+
+.music-unified-panel .music-app .feature-sidebar {
+  background: #080808;
+  border: 0;
+}
+
+.music-unified-panel .music-app .feature-content {
+  background: #121212;
+}
+
+.music-unified-panel .music-app .feature-search {
+  background: #242424;
+  border: 0;
+  box-shadow: none;
+}
+
+.music-unified-panel .music-app .music-track {
+  border: 0;
+}
+
+.music-unified-panel .music-app .music-track.is-current {
+  background: rgba(255, 255, 255, .1);
+}
+
+.music-unified-panel .music-app .music-player {
+  background: #000;
+  border: 0;
+}
+
+@media (max-width: 560px) {
+  .music-unified-tabs { justify-content: center; }
+  .music-unified-tabs button { flex: 1 1 0; justify-content: center; }
+}
+
+.app-icon-google-drive {
+  overflow: visible !important;
+  color: transparent !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.app-icon-google-drive .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.app-icon-media-player {
+  overflow: visible !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.app-icon-media-player .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.app-icon-youtube {
+  overflow: visible !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.app-icon-youtube .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* The Media Player uses finished circular artwork. Do not put the generic
+   solid media tile behind it in the launcher. */
+.launcher-app[data-app="media"] .launcher-app-icon.app-icon-media-player {
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.launcher-app[data-app="files"] .launcher-app-icon.app-icon-google-drive,
+.taskbar .dock-button[data-app="files"] .dock-app-art.app-icon-google-drive,
+.neo-window[data-app-id="files"] .window-app-icon.app-icon-google-drive {
+  overflow: visible;
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.messages-connection-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.messages-connection-actions a,
+.messages-connection-actions button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: 650 11px/1 var(--neo-font-ui);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.messages-connection-actions .messages-sign-in {
+  min-width: 68px;
+  border-color: var(--neo-accent-on-light, #0876df);
+  color: #fff;
+  background: var(--neo-accent-on-light, #0a84ff);
+  cursor: pointer;
+}
+
+.messages-connection-actions .messages-sign-in:hover {
+  border-color: var(--neo-accent-on-light-hover, #006dd6);
+  background: var(--neo-accent-on-light-hover, #0878e6);
+  transform: translateY(-1px);
+}
+
+.messages-connection-actions .messages-sign-in:active {
+  transform: scale(0.97);
+}
+
+.messages-connection-actions .messages-sign-in:focus-visible {
+  outline: 2px solid var(--neo-accent-on-light, #0a84ff);
+  outline-offset: 2px;
+}
+
+.messages-connection-dot.is-online ~ .messages-connection-actions .messages-sign-in {
+  display: none;
+}
+
+.neo-browser-sign-in {
+  --neo-auth-accent: var(--neo-accent-on-light, #0a84ff);
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+  place-items: center;
+  overflow: auto;
+  padding: 30px 18px;
+  background: #f4f5f7;
+  color: #181b20;
+}
+
+.neo-browser-sign-in-card {
+  width: min(390px, 100%);
+  padding: 30px;
+  border: 1px solid #dcdfe4;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(25, 31, 42, 0.11);
+}
+
+.neo-browser-sign-in-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 10px;
+  background: var(--neo-auth-accent);
+  color: #fff;
+}
+
+.neo-browser-sign-in-icon .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.neo-browser-sign-in-eyebrow {
+  margin: 0 0 7px;
+  color: #5e6672;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.neo-browser-sign-in-card h2 {
+  margin: 0;
+  color: #171a1f;
+  font-size: clamp(22px, 4vw, 28px);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.neo-browser-sign-in-copy {
+  margin: 10px 0 24px;
+  color: #646b75;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.neo-browser-auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 0 0 18px;
+  padding: 4px;
+  border: 1px solid #dcdfe4;
+  border-radius: 10px;
+  background: #f1f3f6;
+}
+
+.neo-browser-auth-tabs button {
+  min-height: 38px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #59616c;
+  font: 700 13px/1 var(--neo-font-ui);
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neo-browser-auth-tabs button:hover {
+  color: #171a1f;
+}
+
+.neo-browser-auth-tabs button:active {
+  transform: scale(0.985);
+}
+
+.neo-browser-auth-tabs button.is-active {
+  border-color: #d4d8de;
+  background: #fff;
+  color: var(--neo-auth-accent);
+  box-shadow: 0 1px 3px rgba(24, 29, 37, 0.08);
+}
+
+.neo-browser-auth-tabs button:focus-visible {
+  outline: 2px solid var(--neo-auth-accent);
+  outline-offset: 2px;
+}
+
+.neo-browser-sign-in-card form {
+  display: grid;
+  gap: 15px;
+}
+
+.neo-browser-sign-in-card label {
+  display: grid;
+  gap: 7px;
+  color: #3f4650;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.neo-browser-sign-in-card input {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid #cdd2d9;
+  border-radius: 8px;
+  outline: 0;
+  background: #fff;
+  color: #171a1f;
+  font: 500 14px/1 var(--neo-font-ui);
+  transition: border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neo-browser-sign-in-card input:focus {
+  border-color: var(--neo-auth-accent);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--neo-auth-accent) 15%, transparent);
+}
+
+.neo-browser-sign-in-card button[type="submit"] {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 3px;
+  border: 1px solid var(--neo-auth-accent);
+  border-radius: 8px;
+  background: var(--neo-auth-accent);
+  color: #fff;
+  font: 700 14px/1 var(--neo-font-ui);
+  cursor: pointer;
+  transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neo-browser-sign-in-card button[type="submit"]:hover:not(:disabled) {
+  border-color: var(--neo-accent-on-light-hover, var(--neo-auth-accent));
+  background: var(--neo-accent-on-light-hover, var(--neo-auth-accent));
+  transform: translateY(-1px);
+}
+
+.neo-browser-sign-in-card button[type="submit"]:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.neo-browser-sign-in-card button[type="submit"]:focus-visible {
+  outline: 2px solid var(--neo-auth-accent);
+  outline-offset: 3px;
+}
+
+.neo-browser-sign-in-card button[type="submit"]:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.neo-browser-sign-in-feedback {
+  min-height: 18px;
+  margin: -3px 0 0;
+  color: #626a75;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.neo-browser-sign-in-feedback.is-error {
+  color: #c1372b;
+}
+
+.neo-browser-sign-in-feedback.is-success {
+  color: #167346;
+}
+
+@media (max-width: 560px) {
+  .neo-browser-sign-in {
+    align-items: start;
+    padding: 18px 12px;
+  }
+
+  .neo-browser-sign-in-card {
+    padding: 24px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .messages-connection-actions .messages-sign-in,
+  .neo-browser-auth-tabs button,
+  .neo-browser-sign-in-card input,
+  .neo-browser-sign-in-card button[type="submit"] {
+    transition: none;
+  }
+}
+
+/* Compact NEO status strip: shared accent, useful controls, no decorative chrome. */
+.neo-status-strip {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 8px !important;
+  background: rgba(0, 0, 0, 0.46) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  backdrop-filter: blur(14px) saturate(135%);
+}
+
+.neo-status-strip .topbar-left,
+.neo-status-strip .topbar-right {
+  min-width: 0;
+  gap: 3px;
+}
+
+.neo-status-strip .topbar-logo,
+.neo-status-strip .topbar-action,
+.neo-status-strip .topbar-account,
+.neo-status-strip .topbar-battery,
+.neo-status-strip .topbar-date,
+.neo-status-strip .topbar-media {
+  min-width: 28px;
+  min-height: 28px;
+  border: 0;
+  border-radius: 6px;
+  outline: 0;
+  color: rgba(255, 255, 255, 0.9);
+  background: transparent;
+  box-shadow: none;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neo-status-strip :is(.topbar-logo, .topbar-action, .topbar-account, .topbar-battery, .topbar-date, .topbar-media):hover {
+  color: var(--neo-accent-visible);
+  background: var(--neo-accent-soft);
+  transform: translateY(-1px);
+}
+
+.neo-status-strip :is(.topbar-logo, .topbar-action, .topbar-account, .topbar-battery, .topbar-date, .topbar-media):active {
+  transform: scale(0.96);
+}
+
+.neo-status-strip :is(.topbar-logo, .topbar-action, .topbar-account, .topbar-battery, .topbar-date, .topbar-media):focus-visible {
+  background: var(--neo-accent-soft) !important;
+}
+
+.neo-status-strip .topbar-logo {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 3px;
+}
+
+.neo-status-strip .topbar-logo img {
+  width: 22px;
+  height: 22px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.topbar-action {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+}
+
+.topbar-action .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.topbar-account {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  padding: 0;
+  color: var(--neo-accent-contrast) !important;
+  background: var(--neo-accent-visible) !important;
+  border-radius: 50% !important;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.topbar-account:not(.is-signed-in) {
+  color: rgba(255, 255, 255, 0.68) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.topbar-media {
+  display: flex;
+  max-width: min(330px, 38vw);
+  align-items: center;
+  gap: 7px;
+  padding: 0 8px 0 3px;
+  cursor: pointer;
+}
+
+.topbar-media[hidden] { display: none; }
+.topbar-media:not([hidden]) + .active-app-label { display: none; }
+
+.topbar-media-art {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  color: var(--neo-accent-visible);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.topbar-media-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topbar-media-art img[hidden],
+.topbar-media-art .icon[hidden] { display: none; }
+.topbar-media-art .icon { width: 12px; height: 12px; }
+
+.topbar-media strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topbar-media-time {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 8px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.topbar-media-time[hidden] { display: none; }
+
+.topbar-media-wave {
+  display: flex;
+  height: 12px;
+  align-items: center;
+  gap: 2px;
+  color: var(--neo-accent-visible);
+}
+
+.topbar-media-wave i {
+  width: 2px;
+  height: 9px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleY(0.28);
+  transform-origin: center;
+}
+
+.topbar-media.is-playing .topbar-media-wave i {
+  animation: neo-topbar-wave 760ms cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+}
+
+.topbar-media.is-playing .topbar-media-wave i:nth-child(2) { animation-delay: -410ms; animation-duration: 610ms; }
+.topbar-media.is-playing .topbar-media-wave i:nth-child(3) { animation-delay: -190ms; animation-duration: 880ms; }
+.topbar-media.is-playing .topbar-media-wave i:nth-child(4) { animation-delay: -570ms; animation-duration: 690ms; }
+
+@keyframes neo-topbar-wave {
+  from { transform: scaleY(0.22); }
+  to { transform: scaleY(1); }
+}
+
+.topbar-battery,
+.neo-status-strip .topbar-date {
+  display: flex !important;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.topbar-battery strong,
+.neo-status-strip .topbar-date span,
+.neo-status-strip .topbar-date strong {
+  font-size: 9px;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.topbar-battery .icon { width: 14px; height: 14px; }
+.topbar-battery.is-charging { color: var(--neo-accent-visible); }
+.neo-status-strip .connection-state { min-width: 12px; padding: 0 3px; }
+.neo-status-strip .connection-dot { background: #67d89a; }
+.neo-status-strip .connection-state.is-offline .connection-dot { background: #ff625c; }
+.neo-status-strip .connection-state.is-limited .connection-dot { background: #f0be5b; }
+
+/* Window chrome uses the real icon assigned to each app. */
+.neo-window > .window-chrome > .window-app-icon {
+  display: grid !important;
+  place-items: center;
+}
+
+/* Keep the title flexible and the native actions anchored at the right. */
+.neo-window > .window-chrome {
+  grid-template-columns: 30px minmax(0, 1fr) auto !important;
+}
+
+.neo-window > .window-chrome > .window-title {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.neo-window > .window-chrome > .window-controls {
+  grid-column: 3;
+  justify-self: end;
+  width: auto;
+}
+
+.settings-app-link {
+  display: grid;
+  width: 100%;
+  min-height: 56px;
+  grid-template-columns: 38px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--neo-text);
+  text-align: left;
+  background: rgba(255, 255, 255, 0.045);
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.settings-app-link:hover { color: var(--neo-accent-visible); background: var(--neo-accent-soft); transform: translateY(-1px); }
+.settings-app-link:active { transform: scale(0.99); }
+.settings-app-link > span:nth-child(2) { min-width: 0; }
+.settings-app-link strong,
+.settings-app-link small { display: block; }
+.settings-app-link strong { font-size: 12px; }
+.settings-app-link small { margin-top: 3px; color: var(--neo-muted); font-size: 9px; }
+.settings-app-link > .icon { width: 14px; height: 14px; justify-self: end; }
+.settings-app-link-icon { display: grid; width: 34px; height: 34px; place-items: center; }
+
+@media (max-width: 720px) {
+  .neo-status-strip .topbar-media { max-width: 38vw; }
+  .topbar-media-time { display: none; }
+  .neo-status-strip .topbar-date span,
+  .topbar-battery strong,
+  .neo-status-strip .active-app-label { display: none; }
+  .neo-status-strip .topbar-date { padding-inline: 4px; }
+  .neo-status-strip .topbar-right { gap: 1px; }
+}
+
+@media (max-width: 480px) {
+  .neo-status-strip [data-open-chat-section],
+  .neo-status-strip .topbar-battery { display: none !important; }
+  .neo-status-strip .topbar-media { max-width: 34vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar-media.is-playing .topbar-media-wave i { animation: none; }
+}
+
+.messages-server-section {
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.messages-person-result {
+  grid-template-columns: 42px minmax(0, 1fr);
+}
+
+.messages-profile-sheet {
+  width: min(340px, calc(100% - 28px));
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 14px;
+  color: #1d1d1f;
+  background: #ffffff;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28) !important;
+}
+
+.messages-profile-sheet::backdrop {
+  background: rgba(0, 0, 0, 0.28);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+.messages-profile-card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 28px 24px 22px;
+}
+
+.messages-profile-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #6e6e73;
+  background: #f0f0f2;
+  cursor: pointer;
+}
+
+.messages-profile-close .icon { width: 12px; height: 12px; }
+.messages-profile-avatar { width: 72px; height: 72px; font-size: 22px; }
+.messages-profile-copy { min-width: 0; text-align: center; }
+.messages-profile-copy h3 { margin: 0; font-size: 20px; letter-spacing: 0; }
+.messages-profile-copy p { margin: 5px 0 0; color: #77777c; font-size: 11px; line-height: 1.4; }
+
+.messages-profile-dm {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--neo-accent-on-light, #0a84ff);
+  font: 700 12px/1 var(--neo-font-ui);
+  cursor: pointer;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.messages-profile-dm:hover:not(:disabled) { transform: translateY(-1px); }
+.messages-profile-dm:active:not(:disabled) { transform: scale(0.97); }
+.messages-profile-dm:disabled { cursor: default; opacity: 0.48; }
+.messages-profile-dm .icon { width: 14px; height: 14px; }
+.messages-profile-feedback { min-height: 14px; margin: 0; color: #c9342f; font-size: 10px; text-align: center; }
+.messages-profile-feedback:empty { min-height: 0; }
+
+/* Clear dock finish: icons sit directly on the wallpaper without backplates or shading. */
+html[data-taskbar-material="clear"] .taskbar {
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.taskbar-center,
+.taskbar .dock {
+  background: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.taskbar-center::before,
+.taskbar-center::after,
+.taskbar .dock::before,
+.taskbar .dock::after {
+  content: none !important;
+}
+
+.taskbar-start-button,
+.taskbar .dock-button,
+.taskbar-start-button:hover,
+.taskbar-start-button:focus-visible,
+.taskbar .dock-button:hover,
+.taskbar .dock-button:focus-visible,
+.taskbar-start-button:active,
+.taskbar .dock-button:active {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.taskbar-tray:hover {
+  background: transparent !important;
+}
+
+.taskbar-start-button img,
+.taskbar .dock-button .dock-app-art,
+.taskbar .dock-button .dock-app-art::before,
+.taskbar .dock-button .dock-app-art::after,
+.taskbar .dock-button .app-image-icon {
+  border: 0 !important;
+  outline: 0;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.taskbar .dock-button.is-running::after {
+  box-shadow: none !important;
+}
+
+/* Account gate uses the same account runtime as Messages, with a desktop-scale shell. */
+.neo-login-gate {
+  position: fixed;
+  z-index: 9000;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: max(28px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  color: #fff;
+  background: rgba(0, 0, 0, 0.82);
+  -webkit-backdrop-filter: blur(24px) saturate(115%);
+  backdrop-filter: blur(24px) saturate(115%);
+  opacity: 0;
+  transition: opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neo-login-gate[hidden] { display: none !important; }
+html[data-boot="complete"] .neo-login-gate:not([hidden]) { opacity: 1; }
+
+.neo-login-time {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.neo-login-time time {
+  font-size: clamp(56px, 7.2vw, 112px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.neo-login-time span {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.neo-login-panel {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  width: min(410px, 100%);
+  justify-items: center;
+  padding: 32px 0 54px;
+}
+
+.neo-login-panel > img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border: 0 !important;
+  border-radius: 50%;
+  outline: 0 !important;
+  box-shadow: none !important;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.neo-login-panel > h1 {
+  margin: 12px 0 6px;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.neo-login-auth-host,
+.neo-login-auth-host .neo-browser-sign-in {
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.neo-login-auth-host .neo-browser-sign-in-card {
+  width: 100%;
+  padding: 16px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.neo-login-auth-host .neo-browser-sign-in-icon,
+.neo-login-auth-host .neo-browser-sign-in-eyebrow { display: none; }
+
+.neo-login-auth-host .neo-browser-sign-in-card h2 {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.neo-login-auth-host .neo-browser-sign-in-copy {
+  max-width: 340px;
+  margin: 7px auto 18px;
+  color: rgba(255, 255, 255, 0.62);
+  text-align: center;
+}
+
+.neo-login-auth-host .neo-browser-auth-tabs {
+  width: min(210px, 100%);
+  margin: 0 auto 4px;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.neo-login-auth-host .neo-browser-auth-tabs button { color: rgba(255, 255, 255, 0.68); }
+.neo-login-auth-host .neo-browser-auth-tabs button.is-active {
+  border-color: transparent;
+  color: var(--neo-accent-contrast, #000);
+  background: var(--neo-accent-visible, #fff);
+  box-shadow: none;
+}
+
+.neo-login-auth-host .neo-browser-sign-in-card label { color: rgba(255, 255, 255, 0.76); }
+.neo-login-auth-host .neo-browser-sign-in-card input {
+  border: 0;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px transparent;
+}
+
+.neo-login-auth-host .neo-browser-sign-in-card input::placeholder { color: rgba(255, 255, 255, 0.44); }
+.neo-login-auth-host .neo-browser-sign-in-card input:focus {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--neo-accent-visible, #fff);
+}
+
+.neo-login-auth-host .neo-browser-sign-in-card button[type="submit"] {
+  border: 0;
+  color: var(--neo-accent-contrast, #000);
+  background: var(--neo-accent-visible, #fff);
+}
+
+.neo-login-auth-host .neo-browser-sign-in-feedback {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.neo-login-guest {
+  min-height: 40px;
+  margin-top: -4px;
+  padding: 0 14px;
+  border: 0;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neo-login-guest:hover { color: #fff; transform: translateY(-1px); }
+.neo-login-guest:active { transform: scale(0.98); }
+.neo-login-guest:focus-visible { outline: 2px solid var(--neo-accent-visible, #fff); outline-offset: 2px; }
+
+.neo-login-app-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  align-content: center;
+  gap: 44px;
+  width: 180px;
+  padding-left: 36px;
+  opacity: 0.23;
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.neo-login-app-rail span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: var(--neo-accent-visible, #fff);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.neo-login-app-rail .icon { width: 23px; height: 23px; }
+.neo-login-load-error { margin-top: 20px; color: #fff; text-align: center; }
+.neo-login-load-error p { color: rgba(255, 255, 255, 0.62); }
+
+@media (max-width: 700px) {
+  .neo-login-gate {
+    grid-template-rows: auto auto;
+    align-content: start;
+    padding-top: max(34px, env(safe-area-inset-top));
+  }
+  .neo-login-time time { font-size: clamp(48px, 15vw, 74px); }
+  .neo-login-panel { align-self: start; padding-top: 50px; }
+  .neo-login-app-rail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-login-gate,
+  .neo-login-guest { transition: none; }
+}
+
+/* Fast local utilities share the OLED shell and the configured interface accent. */
+.neo-utility {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  color: #f5f5f7;
+  background: #000;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.neo-utility > header {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  background: #090909;
+}
+
+.neo-utility h2 { margin: 2px 0 0; font-size: 18px; letter-spacing: 0; }
+.neo-utility .eyebrow { color: rgba(255, 255, 255, 0.48); }
+.utility-actions,
+.paint-tools { display: flex; min-width: 0; align-items: center; gap: 8px; }
+
+.utility-actions button,
+.paint-tools button,
+.utility-import,
+.stopwatch button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.82);
+  background: #1a1a1a;
+  font: 650 12px/1 inherit;
+  transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.utility-actions button:hover,
+.paint-tools button:hover,
+.utility-import:hover,
+.stopwatch button:hover { color: #fff; background: #242424; transform: translateY(-1px); }
+.utility-actions button:active,
+.paint-tools button:active,
+.utility-import:active,
+.stopwatch button:active { transform: scale(0.98); }
+.utility-actions button:focus-visible,
+.paint-tools button:focus-visible,
+.utility-import:focus-within,
+.stopwatch button:focus-visible { outline: 2px solid var(--neo-accent-visible, #fff); outline-offset: 2px; }
+.utility-actions .icon,
+.paint-tools .icon,
+.utility-import .icon { width: 15px; height: 15px; }
+.utility-actions > span { min-width: 54px; color: rgba(255, 255, 255, 0.48); font-size: 11px; text-align: right; }
+
+.neo-notes {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.neo-notes-title {
+  width: 100%;
+  height: 54px;
+  padding: 0 24px;
+  border: 0;
+  color: #fff;
+  background: #050505;
+  font: 700 20px/1 inherit;
+}
+
+.neo-notes textarea {
+  width: 100%;
+  min-height: 0;
+  padding: 24px;
+  resize: none;
+  border: 0;
+  outline: 0;
+  color: rgba(255, 255, 255, 0.88);
+  background: #000;
+  font: 400 15px/1.65 inherit;
+}
+
+.neo-notes-title:focus,
+.neo-notes textarea:focus { box-shadow: inset 3px 0 0 var(--neo-accent-visible, #fff); outline: 0; }
+
+.neo-window[data-app-id="calculator"] > .window-body {
+  overflow: hidden;
+}
+
+.neo-calculator {
+  display: grid;
+  grid-template-rows: minmax(92px, 1fr) minmax(0, 360px);
+  height: 100%;
+  min-height: 0;
+  padding: clamp(10px, 3vh, 18px);
+  gap: clamp(8px, 2vh, 14px);
+  overflow: hidden;
+}
+
+.calculator-display {
+  display: grid;
+  align-content: end;
+  justify-items: end;
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(8px, 2.5vh, 18px) 8px;
+}
+
+.calculator-display small { min-height: 20px; color: rgba(255, 255, 255, 0.45); font-size: 16px; }
+.calculator-display output {
+  width: 100%;
+  overflow: hidden;
+  font-size: clamp(42px, 11vw, 64px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.calculator-grid {
+  display: grid;
+  min-height: 0;
+  grid-template: repeat(5, minmax(0, 1fr)) / repeat(4, minmax(0, 1fr));
+  gap: clamp(5px, 1.25vh, 8px);
+}
+.calculator-grid button {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  background: #171717;
+  font: 600 21px/1 inherit;
+  transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.calculator-grid button:hover { background: #242424; transform: translateY(-1px); }
+.calculator-grid button:active { transform: scale(0.96); }
+.calculator-grid button:focus-visible { outline: 2px solid var(--neo-accent-visible, #fff); outline-offset: 1px; }
+.calculator-grid .is-zero { grid-column: span 2; }
+.calculator-grid .is-operator,
+.calculator-grid .is-equals {
+  color: var(--neo-accent-contrast, #000);
+  background: var(--neo-accent-visible, #fff);
+}
+.calculator-grid .is-operator.is-active { filter: brightness(0.72); }
+
+.neo-paint { display: grid; grid-template-rows: auto 1fr; }
+.paint-tools label { display: inline-flex; align-items: center; gap: 7px; color: rgba(255, 255, 255, 0.62); font-size: 11px; }
+.paint-tools input[type="color"] { width: 32px; height: 32px; padding: 0; border: 0; background: transparent; }
+.paint-tools input[type="range"] { width: 92px; accent-color: var(--neo-accent-visible, #fff); }
+.paint-tools button[aria-pressed="true"],
+.paint-tools .is-primary { color: var(--neo-accent-contrast, #000); background: var(--neo-accent-visible, #fff); }
+.paint-canvas-wrap { min-width: 0; min-height: 0; padding: 12px; background: #000; }
+.paint-canvas-wrap canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: crosshair; background: #111214; }
+
+.neo-clock {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  gap: 46px;
+  padding: 42px;
+  text-align: center;
+}
+.clock-live,
+.stopwatch { display: grid; justify-items: center; gap: 8px; }
+.clock-live time { font-size: clamp(46px, 10vw, 74px); font-weight: 300; line-height: 1; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.clock-live p { margin: 0; color: rgba(255, 255, 255, 0.55); }
+.stopwatch output { font-size: clamp(34px, 8vw, 54px); font-weight: 350; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.stopwatch > div { display: flex; gap: 8px; }
+.stopwatch button.is-primary { min-width: 88px; color: var(--neo-accent-contrast, #000); background: var(--neo-accent-visible, #fff); }
+
+.neo-photos { display: grid; grid-template-rows: auto 1fr; }
+.utility-import { cursor: pointer; }
+.photos-empty { display: grid; align-content: center; justify-items: center; gap: 9px; padding: 28px; color: rgba(255, 255, 255, 0.48); text-align: center; }
+.photos-empty .icon { width: 40px; height: 40px; }
+.photos-empty strong { color: #fff; font-size: 17px; }
+.photos-empty p { margin: 0; }
+.photos-layout { display: grid; min-width: 0; min-height: 0; grid-template-columns: 116px 1fr; }
+.photos-layout[hidden] { display: none; }
+.photos-grid { min-height: 0; overflow: auto; padding: 10px; background: #080808; }
+.photos-grid button { display: block; width: 100%; aspect-ratio: 1; margin: 0 0 8px; padding: 0; overflow: hidden; border: 0; background: #171717; opacity: 0.62; }
+.photos-grid button.is-active { opacity: 1; box-shadow: inset 0 0 0 3px var(--neo-accent-visible, #fff); }
+.photos-grid button:focus-visible { outline: 2px solid var(--neo-accent-visible, #fff); outline-offset: 2px; }
+.photos-grid img { width: 100%; height: 100%; object-fit: cover; }
+.photos-viewer { display: grid; min-width: 0; min-height: 0; grid-template-rows: 1fr auto; margin: 0; background: #000; }
+.photos-viewer > img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.photos-viewer figcaption { display: flex; min-width: 0; min-height: 54px; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 14px; background: #090909; }
+.photos-viewer figcaption strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.photos-viewer figcaption button { display: inline-flex; min-height: 34px; align-items: center; gap: 6px; border: 0; color: rgba(255, 255, 255, 0.72); background: transparent; }
+.photos-viewer figcaption .icon { width: 15px; height: 15px; }
+
+@media (max-width: 720px) {
+  .neo-utility > header { align-items: flex-start; flex-direction: column; }
+  .utility-actions,
+  .paint-tools { width: 100%; overflow-x: auto; padding-bottom: 3px; }
+  .utility-actions > span { text-align: left; }
+  .utility-actions button span,
+  .paint-tools button span { display: none; }
+  .photos-layout { grid-template-columns: 82px 1fr; }
+}

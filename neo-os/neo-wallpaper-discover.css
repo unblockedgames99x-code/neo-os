@@ -1,0 +1,709 @@
+.wallpaper-studio[data-wallpaper-source="discover"] .studio-toolbar,
+.wallpaper-studio[data-wallpaper-source="workshop"] .studio-toolbar {
+  margin-bottom: 2px;
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .studio-shell,
+.wallpaper-studio[data-wallpaper-source="workshop"] .studio-shell {
+  grid-template-columns: minmax(0, 1fr) 292px;
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .studio-sidebar,
+.wallpaper-studio[data-wallpaper-source="workshop"] .studio-sidebar {
+  display: none;
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .studio-type-sort,
+.wallpaper-studio[data-wallpaper-source="workshop"] .studio-type-sort {
+  display: none;
+}
+
+.we-filter-toggle {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 9px;
+  color: #bdc4cc;
+  background: #202326;
+  border: 0;
+  border-radius: 3px;
+  font: inherit;
+  font-size: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms cubic-bezier(.2,.8,.2,1), transform 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.we-filter-toggle[hidden] {
+  display: none !important;
+}
+
+.we-filter-toggle .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.we-filter-toggle:hover,
+.we-filter-toggle:focus-visible,
+.we-filter-toggle.is-active {
+  color: #fff;
+  background: #2b2f33;
+}
+
+.we-filter-toggle:active {
+  transform: scale(.97);
+}
+
+.wallpaper-studio .studio-search {
+  position: relative;
+  min-width: 220px;
+  padding-right: 4px;
+}
+
+.wallpaper-studio .studio-search input {
+  padding-right: 2px;
+}
+
+.we-discover-topics {
+  min-width: 0;
+  display: flex;
+  gap: 5px;
+  margin: 0 0 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.we-discover-topics::-webkit-scrollbar {
+  display: none;
+}
+
+.wallpaper-studio:not([data-wallpaper-source="discover"]) .we-discover-topics {
+  display: none;
+}
+
+.we-discover-topics button {
+  min-height: 26px;
+  flex: 0 0 auto;
+  padding: 0 10px;
+  color: #b8bec6;
+  background: #202326;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 8px;
+  font-weight: 680;
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms cubic-bezier(.2,.8,.2,1), transform 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.we-discover-topics button:hover,
+.we-discover-topics button:focus-visible {
+  color: #fff;
+  background: #2a2e32;
+}
+
+.we-discover-topics button:active {
+  transform: scale(.97);
+}
+
+.we-discover-topics button.is-active {
+  color: var(--neo-accent-contrast);
+  background: var(--neo-accent-visible);
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .we-source-intro,
+.wallpaper-studio[data-wallpaper-source="workshop"] .we-source-intro {
+  min-height: 40px;
+  margin-bottom: 8px;
+  padding: 7px 9px;
+  background: #1d2023;
+  border: 0;
+  border-radius: 4px;
+}
+
+.we-catalog-layout,
+.we-catalog-results {
+  min-width: 0;
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .we-catalog-layout,
+.wallpaper-studio[data-wallpaper-source="workshop"] .we-catalog-layout {
+  display: grid;
+  grid-template-columns: 172px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+}
+
+.we-filter-panel {
+  position: sticky;
+  top: 0;
+  min-width: 0;
+  max-height: calc(100vh - 154px);
+  overflow: auto;
+  padding: 8px;
+  color: #d8dce1;
+  background: #202326;
+  border: 0;
+  border-radius: 3px;
+  scrollbar-color: rgba(255,255,255,.2) transparent;
+  scrollbar-width: thin;
+}
+
+.we-filter-panel[hidden] {
+  display: none !important;
+}
+
+.we-filter-panel > header {
+  min-height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: -1px 0 5px;
+}
+
+.we-filter-panel > header strong {
+  color: #fff;
+  font-size: 9px;
+}
+
+.we-filter-panel > header button {
+  min-height: 23px;
+  padding: 0 7px;
+  color: #aeb6bf;
+  background: #2b2f33;
+  border: 0;
+  border-radius: 3px;
+  font: inherit;
+  font-size: 7px;
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms cubic-bezier(.2,.8,.2,1), transform 180ms cubic-bezier(.2,.8,.2,1);
+}
+
+.we-filter-panel > header button:hover,
+.we-filter-panel > header button:focus-visible {
+  color: #fff;
+  background: #373c41;
+}
+
+.we-filter-panel > header button:active {
+  transform: scale(.96);
+}
+
+.we-filter-panel fieldset,
+.we-filter-panel details {
+  min-width: 0;
+  margin: 0;
+  padding: 8px 0;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.we-filter-panel fieldset {
+  display: grid;
+  gap: 6px;
+}
+
+.we-filter-panel legend,
+.we-filter-panel summary {
+  color: #f0f2f4;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.we-filter-panel legend {
+  margin-bottom: 6px;
+}
+
+.we-filter-panel summary {
+  min-height: 21px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.we-filter-options {
+  display: grid;
+  gap: 5px;
+  padding-top: 4px;
+}
+
+.we-filter-options label[hidden],
+[data-we-filter-ready-row][hidden] {
+  display: none !important;
+}
+
+.we-filter-panel label {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 5px;
+  color: #b8bec6;
+  font-size: 8px;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.we-filter-panel label:hover {
+  color: #fff;
+}
+
+.we-filter-panel input[type="checkbox"],
+.we-filter-panel input[type="radio"] {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  accent-color: var(--neo-accent-visible);
+}
+
+.we-filter-panel label small {
+  color: #777f88;
+  font-size: 7px;
+}
+
+.we-filter-placeholder,
+.we-filter-panel > output {
+  display: block;
+  color: #838b94;
+  font-size: 7px;
+}
+
+.we-filter-panel > output {
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .we-online-icon,
+.wallpaper-studio[data-wallpaper-source="workshop"] .we-online-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--neo-accent-contrast);
+  background: var(--neo-accent-visible);
+  font-size: 10px;
+}
+
+.wallpaper-studio[data-wallpaper-source="discover"] .studio-grid,
+.wallpaper-studio[data-wallpaper-source="workshop"] .studio-grid {
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 7px;
+}
+
+.wallpaper-studio .studio-grid.is-shelved {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  overflow: visible;
+}
+
+.we-discover-shelf {
+  min-width: 0;
+}
+
+.we-discover-shelf[hidden] {
+  display: none;
+}
+
+.we-discover-shelf > header {
+  min-height: 25px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 1px 6px;
+}
+
+.we-discover-shelf h3 {
+  margin: 0;
+  color: #f5f6f7;
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.we-discover-shelf > header span {
+  color: #7f8790;
+  font-size: 7px;
+}
+
+.we-shelf-track {
+  min-width: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(148px, 22%, 206px);
+  align-items: stretch;
+  gap: 7px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 5px;
+  scroll-snap-type: x proximity;
+  scrollbar-color: rgba(255,255,255,.2) transparent;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+
+.we-shelf-track .wallpaper-card {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.wallpaper-online-card {
+  contain: layout paint style;
+  overflow: hidden;
+  background: #202326 !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+}
+
+.wallpaper-online-card:hover {
+  background: #25292d !important;
+  box-shadow: none !important;
+}
+
+.wallpaper-online-card.is-selected {
+  background: var(--neo-accent-soft) !important;
+  box-shadow: inset 0 0 0 2px var(--neo-accent-visible) !important;
+}
+
+.wallpaper-online-card .wallpaper-card-preview {
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #111315;
+}
+
+.wallpaper-online-card .wallpaper-card-motion-preview {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.wallpaper-online-card .wallpaper-card-motion-preview.is-animated {
+  opacity: 1;
+}
+
+.wallpaper-online-card .wallpaper-card-preview::after {
+  z-index: 2;
+}
+
+.wallpaper-online-card .wallpaper-card-preview.is-loading::before,
+.wallpaper-card-skeleton .wallpaper-card-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 25%, rgba(255,255,255,.07) 42%, transparent 60%);
+  transform: translateX(-100%);
+  animation: wallpaper-discover-shimmer 1.2s ease-in-out infinite;
+}
+
+.wallpaper-online-card .wallpaper-card-preview.is-missing::before {
+  content: "Image unavailable";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #858d96;
+  font-size: 8px;
+}
+
+.wallpaper-online-card .wallpaper-card-copy {
+  min-height: 55px;
+  padding: 8px 8px 28px !important;
+}
+
+.wallpaper-online-card .wallpaper-card-copy strong {
+  color: #f2f4f6;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.wallpaper-online-card .wallpaper-card-copy small {
+  color: #939ba5;
+  font-size: 7px;
+}
+
+.wallpaper-studio .wallpaper-online-install,
+.wallpaper-studio .wallpaper-online-link {
+  bottom: 6px;
+  height: 19px;
+  border: 0;
+  border-radius: 3px;
+}
+
+.wallpaper-studio .wallpaper-online-install {
+  left: 7px;
+  min-width: 42px;
+  color: var(--neo-accent-contrast);
+  background: var(--neo-accent-visible);
+}
+
+.wallpaper-studio .wallpaper-online-install:hover:not(:disabled) {
+  background: var(--neo-accent-hover);
+}
+
+.wallpaper-studio .wallpaper-online-install[data-wallpaper-install-state="downloading"] {
+  min-width: 48px;
+  cursor: progress;
+}
+
+.wallpaper-studio .wallpaper-online-install[data-wallpaper-install-state="installed"] {
+  color: var(--neo-accent-contrast);
+  background: var(--neo-accent-visible);
+}
+
+.wallpaper-studio .wallpaper-online-install[data-wallpaper-install-state="active"] {
+  color: #a9d8b9;
+  background: #173924;
+}
+
+.wallpaper-studio .wallpaper-online-install[data-wallpaper-install-state="unavailable"] {
+  color: #aab1b9;
+  background: #303439;
+}
+
+.wallpaper-studio .wallpaper-online-link {
+  right: 7px;
+  min-width: 40px;
+  color: #b9c0c8;
+  background: transparent;
+}
+
+.wallpaper-studio .wallpaper-online-link:hover,
+.wallpaper-studio .wallpaper-online-link:focus-visible {
+  color: #fff;
+  background: #30353a;
+}
+
+.wallpaper-card-skeleton {
+  overflow: hidden;
+  background: #202326 !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+  pointer-events: none;
+}
+
+.wallpaper-card-skeleton .wallpaper-card-preview {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: #17191b;
+}
+
+.wallpaper-card-skeleton .wallpaper-card-copy {
+  min-height: 52px;
+  display: grid;
+  gap: 6px;
+  padding: 9px;
+}
+
+.wallpaper-card-skeleton i {
+  width: 75%;
+  height: 7px;
+  display: block;
+  background: #2d3135;
+  border-radius: 2px;
+}
+
+.wallpaper-card-skeleton i + i {
+  width: 48%;
+  height: 5px;
+}
+
+.wallpaper-studio[data-online-state="pending"] [data-wallpaper-online="true"] {
+  opacity: .72;
+}
+
+.wallpaper-studio .we-online-pager {
+  border: 0;
+  border-radius: 4px;
+}
+
+/* This sheet is loaded on demand, after the shared theme sheet. Keep every
+   discover/workshop surface on the active NEO palette instead of restoring
+   the legacy neutral-gray skin. */
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] :is(.we-filter-toggle,.we-discover-topics button) {
+  color: var(--desktop-muted);
+  background: var(--neo-theme-control);
+  border-color: var(--desktop-line);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] :is(.we-filter-toggle,.we-discover-topics button):is(:hover,:focus-visible,.is-active) {
+  color: var(--desktop-text);
+  background: var(--neo-theme-control-hover);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source="discover"] .we-discover-topics button.is-active {
+  color: var(--desktop-accent-text);
+  background: var(--desktop-accent);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-source-intro {
+  color: var(--desktop-muted);
+  background: var(--desktop-surface);
+  border: 1px solid var(--desktop-line);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel {
+  color: var(--desktop-text);
+  background: var(--desktop-surface);
+  border: 1px solid var(--desktop-line);
+  scrollbar-color: color-mix(in srgb, var(--desktop-text) 22%, transparent) transparent;
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel > header button {
+  color: var(--desktop-muted);
+  background: var(--neo-theme-control);
+  border: 1px solid var(--desktop-line);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel > header button:is(:hover,:focus-visible) {
+  color: var(--desktop-text);
+  background: var(--neo-theme-control-hover);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel :is(fieldset,details),
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel > output {
+  border-color: var(--desktop-line);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel :is(legend,summary,header strong) {
+  color: var(--desktop-text);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel label {
+  color: var(--desktop-muted);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-filter-panel label:hover {
+  color: var(--desktop-text);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] :is(.we-filter-panel label small,.we-filter-placeholder,.we-filter-panel > output,.we-discover-shelf > header span) {
+  color: var(--desktop-muted);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .we-discover-shelf h3 {
+  color: var(--desktop-text);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-card,
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-card-skeleton {
+  color: var(--desktop-text);
+  background: var(--neo-theme-control) !important;
+  border: 1px solid var(--desktop-line) !important;
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-card:hover {
+  background: var(--neo-theme-control-hover) !important;
+  border-color: var(--desktop-accent) !important;
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-card.is-selected {
+  color: var(--desktop-text);
+  background: var(--neo-theme-selected) !important;
+  border-color: var(--desktop-accent) !important;
+  box-shadow: inset 0 0 0 1px var(--desktop-accent) !important;
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] :is(.wallpaper-online-card,.wallpaper-card-skeleton) .wallpaper-card-preview {
+  background-color: var(--desktop-bg);
+  border-color: var(--desktop-line);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-card .wallpaper-card-copy strong {
+  color: var(--desktop-text);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] :is(.wallpaper-online-card .wallpaper-card-copy small,.wallpaper-online-card .wallpaper-card-preview.is-missing::before) {
+  color: var(--desktop-muted);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-card-skeleton i {
+  background: var(--neo-theme-control-hover);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-card .wallpaper-card-preview.is-loading::before,
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-card-skeleton .wallpaper-card-preview::before {
+  background: linear-gradient(100deg, transparent 25%, color-mix(in srgb, var(--desktop-text) 10%, transparent) 42%, transparent 60%);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-link {
+  color: var(--desktop-muted);
+  background: transparent;
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-link:is(:hover,:focus-visible) {
+  color: var(--desktop-text);
+  background: var(--neo-theme-control-hover);
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-install[data-wallpaper-install-state="active"] {
+  color: var(--wallpaper-success);
+  background: color-mix(in srgb, var(--wallpaper-success) 14%, var(--desktop-surface));
+}
+
+html[data-neo-theme] .wallpaper-studio[data-wallpaper-source] .wallpaper-online-install[data-wallpaper-install-state="unavailable"] {
+  color: var(--desktop-muted);
+  background: var(--neo-theme-control);
+}
+
+@keyframes wallpaper-discover-shimmer {
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 720px) {
+  .wallpaper-studio[data-wallpaper-source="discover"] .studio-shell,
+  .wallpaper-studio[data-wallpaper-source="workshop"] .studio-shell {
+    display: block;
+  }
+
+  .wallpaper-studio[data-wallpaper-source="discover"] .we-catalog-layout,
+  .wallpaper-studio[data-wallpaper-source="workshop"] .we-catalog-layout {
+    display: block;
+  }
+
+  .we-filter-panel {
+    position: static;
+    max-height: 285px;
+    margin-bottom: 8px;
+  }
+
+  .wallpaper-studio .studio-search {
+    min-width: 0;
+  }
+
+  .wallpaper-studio[data-wallpaper-source="discover"] .studio-grid,
+  .wallpaper-studio[data-wallpaper-source="workshop"] .studio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .we-shelf-track {
+    grid-auto-columns: minmax(146px, 66vw);
+  }
+}
+
+@media (max-width: 460px) {
+  .wallpaper-studio[data-wallpaper-source="discover"] .studio-grid,
+  .wallpaper-studio[data-wallpaper-source="workshop"] .studio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper-online-card .wallpaper-card-motion-preview {
+    display: none;
+  }
+
+  .wallpaper-online-card .wallpaper-card-preview.is-loading::before,
+  .wallpaper-card-skeleton .wallpaper-card-preview::before {
+    animation: none;
+  }
+}

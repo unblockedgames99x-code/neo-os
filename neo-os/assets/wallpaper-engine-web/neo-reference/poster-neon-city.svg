@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Neon City Flow preview">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#050817"/><stop offset=".52" stop-color="#273b79"/><stop offset="1" stop-color="#130b29"/></linearGradient>
+    <radialGradient id="g"><stop stop-color="#25f1e5" stop-opacity=".75"/><stop offset="1" stop-color="#25f1e5" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bg)"/><ellipse cx="120" cy="224" rx="225" ry="150" fill="url(#g)"/>
+  <path d="M-20 186C97 105 199 253 500 122M-10 220C150 132 285 269 495 173" fill="none" stroke="#cf63ff" stroke-opacity=".28" stroke-width="22"/>
+  <g fill="#b8ffff"><circle cx="92" cy="63" r="2"/><circle cx="271" cy="85" r="3"/><circle cx="392" cy="203" r="2"/></g>
+</svg>

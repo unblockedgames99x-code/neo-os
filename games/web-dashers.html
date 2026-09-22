@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#071f57">
+    <title>Geometry Dash (MORE LEVELS)</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #071f57; color: #fff; font: 600 14px/1.4 Arial, sans-serif; }
+      body { display: grid; place-items: center; }
+      .loader { display: grid; justify-items: center; gap: 18px; text-align: center; }
+      .loader[hidden] { display: none; }
+      .meter { width: min(430px, 70vw); height: 14px; overflow: hidden; background: #061640; border: 3px solid #f7cf24; border-radius: 999px; box-shadow: 0 0 0 2px #111; }
+      .meter::after { display: block; width: 42%; height: 100%; content: ""; background: #6de3ff; animation: loading 1s ease-in-out infinite alternate; }
+      h1 { margin: 0; font-size: clamp(28px, 5vw, 56px); }
+      p { margin: 0; color: rgba(255,255,255,.78); }
+      button { min-height: 40px; padding: 0 18px; color: #07112d; background: #fff; border: 0; border-radius: 6px; font: inherit; cursor: pointer; }
+      @keyframes loading { from { transform: translateX(-15%); } to { transform: translateX(145%); } }
+      @media (prefers-reduced-motion: reduce) { .meter::after { animation: none; width: 70%; } }
+    </style>
+  </head>
+  <body>
+    <main class="loader" id="loader" aria-live="polite">
+      <h1>Web Dashers</h1>
+      <div class="meter" aria-hidden="true"></div>
+      <p id="status">Loading Geometry Dash...</p>
+      <button id="retry" type="button" hidden>Retry</button>
+    </main>
+    <script>
+      (function () {
+        "use strict";
+
+        var revision = "9f086b9cd3297b9ab9625cf49ccb602a547ecae6";
+        var repository = "web-dashers/web-dashers.github.io";
+        var roots = [
+          "https://cdn.jsdelivr.net/gh/" + repository + "@" + revision + "/",
+          "https://fastly.jsdelivr.net/gh/" + repository + "@" + revision + "/",
+          "https://gcore.jsdelivr.net/gh/" + repository + "@" + revision + "/"
+        ];
+        var status = document.getElementById("status");
+        var retry = document.getElementById("retry");
+        var runnerNetworkUrl = document.querySelector('meta[name="neo-runner"]')
+          ? new URL("../neo-os/neo-runner-network.js?v=20260831-chromebook-network-v1", document.baseURI).href
+          : "";
+
+        function fetchEntry(root) {
+          var controller = new AbortController();
+          var timer = window.setTimeout(function () { controller.abort(); }, 7000);
+          return fetch(root + "index.html", {
+            cache: "force-cache",
+            credentials: "omit",
+            signal: controller.signal
+          }).then(function (response) {
+            if (!response.ok) throw new Error("HTTP " + response.status);
+            return response.text();
+          }).then(function (html) {
+            if (html.length < 500 || !/<(?:html|script|canvas)\b/i.test(html)) {
+              throw new Error("Invalid game response");
+            }
+            return { html: html, root: root };
+          }).finally(function () {
+            window.clearTimeout(timer);
+          });
+        }
+
+        function install(result) {
+          var base = '<base href="' + result.root.replace(/&/g, "&amp;").replace(/"/g, "&quot;") + '">';
+          var network = runnerNetworkUrl
+            ? '<script src="' + runnerNetworkUrl.replace(/&/g, "&amp;").replace(/"/g, "&quot;") + '"><\/script>'
+            : "";
+          var html = /<head\b[^>]*>/i.test(result.html)
+            ? result.html.replace(/<head\b[^>]*>/i, function (head) { return head + base + network; })
+            : base + network + result.html;
+          document.open();
+          document.write(html);
+          document.close();
+        }
+
+        function load(index) {
+          index = index || 0;
+          retry.hidden = true;
+          status.textContent = "Loading Geometry Dash...";
+          if (index >= roots.length) {
+            status.textContent = "Geometry Dash could not load. Check your connection and try again.";
+            retry.hidden = false;
+            return;
+          }
+          fetchEntry(roots[index]).then(install).catch(function () { load(index + 1); });
+        }
+
+        retry.addEventListener("click", function () { load(0); });
+        load(0);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+<title>ULTRAKILL - Google Sites Hard Save</title>
+<base href="https://cdn.jsdelivr.net/gh/genizy/web-port@master/ultrakill/">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+
+  #unity-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block;
+    background: #000;
+    outline: none;
+  }
+
+  #hud {
+    position: fixed;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2147483647;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: auto;
+  }
+
+  .hud-btn {
+    width: 112px;
+    min-height: 42px;
+    border: none;
+    border-radius: 9px;
+    padding: 9px 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 8px 26px rgba(0,0,0,.7);
+    user-select: none;
+  }
+
+  .hud-btn:active { transform: scale(.96); }
+  .hud-btn:disabled { opacity: .55; cursor: wait; filter: grayscale(.4); }
+
+  #save-btn { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+  #load-btn { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+  #restart-btn { background: linear-gradient(135deg, #5f6368, #202124); }
+
+  #toast {
+    position: fixed;
+    left: 10px;
+    top: calc(50% + 144px);
+    z-index: 2147483647;
+    max-width: min(420px, calc(100vw - 20px));
+    display: none;
+    white-space: pre-line;
+    background: rgba(10,10,10,.96);
+    color: #fff;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 8px 26px rgba(0,0,0,.7);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.35;
+    pointer-events: none;
+  }
+
+  #loading-box {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  #loading-inner {
+    width: min(480px, calc(100vw - 28px));
+    padding: 22px;
+    border-radius: 16px;
+    background: #111;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 16px 44px rgba(0,0,0,.7);
+  }
+
+  #loading-title {
+    display: block;
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  #loading-text {
+    font-size: 15px;
+    color: #ddd;
+    font-weight: 800;
+  }
+
+  #loading-bar {
+    margin-top: 14px;
+    width: 100%;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.16);
+    overflow: hidden;
+  }
+
+  #loading-fill {
+    width: 4%;
+    height: 100%;
+    border-radius: 999px;
+    background: #fff;
+    transition: width .35s ease;
+  }
+
+  #file-input { display: none; }
+
+  @media (max-width: 650px) {
+    #hud {
+      left: 6px;
+      top: auto;
+      bottom: 8px;
+      transform: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .hud-btn {
+      width: auto;
+      min-width: 96px;
+      min-height: 38px;
+      font-size: 11px;
+      padding: 8px 9px;
+    }
+    #toast {
+      left: 8px;
+      top: auto;
+      bottom: 58px;
+      font-size: 13px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<canvas id="unity-canvas" tabindex="-1"></canvas>
+
+<div id="loading-box">
+  <div id="loading-inner">
+    <strong id="loading-title">Loading ULTRAKILL</strong>
+    <div id="loading-text">Preparing files...</div>
+    <div id="loading-bar"><div id="loading-fill"></div></div>
+  </div>
+</div>
+
+<div id="hud">
+  <button id="save-btn" class="hud-btn" type="button">💾 Save Game</button>
+  <button id="load-btn" class="hud-btn" type="button">📂 Load Save</button>
+  <button id="restart-btn" class="hud-btn" type="button">↻ Restart</button>
+</div>
+
+<div id="toast"></div>
+<input id="file-input" type="file" accept=".ultrasave,.json,application/json">
+
+<script src="Build/ultrakill.loader.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  var SAVE_KIND = "ULTRAKILL_UNITY_WEBGL_HARD_SAVE_V1";
+  var GAME_NAME = "ULTRAKILL";
+  var busy = false;
+  var unityInstance = null;
+  var assetDataUrl = null;
+  var assetWasmUrl = null;
+  var bootNumber = 0;
+
+  function byId(id) { return document.getElementById(id); }
+
+  function sleep(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
+
+  function toast(message, duration) {
+    if (duration === undefined) duration = 5000;
+    var t = byId("toast");
+    if (!t) return;
+    t.textContent = message;
+    t.style.display = "block";
+    clearTimeout(t._timer);
+    if (duration > 0) {
+      t._timer = setTimeout(function () { t.style.display = "none"; }, duration);
+    }
+  }
+
+  function setBusy(value) {
+    busy = !!value;
+    var ids = ["save-btn", "load-btn", "restart-btn"];
+    ids.forEach(function (id) {
+      var el = byId(id);
+      if (el) el.disabled = busy;
+    });
+  }
+
+  function setLoading(message, percent, show) {
+    var box = byId("loading-box");
+    var text = byId("loading-text");
+    var fill = byId("loading-fill");
+    if (box) box.style.display = show === false ? "none" : "flex";
+    if (text) text.textContent = message || "";
+    if (fill) fill.style.width = Math.max(4, Math.min(100, percent || 4)) + "%";
+  }
+
+  function resizeCanvas() {
+    var canvas = byId("unity-canvas");
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    canvas.style.position = "fixed";
+    canvas.style.inset = "0";
+  }
+
+  function focusCanvasSoon() {
+    setTimeout(function () {
+      var canvas = byId("unity-canvas");
+      if (canvas && canvas.focus) canvas.focus();
+    }, 100);
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  window.addEventListener("orientationchange", resizeCanvas);
+
+  function mergeFiles(fileParts, label, startPercent, endPercent) {
+    return new Promise(function (resolve, reject) {
+      var buffers = [];
+      var total = fileParts.length;
+
+      function fetchPart(index) {
+        if (index >= total) {
+          var mergedBlob = new Blob(buffers);
+          var mergedFileUrl = URL.createObjectURL(mergedBlob);
+          resolve(mergedFileUrl);
+          return;
+        }
+
+        setLoading("Downloading " + label + " part " + (index + 1) + " / " + total + "...",
+          startPercent + Math.round(((index + 1) / total) * (endPercent - startPercent)), true);
+
+        fetch(fileParts[index]).then(function (response) {
+          if (!response.ok) throw new Error("Could not load " + fileParts[index]);
+          return response.arrayBuffer();
+        }).then(function (data) {
+          buffers.push(data);
+          fetchPart(index + 1);
+        }).catch(reject);
+      }
+
+      fetchPart(0);
+    });
+  }
+
+  function getParts(file, start, end) {
+    var parts = [];
+    for (var i = start; i <= end; i++) parts.push(file + ".part" + i);
+    return parts;
+  }
+
+  function ensureCanvas() {
+    var old = byId("unity-canvas");
+    if (old) {
+      old.remove();
+    }
+    var canvas = document.createElement("canvas");
+    canvas.id = "unity-canvas";
+    canvas.tabIndex = -1;
+    document.body.insertBefore(canvas, document.body.firstChild);
+    resizeCanvas();
+    return canvas;
+  }
+
+  async function prepareAssets() {
+    if (assetDataUrl && assetWasmUrl) return;
+
+    setLoading("Merging game files...", 5, true);
+
+    var results = await Promise.all([
+      mergeFiles(getParts("Build/ultrakill.data.unityweb", 1, 4), "data", 8, 55),
+      mergeFiles(getParts("Build/ultrakill.wasm.unityweb", 1, 2), "engine", 56, 82)
+    ]);
+
+    assetDataUrl = results[0];
+    assetWasmUrl = results[1];
+  }
+
+  async function bootGame() {
+    bootNumber++;
+    var currentBoot = bootNumber;
+
+    resizeCanvas();
+    await prepareAssets();
+
+    if (currentBoot !== bootNumber) return;
+
+    var canvas = byId("unity-canvas") || ensureCanvas();
+
+    setLoading("Starting Unity...", 86, true);
+
+    unityInstance = await createUnityInstance(canvas, {
+      dataUrl: assetDataUrl,
+      frameworkUrl: "Build/ultrakill.framework.js.unityweb",
+      codeUrl: assetWasmUrl,
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Hakita and Cake Logic",
+      productName: "ULTRAKILL",
+      productVersion: "1.4"
+    }, function (progress) {
+      setLoading("Starting game engine... " + Math.round(progress * 100) + "%", 86 + Math.round(progress * 14), true);
+    });
+
+    setLoading("Game ready.", 100, true);
+    setTimeout(function () { setLoading("", 100, false); }, 500);
+    focusCanvasSoon();
+  }
+
+  async function flushUnitySave() {
+    await sleep(900);
+
+    var modules = [];
+    try { if (unityInstance && unityInstance.Module) modules.push(unityInstance.Module); } catch (_) {}
+    try { if (window.Module) modules.push(window.Module); } catch (_) {}
+
+    for (var i = 0; i < modules.length; i++) {
+      var mod = modules[i];
+      try {
+        if (mod && mod.FS && typeof mod.FS.syncfs === "function") {
+          await new Promise(function (resolve) {
+            try {
+              mod.FS.syncfs(false, function () { resolve(); });
+            } catch (_) {
+              resolve();
+            }
+          });
+        }
+      } catch (_) {}
+    }
+
+    await sleep(300);
+  }
+
+  async function stopGame() {
+    bootNumber++;
+
+    try { await flushUnitySave(); } catch (_) {}
+
+    if (unityInstance) {
+      try {
+        if (typeof unityInstance.Quit === "function") {
+          await unityInstance.Quit();
+        }
+      } catch (err) {
+        console.warn("Unity Quit failed:", err);
+      }
+    }
+
+    unityInstance = null;
+    await sleep(700);
+    ensureCanvas();
+  }
+
+  async function restartGameOnly() {
+    setBusy(true);
+    try {
+      toast("Restarting game...", 0);
+      setLoading("Restarting game...", 8, true);
+      await stopGame();
+      await bootGame();
+      toast("Game restarted.", 3000);
+    } catch (err) {
+      console.error("Restart failed:", err);
+      toast("Restart failed:\n" + (err && err.message ? err.message : err), 8000);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function idbReq(req) {
+    return new Promise(function (resolve, reject) {
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error("IndexedDB request failed")); };
+    });
+  }
+
+  function abToBase64(buffer) {
+    var bytes = new Uint8Array(buffer);
+    var binary = "";
+    var chunk = 0x8000;
+    for (var i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+    }
+    return btoa(binary);
+  }
+
+  function base64ToAb(base64) {
+    var binary = atob(base64);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes.buffer;
+  }
+
+  async function encodeValue(value, seen) {
+    seen = seen || new WeakSet();
+
+    if (value === undefined) return { __type: "Undefined" };
+    if (value === null) return null;
+    if (typeof value === "bigint") return { __type: "BigInt", value: value.toString() };
+    if (typeof value !== "object") return value;
+
+    if (seen.has(value)) return { __type: "Circular" };
+    seen.add(value);
+
+    if (value instanceof Date) return { __type: "Date", value: value.toISOString() };
+
+    if (value instanceof ArrayBuffer) {
+      return { __type: "ArrayBuffer", data: abToBase64(value) };
+    }
+
+    if (ArrayBuffer.isView(value)) {
+      return {
+        __type: "TypedArray",
+        name: value.constructor && value.constructor.name ? value.constructor.name : "Uint8Array",
+        data: abToBase64(value.buffer.slice(value.byteOffset, value.byteOffset + value.byteLength))
+      };
+    }
+
+    if (typeof Blob !== "undefined" && value instanceof Blob) {
+      return {
+        __type: "Blob",
+        mime: value.type || "application/octet-stream",
+        data: abToBase64(await value.arrayBuffer())
+      };
+    }
+
+    if (Array.isArray(value)) {
+      var arr = [];
+      for (var a = 0; a < value.length; a++) arr.push(await encodeValue(value[a], seen));
+      return arr;
+    }
+
+    var out = {};
+    var keys = Object.keys(value);
+    for (var k = 0; k < keys.length; k++) {
+      out[keys[k]] = await encodeValue(value[keys[k]], seen);
+    }
+    return out;
+  }
+
+  function decodeValue(value) {
+    if (value === null || typeof value !== "object") return value;
+
+    if (Array.isArray(value)) return value.map(decodeValue);
+
+    if (value.__type === "Undefined") return undefined;
+    if (value.__type === "Circular") return null;
+    if (value.__type === "BigInt") {
+      try { return BigInt(value.value); } catch (_) { return value.value; }
+    }
+    if (value.__type === "Date") return new Date(value.value);
+    if (value.__type === "ArrayBuffer") return base64ToAb(value.data);
+    if (value.__type === "TypedArray") {
+      var buffer = base64ToAb(value.data);
+      var map = {
+        Int8Array: Int8Array,
+        Uint8Array: Uint8Array,
+        Uint8ClampedArray: Uint8ClampedArray,
+        Int16Array: Int16Array,
+        Uint16Array: Uint16Array,
+        Int32Array: Int32Array,
+        Uint32Array: Uint32Array,
+        Float32Array: Float32Array,
+        Float64Array: Float64Array
+      };
+      if (typeof BigInt64Array !== "undefined") map.BigInt64Array = BigInt64Array;
+      if (typeof BigUint64Array !== "undefined") map.BigUint64Array = BigUint64Array;
+      if (value.name === "DataView") return new DataView(buffer);
+      var Ctor = map[value.name] || Uint8Array;
+      return new Ctor(buffer);
+    }
+    if (value.__type === "Blob") {
+      return new Blob([base64ToAb(value.data)], { type: value.mime || "application/octet-stream" });
+    }
+
+    var out = {};
+    Object.keys(value).forEach(function (key) {
+      out[key] = decodeValue(value[key]);
+    });
+    return out;
+  }
+
+  function exportStorage(storage) {
+    var out = {};
+    try {
+      for (var i = 0; i < storage.length; i++) {
+        var key = storage.key(i);
+        out[key] = storage.getItem(key);
+      }
+    } catch (_) {}
+    return out;
+  }
+
+  function importStorage(storage, data) {
+    if (!data) return;
+    try {
+      Object.keys(data).forEach(function (key) {
+        storage.setItem(key, data[key]);
+      });
+    } catch (_) {}
+  }
+
+  function shouldSkipDb(name) {
+    var n = String(name || "").toLowerCase();
+
+    // This keeps the hard-save file from becoming huge by skipping downloaded asset caches.
+    // Actual Unity saves are normally in localStorage, UNITY_PLAYER_PREFS, or /idbfs/... databases.
+    if (n === "unitycache" || n.indexOf("unitycache") !== -1) return true;
+    if (n.indexOf("workbox") !== -1) return true;
+    if (n.indexOf("cache") !== -1 && n.indexOf("idbfs") === -1 && n.indexOf("prefs") === -1) return true;
+    if (n.indexOf("google") !== -1 || n.indexOf("doubleclick") !== -1 || n.indexOf("gtm") !== -1) return true;
+
+    return false;
+  }
+
+  async function listDatabases() {
+    if (!indexedDB || !indexedDB.databases) return [];
+    try { return await indexedDB.databases(); } catch (_) { return []; }
+  }
+
+  async function dumpStore(db, storeName) {
+    return new Promise(function (resolve, reject) {
+      var tx = db.transaction(storeName, "readonly");
+      var rows = [];
+      var req = tx.objectStore(storeName).openCursor();
+
+      req.onsuccess = async function (e) {
+        var cursor = e.target.result;
+        if (cursor) {
+          try {
+            rows.push({
+              key: await encodeValue(cursor.key),
+              value: await encodeValue(cursor.value)
+            });
+          } catch (err) {
+            console.warn("Could not encode row:", db.name, storeName, err);
+          }
+          cursor.continue();
+        } else {
+          resolve(rows);
+        }
+      };
+
+      req.onerror = function () { reject(req.error || new Error("Cursor read failed")); };
+      tx.onerror = function () { reject(tx.error || new Error("Store dump failed")); };
+      tx.onabort = function () { reject(tx.error || new Error("Store dump aborted")); };
+    });
+  }
+
+  function storeSchema(store) {
+    var indexes = [];
+    for (var i = 0; i < store.indexNames.length; i++) {
+      var idx = store.index(store.indexNames[i]);
+      indexes.push({
+        name: idx.name,
+        keyPath: idx.keyPath,
+        multiEntry: !!idx.multiEntry,
+        unique: !!idx.unique
+      });
+    }
+
+    return {
+      name: store.name,
+      keyPath: store.keyPath,
+      autoIncrement: !!store.autoIncrement,
+      indexes: indexes
+    };
+  }
+
+  async function dumpAllDatabases() {
+    var dbList = await listDatabases();
+    var out = [];
+
+    for (var i = 0; i < dbList.length; i++) {
+      var dbInfo = dbList[i];
+      if (!dbInfo || !dbInfo.name || shouldSkipDb(dbInfo.name)) continue;
+
+      var db;
+      try {
+        db = await idbReq(indexedDB.open(dbInfo.name));
+      } catch (err) {
+        console.warn("Could not open DB:", dbInfo.name, err);
+        continue;
+      }
+
+      try {
+        var storeNames = Array.from(db.objectStoreNames || []);
+        var schemas = [];
+        var stores = [];
+
+        if (storeNames.length) {
+          var schemaTx = db.transaction(storeNames, "readonly");
+          storeNames.forEach(function (storeName) {
+            schemas.push(storeSchema(schemaTx.objectStore(storeName)));
+          });
+
+          for (var s = 0; s < storeNames.length; s++) {
+            stores.push({
+              name: storeNames[s],
+              rows: await dumpStore(db, storeNames[s])
+            });
+          }
+        }
+
+        out.push({
+          name: db.name,
+          version: db.version || dbInfo.version || 1,
+          schemas: schemas,
+          stores: stores
+        });
+      } finally {
+        try { db.close(); } catch (_) {}
+      }
+    }
+
+    return out;
+  }
+
+  function deleteDatabase(name) {
+    return new Promise(function (resolve) {
+      if (!name) { resolve(false); return; }
+
+      var done = false;
+      var timer = setTimeout(function () {
+        if (!done) { done = true; resolve(false); }
+      }, 3500);
+
+      try {
+        var req = indexedDB.deleteDatabase(name);
+        req.onsuccess = function () {
+          if (!done) { clearTimeout(timer); done = true; resolve(true); }
+        };
+        req.onerror = function () {
+          if (!done) { clearTimeout(timer); done = true; resolve(false); }
+        };
+        req.onblocked = function () {
+          console.warn("Delete blocked for DB:", name);
+        };
+      } catch (_) {
+        clearTimeout(timer);
+        done = true;
+        resolve(false);
+      }
+    });
+  }
+
+  async function restoreDatabase(dbSnap) {
+    if (!dbSnap || !dbSnap.name || shouldSkipDb(dbSnap.name)) return;
+
+    await deleteDatabase(dbSnap.name);
+
+    await new Promise(function (resolve, reject) {
+      var version = Math.max(1, Number(dbSnap.version || 1));
+      var openReq = indexedDB.open(dbSnap.name, version);
+
+      openReq.onupgradeneeded = function (e) {
+        var db = e.target.result;
+
+        (dbSnap.schemas || []).forEach(function (schema) {
+          if (!schema || !schema.name || db.objectStoreNames.contains(schema.name)) return;
+
+          var opts = { autoIncrement: !!schema.autoIncrement };
+          if (schema.keyPath !== null && schema.keyPath !== undefined) opts.keyPath = schema.keyPath;
+
+          var store = db.createObjectStore(schema.name, opts);
+
+          (schema.indexes || []).forEach(function (idx) {
+            try {
+              store.createIndex(idx.name, idx.keyPath, {
+                multiEntry: !!idx.multiEntry,
+                unique: !!idx.unique
+              });
+            } catch (_) {}
+          });
+        });
+      };
+
+      openReq.onsuccess = function () {
+        var db = openReq.result;
+        var storeNames = (dbSnap.stores || [])
+          .map(function (s) { return s.name; })
+          .filter(function (n) { return db.objectStoreNames.contains(n); });
+
+        if (!storeNames.length) {
+          try { db.close(); } catch (_) {}
+          resolve();
+          return;
+        }
+
+        var tx = db.transaction(storeNames, "readwrite");
+
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error("DB restore failed")); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error("DB restore aborted")); };
+
+        (dbSnap.stores || []).forEach(function (storeSnap) {
+          if (!storeSnap || !db.objectStoreNames.contains(storeSnap.name)) return;
+
+          var store = tx.objectStore(storeSnap.name);
+          (storeSnap.rows || []).forEach(function (row) {
+            try {
+              var val = decodeValue(row.value);
+              var key = decodeValue(row.key);
+
+              if (store.keyPath !== null && store.keyPath !== undefined) {
+                store.put(val);
+              } else {
+                store.put(val, key);
+              }
+            } catch (err) {
+              console.warn("Could not restore row:", dbSnap.name, storeSnap.name, err);
+            }
+          });
+        });
+      };
+
+      openReq.onerror = function () {
+        reject(openReq.error || new Error("Could not open DB for restore"));
+      };
+
+      openReq.onblocked = function () {
+        console.warn("Open blocked for DB:", dbSnap.name);
+      };
+    });
+  }
+
+  function countRows(databases) {
+    return (databases || []).reduce(function (acc, db) {
+      return acc + (db.stores || []).reduce(function (inner, store) {
+        return inner + (store.rows || []).length;
+      }, 0);
+    }, 0);
+  }
+
+  function countStorageKeys(obj) {
+    return obj ? Object.keys(obj).length : 0;
+  }
+
+  async function saveGame() {
+    if (busy) return;
+    setBusy(true);
+    toast("Saving game data...", 0);
+
+    try {
+      await flushUnitySave();
+
+      var databases = await dumpAllDatabases();
+      var local = exportStorage(localStorage);
+      var session = exportStorage(sessionStorage);
+      var rows = countRows(databases);
+      var keyCount = countStorageKeys(local) + countStorageKeys(session);
+
+      var snapshot = {
+        meta: {
+          kind: SAVE_KIND,
+          savedAt: new Date().toISOString(),
+          game: GAME_NAME,
+          version: "1.0-unity-hard-save",
+          origin: location.origin,
+          note: "Unity WebGL hard-save file. Stores localStorage, sessionStorage, and non-cache IndexedDB databases."
+        },
+        localStorage: local,
+        sessionStorage: session,
+        databases: databases
+      };
+
+      var json = JSON.stringify(snapshot, null, 2);
+      var blob = new Blob([json], { type: "application/octet-stream" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+
+      a.href = url;
+      a.download = "ultrakill_" + new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19) + ".ultrasave";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+
+      if (rows === 0 && keyCount === 0) {
+        toast("Saved file made, but it found 0 save records.\nPlay until the game creates progress, then save again.", 9000);
+      } else {
+        toast("Saved!\nStorage keys: " + keyCount + "\nIndexedDB rows: " + rows, 7000);
+      }
+
+      focusCanvasSoon();
+    } catch (err) {
+      console.error("Save error:", err);
+      toast("Save failed:\n" + (err && err.message ? err.message : err), 9000);
+      focusCanvasSoon();
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadGame(event) {
+    if (busy) return;
+
+    var file = event && event.target && event.target.files ? event.target.files[0] : null;
+    if (event && event.target) event.target.value = "";
+    if (!file) return;
+
+    setBusy(true);
+    toast("Reading save file...", 0);
+
+    try {
+      var text = await new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function (e) { resolve(e.target.result); };
+        reader.onerror = function () { reject(new Error("Could not read file")); };
+        reader.readAsText(file);
+      });
+
+      var snapshot = JSON.parse(text);
+      if (!snapshot || !snapshot.meta || snapshot.meta.kind !== SAVE_KIND) {
+        throw new Error("Not a valid ULTRAKILL .ultrasave file");
+      }
+
+      var databases = Array.isArray(snapshot.databases) ? snapshot.databases : [];
+      var rows = countRows(databases);
+      var keyCount = countStorageKeys(snapshot.localStorage) + countStorageKeys(snapshot.sessionStorage);
+
+      toast("Restoring save...\nStorage keys: " + keyCount + "\nIndexedDB rows: " + rows, 0);
+
+      await stopGame();
+
+      importStorage(localStorage, snapshot.localStorage);
+      importStorage(sessionStorage, snapshot.sessionStorage);
+
+      for (var i = 0; i < databases.length; i++) {
+        await restoreDatabase(databases[i]);
+      }
+
+      await sleep(500);
+      await bootGame();
+
+      var savedAt = snapshot.meta.savedAt ? new Date(snapshot.meta.savedAt).toLocaleString() : "unknown time";
+      toast("Loaded save!\nSaved: " + savedAt + "\nRows restored: " + rows, 8500);
+    } catch (err) {
+      console.error("Load error:", err);
+      toast("Load failed:\n" + (err && err.message ? err.message : err), 9000);
+      try {
+        if (!unityInstance) await bootGame();
+      } catch (bootErr) {
+        console.error("Boot after failed load also failed:", bootErr);
+      }
+    } finally {
+      setBusy(false);
+      focusCanvasSoon();
+    }
+  }
+
+  async function main() {
+    resizeCanvas();
+
+    var save = byId("save-btn");
+    var load = byId("load-btn");
+    var restart = byId("restart-btn");
+    var fileInput = byId("file-input");
+
+    if (save) save.addEventListener("click", saveGame);
+    if (load && fileInput) load.addEventListener("click", function () {
+      if (!busy) fileInput.click();
+    });
+    if (restart) restart.addEventListener("click", restartGameOnly);
+    if (fileInput) fileInput.addEventListener("change", loadGame);
+
+    try {
+      toast("Starting game...", 2200);
+      await bootGame();
+    } catch (err) {
+      console.error("Startup error:", err);
+      setLoading("Startup failed.", 100, true);
+      toast("Startup failed:\n" + (err && err.message ? err.message : err), 0);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", main);
+  } else {
+    main();
+  }
+})();
+</script>
+</body>
+</html>

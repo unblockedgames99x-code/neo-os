@@ -1,0 +1,318 @@
+/* NEO presentation layered over the upstream player's complete feature set. */
+html[data-neo-app="music"][data-neo-theme] {
+    /* Monochrome exposes a semantic palette of its own. Keep that API intact,
+       but make NEO's selected system palette authoritative for every surface. */
+    --background: var(--desktop-bg) !important;
+    --background-secondary: var(--desktop-surface) !important;
+    --bg-secondary: var(--desktop-surface) !important;
+    --foreground: var(--desktop-text) !important;
+    --card: var(--desktop-surface) !important;
+    --card-foreground: var(--desktop-text) !important;
+    --primary: var(--desktop-accent) !important;
+    --primary-foreground: var(--desktop-accent-text) !important;
+    --secondary: var(--neo-theme-control) !important;
+    --secondary-foreground: var(--desktop-text) !important;
+    --secondary-hover: var(--neo-theme-control-hover) !important;
+    --muted: var(--neo-theme-control) !important;
+    --muted-foreground: var(--desktop-muted) !important;
+    --border: var(--desktop-line) !important;
+    --border-color: var(--desktop-line) !important;
+    --input: var(--neo-theme-soft) !important;
+    --ring: var(--desktop-accent) !important;
+    --highlight: var(--desktop-accent) !important;
+    --active-highlight: var(--desktop-accent) !important;
+    --accent: var(--desktop-accent) !important;
+    --brand: var(--desktop-accent) !important;
+    --surface-2: var(--desktop-surface-2) !important;
+    --surface-3: var(--neo-theme-raised) !important;
+    --track-hover-bg: var(--neo-theme-control-hover) !important;
+    --inline-like: var(--desktop-accent) !important;
+    --player-bar-height-desktop: 76px;
+}
+
+html,
+body {
+    color: var(--desktop-text);
+    background: var(--desktop-bg) !important;
+}
+
+.app-container {
+    grid-template:
+        'main' minmax(0, 1fr)
+        'player' auto / minmax(0, 1fr);
+}
+
+.sidebar,
+#sidebar-overlay,
+.hamburger-menu,
+.navigation-controls { display: none !important; }
+
+.main-content {
+    grid-area: main;
+    padding: 0 30px 110px !important;
+    color: var(--desktop-text);
+    background: var(--desktop-bg) !important;
+}
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 2100;
+    height: 62px;
+    margin: 0 -30px 22px;
+    padding: 9px 24px;
+    gap: 18px;
+    color: var(--desktop-text);
+    background: color-mix(in srgb, var(--desktop-surface) 92%, transparent) !important;
+    border-bottom: 1px solid var(--desktop-line);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.neo-brand {
+    width: 112px;
+    height: 44px;
+    flex: 0 0 112px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    color: var(--desktop-text);
+    text-decoration: none;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: 0;
+}
+
+.neo-wordmark-main {
+    font-size: 1.05rem;
+    font-weight: 850;
+    letter-spacing: -0.055em;
+    line-height: 1;
+}
+
+.neo-wordmark-sub {
+    color: var(--desktop-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1;
+}
+
+.neo-top-nav {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 0 0 auto;
+}
+
+.neo-top-nav a {
+    height: 34px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 9px;
+    color: var(--desktop-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 150ms ease, background 150ms ease;
+}
+
+.neo-top-nav a svg {
+    width: 17px;
+    height: 17px;
+    stroke-width: 1.85;
+    shape-rendering: geometricPrecision;
+}
+
+.neo-top-nav a:hover,
+.neo-top-nav a.active {
+    color: var(--desktop-text);
+    background: var(--neo-theme-control-hover);
+}
+
+.neo-top-nav a.active svg { color: var(--active-highlight); }
+
+.search-bar {
+    position: relative;
+    left: auto;
+    width: min(500px, 40vw);
+    flex: none;
+    margin-left: auto;
+    transform: none;
+}
+
+.search-bar input {
+    height: 38px;
+    padding: 0 42px;
+    border-radius: 11px;
+    color: var(--desktop-text);
+    background: var(--neo-theme-soft) !important;
+    border-color: var(--desktop-line);
+    font-size: 0.9rem;
+}
+
+.search-bar input:focus {
+    border-color: var(--desktop-accent);
+    box-shadow: 0 0 0 3px rgb(var(--highlight-rgb) / 0.09);
+}
+
+.search-bar input::placeholder { color: var(--desktop-muted); }
+
+.header-account-control { display: none !important; }
+
+#sidebar-nav-githubbtn,
+#sidebar-nav-discord,
+#sidebar-nav-donate,
+#page-donate,
+#page-mobile,
+#page-desktop,
+.about-donate,
+#auth-github-btn,
+#auth-discord-btn,
+a[href*="github.com/monochrome-music"],
+a[href*="discord.gg/"] { display: none !important; }
+
+#header-account-btn {
+    color: var(--desktop-text);
+    background: var(--neo-theme-control) !important;
+    border-color: var(--desktop-line) !important;
+}
+
+#page-background { opacity: 0.22; }
+
+.main-content,
+.main-header,
+.now-playing-bar,
+.search-bar input,
+:is(.card, .track-item, .album-card, .artist-card, .modal-content, .queue-panel) {
+    transition:
+        color var(--neo-theme-transition),
+        background-color var(--neo-theme-transition),
+        border-color var(--neo-theme-transition),
+        box-shadow var(--neo-theme-transition),
+        transform var(--transition-fast);
+}
+
+.neo-fallback-status {
+    grid-column: 1 / -1;
+    padding: 18px 16px;
+    color: var(--muted-foreground);
+    text-align: center;
+}
+
+.neo-fallback-status.error {
+    color: var(--destructive, #d95f5f);
+}
+
+.neo-fallback-track .neo-fallback-play {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: var(--foreground);
+    background: transparent;
+    cursor: pointer;
+}
+
+.neo-fallback-track:is(:hover, :focus-visible) .neo-fallback-play,
+.neo-fallback-track.playing .neo-fallback-play {
+    color: var(--primary-foreground, #fff);
+    background: var(--primary, rgb(var(--highlight-rgb)));
+}
+
+.now-playing-bar {
+    grid-area: player;
+    width: 100% !important;
+    height: 76px;
+    left: 0;
+    right: 0;
+    bottom: 0 !important;
+    padding: 8px 20px;
+    border: 0;
+    color: var(--desktop-text);
+    border-top: 1px solid var(--desktop-line);
+    border-radius: 0;
+    background: color-mix(in srgb, var(--desktop-surface) 94%, transparent) !important;
+    box-shadow: 0 -14px 42px var(--neo-theme-shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: none;
+}
+
+.now-playing-bar .track-info .cover {
+    width: 48px;
+    height: 48px;
+    border-radius: 7px;
+    image-rendering: auto;
+}
+
+.player-controls { gap: 4px; }
+
+.player-controls .progress-container {
+    order: 0;
+    gap: 10px;
+    font-size: 0.68rem;
+}
+
+.player-controls .buttons { gap: 11px; }
+
+.player-controls .buttons button {
+    width: 28px;
+    height: 28px;
+}
+
+.player-controls .buttons .play-pause-btn {
+    width: 38px;
+    height: 38px;
+    background: var(--desktop-accent) !important;
+    color: var(--desktop-accent-text) !important;
+    box-shadow: 0 0 20px rgb(var(--highlight-rgb) / 0.24);
+}
+
+.progress-bar { height: 3px; }
+.progress-bar:hover { height: 5px; }
+
+.card,
+.track-item,
+.album-card,
+.artist-card { transform: translateZ(0); }
+
+.card img,
+.track-item img,
+.album-card img,
+.artist-card img,
+.track-info img { image-rendering: auto; }
+
+@media (max-width: 1080px) {
+    .neo-top-nav a:nth-child(3),
+    .neo-top-nav a:nth-child(4) { display: none; }
+    .neo-brand { width: 102px; flex-basis: 102px; }
+    .search-bar { width: min(420px, 46vw); }
+}
+
+@media (max-width: 720px) {
+    .main-content { padding: 0 16px 132px !important; }
+    .main-header { margin: 0 -16px 18px; padding: 9px 12px; }
+    .neo-brand { width: 94px; flex-basis: 94px; }
+    .neo-top-nav a { padding: 0 7px; }
+    .neo-top-nav a span { display: none; }
+    .search-bar {
+        position: relative;
+        left: auto;
+        width: auto;
+        min-width: 0;
+        flex: 1;
+        transform: none;
+    }
+    .header-account-control { display: none; }
+    .now-playing-bar {
+        height: var(--player-bar-height-mobile);
+        padding: 10px 12px;
+    }
+}

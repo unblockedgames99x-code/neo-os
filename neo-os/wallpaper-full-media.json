@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "generatedAt": "2026-09-19T00:00:00.000Z",
+  "minimumResolution": "1920x1080",
+  "projects": [
+    {
+      "id": "we-steam-1403160205",
+      "title": "Rainy Day",
+      "type": "web",
+      "mediaType": "web",
+      "file": "./assets/wallpaper-engine-web/1403160205/index.html?v=20260919-essential-v1",
+      "preview": "./assets/wallpaper-engine-web/1403160205/img/city.webp",
+      "width": 1920,
+      "height": 1080,
+      "responsive": true,
+      "bytes": 24697641,
+      "quality": "original-web",
+      "localOnly": true,
+      "offlineSafe": true,
+      "sourceId": "1403160205"
+    }
+  ]
+}

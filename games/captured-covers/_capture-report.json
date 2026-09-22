@@ -1,0 +1,19 @@
+{
+  "at": "2026-07-21T05:15:09.812Z",
+  "elapsedSeconds": 12,
+  "stoppedForTime": false,
+  "remainingInQueue": 0,
+  "results": {
+    "captured": 0,
+    "cached": 0,
+    "failed": 0,
+    "blank": 1
+  },
+  "rejected": [
+    {
+      "status": "blank",
+      "slug": "3-5-factory-tycoon",
+      "error": "screenshot too small (2137 bytes)"
+    }
+  ]
+}

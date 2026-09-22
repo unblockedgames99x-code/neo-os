@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Abandoned</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+  }
+
+  #game-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #flash-container {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+  }
+
+  ruffle-player {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    background: #000 !important;
+    outline: none;
+  }
+
+  #loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 22px;
+  }
+
+  #loader-card {
+    width: min(540px, 92vw);
+  }
+
+  #loading-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  #loading-text {
+    font-size: 15px;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+
+  #bar {
+    width: 100%;
+    height: 16px;
+    border-radius: 999px;
+    background: #242424;
+    border: 1px solid #4a4a4a;
+    overflow: hidden;
+  }
+
+  #bar-fill {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.25s linear;
+  }
+
+  #small-note {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  #error-box {
+    display: none;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
+    color: #ffb3b3;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+
+  #retry-button {
+    display: none;
+    margin-top: 12px;
+    padding: 9px 14px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+    autoplay: "on",
+    splashScreen: false,
+    unmuteOverlay: "hidden",
+    scale: "showAll",
+    forceScale: true,
+    quality: "high",
+    backgroundColor: "#000000",
+    letterbox: "on",
+    allowFullscreen: true,
+    warnOnUnsupportedContent: false
+  };
+</script>
+</head>
+
+<body>
+<div id="game-wrap">
+  <div id="flash-container"></div>
+</div>
+
+<div id="loader-screen">
+  <div id="loader-card">
+    <div id="loading-title">Loading game...</div>
+    <div id="loading-text">Starting Ruffle...</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">Click inside the game once it loads so keyboard/mouse controls work.</div>
+    <div id="error-box"></div>
+    <button id="retry-button" onclick="location.reload()">Retry</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const RUFFLE_JS = "https://unpkg.com/@ruffle-rs/ruffle";
+  const SWF_URL = "https://cdn.jsdelivr.net/gh/bubbls/UGS-file-encryption@5b0d188b716d05bd4264c4096ad358d5add6388e/abandoned%20(1).swf";
+
+  const container = document.getElementById("flash-container");
+  const loaderScreen = document.getElementById("loader-screen");
+  const loadingText = document.getElementById("loading-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+  const retryButton = document.getElementById("retry-button");
+
+  let player = null;
+
+  function setProgress(percent, text) {
+    barFill.style.width = Math.max(0, Math.min(100, percent)) + "%";
+    if (text) loadingText.textContent = text;
+  }
+
+  function showError(message) {
+    errorBox.style.display = "block";
+    retryButton.style.display = "inline-block";
+    errorBox.textContent = message;
+    loadingText.textContent = "The game could not finish loading.";
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[src="${src}"]`);
+      if (existing) return resolve();
+
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Could not load Ruffle script."));
+      document.head.appendChild(script);
+    });
+  }
+
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function startGame() {
+    try {
+      setProgress(10, "Loading Ruffle...");
+      await loadScript(RUFFLE_JS);
+
+      setProgress(35, "Creating Flash player...");
+      await wait(150);
+
+      const ruffleApi = window.RufflePlayer && window.RufflePlayer.newest
+        ? window.RufflePlayer.newest()
+        : null;
+
+      if (!ruffleApi || !ruffleApi.createPlayer) {
+        throw new Error("Ruffle loaded, but the player API was not available.");
+      }
+
+      container.innerHTML = "";
+      player = ruffleApi.createPlayer();
+      player.style.width = "100%";
+      player.style.height = "100%";
+      player.style.background = "#000";
+      player.tabIndex = 0;
+      container.appendChild(player);
+
+      setProgress(65, "Loading Abandoned SWF...");
+
+      const loadResult = player.load(SWF_URL);
+      if (loadResult && typeof loadResult.then === "function") {
+        await Promise.race([loadResult, wait(9000)]);
+      } else {
+        await wait(1800);
+      }
+
+      setProgress(100, "Done");
+      await wait(450);
+      loaderScreen.style.display = "none";
+      player.focus();
+    } catch (err) {
+      showError(String(err && err.message ? err.message : err));
+    }
+  }
+
+  document.addEventListener("click", () => {
+    if (player && player.focus) player.focus();
+  });
+
+  startGame();
+})();
+</script>
+</body>
+</html>

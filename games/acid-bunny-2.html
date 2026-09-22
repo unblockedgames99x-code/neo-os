@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Embed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #061828;
+        }
+        #userHtmlFrame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            overflow: hidden;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="userHtmlFrame" frameborder="0" scrolling="no" allow="fullscreen; autoplay" allowfullscreen></iframe>
+
+    <script>
+        const frame = document.getElementById("userHtmlFrame");
+        frame.srcdoc = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                html, body {
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    background: #061828;
+                }
+                iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                }
+            </style>
+        </head>
+        <body>
+            <iframe src="https://script.google.com/macros/s/AKfycbzQinbUFpM6_ZM3lSnGIvfg3iRSHGUFPWlOpWyYKQUBnyZG5CNiqOKTQk2KT7FlUcVQ/exec" allow="fullscreen; autoplay" allowfullscreen></iframe>
+        </body>
+        </html>
+        `;
+    </script>
+</body>
+</html>

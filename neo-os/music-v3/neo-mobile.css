@@ -1,0 +1,140 @@
+@media (max-width: 760px), (pointer: coarse) and (max-width: 1366px) {
+  html,
+  body,
+  #app,
+  .app-container { min-height: 100dvh; }
+
+  button,
+  a,
+  [role="button"],
+  .btn-icon,
+  .nav-btn,
+  .home-tab,
+  .neo-top-nav a,
+  .now-playing-bar button {
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  input,
+  textarea,
+  select { font-size: 16px !important; }
+
+  .main-header {
+    display: grid !important;
+    min-height: 112px;
+    height: auto;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    grid-template-rows: 48px 52px;
+    gap: 4px 8px;
+    padding: max(4px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) 8px max(8px, env(safe-area-inset-left));
+  }
+
+  .neo-brand { grid-column: 1; grid-row: 1; min-width: 84px; }
+  .hamburger-menu { grid-column: 3; grid-row: 1; }
+  .header-account-control { display: none !important; }
+  .search-bar {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .neo-top-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+    display: flex !important;
+    gap: 3px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+  .neo-top-nav::-webkit-scrollbar { display: none; }
+  .neo-top-nav a { flex: 0 0 auto; scroll-snap-align: center; padding-inline: 12px; }
+
+  .main-content { padding-bottom: calc(126px + env(safe-area-inset-bottom)) !important; }
+
+  .now-playing-bar {
+    min-height: calc(118px + env(safe-area-inset-bottom));
+    height: auto !important;
+    padding: 7px max(8px, env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-rows: 48px 54px;
+    gap: 3px 8px;
+  }
+
+  .now-playing-bar .track-info { grid-column: 1; grid-row: 1; min-width: 0; }
+  .now-playing-bar .track-info .cover { width: 42px; height: 42px; }
+  .now-playing-bar .track-info .details { min-width: 0; }
+  .now-playing-bar .track-info .title,
+  .now-playing-bar .track-info .artist { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .now-playing-bar .player-controls {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: auto minmax(90px, 1fr);
+    align-items: center;
+    gap: 7px;
+  }
+  .now-playing-bar .player-controls .buttons { display: flex; gap: 1px; }
+  .now-playing-bar .player-controls .buttons button { width: 44px !important; height: 44px !important; }
+  .now-playing-bar .player-controls .play-pause-btn { width: 48px !important; height: 48px !important; }
+  .now-playing-bar .progress-container { min-width: 0; }
+
+  .now-playing-bar .volume-controls {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    min-width: 0;
+  }
+  .now-playing-bar .player-actions-row {
+    max-width: 92px;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .now-playing-bar .player-actions-row::-webkit-scrollbar { display: none; }
+
+  #context-menu,
+  .dropdown-menu,
+  [role="menu"] {
+    max-width: calc(100vw - 16px);
+    max-height: 70dvh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .main-header { grid-template-columns: minmax(0, 1fr) auto !important; }
+  .neo-brand { display: none !important; }
+  .search-bar { grid-column: 1; }
+  .hamburger-menu { grid-column: 2; }
+  .now-playing-bar .player-controls .buttons #shuffle-btn,
+  .now-playing-bar .player-controls .buttons #repeat-btn { display: none; }
+  .now-playing-bar .player-controls { grid-template-columns: auto minmax(70px, 1fr); }
+}
+
+@media (max-height: 500px) and (max-width: 960px) and (orientation: landscape) {
+  .main-header {
+    min-height: 52px;
+    grid-template-rows: 44px;
+    grid-template-columns: auto auto minmax(0, 1fr) auto !important;
+  }
+  .neo-brand { display: flex !important; grid-column: 1; }
+  .neo-top-nav { grid-column: 2; grid-row: 1; max-width: 280px; }
+  .neo-top-nav a span { display: none; }
+  .search-bar { grid-column: 3; grid-row: 1; }
+  .hamburger-menu { grid-column: 4; grid-row: 1; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  button:hover,
+  a:hover { transform: none !important; }
+}

@@ -1,0 +1,223 @@
+/* Compact transport card shared by the taskbar and the global media runtime. */
+.taskbar-now-playing {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 258px;
+  min-width: 0;
+  height: 46px;
+  padding: 3px 5px 3px 4px;
+  overflow: hidden;
+  color: rgba(248, 250, 252, .96);
+  background: linear-gradient(180deg, rgba(34, 35, 39, .94), rgba(20, 21, 24, .96));
+  border: 1px solid rgba(255, 255, 255, .13);
+  border-radius: 11px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .055), 0 4px 15px rgba(0, 0, 0, .24);
+  opacity: 0;
+  transform: translate3d(0, 7px, 0) scale(.96);
+  transform-origin: center;
+  transition: opacity 170ms ease, transform 210ms cubic-bezier(.2, .8, .2, 1), width 190ms ease;
+}
+
+.taskbar-now-playing[hidden] { display: none !important; }
+
+.taskbar-now-playing.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.taskbar-now-playing-open {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+}
+
+.taskbar-now-playing-open:focus-visible,
+.taskbar-now-playing-controls button:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--neo-taskbar-accent, #8ed2ff) 80%, white);
+  outline-offset: 1px;
+}
+
+.taskbar-now-playing-art,
+.taskbar-now-playing-art > img,
+.taskbar-now-playing-fallback {
+  box-sizing: border-box;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 7px;
+}
+
+.taskbar-now-playing-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .09);
+}
+
+.taskbar-now-playing-art > img {
+  display: block;
+  object-fit: cover;
+}
+
+.taskbar-now-playing-fallback {
+  display: grid;
+  place-items: center;
+}
+
+.taskbar-now-playing-fallback .app-image-icon,
+.taskbar-now-playing-fallback .icon {
+  width: 23px !important;
+  height: 23px !important;
+}
+
+.taskbar-now-playing-copy {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  line-height: 1;
+}
+
+.taskbar-now-playing-copy strong,
+.taskbar-now-playing-copy small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskbar-now-playing-copy strong {
+  color: rgba(250, 251, 253, .97);
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.taskbar-now-playing-copy small {
+  color: rgba(214, 218, 226, .62);
+  font-size: 9.5px;
+  font-weight: 520;
+}
+
+.taskbar-now-playing-controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  margin-left: 3px;
+}
+
+.taskbar-now-playing-controls button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 30px;
+  padding: 0;
+  color: rgba(230, 232, 238, .68);
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  transition: color 120ms ease, background-color 120ms ease, transform 120ms ease;
+}
+
+.taskbar-now-playing-controls button:is(:hover, :focus-visible) {
+  color: #fff;
+  background: rgba(255, 255, 255, .08);
+}
+
+.taskbar-now-playing-controls button:active { transform: scale(.9); }
+.taskbar-now-playing-controls .icon { width: 14px; height: 14px; }
+.taskbar-now-playing-controls [data-taskbar-now-playing-toggle] .icon { width: 16px; height: 16px; }
+.taskbar-now-playing-controls [data-taskbar-now-playing-volume].is-muted { color: rgba(232, 156, 156, .82); }
+.taskbar-now-playing-controls [data-taskbar-now-playing-volume].is-muted::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+html[data-taskbar-position="top"] .taskbar-now-playing,
+html[data-taskbar-position="bottom"] .taskbar-now-playing { order: 2; }
+
+html[data-taskbar-style="typical"][data-taskbar-position="top"] .taskbar-now-playing,
+html[data-taskbar-style="typical"][data-taskbar-position="bottom"] .taskbar-now-playing {
+  margin-left: auto;
+}
+
+/* A vertical rail keeps the same player useful without making the taskbar wide. */
+html[data-taskbar-position="left"] .taskbar-now-playing,
+html[data-taskbar-position="right"] .taskbar-now-playing {
+  order: 1;
+  width: 46px;
+  height: 46px;
+  padding: 5px;
+  transform: translate3d(0, 6px, 0) scale(.9);
+}
+
+html[data-taskbar-position="left"] .taskbar-now-playing.is-visible,
+html[data-taskbar-position="right"] .taskbar-now-playing.is-visible { transform: translate3d(0, 0, 0) scale(1); }
+html[data-taskbar-position="left"] .taskbar-now-playing-copy,
+html[data-taskbar-position="right"] .taskbar-now-playing-copy,
+html[data-taskbar-position="left"] .taskbar-now-playing-controls,
+html[data-taskbar-position="right"] .taskbar-now-playing-controls { display: none; }
+html[data-taskbar-position="left"] .taskbar-now-playing-open,
+html[data-taskbar-position="right"] .taskbar-now-playing-open { flex: 0 0 34px; }
+
+/* Figure stays visually faithful to the tiny reference rail: artwork only. */
+html[data-taskbar-style="figure"] .taskbar-now-playing {
+  order: -1;
+  width: 22px;
+  height: 22px;
+  padding: 1px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+}
+html[data-taskbar-style="figure"] .taskbar-now-playing-art,
+html[data-taskbar-style="figure"] .taskbar-now-playing-art > img,
+html[data-taskbar-style="figure"] .taskbar-now-playing-fallback {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+html[data-taskbar-style="figure"] .taskbar-now-playing-copy,
+html[data-taskbar-style="figure"] .taskbar-now-playing-controls { display: none; }
+
+html[data-taskbar-style="xeno"] .taskbar-now-playing { display: none !important; }
+
+@media (max-width: 760px) {
+  html[data-taskbar-position="top"] .taskbar-now-playing,
+  html[data-taskbar-position="bottom"] .taskbar-now-playing { width: 184px; }
+  html[data-taskbar-position="top"] .taskbar-now-playing-controls button:first-child,
+  html[data-taskbar-position="top"] .taskbar-now-playing-controls button:nth-child(3),
+  html[data-taskbar-position="bottom"] .taskbar-now-playing-controls button:first-child,
+  html[data-taskbar-position="bottom"] .taskbar-now-playing-controls button:nth-child(3) { display: none; }
+}
+
+html[data-reduce-motion="true"] .taskbar-now-playing { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .taskbar-now-playing,
+  .taskbar-now-playing-controls button { transition: none !important; }
+}

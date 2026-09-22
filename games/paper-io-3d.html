@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fullscreen Game</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  html,
+  body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#061828;
+    font-family:Arial,sans-serif;
+  }
+
+  #fr{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+  }
+
+  iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    display:block;
+  }
+</style>
+</head>
+
+<body>
+
+<div
+  id="fr"
+  data='
+  <iframe
+    id="gameFrame"
+    src="https://script.google.com/macros/s/AKfycbxHiTGRnW2DlsogC3ETEPabSkYGp_8c6RqGdjyD7_7Jca65LszPobm60W1wJYyl5X_v/exec"
+    allowfullscreen
+    tabindex="0">
+  </iframe>'>
+</div>
+
+<script>
+window.onload = function () {
+
+  const div = document.getElementById("fr");
+
+  div.innerHTML = div.getAttribute("data");
+
+  const frame = document.getElementById("gameFrame");
+
+  function focusGame() {
+    frame.focus();
+  }
+
+  window.addEventListener("click", focusGame);
+
+  setTimeout(() => {
+    frame.focus();
+  }, 1000);
+
+  const keyMap = {
+    w: {
+      key:"ArrowUp",
+      code:"ArrowUp",
+      keyCode:38
+    },
+    a: {
+      key:"ArrowLeft",
+      code:"ArrowLeft",
+      keyCode:37
+    },
+    s: {
+      key:"ArrowDown",
+      code:"ArrowDown",
+      keyCode:40
+    },
+    d: {
+      key:"ArrowRight",
+      code:"ArrowRight",
+      keyCode:39
+    }
+  };
+
+  function sendMappedKey(type, originalEvent) {
+
+    const k = originalEvent.key.toLowerCase();
+
+    if (!keyMap[k]) return;
+
+    originalEvent.preventDefault();
+
+    const mapped = keyMap[k];
+
+    const evt = new KeyboardEvent(type, {
+      key: mapped.key,
+      code: mapped.code,
+      bubbles: true,
+      cancelable: true
+    });
+
+    Object.defineProperty(evt, "keyCode", {
+      get: () => mapped.keyCode
+    });
+
+    Object.defineProperty(evt, "which", {
+      get: () => mapped.keyCode
+    });
+
+    document.dispatchEvent(evt);
+    window.dispatchEvent(evt);
+
+    try {
+      frame.contentWindow.dispatchEvent(evt);
+    } catch(err) {}
+  }
+
+  document.addEventListener("keydown", function(e){
+    sendMappedKey("keydown", e);
+  }, true);
+
+  document.addEventListener("keyup", function(e){
+    sendMappedKey("keyup", e);
+  }, true);
+
+};
+</script>
+
+</body>
+</html>

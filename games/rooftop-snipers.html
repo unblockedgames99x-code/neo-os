@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Embed</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #061828;
+    }
+
+    #iframe-container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="iframe-container">
+    <iframe
+      src="https://script.google.com/macros/s/AKfycbyoVKqSi44yCkcl01rp17c7Dluj_4Q9P5kSsqGcf02xgBTx_mT6jik17o2mhkGgd9Yj/exec"
+      allowfullscreen>
+    </iframe>
+  </div>
+</body>
+</html>

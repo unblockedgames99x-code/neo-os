@@ -1,0 +1,18 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+#sidebar-nav-donate,
+#page-donate,
+.donation-prompt,
+.about-donate,
+[data-donation-prompt],
+[data-action="donate"],
+[href*="/donate"],
+[href*="ko-fi.com"] {
+    display: none !important;
+}

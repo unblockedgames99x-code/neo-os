@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: neo-stratus-api-w6nw
+    runtime: node
+    plan: free
+    rootDir: stratus-api-service
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: STRATUS_API_KEY
+        value: sk_live_neo_21c3aa84317445fa850319adfa895999
+      - key: MAX_CONCURRENT_SESSIONS
+        value: "4"
+      - key: MAX_SESSION_SECONDS
+        value: "900"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "60"
+      - key: RATE_LIMIT_PER_HOUR
+        value: "1000"
+      - key: RATE_LIMIT_PER_DAY
+        value: "10000"
+      - key: RATE_LIMIT_PER_MONTH
+        value: "100000"
+      - key: DISABLE_ACCOUNT_PREFILL
+        value: "1"

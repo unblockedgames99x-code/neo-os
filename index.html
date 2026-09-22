@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Home - Classroom</title>
+  <link rel="icon" href="./neo-os/assets/tab-appearance/classroom.png" type="image/png">
+  <style>
+    html,body{height:100%;margin:0;background:#05070b;color:#fff;font-family:system-ui,sans-serif}
+    body{display:grid;place-items:center}
+    #choose{text-align:center}
+    button{margin:6px;padding:13px 18px;border:0;border-radius:10px;background:#fff;color:#05070b;font-weight:700;cursor:pointer}
+    button+button{background:#252830;color:#fff}
+    button:disabled{opacity:.45;cursor:wait}
+    p{font-size:13px;color:#9ba3b4}
+    iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#000}
+  </style>
+</head>
+<body>
+  <div id="choose">
+    <button id="blank" disabled>Open in about:blank</button>
+    <button id="full" disabled>Full screen</button>
+    <p id="status">Checking NEO OS...</p>
+  </div>
+  <script>
+    (() => {
+      "use strict";
+
+      // All launches stay with this local checkout. Start node local-preview.mjs.
+      const hostedApp = new URL("./neo-os/", location.href).href;
+      const blankButton = document.getElementById("blank");
+      const fullButton = document.getElementById("full");
+      const status = document.getElementById("status");
+      const startupAppearance = {
+        title: "Home - Classroom",
+        icon: new URL("./neo-os/assets/tab-appearance/classroom.png", location.href).href,
+        type: "image/png"
+      };
+
+      function createFrame(targetDocument, url) {
+        const frame = targetDocument.createElement("iframe");
+        frame.src = url;
+        frame.title = "NEO OS";
+        frame.allow = "autoplay; clipboard-read; clipboard-write; fullscreen; gamepad";
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;background:#000";
+        return frame;
+      }
+
+      function applyTabAppearance(targetDocument, appearance) {
+        if (!targetDocument || !appearance || typeof appearance.title !== "string" || typeof appearance.icon !== "string") return;
+        const title = appearance.title.trim().slice(0, 80) || "NEO OS";
+        let titleNode = targetDocument.querySelector("title");
+        if (!titleNode) {
+          titleNode = targetDocument.createElement("title");
+          targetDocument.head.appendChild(titleNode);
+        }
+        titleNode.textContent = title;
+        targetDocument.title = title;
+        let icon = targetDocument.querySelector('link[data-neo-tab-icon], link[rel~="icon"]');
+        if (!icon) {
+          icon = targetDocument.createElement("link");
+          icon.rel = "icon";
+          targetDocument.head.appendChild(icon);
+        }
+        icon.dataset.neoTabIcon = "true";
+        icon.type = typeof appearance.type === "string" ? appearance.type : "image/png";
+        icon.href = appearance.icon;
+      }
+
+      function enableLaunch() {
+        blankButton.disabled = false;
+        fullButton.disabled = false;
+        status.textContent = "Choose how to launch NEO OS";
+      }
+
+      blankButton.addEventListener("click", () => {
+        const popup = window.open("about:blank", "_blank");
+        if (!popup) {
+          status.textContent = "Allow pop-ups and try again.";
+          return;
+        }
+        popup.document.open();
+        popup.document.write("<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Home - Classroom</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#000}</style></head><body></body></html>");
+        popup.document.close();
+        applyTabAppearance(popup.document, startupAppearance);
+        const frame = createFrame(popup.document, hostedApp);
+        popup.addEventListener("message", event => {
+          if (event.source !== frame.contentWindow) return;
+          const message = event.data;
+          if (!message || message.type !== "neo-shell:tab-appearance" || !message.detail) return;
+          applyTabAppearance(popup.document, message.detail);
+        });
+        popup.document.body.replaceChildren(frame);
+        popup.focus();
+        const requestFullscreen = popup.document.documentElement.requestFullscreen;
+        if (requestFullscreen) {
+          Promise.resolve(requestFullscreen.call(popup.document.documentElement, { navigationUI: "hide" })).catch(() => {});
+        }
+      });
+
+      fullButton.addEventListener("click", () => {
+        const frame = createFrame(document, hostedApp);
+        document.body.replaceChildren(frame);
+        const requestFullscreen = frame.requestFullscreen || frame.webkitRequestFullscreen;
+        if (requestFullscreen) {
+          Promise.resolve(requestFullscreen.call(frame, { navigationUI: "hide" })).catch(() => {});
+        }
+      });
+
+      // Navigation reports its own failure. Downloading an uncached copy of the
+      // entire desktop here only blocks the controls and duplicates that work.
+      enableLaunch();
+    })();
+  </script>
+</body>
+</html>

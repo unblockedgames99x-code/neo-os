@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Achievement Unlocked 2</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+  }
+
+  #game-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+  }
+
+  ruffle-player,
+  #game-wrap > * {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block !important;
+    background: #000 !important;
+    outline: none;
+  }
+
+  #loader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 22px;
+  }
+
+  #loader-card {
+    width: min(520px, 92vw);
+  }
+
+  #loader-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  #loader-text {
+    font-size: 15px;
+    line-height: 1.45;
+    opacity: 0.9;
+    margin-bottom: 16px;
+  }
+
+  #bar {
+    width: 100%;
+    height: 16px;
+    border: 1px solid #444;
+    border-radius: 999px;
+    background: #222;
+    overflow: hidden;
+  }
+
+  #bar-fill {
+    width: 12%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.25s linear;
+  }
+
+  #small-note {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  #error-box {
+    display: none;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
+    color: #ffb3b3;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+</style>
+
+<script>
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+    autoplay: "on",
+    unmuteOverlay: "hidden",
+    splashScreen: false,
+    backgroundColor: "#000000",
+    letterbox: "off",
+    scale: "exactFit",
+    quality: "high",
+    menu: false,
+    allowFullscreen: true,
+    allowScriptAccess: true,
+    warnOnUnsupportedContent: false
+  };
+</script>
+</head>
+
+<body>
+<div id="game-wrap"></div>
+
+<div id="loader">
+  <div id="loader-card">
+    <div id="loader-title">Loading Achievement Unlocked 2...</div>
+    <div id="loader-text">Starting Ruffle and loading the SWF. Do not refresh.</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">Click the game once after it loads so keyboard controls work.</div>
+    <div id="error-box"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const SWF_URL = "https://cdn.jsdelivr.net/gh/asianmemeboi/AAA-Fun-World@ab575a02be519d81b04e1141d0de42da4eba0997/achievement-unlocked-2.swf";
+
+  const RUFFLE_SCRIPTS = [
+    "https://cdn.jsdelivr.net/gh/u-cvlassrom-y/google@main/ruffle.js",
+    "https://unpkg.com/@ruffle-rs/ruffle",
+    "https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@latest/ruffle.js"
+  ];
+
+  const gameWrap = document.getElementById("game-wrap");
+  const loader = document.getElementById("loader");
+  const loaderText = document.getElementById("loader-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+
+  let player = null;
+  let loaderHidden = false;
+
+  function setProgress(percent, text) {
+    barFill.style.width = Math.max(0, Math.min(100, percent)) + "%";
+    if (text) loaderText.textContent = text;
+  }
+
+  function showError(message) {
+    errorBox.style.display = "block";
+    errorBox.textContent = String(message || "Unknown error");
+    loaderText.textContent = "The game could not finish loading. The error is shown below.";
+    barFill.style.width = "100%";
+  }
+
+  function hideLoaderSoon() {
+    if (loaderHidden) return;
+    loaderHidden = true;
+    setProgress(100, "Loaded.");
+    setTimeout(() => {
+      loader.style.display = "none";
+      if (player && player.focus) player.focus();
+    }, 500);
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.onload = () => resolve(src);
+      script.onerror = () => reject(new Error("Could not load Ruffle script: " + src));
+      document.head.appendChild(script);
+    });
+  }
+
+  async function loadRuffle() {
+    for (const src of RUFFLE_SCRIPTS) {
+      try {
+        setProgress(28, "Loading Ruffle player...");
+        await loadScript(src);
+
+        if (window.RufflePlayer && (window.RufflePlayer.newest || window.RufflePlayer.createPlayer)) {
+          return;
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+
+    throw new Error("Ruffle failed to load from all script sources.");
+  }
+
+  function createRufflePlayer() {
+    const ruffle = window.RufflePlayer?.newest?.() || window.RufflePlayer;
+
+    if (!ruffle || !ruffle.createPlayer) {
+      throw new Error("Ruffle loaded, but createPlayer() was not found.");
+    }
+
+    gameWrap.innerHTML = "";
+    player = ruffle.createPlayer();
+    player.style.width = "100vw";
+    player.style.height = "100vh";
+    player.style.background = "#000";
+    player.setAttribute("tabindex", "0");
+
+    gameWrap.appendChild(player);
+
+    player.addEventListener("loadedmetadata", hideLoaderSoon);
+    player.addEventListener("loadeddata", hideLoaderSoon);
+    player.addEventListener("canplay", hideLoaderSoon);
+    player.addEventListener("error", (event) => {
+      showError(event?.message || "Ruffle reported a player error.");
+    });
+
+    return player;
+  }
+
+  async function start() {
+    try {
+      setProgress(10, "Preparing game...");
+      await loadRuffle();
+
+      setProgress(55, "Creating Flash player...");
+      const p = createRufflePlayer();
+
+      setProgress(75, "Loading SWF file...");
+
+      let result;
+      try {
+        result = p.load({
+          url: SWF_URL,
+          allowScriptAccess: true,
+          parameters: {}
+        });
+      } catch (firstError) {
+        result = p.load(SWF_URL);
+      }
+
+      if (result && typeof result.then === "function") {
+        await result;
+      }
+
+      setProgress(92, "Starting game...");
+
+      // Some Ruffle builds do not fire load events consistently in embeds.
+      setTimeout(hideLoaderSoon, 1800);
+
+    } catch (err) {
+      showError(err && err.message ? err.message : err);
+    }
+  }
+
+  window.addEventListener("click", () => {
+    if (player && player.focus) player.focus();
+  });
+
+  start();
+})();
+</script>
+</body>
+</html>

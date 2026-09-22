@@ -1,0 +1,42 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.resolve(__dirname, '..');
+const skins = fs.readFileSync(path.join(root, 'neo-os', 'neo-skins.js'), 'utf8');
+const styles = fs.readFileSync(path.join(root, 'neo-os', 'neo-desktop.css'), 'utf8');
+const runtime = fs.readFileSync(path.join(root, 'neo-os', 'neo-music-runtime.js'), 'utf8');
+const desktop = fs.readFileSync(path.join(root, 'neo-os', 'neo-os.js'), 'utf8');
+const index = fs.readFileSync(path.join(root, 'neo-os', 'index.html'), 'utf8');
+
+assert.match(skins, /class="skin-media-icon"/);
+assert.ok(skins.includes('data-music="previous" aria-label="Previous song"'));
+assert.ok(skins.includes("mediaIcon('previous')"));
+assert.ok(skins.includes('data-music="toggle" aria-label="'));
+assert.ok(skins.includes('mediaIcon(toggle)'));
+assert.ok(skins.includes('data-music="next" aria-label="Next song"'));
+assert.ok(skins.includes("mediaIcon('next')"));
+assert.doesNotMatch(skins, /data-music="previous"[^>]*>Previous</);
+assert.ok(skins.includes('class="skin-media-artwork"'));
+assert.ok(skins.includes('class="skin-media-cover"'));
+assert.ok(skins.includes("String(media.cover||'').trim()"));
+assert.ok(skins.includes('class="skin-media-artwork-icon"'));
+assert.ok(skins.includes("failedArtwork.add(raw)"));
+assert.match(styles, /\[data-skin-type="music"\] \.skin-media-controls/);
+assert.match(styles, /\.skin-media-icon/);
+assert.match(styles, /\.skin-media-artwork/);
+assert.match(styles, /\.skin-media-cover/);
+assert.match(runtime, /function onTransport\(event\)/);
+assert.ok(runtime.includes("framePlaybackActive"));
+assert.ok(runtime.includes("neoMusicControl: control"));
+assert.ok(runtime.includes('sendFrameControl("volume", volume)'));
+assert.ok(runtime.includes('action === "previous" || action === "prev"'));
+assert.ok(runtime.includes('action === "toggle"'));
+assert.ok(runtime.includes('window.addEventListener("neo-media-transport-request", onTransport)'));
+assert.ok(runtime.includes('window.removeEventListener("neo-media-transport-request", onTransport)'));
+assert.match(runtime, /transport: true/);
+assert.ok(desktop.includes("transport: detail.transport === true"));
+assert.ok(desktop.includes("nowPlayingState.transport && nowPlayingState.source"));
+assert.match(index, /music=symbols-v1/);
+
+console.log('Music widget renders artwork and working accessible previous, play-pause, and next controls.');

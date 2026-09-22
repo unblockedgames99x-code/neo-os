@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="../neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Audiobooks</title>
+    <link rel="icon" href="../assets/audiobooks.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260827-v1" />
+  </head>
+  <body>
+    <main id="top">
+      <header class="topbar">
+        <a class="brand" href="#top"><img src="../assets/audiobooks.svg" width="24" height="24" alt="" />Audiobooks</a>
+        <nav aria-label="Audiobook sections">
+          <a href="#books">Books</a>
+          <a href="#chapters">Chapters</a>
+          <button type="button" data-saved-filter aria-pressed="false">Saved <span data-saved-count>0</span></button>
+        </nav>
+      </header>
+
+      <section class="intro">
+        <div>
+          <p>PUBLIC-DOMAIN RECORDINGS</p>
+          <h1>Complete books.<br />Ready to listen.</h1>
+          <span>Full chapter recordings from LibriVox, with no account required.</span>
+        </div>
+        <label class="search-field">
+          <span>Search library</span>
+          <input type="search" data-search autocomplete="off" placeholder="Title, author, or genre" />
+        </label>
+      </section>
+
+      <section class="books" id="books">
+        <div class="controls">
+          <div data-genres aria-label="Filter by genre"></div>
+          <span data-book-count>Loading complete chapter lists</span>
+        </div>
+        <div class="notice" data-notice role="status">Loading complete chapter lists...</div>
+        <div class="book-grid" data-book-grid></div>
+      </section>
+
+      <section class="details" id="chapters" hidden>
+        <div class="summary" data-summary></div>
+        <div class="chapter-panel">
+          <div class="chapter-heading"><h2>Chapters</h2><span data-chapter-count>0 tracks</span></div>
+          <div class="chapter-list" data-chapter-list></div>
+        </div>
+      </section>
+
+      <footer>
+        <span>Public-domain recordings provided by LibriVox.</span>
+        <a href="https://librivox.org" target="_blank" rel="noreferrer">librivox.org</a>
+      </footer>
+    </main>
+
+    <aside class="player" data-player hidden>
+      <div class="now">
+        <span class="now-art" data-now-art>AB</span>
+        <div><strong data-now-book>Choose a book</strong><small data-now-track>Choose a chapter</small></div>
+      </div>
+      <div class="transport">
+        <div class="transport-buttons">
+          <button type="button" data-previous aria-label="Previous chapter">|&lt;</button>
+          <button class="play" type="button" data-play aria-label="Play">&#9654;</button>
+          <button type="button" data-next aria-label="Next chapter">&gt;|</button>
+        </div>
+        <label class="timeline">
+          <span data-elapsed>0:00</span>
+          <input type="range" data-seek min="0" max="1" value="0" step="0.1" aria-label="Chapter progress" />
+          <span data-duration>0:00</span>
+        </label>
+      </div>
+      <div class="options">
+        <label>Speed
+          <select data-speed aria-label="Playback speed">
+            <option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option><option value="2">2x</option>
+          </select>
+        </label>
+        <label>Volume <input type="range" data-volume min="0" max="1" value="1" step="0.05" aria-label="Volume" /></label>
+        <button type="button" data-autoplay aria-pressed="true">Autoplay</button>
+      </div>
+    </aside>
+    <audio data-audio preload="metadata"></audio>
+    <script src="./app.js?v=20260827-v1"></script>
+  </body>
+</html>

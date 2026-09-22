@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* Flex container to perfectly center the iframe */
+    .center-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /*
+      Keep the game at a 16:9 ratio and fill as much space as possible.
+      min() picks whichever is smaller — full viewport width, or
+      the width that corresponds to 100vh at 16:9 — so it never overflows.
+    */
+    iframe {
+      width: min(100vw, 177.78vh);   /* 177.78 = 100 * (16/9) */
+      height: min(100vh, 56.25vw);   /* 56.25  = 100 * (9/16) */
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="center-wrap">
+    <iframe
+      src="https://web-dashers.github.io/"
+      allowfullscreen
+      allow="autoplay; fullscreen"
+      scrolling="no"
+    ></iframe>
+  </div>
+</body>
+</html>

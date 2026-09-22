@@ -1,0 +1,104 @@
+/* NEO typography system. The primary interface deliberately uses the native
+   platform stack so first paint never waits for a large web-font download. */
+
+@font-face {
+  font-family: "NEO Accent";
+  src: url("./assets/fonts/quicksand.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --neo-font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --neo-font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --neo-font-accent: "NEO Accent", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --neo-font-mono: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+html,
+body {
+  font-family: var(--neo-font-ui);
+  font-kerning: normal;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+:where(h1, h2, h3, .window-title, .launcher-section-title h3, .library-heading h1,
+  .studio-brand strong, .messages-brand-copy strong, .arcade-brand strong,
+  .neo-shell-brand strong, .brand strong, .site-info-title, .neo-about-title) {
+  font-family: var(--neo-font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+:where(.eyebrow, .rainmeter-kicker, .arcade-kicker, .neo-login-eyebrow,
+  .neo-browser-sign-in-eyebrow, .section-label, [data-wallpaper-view-label]) {
+  font-family: var(--neo-font-accent);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+:where(.desktop-app, #neo-volume-bar) {
+  font-family: var(--neo-font-ui);
+}
+
+.desktop-app,
+#neo-volume-bar {
+  font-family: var(--neo-font-ui);
+}
+
+:where(code, kbd, samp, pre, .editor-lines, .editor-code textarea,
+  .terminal-session-output, .terminal-command input) {
+  font-family: var(--neo-font-mono);
+}
+
+/* Preserve the purpose-built clock faces and user-selectable Rainmeter skins. */
+.rainmeter-weekday {
+  font-family: "NEO Weekday", var(--neo-font-display);
+}
+
+.rainmeter-clock {
+  font-family: "NEO Clock", var(--neo-font-display);
+}
+
+#neo-start-title,
+.library-heading h1,
+.intro h1,
+.nt-brand,
+.arcade-hero h1 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+::placeholder {
+  font-family: var(--neo-font-ui);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Native Chromium menus may use a light popup even when the closed control is
+   dark. Give every option its own explicit foreground and surface contrast. */
+select option,
+select optgroup {
+  color: #111318 !important;
+  background-color: #f5f7fa !important;
+}
+
+select option:disabled {
+  color: #606773 !important;
+}

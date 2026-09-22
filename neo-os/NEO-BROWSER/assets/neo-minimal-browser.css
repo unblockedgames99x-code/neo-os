@@ -1,0 +1,506 @@
+/* NEO Browser — fast, theme-aware minimal chrome. */
+:root {
+  --browser-accent: var(--desktop-accent, #ffffff);
+  --browser-accent-strong: color-mix(in srgb, var(--desktop-accent, #ffffff) 86%, var(--desktop-text, #ffffff));
+  --browser-accent-ink: var(--desktop-accent-text, #050505);
+  --browser-chrome: color-mix(in srgb, var(--desktop-surface) 94%, var(--desktop-bg) 6%);
+  --browser-canvas: var(--desktop-bg);
+  --browser-field: color-mix(in srgb, var(--desktop-line) 38%, var(--desktop-surface) 62%);
+  --browser-line: color-mix(in srgb, var(--desktop-line) 76%, var(--desktop-text) 24%);
+  --browser-shadow: 0 18px 48px rgba(0, 0, 0, .2);
+}
+
+html[data-neo-theme="frost"] {
+  --browser-chrome: #fbfcfd;
+  --browser-canvas: #f5f7f9;
+  --browser-field: #dfe3e8;
+  --browser-line: #c7ccd3;
+  --browser-shadow: 0 18px 46px rgba(38, 48, 64, .14);
+}
+
+html,
+body,
+.app,
+main,
+.view {
+  background: var(--browser-canvas) !important;
+}
+
+.neo-browser-minimal .browser-chrome-inner {
+  overflow: visible;
+  background: var(--browser-chrome);
+  box-shadow: 0 1px 0 var(--browser-line);
+}
+
+.neo-browser-minimal .titlebar {
+  min-height: 40px;
+  padding: 5px 10px 3px;
+  gap: 0;
+  justify-content: flex-start;
+  border: 0;
+  background: var(--browser-chrome);
+}
+
+.neo-browser-minimal .tab-strip-wrapper {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.neo-browser-minimal .tab-strip {
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.neo-browser-minimal .tab {
+  height: 31px;
+  min-width: 96px;
+  max-width: 210px;
+  padding: 0 8px 0 10px;
+  border: 1px solid transparent;
+  border-radius: 10px 10px 7px 7px;
+  color: var(--tx3);
+  background: transparent;
+  box-shadow: none;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 140ms ease;
+}
+
+.neo-browser-minimal .tab:hover:not(.active) {
+  color: var(--tx);
+  border-color: color-mix(in srgb, var(--browser-line) 60%, transparent);
+  background: color-mix(in srgb, var(--desktop-text) 7%, transparent);
+}
+
+.neo-browser-minimal .tab.active {
+  color: var(--tx);
+  border-color: color-mix(in srgb, var(--browser-line) 72%, transparent);
+  background: color-mix(in srgb, var(--desktop-text) 10%, var(--browser-chrome));
+  box-shadow: inset 0 1px color-mix(in srgb, var(--desktop-text) 12%, transparent);
+}
+
+.neo-browser-minimal .tab.active :is(.tab-title, .tab-close, .tab-icon) {
+  color: inherit;
+}
+
+.neo-browser-minimal .tab-title {
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: -.012em;
+}
+
+.neo-browser-minimal .tab-icon {
+  color: var(--browser-accent-strong);
+}
+
+.neo-browser-minimal .tab-close {
+  width: 23px;
+  min-width: 23px;
+  height: 23px;
+}
+
+.neo-browser-minimal .tab-add {
+  width: 31px;
+  min-width: 31px;
+  max-width: 31px;
+  height: 31px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--tx2);
+  background: transparent;
+}
+
+.neo-browser-minimal .tab-add:hover {
+  color: var(--browser-accent-ink);
+  border-color: var(--browser-accent);
+  background: var(--browser-accent);
+}
+
+.neo-browser-minimal :is(#metricsBtn, #titlebarStatus) {
+  display: none !important;
+}
+
+.neo-browser-minimal .navbar {
+  position: relative;
+  min-height: 58px;
+  padding: 8px 14px 10px;
+  gap: 9px;
+  border: 0;
+  background: var(--browser-chrome);
+}
+
+.neo-browser-minimal .navbar > [style*="width:1px"] {
+  display: none !important;
+}
+
+.neo-browser-minimal :is(#fullscreenBtn, #historyBtn, #showBookmarksBtn, #extBar, #extPuzzleBtn, #settingsBtn, #devToggle, #codeBtn, #aiBtn, #blockToggle) {
+  display: none !important;
+}
+
+.neo-browser-minimal .nav-pill-group {
+  flex: 0 0 auto;
+  gap: 7px;
+}
+
+.neo-browser-minimal .nav-pill-btn {
+  width: 28px !important;
+  min-width: 28px !important;
+  height: 28px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: var(--browser-accent-ink) !important;
+  background: var(--browser-accent) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .46), 0 2px 8px rgba(76, 48, 0, .12);
+}
+
+.neo-browser-minimal .nav-pill-btn:hover:not(:disabled) {
+  color: var(--browser-accent-ink) !important;
+  background: var(--browser-accent-strong) !important;
+  transform: translateY(-1px);
+}
+
+.neo-browser-minimal .nav-pill-btn:active:not(:disabled) {
+  transform: translateY(0) scale(.94);
+}
+
+.neo-browser-minimal .nav-pill-btn:disabled {
+  opacity: .42 !important;
+}
+
+.neo-browser-minimal #home {
+  display: none !important;
+}
+
+.neo-browser-minimal .omnibox {
+  flex: 1 1 auto;
+  height: 38px;
+  min-width: 120px;
+  padding: 0 7px 0 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--tx);
+  background: var(--browser-field);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .08);
+}
+
+.neo-browser-minimal .omnibox:hover {
+  border-color: color-mix(in srgb, var(--browser-line) 70%, transparent);
+}
+
+.neo-browser-minimal .omnibox:focus-within {
+  border-color: var(--browser-accent-strong);
+  background: color-mix(in srgb, var(--browser-field) 84%, var(--desktop-surface) 16%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--browser-accent) 24%, transparent), inset 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.neo-browser-minimal .url-input {
+  color: var(--tx);
+  font-size: 13px;
+  font-weight: 520;
+  letter-spacing: -.006em;
+}
+
+.neo-browser-minimal .security-chip {
+  color: var(--tx3);
+}
+
+.neo-browser-minimal :is(#findOmniBtn, #bookmarkBtn) {
+  display: none !important;
+}
+
+.neo-browser-minimal .omni-btn.go {
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: var(--browser-accent-ink) !important;
+  background: var(--browser-accent) !important;
+}
+
+.neo-audio-button,
+.neo-more-button {
+  flex: 0 0 auto;
+  height: 30px;
+  border: 1px solid color-mix(in srgb, var(--browser-accent-strong) 75%, transparent);
+  color: var(--browser-accent-ink);
+  background: var(--browser-accent);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .45), 0 2px 8px rgba(76, 48, 0, .12);
+  cursor: pointer;
+}
+
+.neo-audio-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 88px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.neo-more-button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  min-width: 30px;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.neo-audio-button:hover,
+.neo-more-button:hover,
+.neo-more-button[aria-expanded="true"] {
+  background: var(--browser-accent-strong);
+  transform: translateY(-1px);
+}
+
+.neo-audio-button[aria-pressed="true"] {
+  color: var(--tx);
+  border-color: var(--browser-line);
+  background: var(--browser-field);
+}
+
+.neo-browser-menu[hidden] {
+  display: none !important;
+}
+
+.neo-browser-menu {
+  position: absolute;
+  z-index: 10020;
+  top: 96px;
+  right: 14px;
+  width: min(360px, calc(100vw - 28px));
+  padding: 10px;
+  border: 1px solid var(--browser-line);
+  border-radius: 16px;
+  color: var(--tx);
+  background: color-mix(in srgb, var(--desktop-surface) 92%, transparent);
+  box-shadow: var(--browser-shadow);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+}
+
+.neo-browser-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 7px 10px;
+  color: var(--tx);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.neo-transport-status {
+  max-width: 170px;
+  overflow: hidden;
+  color: var(--tx3);
+  font-size: 10px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.neo-transport-status.is-ready {
+  color: var(--neo-theme-success, #2dbf72);
+}
+
+.neo-transport-status.is-error {
+  color: var(--neo-theme-warning, #c58000);
+}
+
+.neo-browser-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.neo-browser-menu-grid button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 0 11px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--tx2);
+  background: color-mix(in srgb, var(--desktop-text) 5%, transparent);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 650;
+  text-align: left;
+}
+
+.neo-browser-menu-grid button:hover {
+  color: var(--tx);
+  border-color: color-mix(in srgb, var(--browser-line) 62%, transparent);
+  background: color-mix(in srgb, var(--desktop-text) 11%, transparent);
+}
+
+.neo-browser-menu-grid i {
+  width: 16px;
+  color: var(--browser-accent-strong);
+  text-align: center;
+}
+
+/* Bookmarks remain available from the address-bar button, but the permanent
+   bookmark shelf is intentionally removed so pages start directly below the
+   browser toolbar. */
+.neo-browser-minimal .bookmarks-bar-wrap {
+  display: none !important;
+}
+
+.neo-browser-minimal .newtab {
+  background: var(--browser-canvas) !important;
+}
+
+.neo-browser-minimal .nt-bg {
+  background:
+    radial-gradient(circle at 50% 12%, color-mix(in srgb, var(--browser-accent) 12%, transparent), transparent 35%),
+    var(--browser-canvas) !important;
+  opacity: 1;
+  filter: none;
+}
+
+.neo-browser-minimal .nt-overlay {
+  background: transparent !important;
+  backdrop-filter: none;
+}
+
+.neo-browser-minimal .nt-header {
+  color: var(--tx3);
+}
+
+.neo-browser-minimal .nt-content {
+  gap: 14px;
+}
+
+.neo-browser-minimal .nt-brand.neo-wordmark {
+  color: var(--tx);
+}
+
+.neo-browser-minimal .nt-search {
+  width: min(760px, calc(100% - 32px));
+  padding: 5px;
+  border: 1px solid var(--browser-line);
+  border-radius: 999px;
+  background: var(--browser-field);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .12);
+}
+
+.neo-browser-minimal .nt-search-engine {
+  border-radius: 999px;
+  color: var(--tx2);
+  background: color-mix(in srgb, var(--desktop-text) 7%, transparent);
+}
+
+.neo-browser-minimal .nt-search > button {
+  border-radius: 999px;
+  color: var(--browser-accent-ink);
+  background: var(--browser-accent);
+}
+
+.neo-browser-minimal .nt-fav-box,
+.neo-browser-minimal .nt-fav-add,
+.neo-browser-minimal .nt-wallpaper-btn {
+  color: var(--tx2);
+  border-color: var(--browser-line);
+  background: color-mix(in srgb, var(--desktop-surface) 88%, transparent);
+}
+
+.neo-browser-minimal .overlay.splash {
+  color: var(--tx2);
+  background: color-mix(in srgb, var(--browser-canvas) 88%, transparent) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.neo-browser-minimal .spinner {
+  border-color: color-mix(in srgb, var(--browser-line) 66%, transparent);
+  border-top-color: var(--browser-accent-strong);
+}
+
+.neo-browser-minimal #frame {
+  background: var(--browser-canvas) !important;
+  color-scheme: inherit;
+}
+
+.neo-youtube-pip {
+  position: fixed;
+  z-index: 10040;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(16, 16, 18, .84);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .34);
+  -webkit-backdrop-filter: blur(15px) saturate(1.25);
+  backdrop-filter: blur(15px) saturate(1.25);
+  transform: translateX(-50%);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease, opacity 150ms ease;
+}
+
+.neo-youtube-pip[hidden] { display: none !important; }
+.neo-youtube-pip:hover,
+.neo-youtube-pip:focus-visible,
+.neo-youtube-pip.is-active {
+  border-color: rgba(255, 255, 255, .38);
+  background: rgba(35, 35, 38, .94);
+  transform: translateX(-50%) translateY(-1px);
+}
+.neo-youtube-pip:active { transform: translateX(-50%) scale(.96); }
+.neo-youtube-pip:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.neo-youtube-pip svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.neo-youtube-pip.is-active svg { color: #7dd3fc; }
+.neo-youtube-pip.has-message { min-width: 156px; justify-content: center; }
+
+html.neo-youtube-mode .titlebar,
+html.neo-youtube-mode .navbar,
+html.neo-youtube-mode .bookmarks-bar-wrap {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .neo-browser-minimal .titlebar { padding-inline: 8px; }
+  .neo-browser-minimal .tab-strip-wrapper { width: calc(100vw - 16px); }
+  .neo-browser-minimal .navbar { padding-inline: 9px; gap: 6px; }
+  .neo-browser-minimal .nav-pill-group { gap: 5px; }
+  .neo-browser-minimal #fwd { display: none !important; }
+  .neo-audio-button { min-width: 30px; width: 30px; padding: 0; }
+  .neo-audio-button span { display: none; }
+  .neo-browser-menu { right: 8px; top: 94px; }
+}
+
+@media (max-width: 440px) {
+  .neo-browser-minimal #back { display: grid !important; }
+  .neo-browser-minimal .security-chip { display: none; }
+  .neo-browser-minimal .omnibox { padding-left: 10px; }
+  .neo-browser-minimal .neo-more-button { display: none; }
+  .neo-youtube-pip { min-width: 36px; width: 36px; padding: 0; justify-content: center; }
+  .neo-youtube-pip span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-browser-minimal *,
+  .neo-browser-minimal *::before,
+  .neo-browser-minimal *::after {
+    scroll-behavior: auto !important;
+  }
+}

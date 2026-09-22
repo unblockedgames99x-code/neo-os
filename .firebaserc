@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "taco-chat-c1539"
+  },
+  "targets": {
+    "taco-chat-c1539": {
+      "hosting": {
+        "neo-os": [
+          "neo-os-desktop-20260908"
+        ]
+      }
+    }
+  }
+}

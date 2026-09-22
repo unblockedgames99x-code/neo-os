@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_blank">
+  <meta charset="UTF-8">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100vh;
+      display: block;
+    }
+
+    /* ─── Save / Load HUD ─── */
+    #hud {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+      padding: 12px 8px;
+    }
+
+    .hud-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+      transition: transform 0.1s, box-shadow 0.1s;
+      user-select: none;
+      width: 90px;
+    }
+    .hud-btn:active { transform: scale(0.96); }
+    .btn-save { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: #e8f5e9; }
+    .btn-load { background: linear-gradient(135deg, #1565c0, #0d47a1); color: #e3f2fd; }
+
+    #toast {
+      position: fixed;
+      left: 8px;
+      top: calc(50% + 90px);
+      transform: translateY(10px);
+      background: rgba(10,10,10,0.92);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      white-space: normal;
+      z-index: 9999;
+      max-width: 160px;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #file-input { display: none; }
+  </style>
+</head>
+<body>
+
+  <iframe id="fr"></iframe>
+
+  <div id="hud">
+    <button class="hud-btn btn-save" onclick="saveGame()">💾 Save Game</button>
+    <button class="hud-btn btn-load" onclick="document.getElementById('file-input').click()">📂 Load Save</button>
+  </div>
+  <div id="toast"></div>
+  <input type="file" id="file-input" accept=".json" onchange="loadGame(event)">
+
+  <script>
+    // ─── Load game into iframe ───
+    window.onload = function() {
+      var iframe = document.getElementById("fr");
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          iframe.contentDocument.open();
+          iframe.contentDocument.write(xhr.responseText);
+          iframe.contentDocument.close();
+        }
+      };
+      xhr.open("GET", "https://cdn.jsdelivr.net/gh/wergboy/NLP@3cd7c854d047f364125194f75adeaa75aecf7985/pt/pt.xml");
+      xhr.send();
+    };
+
+    // ─── Toast helper ───
+    function toast(msg, duration) {
+      duration = duration || 3000;
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, duration);
+    }
+
+    // ─── Save: grab localStorage from both parent and iframe ───
+    function saveGame() {
+      var save = {
+        meta: { savedAt: new Date().toISOString(), game: 'NLP', version: '1.0' },
+        localStorage: {},
+        iframeLocalStorage: {}
+      };
+
+      // Parent localStorage
+      for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        save.localStorage[key] = localStorage.getItem(key);
+      }
+
+      // Iframe localStorage (same-origin only; cross-origin will be silently skipped)
+      try {
+        var ifrLS = document.getElementById('fr').contentWindow.localStorage;
+        for (var j = 0; j < ifrLS.length; j++) {
+          var ikey = ifrLS.key(j);
+          save.iframeLocalStorage[ikey] = ifrLS.getItem(ikey);
+        }
+      } catch(e) { /* cross-origin — can't access */ }
+
+      // IndexedDB names (informational)
+      if (window.indexedDB && indexedDB.databases) {
+        indexedDB.databases().then(function(dbs){
+          save.indexedDBNames = dbs.map(function(d){ return d.name; });
+        }).catch(function(){});
+      }
+
+      var blob = new Blob([JSON.stringify(save, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      var ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
+      a.download = 'nlp_save_' + ts + '.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('✅ Saved! Check your downloads folder.');
+    }
+
+    // ─── Load: restore localStorage then reload ───
+    function loadGame(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var data = JSON.parse(e.target.result);
+          if (!data.meta || !data.localStorage) throw new Error('Bad save');
+
+          // Restore parent localStorage
+          for (var k in data.localStorage) {
+            if (Object.prototype.hasOwnProperty.call(data.localStorage, k)) {
+              localStorage.setItem(k, data.localStorage[k]);
+            }
+          }
+
+          // Restore iframe localStorage if accessible
+          if (data.iframeLocalStorage) {
+            try {
+              var ifrLS = document.getElementById('fr').contentWindow.localStorage;
+              for (var ik in data.iframeLocalStorage) {
+                if (Object.prototype.hasOwnProperty.call(data.iframeLocalStorage, ik)) {
+                  ifrLS.setItem(ik, data.iframeLocalStorage[ik]);
+                }
+              }
+            } catch(e) { /* cross-origin */ }
+          }
+
+          var saved = new Date(data.meta.savedAt).toLocaleString();
+          toast('✅ Loaded save from ' + saved + ' — reloading…');
+          setTimeout(function(){ location.reload(); }, 1800);
+        } catch(err) {
+          toast('❌ Invalid save file.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Violet Storm preview">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#050719"/><stop offset=".52" stop-color="#31146b"/><stop offset="1" stop-color="#0c2d55"/></linearGradient>
+    <radialGradient id="g"><stop stop-color="#8354ff" stop-opacity=".85"/><stop offset="1" stop-color="#8354ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bg)"/><ellipse cx="363" cy="65" rx="250" ry="180" fill="url(#g)"/>
+  <path d="M-15 94C122 13 257 172 501 61M-25 174C104 97 257 252 508 132" fill="none" stroke="#5fb8ff" stroke-opacity=".31" stroke-width="21"/>
+  <g fill="#dcc9ff"><circle cx="69" cy="218" r="3"/><circle cx="196" cy="62" r="2"/><circle cx="410" cy="188" r="3"/></g>
+</svg>

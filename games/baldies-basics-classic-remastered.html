@@ -1,0 +1,35 @@
+from pathlib import Path
+html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Baldi's Basics Classic Remastered</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,sans-serif}#unity-container,#unity-canvas{position:fixed;inset:0;width:100vw!important;height:100vh!important;background:#000;display:block;outline:none}#loader{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;background:#000;color:#fff;text-align:center;padding:22px}#card{width:min(560px,92vw)}#title{font-size:24px;font-weight:700;margin-bottom:12px}#txt{font-size:15px;line-height:1.45;opacity:.92;margin-bottom:16px}#bar{width:100%;height:16px;border-radius:999px;background:#222;overflow:hidden;border:1px solid #444}#fill{width:0;height:100%;background:#fff;transition:width .2s linear}#note{margin-top:12px;font-size:12px;opacity:.65}#err{display:none;margin-top:14px;padding:10px;border:1px solid #f66;border-radius:10px;color:#ffb3b3;font-size:13px;line-height:1.4;word-break:break-word}
+</style>
+</head>
+<body>
+<div id="unity-container"><canvas id="unity-canvas" tabindex="0"></canvas></div>
+<div id="loader"><div id="card"><div id="title">Loading Baldi's Basics...</div><div id="txt">Starting loader. Do not refresh.</div><div id="bar"><div id="fill"></div></div><div id="note">First load can take a while on Chromebooks.</div><div id="err"></div></div></div>
+<script>
+(()=>{const BASE="https://fastly.jsdelivr.net/gh/genizy/web-port@main/baldi-remaster/";
+const canvas=document.getElementById("unity-canvas"),loader=document.getElementById("loader"),txt=document.getElementById("txt"),fill=document.getElementById("fill"),err=document.getElementById("err");
+let loaded=0,total=0,started=false;
+function prog(p,t){fill.style.width=Math.max(0,Math.min(100,p||0))+"%";if(t)txt.textContent=t}
+function fmt(b){return b>1073741824?(b/1073741824).toFixed(2)+" GB":b>1048576?(b/1048576).toFixed(2)+" MB":b>1024?(b/1024).toFixed(2)+" KB":b+" B"}
+function fail(m){err.style.display="block";err.textContent=String(m||"Unknown error");txt.textContent="The game could not finish loading. The error is shown below.";fill.style.width="100%"}
+function parts(file,count){let a=[];for(let i=1;i<=count;i++)a.push(BASE+file+".part"+i);return a}
+async function size(u){try{let r=await fetch(u,{method:"HEAD",cache:"force-cache"});return r.ok?Number(r.headers.get("content-length")||0):0}catch(e){return 0}}
+async function grab(u){let r=await fetch(u,{cache:"force-cache"});if(!r.ok)throw new Error("Could not load "+u+" — HTTP "+r.status);if(!r.body||!r.body.getReader){let b=await r.arrayBuffer();loaded+=b.byteLength;prog(total?loaded/total*88:30,"Loading files... "+fmt(loaded)+" / "+(total?fmt(total):"unknown"));return b}let reader=r.body.getReader(),chunks=[],rec=0;while(true){let {done,value}=await reader.read();if(done)break;chunks.push(value);rec+=value.length;loaded+=value.length;prog(total?loaded/total*88:20,"Loading files... "+fmt(loaded)+" / "+(total?fmt(total):"unknown"))}let out=new Uint8Array(rec),off=0;for(let c of chunks){out.set(c,off);off+=c.length}return out.buffer}
+async function merge(list,type){let bufs=[];for(let p of list)bufs.push(await grab(p));return URL.createObjectURL(new Blob(bufs,{type:type||"application/octet-stream"}))}
+function script(src){return new Promise((res,rej)=>{let s=document.createElement("script");s.src=src;s.async=false;s.onload=res;s.onerror=()=>rej(new Error("Could not load script: "+src));document.body.appendChild(s)})}
+async function start(){try{prog(3,"Checking game files...");let dp=parts("Build/WebGL.data",3),wp=parts("Build/WebGL.wasm",3),all=[...dp,...wp];let sizes=await Promise.all(all.map(size));total=sizes.reduce((a,b)=>a+b,0);prog(6,"Downloading split game files...");let [dataUrl,wasmUrl]=await Promise.all([merge(dp,"application/octet-stream"),merge(wp,"application/wasm")]);prog(90,"Loading Unity engine...");await script(BASE+"Build/WebGL.loader.js");let cfg={dataUrl:dataUrl,frameworkUrl:BASE+"Build/WebGL.framework.js",codeUrl:wasmUrl,streamingAssetsUrl:BASE+"StreamingAssets",companyName:"Basically Games",productName:"Baldi's Basics Classic Remastered",productVersion:"1.1",devicePixelRatio:1};prog(94,"Starting Unity...");createUnityInstance(canvas,cfg,p=>prog(94+p*6,"Starting Unity... "+Math.round(94+p*6)+"%")).then(()=>{started=true;prog(100,"Loaded.");setTimeout(()=>{loader.style.display="none";canvas.focus()},500)}).catch(e=>fail(e&&e.message?e.message:e));setTimeout(()=>{if(!started)txt.textContent="Still loading Unity. This game is large, so keep waiting."},18000)}catch(e){fail(e&&e.message?e.message:e)}}
+window.addEventListener("resize",()=>{canvas.style.width="100vw";canvas.style.height="100vh"});window.addEventListener("click",()=>canvas.focus());start();
+})();
+</script>
+</body>
+</html>"""
+p = Path("/mnt/data/baldis-basics-classic-remastered-fixed-loader.html")
+p.write_text(html, encoding="utf-8")
+print(str(p))

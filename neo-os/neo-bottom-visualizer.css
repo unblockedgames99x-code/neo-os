@@ -1,0 +1,39 @@
+.neo-bottom-visualizer {
+  position: absolute;
+  z-index: 18;
+  left: var(--neo-visualizer-center-x, 50%);
+  right: auto;
+  bottom: 8px;
+  width: min(var(--neo-visualizer-width, 420px), calc(100% - 16px));
+  height: clamp(96px, 18vh, 164px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 220ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1);
+  text-rendering: optimizeSpeed;
+}
+
+.neo-bottom-visualizer[hidden] { display: none; }
+
+html[data-bottom-visualizer="true"] .neo-bottom-visualizer {
+  opacity: .94;
+  transform: translateX(-50%);
+}
+
+html[data-taskbar-position="bottom"] .neo-bottom-visualizer { bottom: 72px; }
+
+html[data-performance-mode="ultimate"] .neo-bottom-visualizer { opacity: .68; }
+
+@media (max-width: 620px) {
+  .neo-bottom-visualizer {
+    bottom: 5px;
+    width: min(var(--neo-visualizer-width, 300px), calc(100% - 8px));
+    height: 88px;
+  }
+
+  html[data-taskbar-position="bottom"] .neo-bottom-visualizer { bottom: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-bottom-visualizer { transition: none; }
+}

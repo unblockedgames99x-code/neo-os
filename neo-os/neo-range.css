@@ -1,0 +1,58 @@
+/* Filled progress tracks for the desktop Personalization sliders. */
+.desktop-app input[type="range"] {
+  --neo-range-progress: 0%;
+  width: min(230px, 45vw);
+  height: 18px;
+  min-height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  outline: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.desktop-app input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--desktop-accent) 0 var(--neo-range-progress),
+    var(--desktop-line) var(--neo-range-progress) 100%
+  );
+}
+
+.desktop-app input[type="range"]::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 50%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--desktop-text);
+}
+
+.desktop-app input[type="range"]::-moz-range-track {
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--desktop-line);
+}
+
+.desktop-app input[type="range"]::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--desktop-accent);
+}
+
+.desktop-app input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--desktop-text);
+}

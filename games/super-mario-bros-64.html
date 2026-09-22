@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>SM64 Fullscreen Fixed</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #061828;
+    font-family: Arial, sans-serif;
+  }
+
+  iframe {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    display: block;
+    outline: none;
+    background: black;
+  }
+
+  #startScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: grid;
+    place-items: center;
+    background: #061828;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  #startBox {
+    padding: 24px 32px;
+    border: 2px solid white;
+    border-radius: 14px;
+    background: rgba(0,0,0,.55);
+    font-size: 26px;
+  }
+
+  #startBox small {
+    display: block;
+    margin-top: 12px;
+    font-size: 16px;
+    opacity: 0.85;
+  }
+
+  #savePanel {
+    position: fixed;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: auto;
+  }
+
+  #savePanel button {
+    width: 82px;
+    min-height: 44px;
+    border: 0;
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  }
+
+  #saveBtn {
+    background: #2ea84f;
+  }
+
+  #loadBtn {
+    background: #2d68d8;
+  }
+
+  #savePanel button:hover {
+    filter: brightness(1.1);
+  }
+
+  #saveStatus {
+    display: none;
+    width: 160px;
+    max-width: 160px;
+    padding: 7px;
+    border-radius: 7px;
+    background: rgba(0,0,0,.82);
+    color: white;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+</style>
+</head>
+
+<body>
+
+<iframe
+  id="gameFrame"
+  tabindex="0"
+  src="about:blank"
+  allow="fullscreen; autoplay; gamepad; pointer-lock; clipboard-read; clipboard-write"
+  allowfullscreen>
+</iframe>
+
+<div id="savePanel">
+  <button id="saveBtn" type="button">💾<br>Save Game</button>
+  <button id="loadBtn" type="button">📁<br>Load Save</button>
+  <input id="saveInput" type="file" accept=".sm64save,.txt,application/octet-stream,text/plain" hidden>
+  <div id="saveStatus"></div>
+</div>
+
+<div id="startScreen">
+  <div id="startBox">
+    Click to load SM64
+    <small>WASD + Arrow Keys = Move</small>
+  </div>
+</div>
+
+<script>
+const gameFrame = document.getElementById('gameFrame');
+const startScreen = document.getElementById('startScreen');
+
+const saveBtn = document.getElementById('saveBtn');
+const loadBtn = document.getElementById('loadBtn');
+const saveInput = document.getElementById('saveInput');
+const saveStatus = document.getElementById('saveStatus');
+
+const SAVE_KEY = 'sm64_save_file';
+
+let gameStarted = false;
+let statusTimer = null;
+
+function showStatus(message, bad) {
+  clearTimeout(statusTimer);
+
+  saveStatus.textContent = message;
+  saveStatus.style.display = 'block';
+  saveStatus.style.background = bad ? 'rgba(150,0,0,.9)' : 'rgba(0,0,0,.82)';
+
+  statusTimer = setTimeout(() => {
+    saveStatus.style.display = 'none';
+  }, 3500);
+}
+
+function cleanSaveText(text) {
+  return String(text || '').replace(/\s+/g, '');
+}
+
+function isValidSaveBase64(text) {
+  const save = cleanSaveText(text);
+
+  try {
+    return atob(save).length === 512;
+  } catch (e) {
+    return false;
+  }
+}
+
+function getLocalSave() {
+  let save = '';
+
+  try {
+    save = localStorage.getItem(SAVE_KEY) || localStorage.sm64_save_file || '';
+  } catch (e) {
+    save = '';
+  }
+
+  save = cleanSaveText(save);
+
+  if (!isValidSaveBase64(save)) {
+    return '';
+  }
+
+  return save;
+}
+
+function makeSaveFilename() {
+  const d = new Date();
+
+  function pad(n) {
+    return String(n).padStart(2, '0');
+  }
+
+  return 'sm64-save-' +
+    d.getFullYear() + '-' +
+    pad(d.getMonth() + 1) + '-' +
+    pad(d.getDate()) + '-' +
+    pad(d.getHours()) +
+    pad(d.getMinutes()) +
+    '.sm64save';
+}
+
+function exportSave() {
+  const save = getLocalSave();
+
+  if (!save) {
+    showStatus('No save found yet. Save in-game first.', true);
+    alert('No SM64 save was found yet. Save inside the game first, then click Save Game.');
+    focusGameRepeatedly();
+    return;
+  }
+
+  const blob = new Blob([save], {
+    type: 'text/plain;charset=utf-8'
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+
+  a.href = url;
+  a.download = makeSaveFilename();
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 1000);
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(save).catch(() => {});
+    }
+  } catch (e) {}
+
+  showStatus('Save exported. Move the .sm64save file to any device.');
+  focusGameRepeatedly();
+}
+
+function bytesToBase64(bytes) {
+  let binary = '';
+  const chunk = 0x8000;
+
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+
+  return btoa(binary);
+}
+
+function extractSaveFromText(text) {
+  let save = String(text || '').trim();
+
+  if (save.toLowerCase().startsWith('data:') && save.includes(',')) {
+    save = save.slice(save.indexOf(',') + 1);
+  }
+
+  let compact = cleanSaveText(save);
+
+  if (isValidSaveBase64(compact)) {
+    return compact;
+  }
+
+  const matches = save.match(/[A-Za-z0-9+/=]{680,700}/g);
+
+  if (matches) {
+    for (let i = 0; i < matches.length; i++) {
+      compact = cleanSaveText(matches[i]);
+
+      if (isValidSaveBase64(compact)) {
+        return compact;
+      }
+    }
+  }
+
+  return '';
+}
+
+async function fileToSaveBase64(file) {
+  const buffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(buffer);
+
+  let text = '';
+
+  try {
+    if (typeof TextDecoder !== 'undefined') {
+      text = new TextDecoder('utf-8').decode(bytes);
+    }
+  } catch (e) {
+    text = '';
+  }
+
+  const textSave = extractSaveFromText(text);
+
+  if (textSave) {
+    return textSave;
+  }
+
+  if (bytes.length === 512) {
+    return bytesToBase64(bytes);
+  }
+
+  return '';
+}
+
+async function importSaveFile(file) {
+  if (!file) return;
+
+  try {
+    const save = await fileToSaveBase64(file);
+
+    if (!save || !isValidSaveBase64(save)) {
+      throw new Error('Invalid save file');
+    }
+
+    localStorage.setItem(SAVE_KEY, save);
+    localStorage.sm64_save_file = save;
+
+    showStatus('Save loaded. Restarting game...');
+    hideStartScreen();
+    startGame();
+  } catch (e) {
+    console.error(e);
+    showStatus('Invalid SM64 save file.', true);
+    alert('That file does not look like a valid SM64 save. Use a .sm64save file exported by this page.');
+  } finally {
+    saveInput.value = '';
+    focusGameRepeatedly();
+  }
+}
+
+saveBtn.addEventListener('click', exportSave);
+
+loadBtn.addEventListener('click', () => {
+  saveInput.click();
+});
+
+saveInput.addEventListener('change', event => {
+  importSaveFile(event.target.files[0]);
+});
+
+function hideStartScreen() {
+  if (startScreen && startScreen.parentNode) {
+    startScreen.remove();
+  }
+}
+
+function focusGame() {
+  gameFrame.focus();
+
+  try {
+    gameFrame.contentWindow.focus();
+    gameFrame.contentWindow.postMessage('sm64-resize', '*');
+  } catch (e) {}
+}
+
+function focusGameRepeatedly() {
+  focusGame();
+  setTimeout(focusGame, 100);
+  setTimeout(focusGame, 300);
+  setTimeout(focusGame, 700);
+  setTimeout(focusGame, 1200);
+}
+
+function requestFullscreenSafe() {
+  const el = document.documentElement;
+
+  if (document.fullscreenElement) return;
+
+  const request =
+    el.requestFullscreen ||
+    el.webkitRequestFullscreen ||
+    el.msRequestFullscreen;
+
+  if (!request) return;
+
+  try {
+    const result = request.call(el, { navigationUI: 'hide' });
+
+    if (result && result.catch) {
+      result.catch(() => {});
+    }
+  } catch (e) {}
+}
+
+function buildGameHTML() {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+  }
+
+  canvas {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block !important;
+    outline: none;
+    cursor: none;
+    background: black;
+  }
+
+  #controls {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    color: white;
+    background: rgba(0,0,0,.62);
+    padding: 9px;
+    border-radius: 9px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+    pointer-events: none;
+  }
+
+  @media (max-width: 700px) {
+    #controls {
+      font-size: 10px;
+      opacity: .75;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="controls">
+  <b>Controls</b><br>
+  WASD = Move<br>
+  Arrow Keys = Move<br>
+  X = A Button<br>
+  C = B Button<br>
+  Space = Z<br>
+  Enter = Start<br>
+  ESC = Unlock Mouse
+</div>
+
+<canvas id="canvas" tabindex="0"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas');
+
+/*
+  This fixes the black area after fullscreen/preview resize.
+  The SM64 build draws frames with putImageData. If the game keeps drawing at
+  the old size, this scales the frame to the current canvas size.
+*/
+function patchCanvasScaling() {
+  if (!window.CanvasRenderingContext2D) return;
+
+  const proto = CanvasRenderingContext2D.prototype;
+
+  if (!proto || proto.__sm64ScalePatch) return;
+
+  const originalPutImageData = proto.putImageData;
+  const blitCanvas = document.createElement('canvas');
+  const blitCtx = blitCanvas.getContext('2d');
+
+  proto.putImageData = function(imageData, dx, dy) {
+    if (
+      this &&
+      this.canvas === canvas &&
+      imageData &&
+      dx === 0 &&
+      dy === 0 &&
+      canvas.width > 0 &&
+      canvas.height > 0 &&
+      (imageData.width !== canvas.width || imageData.height !== canvas.height)
+    ) {
+      if (blitCanvas.width !== imageData.width) {
+        blitCanvas.width = imageData.width;
+      }
+
+      if (blitCanvas.height !== imageData.height) {
+        blitCanvas.height = imageData.height;
+      }
+
+      originalPutImageData.call(blitCtx, imageData, 0, 0);
+
+      this.clearRect(0, 0, canvas.width, canvas.height);
+      this.drawImage(
+        blitCanvas,
+        0,
+        0,
+        imageData.width,
+        imageData.height,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      return;
+    }
+
+    return originalPutImageData.apply(this, arguments);
+  };
+
+  proto.__sm64ScalePatch = true;
+}
+
+patchCanvasScaling();
+
+function getViewportSize() {
+  const vv = window.visualViewport;
+
+  const w = Math.max(
+    320,
+    Math.round(
+      (vv && vv.width) ||
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      screen.width ||
+      800
+    )
+  );
+
+  const h = Math.max(
+    240,
+    Math.round(
+      (vv && vv.height) ||
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      screen.height ||
+      600
+    )
+  );
+
+  return {
+    w: w,
+    h: h
+  };
+}
+
+function resizeCanvas() {
+  const size = getViewportSize();
+
+  canvas.style.width = size.w + 'px';
+  canvas.style.height = size.h + 'px';
+
+  try {
+    if (window.Module && typeof Module.setCanvasSize === 'function') {
+      Module.setCanvasSize(size.w, size.h, false);
+    } else if (window.Browser && typeof Browser.setCanvasSize === 'function') {
+      Browser.setCanvasSize(size.w, size.h, false);
+    } else {
+      if (canvas.width !== size.w) {
+        canvas.width = size.w;
+      }
+
+      if (canvas.height !== size.h) {
+        canvas.height = size.h;
+      }
+    }
+  } catch (e) {
+    if (canvas.width !== size.w) {
+      canvas.width = size.w;
+    }
+
+    if (canvas.height !== size.h) {
+      canvas.height = size.h;
+    }
+  }
+
+  try {
+    if (window.GL && GL.currentContext && GL.currentContext.GLctx) {
+      GL.currentContext.GLctx.viewport(0, 0, canvas.width, canvas.height);
+      GL.currentContext.GLctx.scissor(0, 0, canvas.width, canvas.height);
+    }
+  } catch (e) {}
+
+  canvas.focus();
+}
+
+function resizeBurst() {
+  resizeCanvas();
+
+  setTimeout(resizeCanvas, 50);
+  setTimeout(resizeCanvas, 150);
+  setTimeout(resizeCanvas, 350);
+  setTimeout(resizeCanvas, 750);
+  setTimeout(resizeCanvas, 1200);
+}
+
+window.addEventListener('resize', resizeBurst);
+window.addEventListener('orientationchange', resizeBurst);
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', resizeBurst);
+}
+
+try {
+  if (screen.orientation && screen.orientation.addEventListener) {
+    screen.orientation.addEventListener('change', resizeBurst);
+  }
+} catch (e) {}
+
+document.addEventListener('fullscreenchange', resizeBurst);
+document.addEventListener('webkitfullscreenchange', resizeBurst);
+
+window.addEventListener('message', event => {
+  if (event.data === 'sm64-resize') {
+    resizeBurst();
+  }
+});
+
+setInterval(resizeCanvas, 1000);
+resizeBurst();
+
+/*
+  WASD also moves Mario.
+  Arrow keys still work normally.
+*/
+const keyMap = {
+  'w': {
+    key: 'ArrowUp',
+    code: 'ArrowUp',
+    keyCode: 38
+  },
+  'a': {
+    key: 'ArrowLeft',
+    code: 'ArrowLeft',
+    keyCode: 37
+  },
+  's': {
+    key: 'ArrowDown',
+    code: 'ArrowDown',
+    keyCode: 40
+  },
+  'd': {
+    key: 'ArrowRight',
+    code: 'ArrowRight',
+    keyCode: 39
+  }
+};
+
+let forwardingKey = false;
+
+function makeKeyboardEvent(type, mapped, oldEvent) {
+  const newEvent = new KeyboardEvent(type, {
+    key: mapped.key,
+    code: mapped.code,
+    bubbles: true,
+    cancelable: true,
+    repeat: oldEvent.repeat,
+    ctrlKey: oldEvent.ctrlKey,
+    shiftKey: oldEvent.shiftKey,
+    altKey: oldEvent.altKey,
+    metaKey: oldEvent.metaKey
+  });
+
+  try {
+    Object.defineProperty(newEvent, 'keyCode', {
+      get: function() {
+        return mapped.keyCode;
+      }
+    });
+
+    Object.defineProperty(newEvent, 'which', {
+      get: function() {
+        return mapped.keyCode;
+      }
+    });
+
+    Object.defineProperty(newEvent, 'charCode', {
+      get: function() {
+        return 0;
+      }
+    });
+  } catch (e) {}
+
+  return newEvent;
+}
+
+function remapKey(event) {
+  if (forwardingKey) return;
+
+  const key = String(event.key || '').toLowerCase();
+  const mapped = keyMap[key];
+
+  if (!mapped) return;
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+
+  forwardingKey = true;
+  canvas.dispatchEvent(makeKeyboardEvent(event.type, mapped, event));
+  forwardingKey = false;
+}
+
+window.addEventListener('keydown', remapKey, true);
+window.addEventListener('keyup', remapKey, true);
+
+/*
+  Pointer lock
+*/
+canvas.addEventListener('click', () => {
+  resizeBurst();
+
+  const requestPointerLock =
+    canvas.requestPointerLock ||
+    canvas.mozRequestPointerLock ||
+    canvas.webkitRequestPointerLock;
+
+  if (document.pointerLockElement !== canvas && requestPointerLock) {
+    requestPointerLock.call(canvas);
+  }
+
+  canvas.focus();
+});
+
+document.addEventListener('pointerlockchange', () => {
+  canvas.focus();
+});
+
+window.Module = {
+  canvas: canvas,
+
+  forcedAspectRatio: 0,
+
+  preRun: [
+    resizeCanvas
+  ],
+
+  postRun: [
+    resizeBurst
+  ],
+
+  onRuntimeInitialized: function() {
+    resizeBurst();
+  },
+
+  locateFile: function(path) {
+    return 'https://cdn.jsdelivr.net/gh/ArkShocer/sm64@main/' + path;
+  }
+};
+
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/gh/ArkShocer/sm64@main/sm64.us.f3dex2e.js';
+
+script.onload = function() {
+  resizeBurst();
+  setTimeout(resizeBurst, 500);
+  setTimeout(resizeBurst, 1500);
+  setTimeout(resizeBurst, 3000);
+};
+
+document.body.appendChild(script);
+
+setTimeout(function() {
+  canvas.focus();
+  resizeBurst();
+}, 2000);
+<\/script>
+
+</body>
+</html>
+`;
+}
+
+function startGame() {
+  gameStarted = true;
+  gameFrame.srcdoc = buildGameHTML();
+
+  requestFullscreenSafe();
+  focusGameRepeatedly();
+}
+
+startScreen.addEventListener('click', () => {
+  hideStartScreen();
+  startGame();
+});
+
+gameFrame.addEventListener('load', () => {
+  focusGameRepeatedly();
+});
+
+window.addEventListener('click', () => {
+  focusGameRepeatedly();
+});
+
+window.addEventListener('resize', () => {
+  focusGameRepeatedly();
+});
+
+document.addEventListener('fullscreenchange', () => {
+  focusGameRepeatedly();
+});
+</script>
+
+</body>
+</html>

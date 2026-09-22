@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="https://ubg98.github.io/SpaceBarClicker/" target="_blank">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <title>Space Bar Clicker Unblocked - Real Game + Hard Save</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Hard save controls only. The actual game styling still comes from the real game stylesheet. */
+    #sqHardSavePanel {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 2147483647;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      pointer-events: auto;
+    }
+
+    #sqHardSavePanel button {
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 8px;
+      background: rgba(17, 24, 39, 0.94);
+      color: #fff;
+      padding: 8px 11px;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #sqHardSavePanel button:hover {
+      background: #2563eb;
+    }
+
+    #sqHardSaveStatus {
+      position: fixed;
+      top: 48px;
+      right: 10px;
+      z-index: 2147483647;
+      max-width: 270px;
+      display: none;
+      padding: 9px 11px;
+      border-radius: 10px;
+      background: rgba(17, 24, 39, 0.96);
+      color: #fff;
+      font: 700 12px/1.35 Arial, sans-serif;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+    }
+
+    @media (max-width: 600px) {
+      #sqHardSavePanel {
+        top: auto;
+        right: 8px;
+        bottom: 34px;
+        gap: 6px;
+      }
+      #sqHardSavePanel button {
+        padding: 8px 9px;
+        font-size: 11px;
+      }
+      #sqHardSaveStatus {
+        top: auto;
+        right: 8px;
+        bottom: 74px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="sqHardSavePanel" aria-label="Hard save controls">
+    <button id="sqSaveFileBtn" type="button">Save File</button>
+    <button id="sqLoadFileBtn" type="button">Load File</button>
+  </div>
+  <div id="sqHardSaveStatus" role="status" aria-live="polite"></div>
+
+  <!-- REAL Spacebar Clicker game structure. Do not replace this with the rendered item list. game.js needs the #it template below. -->
+  <div id="game">
+    <div id="header">
+      <div id="counter"><span>0</span></div>
+      <div id="per_second">0</div>
+      <div class="sbc">
+        <div id="sb" class="sbs sb1">SPACEBAR</div>
+      </div>
+    </div>
+
+    <ul id="items">
+      <li id="it" class="item">
+        <span class="ilvl">%4</span>
+        <h1 class="ititle">%1</h1>
+        <span class="idesc">%2</span>
+        <div class="cost"><span class="spacebar"></span><span class="icost">%3</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <div id="footer">a game by <a href="https://bruno.croci.me/">CrociDB</a> | <a href="javascript:game.resetGameSure();">reset game</a></div>
+
+  <!-- REAL UBG Spacebar Clicker game file -->
+  <script src="game.js"></script>
+
+  <!-- Optional UBG scripts from the original page. The game still works if these fail. -->
+  <script src="js/analytics_ubg_v1_4.js"></script>
+  <script src="js/ubg235_client_v1_2.js"></script>
+  <script src="https://ubg235.pages.dev/js/ubg235_server_v1_2.js" async></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const SAVE_KEY = "spacebar_clicker_game";
+      const FILE_TYPE = "StaticQuasar931-Real-Spacebar-Clicker-Save";
+      const FILE_VERSION = 3;
+      const panel = document.getElementById("sqHardSavePanel");
+      const statusBox = document.getElementById("sqHardSaveStatus");
+      const saveBtn = document.getElementById("sqSaveFileBtn");
+      const loadBtn = document.getElementById("sqLoadFileBtn");
+
+      function showStatus(message, ms) {
+        if (!statusBox) return;
+        statusBox.textContent = message;
+        statusBox.style.display = "block";
+        clearTimeout(showStatus._timer);
+        showStatus._timer = setTimeout(function () {
+          statusBox.style.display = "none";
+        }, ms || 2800);
+      }
+
+      function stopGameClick(event) {
+        if (!event) return;
+        event.stopPropagation();
+        if (event.type === "keydown" && event.code === "Space") {
+          event.preventDefault();
+        }
+      }
+
+      if (panel) {
+        ["click", "dblclick", "mousedown", "mouseup", "pointerdown", "pointerup", "touchstart", "touchend", "keydown", "keyup"].forEach(function (type) {
+          panel.addEventListener(type, stopGameClick, true);
+        });
+      }
+
+      function forceGameSave() {
+        try {
+          if (window.game && typeof window.game.saveGame === "function") {
+            window.game.saveGame();
+          }
+        } catch (error) {
+          console.warn("Could not force game save before export:", error);
+        }
+      }
+
+      function downloadTextFile(filename, text) {
+        const blob = new Blob([text], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+          link.remove();
+        }, 1000);
+      }
+
+      function saveFile() {
+        if (saveBtn) saveBtn.blur();
+        forceGameSave();
+
+        const rawGameSave = localStorage.getItem(SAVE_KEY);
+        if (!rawGameSave) {
+          showStatus("No game save found yet. Press SPACE a few times, then save again.", 4000);
+          return;
+        }
+
+        const data = {
+          type: FILE_TYPE,
+          version: FILE_VERSION,
+          game: "Spacebar Clicker",
+          saveKey: SAVE_KEY,
+          createdAt: new Date().toISOString(),
+          value: rawGameSave
+        };
+
+        const filename = "spacebar-clicker-real-save-" + new Date().toISOString().replace(/[:.]/g, "-") + ".json";
+        downloadTextFile(filename, JSON.stringify(data, null, 2));
+        showStatus("Save file downloaded.");
+      }
+
+      function chooseFile() {
+        if (loadBtn) loadBtn.blur();
+
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".json,application/json";
+        input.style.position = "fixed";
+        input.style.left = "-9999px";
+        input.style.top = "-9999px";
+        input.style.opacity = "0";
+        input.style.pointerEvents = "none";
+        document.body.appendChild(input);
+
+        input.addEventListener("change", async function () {
+          const file = input.files && input.files[0];
+          input.remove();
+          if (!file) return;
+
+          let parsed;
+          try {
+            parsed = JSON.parse(await file.text());
+          } catch (error) {
+            alert("That file could not be read. Use a Spacebar Clicker .json save file.");
+            return;
+          }
+
+          let rawGameSave = null;
+
+          // Current real-save format.
+          if (parsed && parsed.type === FILE_TYPE && typeof parsed.value === "string") {
+            rawGameSave = parsed.value;
+          }
+
+          // Backward compatibility with earlier all-localStorage export attempts.
+          if (!rawGameSave && parsed && parsed.localStorage && typeof parsed.localStorage[SAVE_KEY] === "string") {
+            rawGameSave = parsed.localStorage[SAVE_KEY];
+          }
+
+          // Backward compatibility if the user selected a raw game JSON save.
+          if (!rawGameSave && parsed && typeof parsed === "object" && parsed.empty === false && Array.isArray(parsed.items)) {
+            rawGameSave = JSON.stringify(parsed);
+          }
+
+          if (!rawGameSave) {
+            alert("This does not look like a real Spacebar Clicker save file.");
+            return;
+          }
+
+          if (!confirm("Load this save file? This will replace the current Spacebar Clicker save on this device.")) {
+            return;
+          }
+
+          localStorage.setItem(SAVE_KEY, rawGameSave);
+          showStatus("Save loaded. Refreshing...");
+          setTimeout(function () { location.reload(); }, 600);
+        });
+
+        input.click();
+      }
+
+      if (saveBtn) saveBtn.addEventListener("click", saveFile);
+      if (loadBtn) loadBtn.addEventListener("click", chooseFile);
+
+      window.addEventListener("load", function () {
+        showStatus("Real game loaded. Save/Load is ready.", 2200);
+      });
+    })();
+  </script>
+</body>
+</html>

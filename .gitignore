@@ -1,0 +1,8 @@
+.codex-tmp/monochrome-source-20260907/
+.codex-tmp/
+.netlify/
+.firebase/
+dist/
+*.site.tar.gz
+__pycache__/
+*.pyc

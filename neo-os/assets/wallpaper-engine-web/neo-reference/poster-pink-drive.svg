@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Pink Drive preview">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#16061d"/><stop offset=".52" stop-color="#6f174d"/><stop offset="1" stop-color="#10162b"/></linearGradient>
+    <radialGradient id="g"><stop stop-color="#ff3fa8" stop-opacity=".82"/><stop offset="1" stop-color="#ff3fa8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bg)"/><ellipse cx="109" cy="185" rx="235" ry="180" fill="url(#g)"/>
+  <path d="M-20 224C94 132 234 252 505 102M-30 249C139 157 309 278 509 176" fill="none" stroke="#ff9bd3" stroke-opacity=".34" stroke-width="16"/>
+  <g fill="#ffd6ed"><circle cx="79" cy="67" r="3"/><circle cx="296" cy="79" r="2"/><circle cx="421" cy="219" r="2"/></g>
+</svg>

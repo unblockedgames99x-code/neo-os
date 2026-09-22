@@ -1,0 +1,38 @@
+NEO BROWSER — THIRD-PARTY NOTICES
+=================================
+
+This distribution contains and builds upon open-source software. Required notices are provided here, outside the main interface.
+
+Original browser framework
+--------------------------
+Portions of the application are derived from the GUST browser project by Nautilus Labs and contributors. The NEO BROWSER redesign preserves this attribution solely in this notice.
+
+Acorn 8.14.0 and acorn-walk 8.3.4
+----------------------------------
+Copyright JS Foundation and other contributors. Licensed under the MIT License.
+
+libcurl.js 0.7.4 and libcurl
+----------------------------
+libcurl.js is distributed under the GNU Lesser General Public License, version 3. libcurl is distributed under its permissive curl license. Corresponding upstream source is available from the libcurl.js and curl projects.
+
+Bundled libcurl.js dependencies
+-------------------------------
+mbed TLS is licensed under Apache License 2.0. cJSON, Brotli, and nghttp2 include permissive open-source licenses. Their copyright and license terms remain applicable.
+
+Jet/Scramjet and libcurl transport
+----------------------------------
+The compatibility transport includes Jet/Scramjet and the libcurl transport under the GNU Affero General Public License, version 3. Complete license texts are included in the jet and curl directories and must remain with redistributed copies.
+
+Font Awesome Free 6.7.2
+------------------------
+Icons are licensed under CC BY 4.0; fonts under SIL OFL 1.1; code under the MIT License.
+
+ISO 639-1 2.1.11
+-----------------
+Licensed under the MIT License. Loaded only when the language selector is used.
+
+Other optional components
+-------------------------
+Optional viewers and network-backed features may load separately licensed software when invoked, including PDF.js. Their upstream license terms remain applicable.
+
+The complete text of the MIT, LGPL-3.0, Apache-2.0, OFL-1.1, CC-BY-4.0, and other referenced licenses is available from the respective upstream projects and must be retained when redistributing those components.

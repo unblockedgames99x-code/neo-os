@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Fullscreen Game</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paigerodeghero/academicwebsite@897c910c65e6c68b04c44a6b6eba0b99d0f2f2cf/TemplateData/style.css">
+
+<style>
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.webgl-content,
+#gameContainer {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  transform: none !important;
+}
+
+#gameContainer canvas,
+canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: #000 !important;
+}
+
+/* hide Unity template extras */
+.logo,
+.progress,
+.footer,
+#sidebarad1,
+#sidebarad2,
+.sidebar-close,
+.sidebar-frame,
+iframe[id*="goog"],
+iframe[src*="doubleclick"],
+iframe[src*="recaptcha"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/gh/paigerodeghero/academicwebsite@897c910c65e6c68b04c44a6b6eba0b99d0f2f2cf/TemplateData/UnityProgress.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/udbsite/adofai@f170efcb1b532312817e69f26ce3f84c99940238/Build/UnityLoader.js"></script>
+</head>
+
+<body>
+<div class="webgl-content">
+  <div id="gameContainer"></div>
+</div>
+
+<script>
+function forceFitGame() {
+  const container = document.getElementById("gameContainer");
+  if (!container) return;
+
+  container.style.width = window.innerWidth + "px";
+  container.style.height = window.innerHeight + "px";
+
+  const canvas = container.querySelector("canvas");
+  if (canvas) {
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.margin = "0";
+    canvas.style.padding = "0";
+    canvas.style.border = "0";
+    canvas.style.display = "block";
+  }
+}
+
+var gameInstance = UnityLoader.instantiate(
+  "gameContainer",
+  "https://cdn.jsdelivr.net/gh/udbsite/adofai@f170efcb1b532312817e69f26ce3f84c99940238/Build/adofaiii4.json",
+  {
+    onProgress: function(gameInstance, progress) {
+      if (typeof UnityProgress === "function") {
+        UnityProgress(gameInstance, progress);
+      }
+      forceFitGame();
+    },
+    Module: {
+      onRuntimeInitialized: function() {
+        forceFitGame();
+        if (typeof UnityProgress === "function") {
+          UnityProgress(gameInstance, "complete");
+        }
+      }
+    }
+  }
+);
+
+window.addEventListener("load", forceFitGame);
+window.addEventListener("resize", forceFitGame);
+window.addEventListener("orientationchange", function() {
+  setTimeout(forceFitGame, 300);
+});
+
+setInterval(forceFitGame, 500);
+</script>
+</body>
+</html>

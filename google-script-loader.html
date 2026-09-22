@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>NEO OS</title>
+  <style>
+    :root{color-scheme:dark}
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#05070b;color:#fff;font-family:Arial,sans-serif}
+    body{display:grid;place-items:center}
+    #choose{text-align:center}
+    button{margin:6px;padding:13px 18px;border:0;border-radius:10px;background:#fff;color:#05070b;font:700 14px Arial,sans-serif;cursor:pointer}
+    button+button{background:#252830;color:#fff}
+    button:disabled{opacity:.45;cursor:wait}
+    p{margin:12px 0 0;font-size:13px;color:#8f9bb0}
+    iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#000}
+  </style>
+</head>
+<body>
+  <main id="choose">
+    <button id="blank" disabled>Open in about:blank</button>
+    <button id="full" disabled>Full screen</button>
+    <p id="status">Checking NEO OS...</p>
+  </main>
+  <script>
+    (() => {
+      "use strict"
+
+      const https = "https:" + "/" + "/"
+      const hostedApp = https + "unblockedgames99x-code.github.io/dshsfdghaswerweq/neo-os/?v=neo-chat-v3"
+      const hostedOrigin = new URL(hostedApp).origin
+      const chatMethods = new Set([
+        "neoChatCreateProfile",
+        "neoChatLogin",
+        "neoChatResume",
+        "neoChatState",
+        "neoChatSearchUsers",
+          "neoChatCreateRoom",
+          "neoChatUploadAttachment",
+          "neoChatSendMessage",
+          "neoChatEditMessage",
+          "neoChatDeleteMessage",
+        "neoChatSignOut"
+      ])
+      const blankButton = document.getElementById("blank")
+      const fullButton = document.getElementById("full")
+      const status = document.getElementById("status")
+
+      function installChatBridge(hostWindow, frame) {
+        if (!window.google || !window.google.script || !window.google.script.run) return
+
+        const postToChild = message => {
+          try { frame.contentWindow.postMessage(message, hostedOrigin) } catch (error) {}
+        }
+        const postReady = () => postToChild({type:"neo-chat:bridge-ready"})
+
+        hostWindow.addEventListener("message", event => {
+          if (event.source !== frame.contentWindow || event.origin !== hostedOrigin) return
+          const data = event.data
+          if (!data || typeof data !== "object") return
+          if (data.type === "neo-chat:bridge-hello") {
+            postReady()
+            return
+          }
+          if (data.type !== "neo-chat:request") return
+
+          const id = String(data.id || "")
+          const method = String(data.method || "")
+          if (!/^neo_chat_rpc_[a-z0-9_-]{8,80}$/i.test(id) || !chatMethods.has(method)) return
+
+          let payload
+          try {
+            const serialized = JSON.stringify(data.payload || {})
+              if (serialized.length > 9000000) throw new Error("Request too large")
+            payload = JSON.parse(serialized)
+          } catch (error) {
+            postToChild({
+              type: "neo-chat:response",
+              id,
+              result: {ok:false,error:{code:"invalid_request",status:400,message:"That NEO Chat request is invalid."}}
+            })
+            return
+          }
+
+          const runner = window.google.script.run
+            .withSuccessHandler(result => postToChild({type:"neo-chat:response",id,result}))
+            .withFailureHandler(failure => postToChild({
+              type: "neo-chat:response",
+              id,
+              result: {ok:false,error:{
+                code:"relay_unavailable",
+                status:503,
+                message: failure && failure.message ? String(failure.message) : "The NEO relay could not be reached."
+              }}
+            }))
+          try { runner[method](payload) }
+          catch (error) {
+            postToChild({
+              type: "neo-chat:response",
+              id,
+              result: {ok:false,error:{code:"relay_unavailable",status:503,message:"The NEO relay could not start."}}
+            })
+          }
+        })
+        frame.addEventListener("load", postReady)
+      }
+
+      function createFrame(targetDocument) {
+        const frame = targetDocument.createElement("iframe")
+        frame.src = hostedApp
+        frame.title = "NEO OS"
+        frame.allow = "autoplay; clipboard-read; clipboard-write; fullscreen; gamepad"
+        frame.allowFullscreen = true
+        frame.referrerPolicy = "strict-origin-when-cross-origin"
+        frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;background:#000"
+        installChatBridge(targetDocument.defaultView, frame)
+        return frame
+      }
+
+      function enableLaunch() {
+        blankButton.disabled = false
+        fullButton.disabled = false
+        status.textContent = "Choose how to launch NEO OS"
+      }
+
+      blankButton.addEventListener("click", () => {
+        const popup = window.open("about:blank", "_blank")
+        if (!popup) {
+          status.textContent = "Allow pop-ups and try again."
+          return
+        }
+        popup.document.title = "NEO OS"
+        popup.document.documentElement.style.cssText = "width:100%;height:100%;margin:0;overflow:hidden;background:#000"
+        popup.document.body.style.cssText = "width:100%;height:100%;margin:0;overflow:hidden;background:#000"
+        popup.document.body.replaceChildren(createFrame(popup.document))
+        popup.focus()
+      })
+
+      fullButton.addEventListener("click", () => {
+        const frame = createFrame(document)
+        document.body.replaceChildren(frame)
+        const requestFullscreen = frame.requestFullscreen || frame.webkitRequestFullscreen
+        if (requestFullscreen) Promise.resolve(requestFullscreen.call(frame, {navigationUI:"hide"})).catch(() => {})
+      })
+
+      fetch(hostedApp + "&launcher-check=" + Date.now(), {mode:"no-cors",cache:"no-store"})
+        .then(enableLaunch)
+        .catch(() => { status.textContent = "NEO OS could not load. Check your connection and refresh." })
+    })()
+  </script>
+</body>
+</html>

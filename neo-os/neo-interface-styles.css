@@ -1,0 +1,4379 @@
+/* Interface styles are intentionally separate from themes. Modern inherits
+   the existing NEO OS presentation unchanged; Retro, Windows 11, and Kali activate
+   only when the persisted interface-style setting selects them. */
+
+/* Styles chooser --------------------------------------------------------- */
+.interface-style-section > .desktop-note {
+  max-width: 720px;
+  margin: 0 0 14px;
+}
+
+.interface-style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.desktop-app .interface-style-choice {
+  min-width: 0;
+  min-height: 150px;
+  display: grid;
+  grid-template-rows: 96px auto;
+  gap: 12px;
+  padding: 10px;
+  overflow: hidden;
+  color: var(--desktop-muted);
+  background: color-mix(in srgb, var(--desktop-surface) 92%, var(--desktop-bg) 8%);
+  border: 1px solid var(--desktop-line);
+  border-radius: 13px;
+  text-align: left;
+  transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.desktop-app .interface-style-choice:hover {
+  color: var(--desktop-text);
+  background: var(--neo-theme-hover);
+  border-color: var(--neo-hairline);
+  transform: translateY(-1px);
+}
+
+.desktop-app .interface-style-choice.is-selected,
+.desktop-app .interface-style-choice[aria-pressed="true"] {
+  color: var(--desktop-text);
+  background: var(--neo-theme-accent-soft);
+  border-color: var(--desktop-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--desktop-accent) 16%, transparent);
+}
+
+.interface-style-preview {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--desktop-bg) 90%, black 10%);
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 18%, transparent);
+  border-radius: 10px;
+}
+
+.interface-style-preview i {
+  position: absolute;
+  display: block;
+}
+
+.interface-style-preview.is-modern .interface-preview-title {
+  top: 11px;
+  right: 18px;
+  left: 18px;
+  height: 13px;
+  background: color-mix(in srgb, var(--desktop-surface) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 18%, transparent);
+  border-radius: 999px;
+}
+
+.interface-style-preview.is-modern .interface-preview-pane {
+  inset: 31px 24px 17px;
+  background: color-mix(in srgb, var(--desktop-surface) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--desktop-text) 14%, transparent);
+  border-radius: 8px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .28);
+}
+
+.interface-style-preview.is-modern .interface-preview-sidebar {
+  top: 38px;
+  bottom: 24px;
+  left: 31px;
+  width: 16px;
+  background: color-mix(in srgb, var(--desktop-accent) 22%, var(--desktop-surface));
+  border-radius: 5px;
+}
+
+.interface-style-preview.is-modern .interface-preview-taskbar {
+  bottom: 5px;
+  left: 50%;
+  width: 62px;
+  height: 8px;
+  background: color-mix(in srgb, var(--desktop-text) 24%, transparent);
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.interface-style-preview.is-retro {
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 1px, rgba(0,0,0,.025) 1px 3px),
+    color-mix(in srgb, #087e7c 82%, var(--desktop-accent) 18%);
+  border-color: #29291f;
+  border-radius: 0;
+}
+
+.interface-style-preview.is-retro .interface-preview-pane {
+  inset: 13px 19px 15px;
+  background: #cbc6aa;
+  border: 2px solid;
+  border-color: #fffde8 #545243 #545243 #fffde8;
+  box-shadow: 1px 1px 0 #111;
+}
+
+.interface-style-preview.is-retro .interface-preview-title {
+  z-index: 2;
+  top: 15px;
+  right: 21px;
+  left: 21px;
+  height: 12px;
+  background: color-mix(in srgb, var(--desktop-accent) 82%, #10206f 18%);
+}
+
+.interface-style-preview.is-retro .interface-preview-sidebar {
+  z-index: 2;
+  top: 32px;
+  bottom: 21px;
+  left: 25px;
+  width: 30%;
+  background: #b6b197;
+  border: 1px solid #777463;
+}
+
+.interface-style-preview.is-retro .interface-preview-taskbar {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 9px;
+  background: #cbc6aa;
+  border-top: 1px solid #fffde8;
+}
+
+.interface-style-preview.is-windows11 {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(74, 160, 255, .32), transparent 36%),
+    linear-gradient(145deg, #163355, #09111d 72%);
+  border-color: rgba(255,255,255,.24);
+  border-radius: 8px;
+}
+
+.interface-style-preview.is-windows11 .interface-preview-pane {
+  inset: 12px 22px 14px;
+  background: rgba(32,32,32,.9);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 7px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.4);
+}
+
+.interface-style-preview.is-windows11 .interface-preview-title {
+  z-index: 2;
+  top: 13px;
+  right: 23px;
+  left: 23px;
+  height: 10px;
+  background: rgba(255,255,255,.08);
+  border-radius: 6px 6px 0 0;
+}
+
+.interface-style-preview.is-windows11 .interface-preview-sidebar {
+  z-index: 2;
+  top: 29px;
+  bottom: 21px;
+  left: 29px;
+  width: 29%;
+  background: rgba(255,255,255,.055);
+  border-radius: 4px;
+}
+
+.interface-style-preview.is-windows11 .interface-preview-taskbar {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  background: rgba(30,37,46,.9);
+  border-top: 1px solid rgba(255,255,255,.16);
+}
+
+.interface-style-preview.is-windows11 .interface-preview-taskbar::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 42px;
+  height: 5px;
+  background: repeating-linear-gradient(90deg, #60cdff 0 5px, transparent 5px 8px);
+  border-radius: 1px;
+  transform: translateX(-50%);
+}
+
+.interface-style-preview.is-kali {
+  background:
+    radial-gradient(circle at 76% 18%, rgba(0, 214, 255, .2), transparent 30%),
+    linear-gradient(145deg, #071324, #020711 74%);
+  border-color: rgba(0, 213, 255, .44);
+  border-radius: 5px;
+}
+
+.interface-style-preview.is-kali .interface-preview-pane {
+  inset: 13px 18px 15px;
+  background: rgba(4, 13, 26, .94);
+  border: 1px solid rgba(0, 213, 255, .42);
+  border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.5), 0 0 18px rgba(0,190,255,.12);
+}
+
+.interface-style-preview.is-kali .interface-preview-title {
+  z-index: 2;
+  top: 14px;
+  right: 19px;
+  left: 19px;
+  height: 11px;
+  background: linear-gradient(90deg, #1264ac, #0a294c);
+  border-bottom: 1px solid rgba(0,213,255,.5);
+  border-radius: 3px 3px 0 0;
+}
+
+.interface-style-preview.is-kali .interface-preview-sidebar {
+  z-index: 2;
+  top: 30px;
+  bottom: 22px;
+  left: 25px;
+  width: 28%;
+  background: repeating-linear-gradient(180deg, rgba(0,213,255,.45) 0 2px, transparent 2px 9px);
+}
+
+.interface-style-preview.is-kali .interface-preview-taskbar {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 9px;
+  background: #030b15;
+  border-top: 1px solid #00cfff;
+}
+
+.interface-style-preview.is-kali .interface-preview-taskbar::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  width: 48px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #00d5ff 0 6px, transparent 6px 10px);
+}
+
+.interface-style-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.interface-style-copy strong { color: var(--desktop-text); font-size: 14px; }
+.interface-style-copy small { color: var(--desktop-muted); font-size: 12px; }
+
+/* Keep oversized launcher artwork on the same center line as its label. */
+html[data-interface-style="modern"] .app-launcher .launcher-app[data-app="browser"] {
+  grid-template-columns: minmax(0, 1fr) !important;
+  justify-items: center !important;
+}
+
+html[data-interface-style="modern"] .app-launcher .launcher-app[data-app="browser"] > .launcher-app-icon.app-icon-duckduckgo {
+  width: 58px !important;
+  min-width: 58px !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  grid-column: 1 !important;
+  place-self: center !important;
+  margin-inline: auto !important;
+}
+
+html[data-interface-style="modern"] .app-launcher .launcher-app[data-app="browser"] > .launcher-app-icon.app-icon-duckduckgo > .app-image-icon {
+  place-self: center !important;
+}
+
+html[data-interface-style="modern"] .app-launcher .launcher-app[data-app="browser"] > span:last-child {
+  width: 100% !important;
+  grid-column: 1 !important;
+  justify-self: stretch !important;
+  margin-inline: auto !important;
+  text-align: center !important;
+}
+
+/* Launcher alignment reliability -----------------------------------------
+   The edge-aware taskbar stylesheet reserves the correct desktop area, but
+   the launcher itself remains a compact surface. Keep it centered instead of
+   stretching its six columns over the entire available screen. */
+@media (min-width: 701px) {
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position] .app-launcher {
+    top: auto !important;
+    right: auto !important;
+    bottom: calc(var(--neo-taskbar-horizontal-avoid, 0px) + 10px) !important;
+    left: 50% !important;
+    width: min(835px, calc(100vw - 32px)) !important;
+    height: min(720px, calc(100dvh - var(--topbar-height) - var(--neo-taskbar-horizontal-avoid, 0px) - 24px)) !important;
+    max-width: none !important;
+    max-height: none !important;
+    transform-origin: bottom center !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position="top"] .app-launcher {
+    top: calc(var(--topbar-height) + var(--neo-taskbar-horizontal-avoid) + 10px) !important;
+    bottom: auto !important;
+    transform-origin: top center !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position="left"] .app-launcher,
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position="right"] .app-launcher {
+    top: calc(var(--topbar-height) + 10px) !important;
+    bottom: 10px !important;
+    width: min(835px, calc(100vw - var(--neo-taskbar-vertical-avoid) - 32px)) !important;
+    height: min(720px, calc(100dvh - var(--topbar-height) - 20px)) !important;
+    transform-origin: center center !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position="left"] .app-launcher {
+    left: calc(50% + 43px) !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position="right"] .app-launcher {
+    left: calc(50% - 43px) !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position] .app-launcher:not(.is-open) {
+    transform: translateX(-50%) translateY(12px) scale(.98) !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position="top"] .app-launcher:not(.is-open) {
+    transform: translateX(-50%) translateY(-12px) scale(.98) !important;
+  }
+
+  html:not([data-interface-style="retro"]):not([data-interface-style="windows11"])[data-taskbar-position] .app-launcher.is-open {
+    transform: translateX(-50%) translateY(0) scale(1) !important;
+  }
+}
+
+html:not([data-interface-style="retro"]) .app-launcher .pinned-app-grid {
+  grid-template-columns: repeat(6, minmax(0, 92px)) !important;
+  justify-content: center !important;
+  align-items: start !important;
+}
+
+html:not([data-interface-style="retro"]) .app-launcher .launcher-app {
+  width: 92px !important;
+  min-width: 0 !important;
+  justify-self: center !important;
+}
+
+html:not([data-interface-style="retro"]) .app-launcher .launcher-app > span:last-child {
+  width: 100% !important;
+  justify-self: center !important;
+  text-align: center !important;
+}
+
+@media (max-width: 760px) {
+  html:not([data-interface-style="retro"]) .app-launcher .pinned-app-grid {
+    grid-template-columns: repeat(4, minmax(0, 76px)) !important;
+  }
+
+  html:not([data-interface-style="retro"]) .app-launcher .launcher-app {
+    width: 76px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  html:not([data-interface-style="retro"]) .app-launcher .pinned-app-grid {
+    grid-template-columns: repeat(3, minmax(0, 82px)) !important;
+  }
+
+  html:not([data-interface-style="retro"]) .app-launcher .launcher-app {
+    width: 82px !important;
+  }
+}
+
+/* Retro design tokens ---------------------------------------------------- */
+html[data-interface-style="retro"] {
+  --retro-panel: color-mix(in srgb, #cbc6aa 94%, var(--desktop-accent) 6%);
+  --retro-panel-light: color-mix(in srgb, #e1ddc4 96%, var(--desktop-accent) 4%);
+  --retro-panel-dark: color-mix(in srgb, #a8a389 94%, var(--desktop-accent) 6%);
+  --retro-ink: #171711;
+  --retro-muted: #5f5c4d;
+  --retro-light-edge: #fffdea;
+  --retro-dark-edge: #555244;
+  --retro-deep-edge: #29281f;
+  --retro-accent: color-mix(in srgb, var(--desktop-accent, #2646a7) 82%, #101b67 18%);
+  --retro-accent-ink: #ffffff;
+  --retro-font: "Courier New", "Lucida Console", monospace;
+  --topbar-height: 28px;
+  color-scheme: light;
+}
+
+html[data-interface-style="retro"] body,
+html[data-interface-style="retro"] button,
+html[data-interface-style="retro"] input,
+html[data-interface-style="retro"] select,
+html[data-interface-style="retro"] textarea {
+  font-family: var(--retro-font) !important;
+}
+
+/* Shell chrome ----------------------------------------------------------- */
+html[data-interface-style="retro"][data-neo-app="shell"] .topbar {
+  top: 0 !important;
+  height: 28px !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  padding: 2px 5px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 0 !important;
+  border-bottom: 2px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 1px var(--retro-light-edge) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .topbar :is(.active-app-label,.topbar-date,.topbar-date strong,.connection-state,.topbar-action,.icon-button,.topbar-media) {
+  color: var(--retro-ink) !important;
+  font-size: 10px !important;
+}
+
+html[data-interface-style="retro"] .topbar :is(.topbar-logo,.icon-button,.topbar-action,.topbar-date) {
+  width: auto;
+  min-width: 22px;
+  height: 22px;
+  padding: 1px 5px;
+  background: var(--retro-panel) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .topbar .topbar-logo { width: 22px; padding: 1px; }
+html[data-interface-style="retro"] .topbar .topbar-logo img { image-rendering: pixelated; }
+html[data-interface-style="retro"] .topbar .connection-dot { border-radius: 0; box-shadow: none; }
+
+html[data-interface-style="retro"] .window-layer {
+  inset: 28px 0 34px !important;
+}
+
+html[data-interface-style="retro"] .neo-window,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-chrome-revealed {
+  grid-template-rows: 34px minmax(0, 1fr) !important;
+  overflow: hidden !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  outline: 1px solid #15150f;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.72) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window.is-active {
+  box-shadow: 3px 3px 0 rgba(0,0,0,.82), 0 0 0 1px var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window.is-maximized {
+  inset: 1px 1px 1px !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window > .window-chrome,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-chrome,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window.is-chrome-revealed > .window-chrome,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome {
+  position: static !important;
+  z-index: auto !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  align-self: stretch !important;
+  justify-self: stretch !important;
+  grid-row: 1 !important;
+  grid-template-columns: 26px minmax(0, 1fr) auto !important;
+  gap: 7px !important;
+  margin: 0 !important;
+  padding: 3px 4px !important;
+  color: var(--retro-accent-ink) !important;
+  background: linear-gradient(90deg, var(--retro-accent), color-mix(in srgb, var(--retro-accent) 58%, white 42%)) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window > .window-chrome > .window-app-icon,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome > .window-app-icon {
+  width: 24px !important;
+  height: 24px !important;
+  display: grid !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .window-app-icon :is(.icon,img) { width: 17px !important; height: 17px !important; }
+html[data-interface-style="retro"] .window-title { display: block !important; color: #fff !important; }
+html[data-interface-style="retro"] .window-title strong { color: #fff !important; font-size: 12px !important; font-weight: 700 !important; }
+html[data-interface-style="retro"] .window-title small { display: none !important; }
+html[data-interface-style="retro"] .window-controls { display: flex !important; gap: 3px !important; }
+
+html[data-interface-style="retro"] .window-control,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome .window-control {
+  width: 28px !important;
+  height: 26px !important;
+  min-width: 28px !important;
+  min-height: 26px !important;
+  display: grid !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .window-control:hover { background: var(--retro-panel-light) !important; }
+html[data-interface-style="retro"] .window-control.close:hover { color: #fff !important; background: #a71b19 !important; }
+html[data-interface-style="retro"] .window-control .icon { display: block !important; width: 14px !important; height: 14px !important; stroke-width: 2.25 !important; }
+html[data-interface-style="retro"] .window-control::before { content: none !important; }
+
+html[data-interface-style="retro"] .neo-window.is-tab-fullscreen > .tab-fullscreen-exit {
+  top: 10px !important;
+  right: 10px !important;
+  width: 42px !important;
+  height: 38px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.72) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window.is-tab-fullscreen > .tab-fullscreen-exit:is(:hover,:focus-visible) {
+  color: #fff !important;
+  background: #a71b19 !important;
+  border-color: #e88480 #5c0907 #5c0907 #e88480 !important;
+  outline: 1px dotted #fff !important;
+  outline-offset: -5px !important;
+}
+
+html[data-interface-style="retro"] .neo-window.is-tab-fullscreen > .tab-fullscreen-exit:active {
+  border-color: var(--retro-deep-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-deep-edge) !important;
+  transform: translate(1px, 1px) !important;
+}
+
+html[data-interface-style="retro"] .neo-window.is-tab-fullscreen > .tab-fullscreen-exit .icon {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 2.5 !important;
+}
+
+html[data-interface-style="retro"] .neo-window > .window-body,
+html[data-interface-style="retro"].neo-auto-hide-bars[data-window-bar-style="pill"] .neo-window > .window-body {
+  grid-row: 2 !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .window-body iframe { background: var(--retro-panel-light) !important; }
+
+/* Retro taskbar ---------------------------------------------------------- */
+html[data-interface-style="retro"][data-taskbar-position] .taskbar,
+html[data-interface-style="retro"][data-taskbar-position][data-taskbar-style] .taskbar {
+  --dock-hit: 30px !important;
+  --dock-art: 20px !important;
+  position: absolute !important;
+  z-index: 6100 !important;
+  inset: auto 0 0 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  max-height: 34px !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 2px 4px !important;
+  overflow: hidden !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 0 !important;
+  border-top: 2px solid var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 -1px var(--retro-dark-edge) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .taskbar::before,
+html[data-interface-style="retro"] .taskbar::after { display: none !important; }
+
+html[data-interface-style="retro"][data-taskbar-position] .taskbar-center {
+  position: static !important;
+  width: auto !important;
+  height: 30px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"][data-taskbar-position] .taskbar .dock {
+  order: 1 !important;
+  width: auto !important;
+  height: 30px !important;
+  min-width: 0 !important;
+  max-height: 30px !important;
+  flex: 1 1 auto !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+html[data-interface-style="retro"][data-taskbar-position] .taskbar-start-button,
+html[data-interface-style="retro"][data-taskbar-position] .taskbar .dock-button {
+  order: 0 !important;
+  width: 32px !important;
+  height: 28px !important;
+  min-width: 32px !important;
+  min-height: 28px !important;
+  max-width: 32px !important;
+  max-height: 28px !important;
+  flex: 0 0 32px !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 3px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .taskbar .dock-button:is(:hover,:focus-visible),
+html[data-interface-style="retro"] .taskbar-start-button:is(:hover,:focus-visible) { background: var(--retro-panel-light) !important; }
+html[data-interface-style="retro"] .taskbar .dock-button:active,
+html[data-interface-style="retro"] .taskbar-start-button:active { border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important; }
+
+html[data-interface-style="retro"] .taskbar .dock-button :is(.dock-app-art,.app-image-icon,.spotify-vector),
+html[data-interface-style="retro"] .taskbar-launcher-icon {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  transform: none !important;
+  image-rendering: pixelated;
+}
+
+html[data-interface-style="retro"] .taskbar .dock-button .dock-app-art {
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+}
+
+html[data-interface-style="retro"] .taskbar .dock-button .dock-app-art > :is(img,svg) {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 !important;
+  object-fit: contain !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .taskbar .dock-button.is-running::after {
+  top: auto !important;
+  right: 2px !important;
+  bottom: 1px !important;
+  left: 2px !important;
+  width: auto !important;
+  height: 2px !important;
+  background: var(--retro-accent) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-taskbar-position] .taskbar-tray {
+  width: auto !important;
+  height: 28px !important;
+  display: flex !important;
+  flex: 0 0 auto !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin: 0 0 0 auto !important;
+  padding: 2px 7px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-dark) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .taskbar-clock { color: var(--retro-ink) !important; }
+html[data-interface-style="retro"] .taskbar-clock :is(strong,small) { color: inherit !important; font-size: 9px !important; }
+
+/* Widgets, skins, and panels -------------------------------------------- */
+html[data-interface-style="retro"] #widget-layer > .neo-widget,
+html[data-interface-style="retro"] #widget-layer > .neo-widget:hover,
+html[data-interface-style="retro"] .neo-skin {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.65) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transform: translateY(0) !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-widget,.neo-skin) :is(p,small) { color: var(--retro-muted) !important; }
+html[data-interface-style="retro"] .widget-heading,
+html[data-interface-style="retro"] .skin-handle {
+  min-height: 19px;
+  margin: -8px -8px 7px;
+  padding: 2px 5px;
+  color: #fff !important;
+  background: var(--retro-accent) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--retro-deep-edge) !important;
+  letter-spacing: 0 !important;
+}
+
+html[data-interface-style="retro"] .skin-handle { margin: 0; height: 22px; }
+html[data-interface-style="retro"] .skin-content { height: calc(100% - 22px); color: var(--retro-ink) !important; }
+html[data-interface-style="retro"] .widget-menu { color: #fff !important; border-radius: 0 !important; }
+
+/* Launcher and transient UI -------------------------------------------- */
+html[data-interface-style="retro"] .launcher-dismiss-layer {
+  background: rgba(0, 0, 0, .18) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher {
+  --launcher-glass: var(--retro-panel);
+  --launcher-glass-strong: var(--retro-panel-light);
+  --launcher-glass-soft: var(--retro-panel-dark);
+  --launcher-stroke: var(--retro-dark-edge);
+  --launcher-line: var(--retro-dark-edge);
+  --launcher-ink: var(--retro-ink);
+  --launcher-muted: var(--retro-muted);
+  --launcher-accent: var(--retro-accent);
+  inset: auto auto 34px 0 !important;
+  width: min(650px, calc(100vw - 8px)) !important;
+  height: min(520px, calc(100dvh - 66px)) !important;
+  padding: 4px !important;
+  overflow: hidden !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.72) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  color-scheme: light !important;
+  pointer-events: auto;
+}
+
+html[data-interface-style="retro"] .app-launcher::before { display: none !important; }
+
+html[data-interface-style="retro"] .app-launcher .launcher-search {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  margin: 0 0 4px !important;
+  padding: 2px 5px !important;
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-search:focus-within {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  box-shadow: inset 0 0 0 1px var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-search input {
+  height: 24px !important;
+  padding: 0 5px !important;
+  color: var(--retro-ink) !important;
+  caret-color: var(--retro-accent) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-search input::placeholder { color: var(--retro-muted) !important; opacity: 1 !important; }
+html[data-interface-style="retro"] .app-launcher .launcher-search > .icon:first-child,
+html[data-interface-style="retro"] .app-launcher .launcher-local { color: var(--retro-ink) !important; }
+
+html[data-interface-style="retro"] .app-launcher .launcher-scroll-region {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: calc(100% - 34px) !important;
+  display: block !important;
+  padding: 3px !important;
+  overflow: auto !important;
+  background: var(--retro-panel) !important;
+  border: 0 !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel) !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-section {
+  width: 100% !important;
+  padding: 0 !important;
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+}
+
+html[data-interface-style="retro"] .app-launcher :is(.launcher-section-title h3,.launcher-section-title > span,.launcher-empty) {
+  color: var(--retro-ink) !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher :is(.pinned-app-grid,.search-result-list) {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 3px !important;
+}
+
+html[data-interface-style="retro"] .app-launcher :is(.launcher-app,.search-result),
+html[data-interface-style="retro"] .app-launcher :is(.launcher-app,.search-result):hover {
+  min-height: 54px !important;
+  display: grid !important;
+  grid-template: 1fr / 34px minmax(0, 1fr) !important;
+  place-items: center start !important;
+  gap: 7px !important;
+  padding: 4px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher :is(.launcher-app,.search-result):is(:hover,:focus-visible,.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -4px !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-app .launcher-app-icon,
+html[data-interface-style="retro"] .app-launcher .search-result .launcher-detail-icon {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: grid !important;
+  place-items: center !important;
+  align-self: center !important;
+  justify-self: center !important;
+  box-sizing: border-box !important;
+  padding: 3px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  color: #fff !important;
+  background: var(--retro-deep-edge) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) #000 #000 var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-app .launcher-app-icon > :is(svg,.icon,img,.app-image-icon,.spotify-vector),
+html[data-interface-style="retro"] .app-launcher .search-result .launcher-detail-icon > :is(svg,.icon,img,.app-image-icon,.spotify-vector) {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+  display: block !important;
+  place-self: center !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher :is(.launcher-app,.search-result) :is(strong,small,span) {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .app-launcher .launcher-app > span:last-child {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  display: block !important;
+  align-self: center !important;
+  justify-self: stretch !important;
+  overflow: hidden !important;
+  color: inherit !important;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  text-align: left !important;
+  text-overflow: ellipsis !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+html[data-interface-style="retro"] :is(.notification-center,.desktop-context-menu,.context-submenu,.neo-taskbar-menu,.feature-dialog,.desktop-palette,.neo-toast,.neo-taskbar-preview) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.68) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button {
+  min-height: 29px !important;
+  color: var(--retro-ink) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button:is(:hover,:focus-visible,[aria-expanded="true"]) {
+  color: #fff !important;
+  background: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu button :is(.icon,.context-arrow) {
+  color: var(--retro-ink) !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu button:is(:hover,:focus-visible,[aria-expanded="true"]) :is(.icon,.context-arrow) {
+  color: #fff !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu .context-separator {
+  height: 1px !important;
+  background: var(--retro-dark-edge) !important;
+  box-shadow: 0 1px 0 var(--retro-light-edge) !important;
+  opacity: .78 !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu .context-check {
+  color: var(--retro-ink) !important;
+  border-color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu [aria-checked="true"] .context-check::after {
+  border-color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu button:is(:hover,:focus-visible,[aria-expanded="true"]) .context-check,
+html[data-interface-style="retro"] .desktop-context-menu button:is(:hover,:focus-visible,[aria-expanded="true"]) .context-check::after {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+html[data-interface-style="retro"] .desktop-context-menu button:focus-visible {
+  outline: 1px dotted currentColor !important;
+  outline-offset: -4px !important;
+  box-shadow: none !important;
+}
+
+/* Taskbar thumbnails and minimized windows ------------------------------ */
+html[data-interface-style="retro"] :is(.neo-taskbar-preview,.neo-minimized-card),
+html[data-interface-style="retro"] :is(.neo-taskbar-preview,.neo-minimized-card):is(:hover,:focus-within) {
+  padding: 4px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.72) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-card,
+html[data-interface-style="retro"] .neo-minimized-card:is(:hover,:focus-within) {
+  padding: 0 !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-titlebar,.neo-minimized-card-header) {
+  height: 30px !important;
+  min-height: 30px !important;
+  padding: 2px 3px 3px 5px !important;
+  color: var(--retro-accent-ink) !important;
+  background: linear-gradient(90deg, var(--retro-accent), color-mix(in srgb, var(--retro-accent) 58%, white 42%)) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-taskbar-preview-titlebar > span,
+html[data-interface-style="retro"] .neo-minimized-card-identity {
+  min-width: 0 !important;
+  height: 24px !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 1px 3px !important;
+  color: var(--retro-accent-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-titlebar,.neo-minimized-card-header) strong {
+  color: var(--retro-accent-ink) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-taskbar-preview-titlebar small {
+  color: color-mix(in srgb, var(--retro-accent-ink) 72%, transparent) !important;
+  font-size: 9px !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-card-icon {
+  width: 21px !important;
+  height: 21px !important;
+  flex-basis: 21px !important;
+  padding: 2px !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-card-icon .app-image-icon,
+html[data-interface-style="retro"] .neo-minimized-card-icon.app-image-icon {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-card-controls {
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+html[data-interface-style="retro"] .neo-taskbar-preview-titlebar button,
+html[data-interface-style="retro"] .neo-minimized-card-controls > button {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  flex-basis: 24px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-titlebar button,.neo-minimized-card-controls > button):is(:hover,:focus-visible) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  outline: 1px dotted var(--retro-ink) !important;
+  outline-offset: -4px !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-titlebar button,.neo-minimized-card-controls > button):active {
+  border-color: var(--retro-deep-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-deep-edge) !important;
+  transform: translate(1px, 1px) !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-titlebar button[data-taskbar-preview-close],.neo-minimized-card-close):is(:hover,:focus-visible) {
+  color: #fff !important;
+  background: #a71b19 !important;
+  border-color: #e88480 #5c0907 #5c0907 #e88480 !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-titlebar,.neo-minimized-card-controls) .icon {
+  width: 13px !important;
+  height: 13px !important;
+  stroke-width: 2.25 !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-open,.neo-minimized-card-open) {
+  margin-top: 3px !important;
+  color: var(--retro-ink) !important;
+  background: #000 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-deep-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-card-open {
+  margin-top: 0 !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-viewport,.neo-minimized-card-viewport) {
+  border-radius: 0 !important;
+  background: #000 !important;
+}
+
+html[data-interface-style="retro"] :is(.neo-taskbar-preview-media,.neo-taskbar-preview-fallback) {
+  color: var(--retro-muted) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-taskbar-preview-fallback strong { color: var(--retro-ink) !important; }
+html[data-interface-style="retro"] .neo-minimized-card { animation: none !important; }
+html[data-interface-style="retro"] .neo-minimized-tray {
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel) !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-tray::-webkit-scrollbar-track {
+  background: var(--retro-panel) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-minimized-tray::-webkit-scrollbar-thumb {
+  background: var(--retro-dark-edge) !important;
+  border: 1px solid var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+}
+
+/* Native application content ------------------------------------------- */
+html[data-interface-style="retro"] :is(.native-app,.desktop-app,.feature-dialog) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] :is(.native-app,.desktop-app,.feature-dialog) :is(h1,h2,h3,h4,strong,label) { color: var(--retro-ink); }
+html[data-interface-style="retro"] :is(.native-app,.desktop-app,.feature-dialog) :is(p,small,.eyebrow,.desktop-note) { color: var(--retro-muted); }
+
+html[data-interface-style="retro"] :is(.native-app,.desktop-app,.feature-dialog) :is(button,input,select,textarea),
+html[data-interface-style="retro"] .notification-center button {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] :is(.native-app,.desktop-app,.feature-dialog) :is(input,select,textarea) {
+  background: #fffef0 !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] :is(.native-app,.desktop-app,.feature-dialog) button:is(:hover,:focus-visible) {
+  color: #fff !important;
+  background: var(--retro-accent) !important;
+}
+
+/* NEO Chat has its own dark monochrome skin in Modern mode. Recompose the
+   complete app in Retro mode so its panels, messages, and composer share the
+   same raised/recessed geometry as the rest of the interface. */
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] > .window-chrome {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--retro-accent) 62%, #101b67 38%), var(--retro-accent)) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] > .window-body {
+  overflow: hidden !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .neo-messages {
+  --messages-blue: var(--retro-accent) !important;
+  --messages-incoming: var(--retro-panel) !important;
+  --messages-label: var(--retro-muted) !important;
+  grid-template-columns: clamp(248px, 27%, 300px) minmax(0, 1fr) !important;
+  color: var(--retro-ink) !important;
+  color-scheme: light !important;
+  background: var(--retro-panel-light) !important;
+  font-family: var(--retro-font) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-sidebar {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-right: 1px solid var(--retro-dark-edge) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-sidebar-heading {
+  min-height: 58px !important;
+  gap: 8px !important;
+  padding: 8px 10px !important;
+  background: var(--retro-panel) !important;
+  border-bottom: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-brand-mark {
+  width: 32px !important;
+  height: 32px !important;
+  flex-basis: 32px !important;
+  overflow: hidden !important;
+  background: var(--retro-deep-edge) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-brand-mark img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  filter: none !important;
+}
+
+/* Preserve the supplied iMessage-style artwork pixel-for-pixel in retro chrome. */
+html[data-interface-style="retro"] .app-icon-chat,
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-brand-mark {
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .app-icon-chat .app-image-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-sidebar-heading h2 {
+  color: var(--retro-ink) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-compose-shortcut,.messages-back) {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  padding: 0 !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-search {
+  height: 34px !important;
+  margin: 8px 10px !important;
+  padding: 2px 7px !important;
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-search input {
+  height: 26px !important;
+  padding: 0 !important;
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-search input,.messages-history-search,.messages-composer textarea)::placeholder {
+  color: var(--retro-muted) !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-directory {
+  padding: 0 8px 10px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-directory h3 {
+  padding: 10px 5px 5px !important;
+  color: var(--retro-muted) !important;
+  font-size: 11px !important;
+  letter-spacing: .04em !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-pinned-room,.messages-room) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-pinned-room,.messages-room):is(:hover,:focus-visible,.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -4px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-avatar,.messages-heading-avatar) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border: 1px solid var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-room-copy small,.messages-room time,.messages-room-empty) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-connection {
+  min-height: 52px !important;
+  padding: 7px 9px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-dark) !important;
+  border-top: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-connection-copy small { color: var(--retro-muted) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-connection-dot.is-online {
+  background: #168541 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-conversation {
+  grid-template-rows: 66px 42px minmax(0, 1fr) auto !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-conversation-heading {
+  min-height: 66px !important;
+  padding: 6px 48px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-bottom: 1px solid var(--retro-dark-edge) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-conversation-heading h3 {
+  color: var(--retro-ink) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-conversation-heading p {
+  color: var(--retro-muted) !important;
+  font-size: 10px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-history-search {
+  width: auto !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  margin: 5px 9px !important;
+  padding: 4px 8px !important;
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-thread {
+  padding: 16px clamp(14px, 3vw, 34px) 14px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-thread-state,.messages-thread-state p,.native-message-date,.native-message-meta) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-thread-state strong { color: var(--retro-ink) !important; }
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .native-message-author {
+  width: max-content !important;
+  min-height: 0 !important;
+  margin: 0 6px 3px !important;
+  padding: 0 !important;
+  color: var(--retro-muted) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .native-message-bubble {
+  padding: 7px 9px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .native-message.is-own .native-message-bubble {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 58%, #fff 42%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 58%, #fff 42%) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-composer {
+  position: relative !important;
+  gap: 5px !important;
+  padding: 7px 9px 9px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-top: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .chat-local-tools {
+  position: relative !important;
+  min-height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .chat-local-tools > button {
+  width: auto !important;
+  min-width: 0 !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 9px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .chat-emoji-picker {
+  position: absolute !important;
+  z-index: 4 !important;
+  bottom: calc(100% + 5px) !important;
+  left: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 32px) !important;
+  gap: 3px !important;
+  padding: 4px !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.55) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .chat-emoji-picker button {
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  padding: 0 !important;
+  font-family: sans-serif !important;
+  font-size: 16px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-composer-shell {
+  min-height: 36px !important;
+  display: grid !important;
+  grid-template-columns: 36px minmax(0, 1fr) 36px !important;
+  align-items: stretch !important;
+  gap: 5px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-composer textarea {
+  width: 100% !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 96px !important;
+  padding: 7px 8px !important;
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-composer-shell > button {
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-attach-button .icon { transform: none !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] [data-chat-send] .icon { transform: rotate(-90deg) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] .messages-composer > :is([data-chat-feedback],.desktop-note) {
+  min-height: 0 !important;
+  margin: 0 !important;
+  color: #8f1717 !important;
+  font-size: 10px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="chat"] :is(.messages-profile-sheet,.messages-auth-dialog) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.68) !important;
+}
+
+/* The calculator is a native utility rather than a .native-app, so give its
+   complete surface the same raised/recessed treatment as the Retro shell. */
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] > .window-body {
+  overflow: hidden !important;
+  background: var(--retro-panel-light) !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] > .window-chrome {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--retro-accent) 62%, #101b67 38%), var(--retro-accent)) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .neo-calculator {
+  grid-template-rows: minmax(108px, 1fr) minmax(248px, 300px) !important;
+  gap: 8px !important;
+  padding: 10px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-display {
+  min-height: 0 !important;
+  padding: 12px 10px !important;
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-display small {
+  min-height: 17px !important;
+  color: var(--retro-muted) !important;
+  font-size: 13px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-display output {
+  color: var(--retro-ink) !important;
+  font-family: var(--retro-font) !important;
+  font-size: clamp(36px, 9vw, 52px) !important;
+  font-weight: 700 !important;
+  line-height: 1.05 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-grid {
+  min-height: 0 !important;
+  grid-template: repeat(5, minmax(44px, 1fr)) / repeat(4, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-grid button {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 3px 6px !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--retro-font) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-grid :is(.is-operator,.is-equals) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 58%, #fff 42%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 58%, #fff 42%) !important;
+  filter: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-grid button:is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: color-mix(in srgb, var(--retro-accent) 84%, #fff 16%) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -5px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-grid button:active,
+html[data-interface-style="retro"] .neo-window[data-app-id="calculator"] .calculator-grid .is-operator.is-active {
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  transform: translate(1px, 1px) !important;
+}
+
+/* Drive owns a complete dark application theme. Remap every part of it to
+   the Retro palette so the app, its menus, and its dialogs form one system. */
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] > .window-chrome {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--retro-accent) 62%, #101b67 38%), var(--retro-accent)) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] > .window-body {
+  overflow: hidden !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .neo-files {
+  --files-accent: var(--retro-accent) !important;
+  --files-accent-soft: color-mix(in srgb, var(--retro-accent) 18%, var(--retro-panel-light) 82%) !important;
+  --drive-bg: var(--retro-panel) !important;
+  --drive-canvas: var(--retro-panel-light) !important;
+  --drive-control: var(--retro-panel) !important;
+  --drive-hover: color-mix(in srgb, var(--retro-panel-light) 72%, var(--retro-accent) 28%) !important;
+  --drive-text: var(--retro-ink) !important;
+  --drive-muted: var(--retro-muted) !important;
+  --drive-faint: var(--retro-muted) !important;
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-commandbar,.files-layout,.files-sidebar) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-commandbar {
+  border-bottom: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-sidebar {
+  border-right: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-brand,.files-brand strong,.files-header-actions > span,.files-storage-note,.files-group-heading) {
+  color: var(--retro-ink) !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-search {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-search:focus-within {
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  box-shadow: inset 0 0 0 1px var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-search input,
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-search input::placeholder {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-header-actions button,.files-new > summary,.files-history button,.files-toolbar button,.files-segmented button,.files-empty button,.files-status button,.files-inspector-actions button,.files-dialog button,.files-preview-dialog header button) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-header-actions button,.files-new > summary,.files-history button,.files-toolbar button,.files-segmented button,.files-empty button,.files-status button,.files-inspector-actions button,.files-dialog button,.files-preview-dialog header button):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 58%, #fff 42%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 58%, #fff 42%) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -5px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-header-actions button,.files-new > summary,.files-history button,.files-toolbar button,.files-segmented button,.files-empty button,.files-status button,.files-inspector-actions button,.files-dialog button,.files-preview-dialog header button):active {
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  transform: translate(1px, 1px) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-toolbar .files-primary,.files-dialog .files-primary,.files-segmented button.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-new-popover,.files-context-menu,.files-dialog,.files-preview-dialog) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.62) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-new-popover :is(button,i),
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-context-menu > span {
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-new-popover button,.files-context-menu button) {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-new-popover button,.files-context-menu button):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -4px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-locations button {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-locations button:is(:hover,.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -4px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-main,.files-dropzone,.files-status,.files-inspector) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-main {
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-toolbar,
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-status {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-breadcrumbs {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-breadcrumbs button {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-breadcrumbs button:is(:hover,[aria-current="page"]) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-view-actions select,
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-dialog input {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-view-actions select option {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-segmented {
+  gap: 2px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-item {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-item:hover,
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-item:is(.is-selected,[aria-selected="true"]) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-item-art {
+  color: var(--retro-accent) !important;
+  background: var(--retro-panel-dark) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-item.is-folder .files-item-art {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-item :is(strong,small),
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-empty,.files-empty strong,.files-empty p,.files-inspector,.files-inspector h2,.files-inspector p,.files-facts dt,.files-facts dd,.files-dialog label,.files-dialog p) {
+  color: inherit !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-storage-meter {
+  height: 7px !important;
+  background: var(--retro-panel-dark) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] .files-storage-meter span {
+  background: var(--retro-accent) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="files"] :is(.files-dropzone,.files-sidebar,.files-preview-stage) {
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+/* Complete the Retro pass for every remaining native app. These rules change
+   application furniture only; artwork, video, game canvases, and drawings keep
+   their authored colors. */
+html[data-interface-style="retro"] .neo-window[data-interface-style-scope="native"] > .window-body {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .media-app,
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-content,
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .media-content > section {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-sidebar {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-right: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] :is(.feature-brand strong,.feature-content-heading h2,.media-card-copy strong,.media-player-copy h2,.media-stats strong,.media-data-actions h3) {
+  color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] :is(.feature-brand small,.feature-content-heading p,.feature-content .eyebrow,.media-card-copy small,.media-player-copy p,.media-stats small,.media-data-actions p,.feature-state) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] :is(.feature-sidebar nav button,.feature-search,.button,.icon-button,.media-card,.media-stats span,.media-data-actions,.feature-state) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] :is(.feature-sidebar nav button,.button,.icon-button):is(:hover,:focus-visible,.is-active),
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-sidebar nav button.is-active {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-search {
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-search input,
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-search input::placeholder {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] :is(.media-card-art,.media-stage,.media-stage video) {
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="media"] .feature-dialog {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.68) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.music-app,.feature-sidebar,.feature-content,.music-player) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.feature-sidebar,.music-player) { background: var(--retro-panel) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.feature-brand strong,.feature-content-heading h2,.music-track strong,.player-track strong) { color: var(--retro-ink) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.feature-brand small,.feature-content-heading p,.feature-content .eyebrow,.music-track small,.track-size,.player-track small,.player-progress time) { color: var(--retro-muted) !important; }
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.feature-sidebar nav button,.feature-search,.button,.track-play,.track-action,.player-controls button,.player-track button,.music-track) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.feature-sidebar nav button,.button,.track-play,.track-action,.player-controls button,.player-track button):is(:hover,:focus-visible,.is-active),
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.feature-sidebar nav button.is-active,.music-track.is-current,.player-controls .player-toggle) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] .feature-search {
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] .feature-search input,
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] .feature-search input::placeholder {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="music"] :is(.track-art,.player-art) {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .neo-terminal {
+  color: #f3f0d7 !important;
+  background: #050604 !important;
+  font-family: var(--retro-font) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-output {
+  color: #f3f0d7 !important;
+  background: #050604 !important;
+  scrollbar-color: var(--retro-panel-dark) #050604 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] :is(.terminal-line,.terminal-line.is-heading,.terminal-line.is-command) {
+  color: color-mix(in srgb, var(--retro-accent) 48%, #fff 52%) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-line.is-error { color: #ff8c87 !important; }
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-composer {
+  color: #f3f0d7 !important;
+  background: #11130e !important;
+  border-top: 1px solid var(--retro-panel-dark) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-composer label {
+  color: color-mix(in srgb, var(--retro-accent) 48%, #fff 52%) !important;
+  background: #050604 !important;
+  border: 1px solid var(--retro-panel-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-composer input {
+  color: #fffef0 !important;
+  caret-color: color-mix(in srgb, var(--retro-accent) 48%, #fff 52%) !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="notes"] .neo-utility,
+html[data-interface-style="retro"] .neo-window[data-app-id="paint"] .neo-utility,
+html[data-interface-style="retro"] .neo-window[data-app-id="clock"] .neo-utility {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  font-family: var(--retro-font) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="app-installer"] .app-installer {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  font-family: var(--retro-font) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="app-installer"] :is(.installer-form,.installed-sites,.installed-site) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="app-installer"] :is(input,select,.button) {
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window:is([data-app-id="notes"],[data-app-id="paint"]) .neo-utility > header {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-bottom: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window:is([data-app-id="notes"],[data-app-id="paint"],[data-app-id="clock"]) :is(.utility-actions button,.paint-tools button,.stopwatch button) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window:is([data-app-id="notes"],[data-app-id="paint"],[data-app-id="clock"]) :is(.utility-actions button,.paint-tools button,.stopwatch button):is(:hover,:focus-visible),
+html[data-interface-style="retro"] .neo-window[data-app-id="clock"] .stopwatch button.is-primary {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="notes"] :is(.neo-notes-title,.neo-notes textarea) {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="paint"] .paint-tools label { color: var(--retro-muted) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="paint"] .paint-canvas-wrap {
+  background: #050604 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="clock"] .neo-clock {
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+  padding: 10px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="clock"] :is(.clock-live,.stopwatch) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="clock"] :is(.clock-live p,.clock-live .eyebrow,.stopwatch .eyebrow) { color: var(--retro-muted) !important; }
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calendar"] .calendar-app {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calendar"] :is(.calendar-weekday,.calendar-time,.calendar-note small) { color: var(--retro-muted) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="calendar"] .calendar-note {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="calendar"] .calendar-note > span {
+  background: var(--retro-accent) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="control"] .control-center {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="control"] :is(.settings-section,.performance-settings,.taskbar-option-group,.integrated-personalization-settings) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="control"] :is(input,select,textarea) {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] .neo-library {
+  --arcade-bg: var(--retro-panel-light) !important;
+  --arcade-surface: var(--retro-panel) !important;
+  --arcade-surface-raised: var(--retro-panel-dark) !important;
+  --arcade-line: var(--retro-dark-edge) !important;
+  --arcade-muted: var(--retro-muted) !important;
+  color: var(--retro-ink) !important;
+  color-scheme: light !important;
+  background: var(--retro-panel-light) !important;
+  font-family: var(--retro-font) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-topbar,.arcade-footer) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-main,.arcade-catalog,.arcade-gateway,.arcade-pulse-hero) {
+  color: var(--retro-ink) !important;
+  background-color: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] .neo-library .arcade-pulse-hero {
+  background-image: repeating-linear-gradient(135deg, rgba(0,0,0,.025) 0 1px, transparent 1px 3px) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-brand,.arcade-brand strong,.arcade-pulse-hero h2,.arcade-grid-heading h3,.library-card-copy strong) { color: var(--retro-ink) !important; }
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-pulse-hero p,.arcade-spotlight p,.library-card-copy small,.library-state p,.library-footer,.arcade-grid-heading > div) { color: var(--retro-muted) !important; }
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-settings-panel,.arcade-spotlight,.arcade-filters,.library-state,.library-card) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-nav-button,.arcade-icon-button,.arcade-settings-button,.arcade-back-button,.arcade-spotlight-controls button,.arcade-filter-control,.arcade-filters select,.arcade-gateway-search) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-nav-button,.arcade-icon-button,.arcade-settings-button,.arcade-back-button,.arcade-spotlight-controls button):is(:hover,:focus-visible,.is-active),
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.arcade-nav-button.is-active,.library-favorite.is-favorite) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="zones"] :is(.library-cover,.library-cover-fallback,.arcade-spotlight-cover,.arcade-spotlight-fallback,.library-favorite) {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Desktop-platform apps are registered outside the primary app table. Keep
+   their Retro treatment explicit so future registry changes cannot silently
+   leave Widgets, Code Workspace, or Terminal in Modern UI. */
+html[data-interface-style="retro"] .neo-window:is([data-app-id="skins"],[data-app-id="vscode"],[data-app-id="terminal"]) .desktop-app {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  font-family: var(--retro-font) !important;
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="control"] .integrated-personalization-settings :is(.desktop-section,.interface-style-choice,.tab-appearance-choice,.theme-choice,.cursor-theme-choice,.tab-appearance-custom-preview),
+html[data-interface-style="retro"] :is(.desktop-palette,.tab-appearance-dialog) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="control"] .integrated-personalization-settings :is(.interface-style-choice,.tab-appearance-choice,.theme-choice,.cursor-theme-choice)[aria-pressed="true"] {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+  outline: 1px dotted var(--retro-accent-ink) !important;
+  outline-offset: -4px !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="control"] .integrated-personalization-settings :is(.interface-style-choice,.tab-appearance-choice,.theme-choice,.cursor-theme-choice)[aria-pressed="true"] :is(strong,small,.interface-style-copy,.cursor-theme-copy) {
+  color: inherit !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="skins"] .widget-manager {
+  background-image: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="skins"] :is(.widget-manager-heading-icon,.widget-empty-icon,.widget-manager-total,.widget-installed-count,.widget-builtin-section,.widget-library-section,.widget-installed-section,.widget-library-card,.widget-installed-card,.widget-library-icon,.widget-installed-icon,.widget-library-add,.widget-empty-state) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="skins"] :is(.widget-manager-heading p,.widget-section-heading p,.widget-library-copy small,.widget-installed-copy small,.widget-manager-total,.widget-installed-count) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="skins"] :is(.widget-category-button,.widget-action-button,.widget-empty-action) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="skins"] :is(.widget-category-button,.widget-action-button,.widget-empty-action):is(:hover,:focus-visible,[aria-pressed="true"]),
+html[data-interface-style="retro"] .neo-window[data-app-id="skins"] .widget-action-button.is-primary {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] .desktop-editor {
+  grid-template-rows: 36px minmax(0, 1fr) 26px !important;
+  overflow: hidden !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] :is(.editor-toolbar,.editor-status,.editor-tabs,.editor-explorer) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] :is(.editor-toolbar button,.editor-tabs button,.editor-explorer button) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] :is(.editor-tabs button[aria-pressed="true"],.editor-explorer button:is(:hover,:focus-visible),.editor-toolbar button:is(:hover,:focus-visible)) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] :is(.editor-code,.editor-code textarea,.editor-lines) {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] .editor-lines { color: var(--retro-muted) !important; }
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .desktop-terminal {
+  padding: 8px !important;
+  color: #f3f0d7 !important;
+  background: #050604 !important;
+  font-family: var(--retro-font) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] :is(.terminal-tabs,.terminal-log,.terminal-composer) {
+  color: #f3f0d7 !important;
+  background: #050604 !important;
+  border-color: var(--retro-panel-dark) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-composer > span {
+  color: color-mix(in srgb, var(--retro-accent) 48%, #fff 52%) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-tabs button {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-tabs button[aria-pressed="true"] {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="terminal"] .terminal-composer input {
+  color: #fffef0 !important;
+  caret-color: color-mix(in srgb, var(--retro-accent) 48%, #fff 52%) !important;
+  background: #11130e !important;
+  border: 1px solid var(--retro-panel-dark) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] :is(.settings-section,.desktop-section,.performance-settings,.taskbar-option-group,.widget-library-card,.widget-installed-card,.settings-app-link,.wallpaper-option,.drive-folder-card,.drive-file-card) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] :is(.interface-style-preview,.theme-palette-preview i,.theme-accent-preview i,.taskbar-style-preview,.taskbar-placement-preview,.taskbar-surface-preview,.window-bar-style-preview) { border-radius: 0 !important; }
+
+/* Wallpaper Engine is a three-pane workspace with its own surface colors.
+   Keep every utility pane in the Retro system instead of leaving dark
+   Wallpaper Engine layers inside a classic window. */
+html[data-interface-style="retro"] .wallpaper-studio,
+html[data-interface-style="retro"] .wallpaper-studio .studio-shell,
+html[data-interface-style="retro"] .wallpaper-studio .studio-library,
+html[data-interface-style="retro"] .wallpaper-studio .studio-library-scroll,
+html[data-interface-style="retro"] .wallpaper-studio .we-catalog-layout,
+html[data-interface-style="retro"] .wallpaper-studio .we-catalog-results {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-sidebar,
+html[data-interface-style="retro"] .wallpaper-studio .studio-inspector {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-sidebar {
+  border-right: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-inspector {
+  border-left: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.studio-brand,.studio-sidebar-status,.inspector-controls) {
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.studio-brand strong,.studio-nav span,.studio-toolbar h2,.wallpaper-card-copy strong,.inspector-heading h3,.inspector-controls h4,.studio-empty strong,.studio-create h3,.we-source-intro h3,.we-discover-shelf h3) {
+  color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.studio-brand small,.studio-sidebar-status small,.studio-nav small,.wallpaper-card-copy small,.inspector-heading p,.studio-empty p,.studio-create p,.studio-create small,.we-source-intro p,.we-online-pager output,.we-discover-shelf > header span) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-nav button {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-nav button:is(:hover,:focus-visible,.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-nav button:is(:hover,:focus-visible,.is-active) small,
+html[data-interface-style="retro"] .wallpaper-studio .studio-nav button:is(:hover,:focus-visible,.is-active) .icon {
+  color: inherit !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-source-tabs {
+  background: var(--retro-panel-dark) !important;
+  border-bottom-color: var(--retro-deep-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-source-tabs button,
+html[data-interface-style="retro"] .wallpaper-studio .we-discover-topics button {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-source-tabs button:is(:hover,:focus-visible,.is-active),
+html[data-interface-style="retro"] .wallpaper-studio .we-discover-topics button:is(:hover,:focus-visible,.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.studio-search,.studio-sort select,.wallpaper-control-grid select,.we-online-pager input) {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-search:focus-within {
+  border-color: var(--retro-deep-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-deep-edge) !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-search input,
+html[data-interface-style="retro"] .wallpaper-studio .studio-search input::placeholder {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.wallpaper-search-submit,.wallpaper-search-clear) {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.wallpaper-search-submit,.wallpaper-search-clear):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-card,
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-online-card,
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-card-skeleton {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-card:is(:hover,.is-selected),
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-online-card:is(:hover,.is-selected) {
+  border-color: var(--retro-accent) !important;
+  box-shadow: 0 0 0 1px var(--retro-accent) !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-card-select {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-card-select:is(:hover,:focus-visible) {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-card-preview {
+  border-bottom-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.wallpaper-favorite,.wallpaper-online-link) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.wallpaper-favorite,.wallpaper-online-link):is(:hover,:focus-visible,.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-active-badge {
+  color: #fff !important;
+  background: #155a31 !important;
+  border-color: #0b3c20 !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.we-source-intro,.we-filter-panel,.we-online-pager,.studio-empty,.studio-create) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-filter-panel :is(fieldset,details),
+html[data-interface-style="retro"] .wallpaper-studio .we-filter-panel > output {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-filter-panel :is(label,legend,summary,header strong),
+html[data-interface-style="retro"] .wallpaper-studio .we-filter-panel > output {
+  color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-online-icon {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border: 1px solid var(--retro-deep-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.we-inspector-author,.eyebrow) {
+  color: color-mix(in srgb, var(--retro-accent) 84%, #000 16%) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-inspector-meta span {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .inspector-preview {
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-runtime-state {
+  color: var(--retro-muted) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .engine-state {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .engine-state span,
+html[data-interface-style="retro"] .wallpaper-studio .wallpaper-runtime-state::before {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .studio-import-formats span {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.range-field output,.wallpaper-control-grid label,.toggle-row small) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio input[type="range"] {
+  accent-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .switch {
+  background: var(--retro-panel-dark) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .switch::after {
+  background: var(--retro-panel-light) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .toggle-row input:checked + .switch {
+  background: var(--retro-accent) !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.button,.we-online-pager button,.we-playlist-bar button) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.button,.we-online-pager button,.we-playlist-bar button):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.button.primary,.wallpaper-online-install:not(:disabled),.we-add-wallpaper) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border: 2px solid !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .button.primary:disabled {
+  color: var(--retro-muted) !important;
+  background: var(--retro-panel-dark) !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-playlist-bar {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-dark) !important;
+  border-top: 2px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio .we-playlist-bar strong {
+  color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"] .wallpaper-studio :is(.studio-library-scroll,.studio-inspector,.we-shelf-track) {
+  scrollbar-color: var(--retro-dark-edge) var(--retro-panel-light) !important;
+}
+
+/* Embedded NEO apps ----------------------------------------------------- */
+html[data-interface-style="retro"][data-neo-app]:not([data-neo-app="shell"]) {
+  color-scheme: light;
+  --background: var(--retro-panel-light) !important;
+  --background-secondary: var(--retro-panel) !important;
+  --bg-secondary: var(--retro-panel) !important;
+  --foreground: var(--retro-ink) !important;
+  --card: var(--retro-panel) !important;
+  --card-foreground: var(--retro-ink) !important;
+  --primary-foreground: var(--retro-accent-ink) !important;
+  --secondary: var(--retro-panel) !important;
+  --secondary-foreground: var(--retro-ink) !important;
+  --muted: var(--retro-panel-dark) !important;
+  --muted-foreground: var(--retro-muted) !important;
+  --border: var(--retro-dark-edge) !important;
+  --border-color: var(--retro-dark-edge) !important;
+  --input: #fffef0 !important;
+  --primary: var(--retro-accent) !important;
+  --ring: var(--retro-accent) !important;
+  --highlight: var(--retro-accent) !important;
+  --active-highlight: var(--retro-accent) !important;
+  --track-hover-bg: var(--retro-panel) !important;
+  --inline-like: var(--retro-accent) !important;
+  --surface-2: var(--retro-panel) !important;
+  --surface-3: var(--retro-panel-dark) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app]:not([data-neo-app="shell"]) body,
+html[data-interface-style="retro"][data-neo-app]:not([data-neo-app="shell"]) :is(#root,#app,.app,.app-container,.app-shell,.cloud-shell,.main-content,.view) {
+  color: var(--retro-ink) !important;
+  background-color: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app]:not([data-neo-app="shell"]) :is(button,input,select,textarea,[role="button"]) {
+  font-family: var(--retro-font) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app]:not([data-neo-app="shell"]) :is(input,select,textarea) {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .main-header,
+html[data-interface-style="retro"][data-neo-app="music"] .now-playing-bar {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .main-header {
+  border-bottom: 2px solid var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.neo-brand,.neo-wordmark-main,.section-title,h1,h2,h3) {
+  color: var(--retro-ink) !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.neo-wordmark-sub,.text-muted,.track-item-details .artist,.track-item-duration,.now-playing-bar .track-info .album,.now-playing-bar .track-info .artist) {
+  color: var(--retro-muted) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .neo-top-nav a {
+  color: var(--retro-muted) !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .neo-top-nav a:is(:hover,.active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.card,.track-item,.album-card,.artist-card,.modal-content,.queue-panel) {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .track-item {
+  color: var(--retro-ink) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .track-item:is(:hover,.playing) {
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .track-item.playing {
+  border-left: 4px solid var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .track-item-details .title,
+html[data-interface-style="retro"][data-neo-app="music"] .track-item.playing .track-item-details .title,
+html[data-interface-style="retro"][data-neo-app="music"] .now-playing-bar .track-info .title {
+  color: var(--retro-ink) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.btn-secondary,.btn-icon) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.btn-secondary,.btn-icon):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.player-controls .buttons button,.volume-controls button) {
+  color: var(--retro-ink) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] .player-controls .buttons .play-pause-btn {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border: 2px solid !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.progress-bar,.volume-bar) {
+  background: var(--retro-panel-dark) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.progress-fill,.volume-fill) {
+  background: var(--retro-accent) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] #download-notifications {
+  right: 14px !important;
+  bottom: calc(var(--player-bar-height-desktop, 76px) + 16px) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="music"] :is(.download-task,.support-banner,.offline-notification,.update-notification) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.55) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .browser-chrome-inner,
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.titlebar,.navbar) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.tab,.tab-add,.nav-pill-btn,.omnibox,.omni-btn.go) { border-radius: 0 !important; }
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .tab.active { color: #fff !important; background: var(--retro-accent) !important; }
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.nav-pill-btn,.omni-btn.go) { color: var(--retro-ink) !important; background: var(--retro-panel) !important; border: 1px solid var(--retro-dark-edge) !important; }
+
+html[data-interface-style="retro"][data-neo-app="browser"] {
+  --bg0: var(--retro-panel-light) !important;
+  --bg1: var(--retro-panel) !important;
+  --bg2: var(--retro-panel) !important;
+  --bg3: #fffef0 !important;
+  --bg-elevated: var(--retro-panel-light) !important;
+  --surface: color-mix(in srgb, var(--retro-ink) 7%, transparent) !important;
+  --surface2: color-mix(in srgb, var(--retro-accent) 16%, var(--retro-panel)) !important;
+  --bd: var(--retro-dark-edge) !important;
+  --bd2: var(--retro-deep-edge) !important;
+  --tx: var(--retro-ink) !important;
+  --tx2: var(--retro-muted) !important;
+  --tx3: color-mix(in srgb, var(--retro-muted) 76%, var(--retro-panel-dark)) !important;
+  --ac: var(--retro-accent) !important;
+  --ac2: color-mix(in srgb, var(--retro-accent) 78%, #fff 22%) !important;
+  --browser-amber: var(--retro-accent) !important;
+  --browser-amber-strong: var(--retro-accent) !important;
+  --browser-amber-ink: var(--retro-accent-ink) !important;
+  --browser-chrome: var(--retro-panel) !important;
+  --browser-canvas: var(--retro-panel-light) !important;
+  --browser-field: #fffef0 !important;
+  --browser-line: var(--retro-dark-edge) !important;
+  --browser-shadow: none !important;
+  color-scheme: light !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] :is(html,body,.app,main,.view),
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .newtab {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-bg {
+  background-color: var(--retro-panel-light) !important;
+  opacity: .16 !important;
+  filter: grayscale(.35) sepia(.12) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-overlay {
+  background: color-mix(in srgb, var(--retro-panel-light) 88%, transparent) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.nt-header,.nt-date,.nt-time,.nt-brand.neo-wordmark,.neo-name) {
+  color: var(--retro-ink) !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.neo-sub,.neo-version,.nt-tagline,.nt-fav-title) {
+  color: var(--retro-muted) !important;
+  text-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .neo-mark {
+  box-sizing: border-box !important;
+  padding: 6px !important;
+  background: var(--retro-deep-edge) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) #000 #000 var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .neo-version {
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.bookmarks-bar-wrap,.bookmarks-bar) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.bookmark,.bookmarks-toggle) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+  border: 1px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.bookmark,.bookmarks-toggle):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-search {
+  padding: 4px !important;
+  gap: 4px !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-search-engine {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-dark) !important;
+  border: 1px solid var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-search input {
+  color: var(--retro-ink) !important;
+  caret-color: var(--retro-accent) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-search input::placeholder { color: var(--retro-muted) !important; opacity: 1 !important; }
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .nt-search > button {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border: 2px solid !important;
+  border-color: color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) var(--retro-deep-edge) var(--retro-deep-edge) color-mix(in srgb, var(--retro-accent) 64%, #fff 36%) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.nt-engine-dropdown,.tab-context-menu,.context-menu) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-deep-edge) var(--retro-deep-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.55) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.nt-engine-dropdown button,.tab-ctx-item,.context-menu-item):is(:hover,.active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.nt-fav-box,.nt-fav-add,.nt-wallpaper-btn) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.nt-fav-box,.nt-fav-add,.nt-wallpaper-btn):is(:hover,:focus-visible) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+  transform: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.settings-shell,.settings-scroll) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel-light) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal :is(.settings-sidebar,.settings-card,.settings-card-head,.bookmark-modal-content,.adblock-modal-content,.site-info-box,#tutorialCard,.logs,.elements,.ai-sidebar,.find-bar) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .settings-nav-item.active,
+html[data-interface-style="retro"][data-neo-app="browser"] .neo-browser-minimal .bookmark-modal-btn.primary {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="tv"] .neo-shell-header,
+html[data-interface-style="retro"][data-neo-app="cloud"] .neo-shell-header {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-bottom: 1px solid var(--retro-dark-edge) !important;
+  filter: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="tv"] .neo-shell-nav,
+html[data-interface-style="retro"][data-neo-app="cloud"] .neo-shell-nav { background: var(--retro-panel-light) !important; border-radius: 0 !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.topbar,.primary-nav,.footer,.details-dialog,.settings-dialog,.service-notice,.catalog-state) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border-color: var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.catalog,.details-body,.dialog-header,.dialog-actions) {
+  color: var(--retro-ink) !important;
+  background-color: var(--retro-panel-light) !important;
+  border-color: var(--retro-dark-edge) !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.nav-button,.icon-button,.status-button,.button-secondary,.text-button,.category-strip button,.dialog-close) {
+  color: var(--retro-ink) !important;
+  background: var(--retro-panel) !important;
+  border: 2px solid !important;
+  border-color: var(--retro-light-edge) var(--retro-dark-edge) var(--retro-dark-edge) var(--retro-light-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.nav-button,.icon-button,.status-button,.button-secondary,.text-button,.category-strip button,.dialog-close):is(:hover,:focus-visible,.is-active),
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.button-primary,.nav-button.is-active) {
+  color: var(--retro-accent-ink) !important;
+  background: var(--retro-accent) !important;
+  border-color: var(--retro-accent) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.search-control,.sort-control select,.field input,.password-field) {
+  color: var(--retro-ink) !important;
+  background: #fffef0 !important;
+  border: 2px solid !important;
+  border-color: var(--retro-dark-edge) var(--retro-light-edge) var(--retro-light-edge) var(--retro-dark-edge) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="retro"][data-neo-app="cloud"] :is(.game-card,.details-cover,.hero-actions .button,.tag-row span) {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Small screens keep the style while using a usable one-column chooser. */
+@media (max-width: 700px) {
+  .interface-style-grid { grid-template-columns: 1fr; }
+  html[data-interface-style="retro"] .app-launcher { width: calc(100vw - 4px) !important; height: calc(100dvh - 64px) !important; }
+  html[data-interface-style="retro"] .app-launcher :is(.pinned-app-grid,.search-result-list) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  html[data-interface-style="retro"] .neo-window.is-maximized { inset: 0 !important; }
+  html[data-interface-style="retro"][data-neo-app="music"] #download-notifications { bottom: calc(var(--player-bar-height-mobile, 130px) + 12px) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interface-style-choice { transition: none !important; }
+}
+
+html[data-interface-style="retro"] .neo-window[data-app-id="vscode"] .editor-divider {
+  background: var(--retro-dark-edge) !important;
+  box-shadow: 1px 0 0 var(--retro-light-edge) !important;
+}
+
+/* Modern context menus always sit on a dark translucent shell, including when
+   the selected app theme uses dark ink for its light surfaces. Keep menu copy
+   and glyphs on their own high-contrast palette instead of inheriting that ink. */
+html[data-interface-style="modern"] :is(.desktop-context-menu,.context-submenu) {
+  --context-menu-text: #f3f7f8;
+  --context-menu-muted: #c7d2d5;
+  color: var(--context-menu-text) !important;
+}
+
+html[data-interface-style="modern"] :is(.desktop-context-menu,.context-submenu) button {
+  color: var(--context-menu-text) !important;
+  -webkit-text-fill-color: currentColor;
+}
+
+html[data-interface-style="modern"] .desktop-context-menu button :is(.icon,.context-arrow,.context-check) {
+  color: var(--context-menu-muted) !important;
+  opacity: 1;
+}
+
+html[data-interface-style="modern"] :is(.desktop-context-menu,.context-submenu) button:is(:hover,:focus-visible,[aria-expanded="true"]),
+html[data-interface-style="modern"] .desktop-context-menu button:is(:hover,:focus-visible,[aria-expanded="true"]) :is(.icon,.context-arrow,.context-check) {
+  color: #ffffff !important;
+}
+
+html[data-interface-style="modern"] :is(.desktop-context-menu,.context-submenu) button:disabled {
+  color: rgba(243, 247, 248, .48) !important;
+}
+
+/* Optical alignment for every icon shown in the Ctrl app launcher. Keep the
+   icon frame slightly above its geometric center so artwork and text share the
+   same visual baseline in both tile and list layouts. */
+.app-launcher :is(.launcher-app-icon,.launcher-detail-icon,.launcher-category-icon) {
+  position: relative;
+  top: -2px;
+}
+
+/* Windows 11 -------------------------------------------------------------
+   A Fluent shell preset. The user's theme still supplies the accent and
+   content colors while the interface style owns geometry, depth, and chrome. */
+html[data-interface-style="windows11"] {
+  --win11-accent: color-mix(in srgb, var(--desktop-accent, #60cdff) 82%, #60cdff 18%);
+  --win11-mica: color-mix(in srgb, var(--desktop-bg, #202020) 80%, #202020 20%);
+  --win11-mica-alt: color-mix(in srgb, var(--desktop-surface, #272727) 82%, #272727 18%);
+  --win11-acrylic: color-mix(in srgb, var(--desktop-surface, #2c2c2c) 84%, transparent);
+  --win11-control: color-mix(in srgb, var(--desktop-text, #fff) 6%, transparent);
+  --win11-control-hover: color-mix(in srgb, var(--desktop-text, #fff) 10%, transparent);
+  --win11-control-pressed: color-mix(in srgb, var(--desktop-text, #fff) 4%, transparent);
+  --win11-stroke: color-mix(in srgb, var(--desktop-text, #fff) 10%, transparent);
+  --win11-stroke-strong: color-mix(in srgb, var(--desktop-text, #fff) 18%, transparent);
+  --win11-text: var(--desktop-text, #fff);
+  --win11-muted: var(--desktop-muted, #c7c7c7);
+  --topbar-height: 0px;
+  color-scheme: dark;
+}
+
+html[data-interface-style="windows11"] body,
+html[data-interface-style="windows11"] button,
+html[data-interface-style="windows11"] input,
+html[data-interface-style="windows11"] select,
+html[data-interface-style="windows11"] textarea {
+  font-family: "Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: normal;
+}
+
+/* Windows has no separate desktop-wide menu bar. System actions live in the
+   taskbar tray and Start menu in this preset. */
+html[data-interface-style="windows11"][data-neo-app="shell"] .topbar {
+  display: none !important;
+}
+
+html[data-interface-style="windows11"] .window-layer {
+  inset: 0 0 calc(48px + env(safe-area-inset-bottom)) !important;
+}
+
+html[data-interface-style="windows11"] .neo-window,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window.is-chrome-revealed {
+  grid-template-rows: 32px minmax(0, 1fr) !important;
+  overflow: hidden !important;
+  color: var(--win11-text) !important;
+  background: var(--win11-mica) !important;
+  border: 1px solid var(--win11-stroke-strong) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 32px 64px rgba(0,0,0,.38),
+    0 8px 20px rgba(0,0,0,.22),
+    0 0 0 1px rgba(0,0,0,.2) !important;
+}
+
+html[data-interface-style="windows11"] .neo-window.is-active {
+  border-color: color-mix(in srgb, var(--win11-text) 22%, transparent) !important;
+  box-shadow:
+    0 32px 70px rgba(0,0,0,.48),
+    0 8px 24px rgba(0,0,0,.26),
+    0 0 0 1px rgba(0,0,0,.28) !important;
+}
+
+html[data-interface-style="windows11"] .neo-window.is-maximized,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window.is-maximized {
+  inset: 0 0 0 !important;
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="windows11"] .neo-window > .window-chrome,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window > .window-chrome,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window.is-chrome-revealed > .window-chrome {
+  position: relative !important;
+  inset: auto !important;
+  grid-row: 1 !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  grid-template-columns: 20px minmax(0, 1fr) auto !important;
+  gap: 8px !important;
+  padding: 0 0 0 10px !important;
+  color: var(--win11-text) !important;
+  background: color-mix(in srgb, var(--win11-mica-alt) 94%, transparent) !important;
+  border: 0 !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--win11-text) 5%, transparent) !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: background-color 120ms ease !important;
+}
+
+html[data-interface-style="windows11"] .window-app-icon,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window > .window-chrome > .window-app-icon {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  color: var(--win11-text) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="windows11"] .window-app-icon :is(.icon,img,.app-image-icon) {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 3px !important;
+}
+
+html[data-interface-style="windows11"] .window-title {
+  display: block !important;
+  align-self: center !important;
+  color: var(--win11-text) !important;
+}
+
+html[data-interface-style="windows11"] .window-title strong {
+  color: inherit !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 32px !important;
+}
+
+html[data-interface-style="windows11"] .window-title small { display: none !important; }
+html[data-interface-style="windows11"] .window-controls { height: 32px !important; gap: 0 !important; }
+
+html[data-interface-style="windows11"] .window-control,
+html[data-interface-style="windows11"].neo-auto-hide-bars[data-window-bar-style] .neo-window:is(.is-maximized,.is-tab-fullscreen) > .window-chrome .window-control {
+  width: 46px !important;
+  height: 32px !important;
+  color: var(--win11-text) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: .82 !important;
+  transform: none !important;
+}
+
+html[data-interface-style="windows11"] .window-control:hover {
+  background: var(--win11-control-hover) !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="windows11"] .window-control:active {
+  background: var(--win11-control-pressed) !important;
+  opacity: .72 !important;
+}
+
+html[data-interface-style="windows11"] .window-control.close:hover {
+  color: #fff !important;
+  background: #c42b1c !important;
+}
+
+html[data-interface-style="windows11"] .window-control .icon {
+  display: block !important;
+  width: 12px !important;
+  height: 12px !important;
+  stroke-width: 1.6 !important;
+}
+
+html[data-interface-style="windows11"] .window-control::before { content: none !important; }
+
+html[data-interface-style="windows11"] .neo-window > .window-body {
+  grid-row: 2 !important;
+  color: var(--win11-text) !important;
+  background: var(--win11-mica) !important;
+  border-radius: 0 !important;
+  scrollbar-color: rgba(255,255,255,.28) transparent !important;
+}
+
+html[data-interface-style="windows11"] .window-body iframe { background: var(--win11-mica) !important; }
+
+/* Full-width centered Windows taskbar. This visual preset deliberately owns
+   placement while active; switching styles restores the saved NEO placement. */
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar,
+html[data-interface-style="windows11"][data-taskbar-position][data-taskbar-style] .taskbar {
+  --dock-hit: 40px !important;
+  --dock-art: 26px !important;
+  position: absolute !important;
+  z-index: 6100 !important;
+  top: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: calc(48px + env(safe-area-inset-bottom)) !important;
+  max-height: none !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  gap: 0 !important;
+  padding: 4px 8px env(safe-area-inset-bottom) !important;
+  overflow: hidden !important;
+  color: var(--win11-text) !important;
+  background: color-mix(in srgb, var(--win11-mica-alt) 86%, transparent) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--win11-stroke) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 -8px 26px rgba(0,0,0,.14) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(1.35) !important;
+  backdrop-filter: blur(40px) saturate(1.35) !important;
+  transform: none !important;
+}
+
+html[data-interface-style="windows11"] .taskbar::before,
+html[data-interface-style="windows11"] .taskbar::after { display: none !important; }
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar-center {
+  position: absolute !important;
+  top: 4px !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: 50% !important;
+  width: auto !important;
+  max-width: calc(100% - 188px) !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  overflow: hidden !important;
+  transform: translateX(-50%) !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar .dock {
+  order: 1 !important;
+  width: auto !important;
+  max-width: calc(100vw - 244px) !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 2px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  touch-action: pan-x !important;
+  scrollbar-width: none !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar-start-button,
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar .dock-button {
+  position: relative !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  flex: 0 0 40px !important;
+  display: grid !important;
+  place-items: center !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--win11-text) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar-start-button { order: 0 !important; }
+
+html[data-interface-style="windows11"] .taskbar .dock-button:is(:hover,:focus-visible),
+html[data-interface-style="windows11"] .taskbar-start-button:is(:hover,:focus-visible) {
+  background: var(--win11-control-hover) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="windows11"] .taskbar .dock-button:active,
+html[data-interface-style="windows11"] .taskbar-start-button:active {
+  background: var(--win11-control-pressed) !important;
+  transform: scale(.92) !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-launcher-icon {
+  width: 23px !important;
+  height: 23px !important;
+  color: var(--win11-accent) !important;
+  stroke-width: 1.65 !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar .dock-button :is(.dock-app-art,.app-image-icon,.spotify-vector),
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar .dock-button .dock-app-art {
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  min-height: 26px !important;
+  flex: 0 0 26px !important;
+  object-fit: contain !important;
+}
+
+html[data-interface-style="windows11"] .taskbar .dock-app-name {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar .dock-button.is-running::after {
+  top: auto !important;
+  right: auto !important;
+  bottom: 1px !important;
+  left: 50% !important;
+  width: 6px !important;
+  height: 3px !important;
+  background: var(--win11-accent) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  transform: translateX(-50%) !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar-tray {
+  position: relative !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 1px !important;
+  margin: 0 !important;
+  padding: 0 4px !important;
+  color: var(--win11-text) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-quick-button {
+  width: 52px !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-tray:is(:hover,:focus-within),
+html[data-interface-style="windows11"] .taskbar-quick-button:is(:hover,:focus-visible) {
+  background: var(--win11-control-hover) !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-clock {
+  min-width: 72px !important;
+  padding: 0 5px !important;
+  color: var(--win11-text) !important;
+  line-height: 14px !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-clock :is(strong,small) {
+  color: inherit !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+}
+
+/* Start menu */
+html[data-interface-style="windows11"] .launcher-dismiss-layer {
+  background: rgba(0,0,0,.08) !important;
+  border-radius: 0 !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher {
+  top: auto !important;
+  right: auto !important;
+  bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+  left: 50% !important;
+  width: min(640px, calc(100vw - 32px)) !important;
+  height: min(720px, calc(100dvh - 92px)) !important;
+  max-height: none !important;
+  display: block !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  color: var(--win11-text) !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.035), transparent 44%),
+    var(--win11-acrylic) !important;
+  border: 1px solid var(--win11-stroke-strong) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 26px 68px rgba(0,0,0,.48), 0 3px 12px rgba(0,0,0,.24) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(1.4) !important;
+  backdrop-filter: blur(48px) saturate(1.4) !important;
+  transform: translateX(-50%) translateY(0) scale(1) !important;
+  transform-origin: bottom center !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher[hidden] {
+  display: block !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(12px) scale(.98) !important;
+}
+
+/* Launcher motion has taskbar-position selectors with higher specificity.
+   Keep the Windows 11 start menu centered through every motion state. */
+html[data-interface-style="windows11"][data-taskbar-position] .app-launcher:not(.is-open) {
+  transform: translateX(-50%) translateY(12px) scale(.98) !important;
+  transform-origin: bottom center !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .app-launcher.is-open {
+  transform: translateX(-50%) translateY(0) scale(1) !important;
+  transform-origin: bottom center !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher::before { display: none !important; }
+
+html[data-interface-style="windows11"] .app-launcher .launcher-search {
+  top: 24px !important;
+  right: 32px !important;
+  left: 32px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  grid-template-columns: 28px minmax(0, 1fr) 30px !important;
+  padding: 0 9px !important;
+  color: var(--win11-text) !important;
+  background: color-mix(in srgb, var(--win11-mica) 88%, transparent) !important;
+  border: 1px solid var(--win11-stroke-strong) !important;
+  border-bottom: 2px solid var(--win11-accent) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,.18) !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-search:focus-within {
+  background: color-mix(in srgb, var(--win11-mica) 96%, white 4%) !important;
+  border-bottom-color: var(--win11-accent) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--win11-accent) 32%, transparent) !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-search input {
+  height: 32px !important;
+  color: var(--win11-text) !important;
+  font-size: 14px !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-search input::placeholder,
+html[data-interface-style="windows11"] .app-launcher .launcher-local,
+html[data-interface-style="windows11"] .app-launcher .launcher-search > .icon:first-child {
+  color: var(--win11-muted) !important;
+  opacity: 1 !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-scroll-region {
+  inset: 76px 0 20px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  border-top: 1px solid var(--win11-stroke) !important;
+  scrollbar-color: rgba(255,255,255,.28) transparent !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-section {
+  padding-right: 32px !important;
+  padding-left: 32px !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .pinned-section { padding-top: 22px !important; }
+
+html[data-interface-style="windows11"] .app-launcher :is(.pinned-app-grid,.search-result-list) {
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 8px 6px !important;
+  margin-top: 8px !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher :is(.launcher-app,.search-result) {
+  min-height: 76px !important;
+  color: var(--win11-text) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher :is(.launcher-app,.search-result):is(:hover,:focus-visible,.is-selected) {
+  color: var(--win11-text) !important;
+  background: var(--win11-control-hover) !important;
+  border-color: color-mix(in srgb, var(--win11-text) 4%, transparent) !important;
+  transform: none !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-app:active { transform: scale(.96) !important; }
+
+html[data-interface-style="windows11"] .app-launcher .launcher-app .launcher-app-icon,
+html[data-interface-style="windows11"] .app-launcher .search-result .launcher-detail-icon {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  border-radius: 7px !important;
+  box-shadow: 0 3px 8px rgba(0,0,0,.22) !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-app > span:last-child,
+html[data-interface-style="windows11"] .app-launcher :is(.search-result strong,.search-result small,.launcher-section-title h3,.launcher-section-title > span,.launcher-empty) {
+  color: var(--win11-text) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html[data-interface-style="windows11"] .app-launcher .launcher-app > span:last-child {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+/* Acrylic flyouts, context menus, previews, and notifications */
+html[data-interface-style="windows11"] :is(.taskbar-quick-settings,.notification-center,.connection-panel,.desktop-context-menu,.context-submenu,.neo-taskbar-menu,.feature-dialog,.desktop-palette,.neo-toast,.neo-taskbar-preview,.neo-minimized-card) {
+  color: var(--win11-text) !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.025), transparent 46%),
+    var(--win11-acrylic) !important;
+  border: 1px solid var(--win11-stroke-strong) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 18px 44px rgba(0,0,0,.42), 0 3px 10px rgba(0,0,0,.2) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(1.35) !important;
+  backdrop-filter: blur(36px) saturate(1.35) !important;
+}
+
+html[data-interface-style="windows11"][data-taskbar-position] .taskbar-quick-settings,
+html[data-interface-style="windows11"][data-taskbar-position] .notification-center,
+html[data-interface-style="windows11"][data-taskbar-position] .connection-panel {
+  top: auto !important;
+  right: 12px !important;
+  bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+  left: auto !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-quick-settings { width: min(360px, calc(100vw - 24px)) !important; padding: 14px !important; }
+
+html[data-interface-style="windows11"] .taskbar-quick-grid > button,
+html[data-interface-style="windows11"] .taskbar-quick-sliders,
+html[data-interface-style="windows11"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button,
+html[data-interface-style="windows11"] .notification-center button {
+  color: var(--win11-text) !important;
+  background: var(--win11-control) !important;
+  border: 1px solid var(--win11-stroke) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.035) inset !important;
+}
+
+html[data-interface-style="windows11"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button {
+  min-height: 32px !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-quick-grid > button:is(:hover,:focus-visible),
+html[data-interface-style="windows11"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button:is(:hover,:focus-visible,[aria-expanded="true"]),
+html[data-interface-style="windows11"] .notification-center button:is(:hover,:focus-visible) {
+  color: var(--win11-text) !important;
+  background: var(--win11-control-hover) !important;
+  border-color: var(--win11-stroke) !important;
+}
+
+html[data-interface-style="windows11"] .taskbar-quick-grid > button:is(.is-active,[aria-pressed="true"]) {
+  color: #071217 !important;
+  background: var(--win11-accent) !important;
+  border-color: transparent !important;
+}
+
+html[data-interface-style="windows11"] .desktop-context-menu .context-separator {
+  background: var(--win11-stroke) !important;
+}
+
+html[data-interface-style="windows11"] :is(.neo-taskbar-preview-titlebar,.neo-minimized-card-header) {
+  background: var(--win11-mica-alt) !important;
+  border-bottom: 1px solid var(--win11-stroke) !important;
+}
+
+/* Native NEO utilities and settings use Windows control geometry. */
+html[data-interface-style="windows11"] :is(.native-app,.desktop-app) {
+  color: var(--win11-text) !important;
+  background: var(--win11-mica) !important;
+}
+
+html[data-interface-style="windows11"] :is(.native-app,.desktop-app,.feature-dialog) :is(h1,h2,h3,h4,strong,label) {
+  color: var(--win11-text) !important;
+}
+
+html[data-interface-style="windows11"] :is(.native-app,.desktop-app,.feature-dialog) :is(p,small,.eyebrow,.desktop-note) {
+  color: var(--win11-muted) !important;
+}
+
+html[data-interface-style="windows11"] :is(.native-app,.desktop-app,.feature-dialog) :is(button,input,select,textarea) {
+  border-radius: 4px !important;
+}
+
+html[data-interface-style="windows11"] :is(.native-app,.desktop-app,.feature-dialog) :is(input,select,textarea) {
+  color: var(--win11-text) !important;
+  background: var(--win11-control) !important;
+  border: 1px solid var(--win11-stroke-strong) !important;
+  border-bottom-color: color-mix(in srgb, var(--win11-text) 28%, transparent) !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="windows11"] :is(.native-app,.desktop-app,.feature-dialog) :is(input,select,textarea):focus {
+  border-bottom: 2px solid var(--win11-accent) !important;
+  outline: none !important;
+}
+
+html[data-interface-style="windows11"] :is(.settings-section,.taskbar-option-group,.inspector-controls,.desktop-card) {
+  background: var(--win11-control) !important;
+  border: 1px solid var(--win11-stroke) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+html[data-interface-style="windows11"] .desktop-app .interface-style-choice {
+  background: color-mix(in srgb, var(--win11-mica-alt) 88%, transparent) !important;
+  border-color: var(--win11-stroke) !important;
+  border-radius: 6px !important;
+}
+
+html[data-interface-style="windows11"] .desktop-app .interface-style-choice:is(:hover,.is-selected,[aria-pressed="true"]) {
+  background: var(--win11-control-hover) !important;
+  border-color: var(--win11-accent) !important;
+}
+
+/* Embedded apps receive the same Fluent tokens through neo-app-theme.js. */
+html[data-interface-style="windows11"][data-neo-app]:not([data-neo-app="shell"]) {
+  --background: var(--win11-mica, #202020) !important;
+  --background-secondary: var(--win11-mica-alt, #272727) !important;
+  --bg-secondary: var(--win11-mica-alt, #272727) !important;
+  --card: var(--win11-control, rgba(255,255,255,.06)) !important;
+  --panel: var(--win11-mica-alt, #272727) !important;
+  --surface: var(--win11-mica-alt, #272727) !important;
+  --surface-2: var(--win11-control, rgba(255,255,255,.06)) !important;
+  --border: var(--win11-stroke, rgba(255,255,255,.1)) !important;
+  --accent: var(--win11-accent, #60cdff) !important;
+  color-scheme: dark;
+}
+
+html[data-interface-style="windows11"][data-neo-app]:not([data-neo-app="shell"]) body,
+html[data-interface-style="windows11"][data-neo-app]:not([data-neo-app="shell"]) :is(#root,#app,.app,.app-container,.app-shell,.cloud-shell) {
+  color: var(--win11-text, #fff) !important;
+  background-color: var(--win11-mica, #202020) !important;
+}
+
+html[data-interface-style="windows11"][data-neo-app]:not([data-neo-app="shell"]) :is(button,input,select,textarea,[role="button"]) {
+  border-radius: 4px !important;
+}
+
+html[data-interface-style="windows11"][data-neo-app]:not([data-neo-app="shell"]) :is(.card,.panel,.modal-content,.dialog,.queue-panel,.settings-card) {
+  border-color: var(--win11-stroke, rgba(255,255,255,.1)) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2) !important;
+}
+
+@media (max-width: 920px) and (min-width: 701px) {
+  .interface-style-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  html[data-interface-style="windows11"] .app-launcher {
+    bottom: calc(54px + env(safe-area-inset-bottom)) !important;
+    width: calc(100vw - 16px) !important;
+    height: calc(100dvh - 70px) !important;
+  }
+
+  html[data-interface-style="windows11"] .app-launcher .launcher-search { right: 18px !important; left: 18px !important; }
+  html[data-interface-style="windows11"] .app-launcher .launcher-section { padding-right: 18px !important; padding-left: 18px !important; }
+  html[data-interface-style="windows11"] .app-launcher :is(.pinned-app-grid,.search-result-list) { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  html[data-interface-style="windows11"][data-taskbar-position] .taskbar-center { max-width: calc(100% - 116px) !important; }
+  html[data-interface-style="windows11"][data-taskbar-position] .taskbar-tray { padding-inline: 0 !important; }
+  html[data-interface-style="windows11"] .taskbar-clock { display: none !important; }
+  html[data-interface-style="windows11"][data-taskbar-position] .neo-window.is-maximized { inset: 0 !important; }
+  html[data-interface-style="windows11"][data-taskbar-position] :is(.taskbar-quick-settings,.notification-center,.connection-panel) { right: 8px !important; left: 8px !important; width: auto !important; }
+}
+
+@media (max-width: 420px) {
+  html[data-interface-style="windows11"] .app-launcher :is(.pinned-app-grid,.search-result-list) { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+
+/* Kali Linux workstation ------------------------------------------------ */
+html[data-interface-style="kali"] {
+  --kali-bg: #020711;
+  --kali-panel: rgba(5, 15, 29, .94);
+  --kali-panel-strong: #071526;
+  --kali-panel-soft: rgba(11, 31, 53, .78);
+  --kali-line: rgba(44, 180, 232, .28);
+  --kali-line-strong: rgba(0, 213, 255, .62);
+  --kali-text: #e7f7ff;
+  --kali-muted: #8ba9bb;
+  --kali-cyan: #00d5ff;
+  --kali-blue: #1478c9;
+  --kali-indigo: #5637d4;
+  --kali-green: #45e0a8;
+  --desktop-accent: #00cfff;
+  --desktop-bg: #020711;
+  --desktop-surface: #071526;
+  --desktop-text: #e7f7ff;
+  --desktop-muted: #8ba9bb;
+  --desktop-line: rgba(44, 180, 232, .24);
+  color-scheme: dark;
+}
+
+html[data-interface-style="kali"] body,
+html[data-interface-style="kali"] button,
+html[data-interface-style="kali"] input,
+html[data-interface-style="kali"] select,
+html[data-interface-style="kali"] textarea {
+  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
+}
+
+html[data-interface-style="kali"] body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(0,213,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,213,255,.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+html[data-interface-style="kali"] :focus-visible {
+  outline: 2px solid var(--kali-cyan) !important;
+  outline-offset: 2px !important;
+}
+
+html[data-interface-style="kali"] * {
+  scrollbar-color: rgba(0, 213, 255, .56) rgba(3, 12, 23, .72);
+}
+
+html[data-interface-style="kali"] ::-webkit-scrollbar { width: 9px; height: 9px; }
+html[data-interface-style="kali"] ::-webkit-scrollbar-track { background: rgba(3, 12, 23, .72); }
+html[data-interface-style="kali"] ::-webkit-scrollbar-thumb { background: linear-gradient(var(--kali-cyan), var(--kali-blue)); border: 2px solid #06111e; border-radius: 1px; }
+
+/* Shell bar and windows */
+html[data-interface-style="kali"][data-neo-app="shell"] .topbar {
+  color: var(--kali-text) !important;
+  background: linear-gradient(180deg, rgba(6,17,31,.98), rgba(2,9,18,.96)) !important;
+  border-bottom: 1px solid var(--kali-line-strong) !important;
+  box-shadow: 0 5px 22px rgba(0,0,0,.42), inset 0 -1px rgba(0,213,255,.08) !important;
+  backdrop-filter: blur(18px) saturate(125%) !important;
+}
+
+html[data-interface-style="kali"] .topbar :is(.topbar-brand,.topbar-date,.icon-button) { color: var(--kali-text) !important; }
+html[data-interface-style="kali"] .topbar :is(.topbar-brand,.topbar-date,.icon-button):hover { color: #fff !important; background: rgba(0,213,255,.1) !important; }
+
+html[data-interface-style="kali"] .neo-window,
+html[data-interface-style="kali"].neo-auto-hide-bars[data-window-bar-style] .neo-window,
+html[data-interface-style="kali"].neo-auto-hide-bars[data-window-bar-style] .neo-window.is-chrome-revealed {
+  overflow: hidden !important;
+  color: var(--kali-text) !important;
+  background: var(--kali-panel) !important;
+  border: 1px solid var(--kali-line) !important;
+  border-radius: 7px !important;
+  box-shadow: 0 20px 62px rgba(0,0,0,.56), 0 0 0 1px rgba(0,0,0,.42) !important;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+}
+
+html[data-interface-style="kali"] .neo-window.is-active {
+  border-color: var(--kali-line-strong) !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.62), 0 0 24px rgba(0,174,255,.11) !important;
+}
+
+html[data-interface-style="kali"] .neo-window.is-maximized,
+html[data-interface-style="kali"].neo-auto-hide-bars[data-window-bar-style] .neo-window.is-maximized { border-radius: 0 !important; }
+
+html[data-interface-style="kali"] .neo-window > .window-chrome,
+html[data-interface-style="kali"].neo-auto-hide-bars[data-window-bar-style] .neo-window > .window-chrome,
+html[data-interface-style="kali"].neo-auto-hide-bars[data-window-bar-style] .neo-window.is-chrome-revealed > .window-chrome {
+  height: 34px !important;
+  color: var(--kali-text) !important;
+  background: linear-gradient(90deg, #0b3157, #081b32 62%, #061220) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--kali-line-strong) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 -1px rgba(0,213,255,.08) !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+html[data-interface-style="kali"] .window-app-icon { width: 34px !important; height: 34px !important; color: var(--kali-cyan) !important; background: rgba(0,0,0,.2) !important; border-right: 1px solid rgba(0,213,255,.2) !important; border-radius: 0 !important; }
+html[data-interface-style="kali"] .window-app-icon :is(.icon,img,.app-image-icon) { width: 17px !important; height: 17px !important; }
+html[data-interface-style="kali"] .window-title { color: var(--kali-text) !important; }
+html[data-interface-style="kali"] .window-title strong { color: var(--kali-text) !important; font-size: 12px !important; font-weight: 700 !important; letter-spacing: .01em !important; }
+html[data-interface-style="kali"] .window-title small { color: var(--kali-muted) !important; }
+html[data-interface-style="kali"] .window-controls { height: 34px !important; gap: 0 !important; }
+html[data-interface-style="kali"] .window-control { width: 39px !important; height: 34px !important; color: #a7c2d1 !important; background: transparent !important; border: 0 !important; border-left: 1px solid rgba(0,213,255,.07) !important; border-radius: 0 !important; }
+html[data-interface-style="kali"] .window-control:hover { color: #fff !important; background: rgba(0,213,255,.13) !important; }
+html[data-interface-style="kali"] .window-control.close:hover { color: #fff !important; background: #b3264c !important; }
+html[data-interface-style="kali"] .window-control .icon { width: 14px !important; height: 14px !important; }
+html[data-interface-style="kali"] .neo-window > .window-body { color: var(--kali-text) !important; background: var(--kali-bg) !important; }
+html[data-interface-style="kali"] .window-body iframe { background: var(--kali-bg) !important; }
+
+/* Kali panel, launcher and taskbar */
+html[data-interface-style="kali"] :is(.app-launcher,.desktop-context-menu,.context-submenu,.notification-center,.taskbar-quick-settings,.connection-panel,.neo-taskbar-menu,.feature-dialog) {
+  color: var(--kali-text) !important;
+  background: linear-gradient(155deg, rgba(8,24,42,.97), rgba(2,9,18,.98)) !important;
+  border: 1px solid var(--kali-line) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.58), inset 0 1px rgba(0,213,255,.05) !important;
+  backdrop-filter: blur(22px) saturate(120%) !important;
+}
+
+html[data-interface-style="kali"] .app-launcher::before { background: linear-gradient(90deg, var(--kali-cyan), var(--kali-indigo)) !important; opacity: .92 !important; }
+html[data-interface-style="kali"] .app-launcher .launcher-search { background: rgba(0,6,13,.74) !important; border: 1px solid var(--kali-line) !important; border-bottom-color: var(--kali-line-strong) !important; border-radius: 4px !important; box-shadow: none !important; }
+html[data-interface-style="kali"] .app-launcher .launcher-search:focus-within { border-color: var(--kali-cyan) !important; box-shadow: 0 0 0 2px rgba(0,213,255,.12) !important; }
+html[data-interface-style="kali"] .app-launcher .launcher-search input { color: var(--kali-text) !important; background: transparent !important; }
+html[data-interface-style="kali"] .app-launcher :is(.launcher-app,.search-result-item) { color: var(--kali-text) !important; background: transparent !important; border: 1px solid transparent !important; border-radius: 5px !important; }
+html[data-interface-style="kali"] .app-launcher :is(.launcher-app,.search-result-item):hover { background: rgba(0,213,255,.075) !important; border-color: rgba(0,213,255,.2) !important; transform: none !important; }
+html[data-interface-style="kali"] .app-launcher .launcher-app-icon { background: linear-gradient(145deg, rgba(19,57,89,.9), rgba(4,15,28,.95)) !important; border: 1px solid rgba(0,213,255,.18) !important; border-radius: 5px !important; box-shadow: none !important; }
+
+html[data-interface-style="kali"][data-taskbar-position] .taskbar {
+  color: var(--kali-text) !important;
+  background: linear-gradient(180deg, rgba(5,17,31,.96), rgba(2,8,16,.98)) !important;
+  border: 1px solid rgba(0,213,255,.26) !important;
+  border-radius: 5px !important;
+  box-shadow: 0 10px 35px rgba(0,0,0,.48), inset 0 1px rgba(0,213,255,.08) !important;
+  backdrop-filter: blur(18px) saturate(120%) !important;
+}
+html[data-interface-style="kali"][data-taskbar-position="bottom"] .taskbar { border-bottom: 2px solid var(--kali-cyan) !important; }
+html[data-interface-style="kali"][data-taskbar-position="top"] .taskbar { border-top: 2px solid var(--kali-cyan) !important; }
+html[data-interface-style="kali"][data-taskbar-position="left"] .taskbar { border-left: 2px solid var(--kali-cyan) !important; }
+html[data-interface-style="kali"][data-taskbar-position="right"] .taskbar { border-right: 2px solid var(--kali-cyan) !important; }
+html[data-interface-style="kali"] .taskbar :is(.taskbar-start-button,.dock-button,.tray-button) { color: #bdd4df !important; background: transparent !important; border-color: transparent !important; border-radius: 4px !important; box-shadow: none !important; }
+html[data-interface-style="kali"] .taskbar :is(.taskbar-start-button,.dock-button,.tray-button):hover { color: #fff !important; background: rgba(0,213,255,.1) !important; border-color: rgba(0,213,255,.2) !important; }
+html[data-interface-style="kali"] .taskbar .dock-button.is-running::after { background: var(--kali-cyan) !important; box-shadow: 0 0 7px var(--kali-cyan) !important; }
+html[data-interface-style="kali"] .taskbar .dock-button.is-active { background: rgba(0,213,255,.13) !important; border-color: rgba(0,213,255,.28) !important; }
+
+/* Menus, previews and widgets */
+html[data-interface-style="kali"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button { color: #bfd2dc !important; background: transparent !important; border-radius: 3px !important; }
+html[data-interface-style="kali"] :is(.desktop-context-menu,.context-submenu,.neo-taskbar-menu) button:is(:hover,:focus-visible,[aria-expanded="true"]) { color: #fff !important; background: linear-gradient(90deg, rgba(20,120,201,.34), rgba(0,213,255,.08)) !important; }
+html[data-interface-style="kali"] .desktop-context-menu .context-separator { background: var(--kali-line) !important; }
+html[data-interface-style="kali"] :is(.neo-taskbar-preview,.neo-minimized-card) { color: var(--kali-text) !important; background: var(--kali-panel) !important; border: 1px solid var(--kali-line) !important; border-radius: 5px !important; box-shadow: 0 16px 44px rgba(0,0,0,.5) !important; backdrop-filter: blur(18px) !important; }
+html[data-interface-style="kali"] :is(.neo-taskbar-preview-titlebar,.neo-minimized-card-header) { background: linear-gradient(90deg, #0b3157, #07182b) !important; border-bottom: 1px solid var(--kali-line-strong) !important; }
+html[data-interface-style="kali"] #widget-layer > .neo-widget { color: var(--kali-text) !important; background: linear-gradient(150deg, rgba(7,22,39,.93), rgba(2,9,18,.95)) !important; border: 1px solid var(--kali-line) !important; border-radius: 5px !important; box-shadow: 0 12px 36px rgba(0,0,0,.44) !important; }
+
+/* Local apps and settings */
+html[data-interface-style="kali"] :is(.native-app,.desktop-app,.feature-dialog) { color: var(--kali-text) !important; background: var(--kali-bg) !important; }
+html[data-interface-style="kali"] :is(.native-app,.desktop-app,.feature-dialog) :is(h1,h2,h3,h4,strong,label) { color: var(--kali-text) !important; }
+html[data-interface-style="kali"] :is(.native-app,.desktop-app,.feature-dialog) :is(p,small,.eyebrow,.desktop-note) { color: var(--kali-muted) !important; }
+html[data-interface-style="kali"] :is(.native-app,.desktop-app,.feature-dialog) :is(button,input,select,textarea) { border-radius: 4px !important; }
+html[data-interface-style="kali"] :is(.native-app,.desktop-app,.feature-dialog) :is(input,select,textarea) { color: var(--kali-text) !important; background: rgba(2,9,18,.9) !important; border: 1px solid var(--kali-line) !important; box-shadow: none !important; }
+html[data-interface-style="kali"] :is(.native-app,.desktop-app,.feature-dialog) :is(input,select,textarea):focus { border-color: var(--kali-cyan) !important; box-shadow: 0 0 0 2px rgba(0,213,255,.1) !important; outline: 0 !important; }
+html[data-interface-style="kali"] :is(.settings-section,.taskbar-option-group,.inspector-controls,.desktop-card,.interface-style-choice,.tab-appearance-choice,.theme-choice,.cursor-theme-choice) { background: var(--kali-panel-soft) !important; border-color: var(--kali-line) !important; border-radius: 5px !important; box-shadow: none !important; }
+html[data-interface-style="kali"] .desktop-app .interface-style-choice:is(:hover,.is-selected,[aria-pressed="true"]) { background: rgba(20,120,201,.22) !important; border-color: var(--kali-cyan) !important; }
+
+html[data-interface-style="kali"] .neo-window[data-app-id="terminal"] .desktop-terminal,
+html[data-interface-style="kali"] .neo-terminal { color: #d8fff5 !important; background: #01060c !important; font-family: "Cascadia Mono", "JetBrains Mono", Consolas, monospace !important; text-shadow: 0 0 10px rgba(69,224,168,.12); }
+html[data-interface-style="kali"] .neo-terminal :is(.terminal-prompt,.terminal-prefix) { color: var(--kali-green) !important; }
+html[data-interface-style="kali"] .neo-terminal :is(input,.terminal-input) { color: var(--kali-text) !important; caret-color: var(--kali-cyan) !important; }
+/* The same tokens travel into same-origin app frames through neo-app-theme.js. */
+html[data-interface-style="kali"][data-neo-app]:not([data-neo-app="shell"]) {
+  --background: var(--kali-bg, #020711) !important;
+  --background-secondary: var(--kali-panel-strong, #071526) !important;
+  --bg-secondary: var(--kali-panel-strong, #071526) !important;
+  --card: var(--kali-panel-soft, rgba(11,31,53,.78)) !important;
+  --panel: var(--kali-panel-strong, #071526) !important;
+  --surface: var(--kali-panel-strong, #071526) !important;
+  --surface-2: var(--kali-panel-soft, rgba(11,31,53,.78)) !important;
+  --border: var(--kali-line, rgba(44,180,232,.28)) !important;
+  --accent: var(--kali-cyan, #00d5ff) !important;
+  color-scheme: dark;
+}
+html[data-interface-style="kali"][data-neo-app]:not([data-neo-app="shell"]) body,
+html[data-interface-style="kali"][data-neo-app]:not([data-neo-app="shell"]) :is(#root,#app,.app,.app-container,.app-shell,.cloud-shell) { color: var(--kali-text, #e7f7ff) !important; background-color: var(--kali-bg, #020711) !important; }
+html[data-interface-style="kali"][data-neo-app]:not([data-neo-app="shell"]) :is(.card,.panel,.modal-content,.dialog,.queue-panel,.settings-card) { background-color: var(--kali-panel-strong, #071526) !important; border-color: var(--kali-line, rgba(44,180,232,.28)) !important; border-radius: 5px !important; box-shadow: 0 12px 36px rgba(0,0,0,.34) !important; }
+
+@media (max-width: 700px) {
+  html[data-interface-style="kali"] .app-launcher { border-radius: 4px !important; }
+  html[data-interface-style="kali"] .neo-window.is-maximized { border-radius: 0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-interface-style="kali"] :is(.neo-window,.app-launcher,.taskbar,.desktop-context-menu,.neo-taskbar-preview) { transition: none !important; animation: none !important; }
+}
+
+/* Widgets keep touch, wheel and keyboard scrolling without drawing scrollbars.
+   This stays last so global liquid, retro and Kali scrollbar themes cannot
+   re-enable chrome inside desktop widgets or the Widgets management app. */
+#widget-layer,
+#widget-layer *,
+.neo-skin,
+.neo-skin *,
+.neo-window[data-app-id="skins"] > .window-body,
+.neo-window[data-app-id="skins"] .widget-manager,
+.neo-window[data-app-id="skins"] .widget-manager * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#widget-layer::-webkit-scrollbar,
+#widget-layer *::-webkit-scrollbar,
+.neo-skin::-webkit-scrollbar,
+.neo-skin *::-webkit-scrollbar,
+.neo-window[data-app-id="skins"] > .window-body::-webkit-scrollbar,
+.neo-window[data-app-id="skins"] .widget-manager::-webkit-scrollbar,
+.neo-window[data-app-id="skins"] .widget-manager *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* A widget's explicit transparent surface wins over interface-style chrome. */
+html .neo-skin[data-background-mode="transparent"],
+html .neo-skin[data-background-mode="transparent"] .skin-handle {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Floating keeps the material on the shared dock, not around every icon.
+   Named apps retain a restrained pill so their labels stay grouped. This is
+   intentionally last so every interface theme follows the same behavior. */
+html[data-taskbar-style="current"] .taskbar-start-button,
+html[data-taskbar-style="current"][data-taskbar-app-names="false"] .taskbar .dock-button {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
+
+html[data-taskbar-style="current"] .taskbar-start-button:is(:hover, :focus-visible),
+html[data-taskbar-style="current"][data-taskbar-app-names="false"] .taskbar .dock-button:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 8%, transparent) !important;
+  border-color: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 10%, transparent) !important;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 7%, transparent) !important;
+}
+
+html[data-taskbar-style="current"][data-taskbar-app-names="true"] .taskbar .dock-button {
+  background: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 5.5%, transparent) !important;
+  border-color: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 8%, transparent) !important;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 6%, transparent) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
+
+html[data-taskbar-style="current"][data-taskbar-app-names="true"] .taskbar .dock-button:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 10%, transparent) !important;
+  border-color: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 14%, transparent) !important;
+  box-shadow: inset 0 1px color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 10%, transparent) !important;
+}
+
+/* Transparent is a single clear vertical rail, not a horizontal collection
+   of individually outlined icon tiles. Keep this after every interface theme
+   so Modern, Retro, Windows 11, and Kali all render the same preset. */
+@media (min-width: 701px) {
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar {
+    --dock-hit: var(--vertical-dock-hit, 42px) !important;
+    --dock-art: var(--vertical-dock-art, 30px) !important;
+    position: absolute !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: calc(var(--neo-taskbar-edge-gap, 14px) + env(safe-area-inset-left)) !important;
+    width: var(--neo-taskbar-vertical-size, 66px) !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(100dvh - var(--topbar-height) - (var(--neo-taskbar-edge-gap, 14px) * 2)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 7px !important;
+    overflow: visible !important;
+    color: var(--neo-taskbar-foreground, #fff) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 18px !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    transform: translateY(-50%) !important;
+    isolation: isolate !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.018) 48%, rgba(0,0,0,.08)),
+      rgba(var(--neo-taskbar-tint), calc(var(--neo-taskbar-opacity) * .72)) !important;
+    border: 1px solid rgba(255,255,255,.34) !important;
+    border-radius: inherit !important;
+    box-shadow: 0 16px 38px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.36) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(1.45) !important;
+    backdrop-filter: blur(30px) saturate(1.45) !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar::after { display: none !important; }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar-center {
+    position: relative !important;
+    z-index: 1 !important;
+    inset: auto !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 100% !important;
+    display: flex !important;
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 3px !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .dock {
+    order: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: flex !important;
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--vertical-dock-gap, 3px) !important;
+    margin: 0 !important;
+    padding: 1px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar-start-button {
+    order: 2 !important;
+    margin: 3px 0 0 !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar-start-button,
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .dock-button {
+    width: var(--dock-hit) !important;
+    height: var(--dock-hit) !important;
+    min-width: var(--dock-hit) !important;
+    min-height: var(--dock-hit) !important;
+    max-width: var(--dock-hit) !important;
+    max-height: var(--dock-hit) !important;
+    flex: 0 0 var(--dock-hit) !important;
+    display: grid !important;
+    place-items: center !important;
+    margin-inline: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar-start-button > *,
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .dock-button > *,
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .dock-app-art,
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .app-image-icon {
+    position: relative !important;
+    z-index: 3 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar-start-button:is(:hover,:focus-visible),
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .dock-button:is(:hover,:focus-visible) {
+    background: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 9%, transparent) !important;
+    border-color: color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 11%, transparent) !important;
+    box-shadow: inset 0 1px color-mix(in srgb, var(--neo-taskbar-foreground, #fff) 8%, transparent) !important;
+  }
+
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar .dock-app-name,
+  html[data-interface-style][data-taskbar-style="transparent"][data-taskbar-position] .taskbar-tray {
+    display: none !important;
+  }
+}
+
+/* The application launcher is a screen-level surface. Anchor its center to
+   the desktop itself so changing taskbar edge, taskbar style or interface
+   theme can never move it away from the middle. Mobile keeps its intentional
+   edge-to-edge layout. */
+@media (min-width: 701px) {
+  html[data-interface-style][data-taskbar-position] #neo-desktop #app-launcher {
+    position: fixed !important;
+    inset: auto !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: 50% !important;
+    transform-origin: center center !important;
+  }
+
+  html[data-interface-style][data-taskbar-position] #neo-desktop #app-launcher:not(.is-open) {
+    transform: translate(-50%, calc(-50% + 12px)) scale(.98) !important;
+    transform-origin: center center !important;
+  }
+
+  html[data-interface-style][data-taskbar-position] #neo-desktop #app-launcher.is-open {
+    transform: translate(-50%, -50%) scale(1) !important;
+    transform-origin: center center !important;
+  }
+}
+
+html[data-interface-style] .neo-minimized-tray {
+  display: none !important;
+}
+
+/* Every desktop title-bar mode shares the same restored-window silhouette.
+   Keep maximized and app-fullscreen windows square so they meet the display
+   edges cleanly. The body inherits the outer lower corners while Ultra and
+   Standard continue clipping their full-width title strips normally. */
+@media (min-width: 701px) {
+  html[data-window-bar-style] .neo-window:not(.is-maximized):not(.is-tab-fullscreen) {
+    --neo-restored-window-radius: 12px;
+    border-radius: var(--neo-restored-window-radius) !important;
+  }
+
+  html[data-window-bar-style] .neo-window:not(.is-maximized):not(.is-tab-fullscreen) > .window-body {
+    border-bottom-left-radius: inherit !important;
+    border-bottom-right-radius: inherit !important;
+  }
+
+  html[data-window-bar-style] .neo-window:is(.is-maximized, .is-tab-fullscreen) {
+    border-radius: 0 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  html[data-taskbar-style="current"] .taskbar-start-button:focus-visible,
+  html[data-taskbar-style="current"] .taskbar .dock-button:focus-visible {
+    border-color: Highlight !important;
+  }
+}

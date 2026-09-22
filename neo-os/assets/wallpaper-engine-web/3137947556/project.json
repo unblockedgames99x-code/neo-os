@@ -1,0 +1,3646 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "[img]https://i.imgur.com/dSbik0u.gif[/img]\n\n[hr][/hr]\n[h1]About the wallpaper[/h1]\nThis is my first web wallpaper  ( still in progress ☝️🤓)\n♡ hope you like it and enjoy it ♡\n\n[hr][/hr]\n[h1]Features[/h1]\n[list]\n [*] Custom Background color and images\n [*] Information Panel\n [*] Audio Integration\n [*] Clock\n [*] Floating Clock\n [*] Alarm\n [*] ToDo list and notes\n [*] Calendar (compatible with Google calendar .ics)\n [*] Custom Image Window\n [*] Mouse Trail\n [*] Audio Spectre\n [*] Weather Panel\n [*] Cpu / Memory Usage \n [*] Customizable text\n [*] Battery Charge \n [*] Search Bar\n [*] Shortcuts and More\n[/list]\n \n[hr][/hr]\n[h1]faq[/h1]\n•  About [url=https://github.com/NicouHc/WidgetsProject-Extension]Widgets Project Extension[/url]\n\n\n•  Others wallpapers by me [url=https://steamcommunity.com/id/nicouhc/myworkshopfiles/?appid=431960&p=1]Click Here[/url]\n•  Follow me on my Workshop: [url=https://steamcommunity.com/id/nicouhc/myworkshopfiles/?appid=431960&p=1] Click Here[/url]\n•  Discord Community invite: [b]63EUyQBZPm[/b]\n\n[img]https://i.imgur.com/L3DwQJl.gif[/img]\n•  Buy me a Coffe: [url=https://www.paypal.com/donate/?hosted_button_id=UBDDRKEZ4XABE]❤️ Here ❤️[/url]\n\n\n[hr][/hr]",
+	"file" : "a.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"AlarmALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 214,
+				"max" : 1,
+				"min" : 0,
+				"order" : 314,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"AlarmButtonsColor" : 
+			{
+				"index" : 216,
+				"order" : 316,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"AlarmDiv2" : 
+			{
+				"index" : 223,
+				"order" : 323,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"AlarmPanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 215,
+				"max" : 4,
+				"min" : 0,
+				"order" : 315,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"AlarmTitle" : 
+			{
+				"index" : 212,
+				"order" : 312,
+				"text" : "⏰ Alarm Panel",
+				"type" : "group"
+			},
+			"AlarmTitleBar" : 
+			{
+				"index" : 224,
+				"order" : 324,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"AlarmTitleBarColor1" : 
+			{
+				"condition" : "AlarmTitleBar.value == true",
+				"index" : 225,
+				"order" : 325,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"AlarmTitleBarColor2" : 
+			{
+				"condition" : "AlarmTitleBar.value == true",
+				"index" : 226,
+				"order" : 326,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"AlarmWindowColor" : 
+			{
+				"index" : 213,
+				"order" : 313,
+				"text" : "Window Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"AlignLinescolorBetween" : 
+			{
+				"condition" : "showAlignLines.value == true",
+				"index" : 8,
+				"order" : 108,
+				"text" : "Line 2",
+				"type" : "color",
+				"value" : "#41a7e1"
+			},
+			"AlignLinescolorScreen" : 
+			{
+				"condition" : "showAlignLines.value == true",
+				"index" : 7,
+				"order" : 107,
+				"text" : "Line 1",
+				"type" : "color",
+				"value" : "#fb2e2e"
+			},
+			"AudioResponsive" : 
+			{
+				"index" : 194,
+				"order" : 294,
+				"text" : "🎵 Audio Spectre",
+				"type" : "group"
+			},
+			"AudioResponsiveBackgroundColor" : 
+			{
+				"index" : 202,
+				"order" : 302,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"AudioResponsiveBackgroundColorAlpha" : 
+			{
+				"fraction" : true,
+				"index" : 203,
+				"max" : 1,
+				"min" : 0,
+				"order" : 303,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Background Alpha",
+				"type" : "slider",
+				"value" : 31
+			},
+			"AudioResponsiveCircle" : 
+			{
+				"index" : 195,
+				"order" : 295,
+				"text" : "Circle Mode",
+				"type" : "bool",
+				"value" : false
+			},
+			"AudioResponsiveColor" : 
+			{
+				"index" : 197,
+				"order" : 297,
+				"text" : "Bars Color",
+				"type" : "color",
+				"value" : "#156dd7"
+			},
+			"AudioResponsiveColorAlpha" : 
+			{
+				"fraction" : true,
+				"index" : 198,
+				"max" : 1,
+				"min" : 0,
+				"order" : 298,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Bars Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"AudioResponsiveGlow" : 
+			{
+				"fraction" : true,
+				"index" : 199,
+				"max" : 150,
+				"min" : 0,
+				"order" : 299,
+				"precision" : 2,
+				"step" : 1,
+				"text" : "Glow",
+				"type" : "slider",
+				"value" : 100
+			},
+			"AudioResponsiveSizeX" : 
+			{
+				"fraction" : true,
+				"index" : 204,
+				"max" : 3000,
+				"min" : 50,
+				"order" : 304,
+				"precision" : 1,
+				"step" : 1,
+				"text" : "Size X",
+				"type" : "slider",
+				"value" : 650
+			},
+			"AudioResponsiveSizeY" : 
+			{
+				"fraction" : true,
+				"index" : 205,
+				"max" : 3000,
+				"min" : 50,
+				"order" : 305,
+				"precision" : 1,
+				"step" : 1,
+				"text" : "Size Y",
+				"type" : "slider",
+				"value" : 300
+			},
+			"AudioResponsiveSmooth" : 
+			{
+				"index" : 196,
+				"order" : 296,
+				"text" : "Smooth Mode",
+				"type" : "bool",
+				"value" : true
+			},
+			"Backgrounds" : 
+			{
+				"index" : 21,
+				"order" : 121,
+				"text" : "🏜️ Background",
+				"type" : "group"
+			},
+			"Clock2FontCustomPath" : 
+			{
+				"condition" : "clock2Font.value == 5",
+				"index" : 154,
+				"order" : 254,
+				"text" : "Font url",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"Clock2Opacity" : 
+			{
+				"fraction" : true,
+				"index" : 155,
+				"max" : 1,
+				"min" : 0,
+				"order" : 255,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Clock Opacity",
+				"type" : "slider",
+				"value" : 1
+			},
+			"ConsoleSubpanelTextTime" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 64,
+				"order" : 164,
+				"text" : "Show DateTime",
+				"type" : "bool",
+				"value" : true
+			},
+			"CoordinatesBackground" : 
+			{
+				"condition" : "ShowCoordinates.value == true",
+				"index" : 45,
+				"order" : 145,
+				"text" : "Coords Background",
+				"type" : "color",
+				"value" : "#a3a3a3"
+			},
+			"CoordinatesBackgroundOpacity" : 
+			{
+				"condition" : "ShowCoordinates.value == true",
+				"fraction" : true,
+				"index" : 46,
+				"max" : 1,
+				"min" : 0,
+				"order" : 146,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"CoordinatesTexto" : 
+			{
+				"condition" : "ShowCoordinates.value == true",
+				"index" : 44,
+				"order" : 144,
+				"text" : "Coords Font",
+				"type" : "color",
+				"value" : "#00000"
+			},
+			"CuadroColor1" : 
+			{
+				"condition" : "showBorders2.value == true || showBorders1.value == true",
+				"index" : 34,
+				"order" : 134,
+				"text" : "Color 1",
+				"type" : "color",
+				"value" : "#707174"
+			},
+			"CuadroColor2" : 
+			{
+				"condition" : "showBorders2.value == true || showBorders1.value == true",
+				"index" : 35,
+				"order" : 135,
+				"text" : "Color 2",
+				"type" : "color",
+				"value" : "#404246"
+			},
+			"CuadroColor3" : 
+			{
+				"condition" : "showBorders2.value == true || showBorders1.value == true",
+				"index" : 36,
+				"order" : 136,
+				"text" : "Color 3",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"Cursor" : 
+			{
+				"index" : 37,
+				"order" : 137,
+				"text" : "🖱️ Cursor",
+				"type" : "group"
+			},
+			"CursorColor1" : 
+			{
+				"condition" : "ShowCursor.value == true",
+				"index" : 39,
+				"order" : 139,
+				"text" : "Cursor Color",
+				"type" : "color",
+				"value" : "#a3a3a3"
+			},
+			"CustomImageALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 230,
+				"max" : 1,
+				"min" : 0,
+				"order" : 330,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0
+			},
+			"CustomImageBackgroundImg" : 
+			{
+				"index" : 228,
+				"order" : 328,
+				"text" : "Your Image",
+				"type" : "file"
+			},
+			"CustomImageColor" : 
+			{
+				"index" : 229,
+				"order" : 329,
+				"text" : "Window Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"CustomImageDiv2" : 
+			{
+				"index" : 243,
+				"order" : 343,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"CustomImageScale" : 
+			{
+				"fraction" : true,
+				"index" : 231,
+				"max" : 3,
+				"min" : 0,
+				"order" : 331,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Scale",
+				"type" : "slider",
+				"value" : 1
+			},
+			"CustomImageShadowColor" : 
+			{
+				"condition" : "customImageShadow.value == true",
+				"index" : 238,
+				"order" : 338,
+				"text" : "Shadow Color",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"CustomImageShadowX" : 
+			{
+				"condition" : "customImageShadow.value == true",
+				"fraction" : true,
+				"index" : 239,
+				"max" : 10,
+				"min" : -10,
+				"order" : 339,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Shadow X",
+				"type" : "slider",
+				"value" : 0
+			},
+			"CustomImageShadowY" : 
+			{
+				"condition" : "customImageShadow.value == true",
+				"fraction" : true,
+				"index" : 240,
+				"max" : 10,
+				"min" : -10,
+				"order" : 340,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "Shadow Y",
+				"type" : "slider",
+				"value" : 0
+			},
+			"CustomImageSizeX" : 
+			{
+				"fraction" : true,
+				"index" : 232,
+				"max" : 2000,
+				"min" : 0,
+				"order" : 332,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Size X",
+				"type" : "slider",
+				"value" : 300
+			},
+			"CustomImageSizeY" : 
+			{
+				"fraction" : true,
+				"index" : 233,
+				"max" : 2000,
+				"min" : 0,
+				"order" : 333,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Size Y",
+				"type" : "slider",
+				"value" : 300
+			},
+			"CustomImageTitle" : 
+			{
+				"index" : 227,
+				"order" : 327,
+				"text" : "🐧 Custom Image",
+				"type" : "group"
+			},
+			"CustomImageTitleBar" : 
+			{
+				"index" : 244,
+				"order" : 344,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"CustomImageTitleBarColor1" : 
+			{
+				"condition" : "CustomImageTitleBar.value == true",
+				"index" : 245,
+				"order" : 345,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"CustomImageTitleBarColor2" : 
+			{
+				"condition" : "CustomImageTitleBar.value == true",
+				"index" : 246,
+				"order" : 346,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"FloatingclockFontShadow" : 
+			{
+				"index" : 140,
+				"order" : 240,
+				"text" : "Text Shadow",
+				"type" : "bool",
+				"value" : true
+			},
+			"MusicALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 182,
+				"max" : 1,
+				"min" : 0,
+				"order" : 282,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"MusicTitle" : 
+			{
+				"index" : 168,
+				"order" : 268,
+				"text" : "🎵 Music Panel",
+				"type" : "group"
+			},
+			"MusicWindowColor" : 
+			{
+				"index" : 181,
+				"order" : 281,
+				"text" : "Window Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"Search" : 
+			{
+				"index" : 309,
+				"order" : 409,
+				"text" : "🌐 Search in Browser",
+				"type" : "group"
+			},
+			"ShowCoordinates" : 
+			{
+				"index" : 43,
+				"order" : 143,
+				"text" : "Show Coordinates",
+				"type" : "bool",
+				"value" : true
+			},
+			"ShowCursor" : 
+			{
+				"index" : 38,
+				"order" : 138,
+				"text" : "Show Cursor",
+				"type" : "bool",
+				"value" : true
+			},
+			"Starup" : 
+			{
+				"index" : 322,
+				"order" : 422,
+				"text" : "🖥️ Startup Panel",
+				"type" : "group"
+			},
+			"Usage" : 
+			{
+				"index" : 277,
+				"order" : 377,
+				"text" : "📀 Usage",
+				"type" : "group"
+			},
+			"UsageBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 287,
+				"max" : 1,
+				"min" : 0,
+				"order" : 387,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0.25
+			},
+			"UsageBackround" : 
+			{
+				"index" : 286,
+				"order" : 386,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"UsageBackround2" : 
+			{
+				"condition" : "usageStyle.value == 4 || usageStyle.value == 3",
+				"index" : 282,
+				"order" : 382,
+				"text" : "Color2",
+				"type" : "color",
+				"value" : "#393939"
+			},
+			"UsageCircleColor" : 
+			{
+				"condition" : "usageStyle.value != 3",
+				"index" : 281,
+				"order" : 381,
+				"text" : "Usage Color",
+				"type" : "color",
+				"value" : "#71ad4b"
+			},
+			"UsageText2Color" : 
+			{
+				"condition" : "showUsageText2.value == true",
+				"index" : 284,
+				"order" : 384,
+				"text" : "Title Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"UsageTextColor" : 
+			{
+				"index" : 280,
+				"order" : 380,
+				"text" : "Percent Color",
+				"type" : "color",
+				"value" : "#71ad4b"
+			},
+			"alarm-Div1" : 
+			{
+				"index" : 219,
+				"order" : 319,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"alarmBordercolor" : 
+			{
+				"index" : 221,
+				"order" : 321,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"alarmWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 218,
+				"max" : 20,
+				"min" : 0,
+				"order" : 318,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"alarmWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 220,
+				"max" : 3,
+				"min" : 0,
+				"order" : 320,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"alarmWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 222,
+				"max" : 50,
+				"min" : 0,
+				"order" : 322,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"alarmindex" : 
+			{
+				"fraction" : false,
+				"index" : 217,
+				"max" : 10,
+				"min" : -10,
+				"order" : 317,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audioResponsive-Div1" : 
+			{
+				"index" : 208,
+				"order" : 308,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"audioResponsive-Div2" : 
+			{
+				"index" : 201,
+				"order" : 301,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"audioResponsiveBordercolor" : 
+			{
+				"index" : 210,
+				"order" : 310,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"audioResponsiveRotation" : 
+			{
+				"fraction" : false,
+				"index" : 200,
+				"max" : 360,
+				"min" : 0,
+				"order" : 300,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Spectre Rotation",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audioResponsiveWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 207,
+				"max" : 20,
+				"min" : 0,
+				"order" : 307,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"audioResponsiveWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 209,
+				"max" : 3,
+				"min" : 0,
+				"order" : 309,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"audioResponsiveWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 211,
+				"max" : 50,
+				"min" : 0,
+				"order" : 311,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"audioResponsiveindex" : 
+			{
+				"fraction" : false,
+				"index" : 206,
+				"max" : 10,
+				"min" : -10,
+				"order" : 306,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"backgroundBlur" : 
+			{
+				"condition" : "selectBackgroundType.value != 1",
+				"fraction" : false,
+				"index" : 8,
+				"max" : 20,
+				"min" : 0,
+				"order" : 122.5,
+				"text" : "Image-Blur",
+				"type" : "slider",
+				"value" : 0
+			},
+			"backgroundBright" : 
+			{
+				"condition" : "selectBackgroundType.value != 1",
+				"fraction" : false,
+				"index" : 7,
+				"max" : 100,
+				"min" : 0,
+				"order" : 122.6,
+				"text" : "Image-Bright",
+				"type" : "slider",
+				"value" : 90
+			},
+			"backgroundImage" : 
+			{
+				"condition" : "selectBackgroundType.value != 1",
+				"index" : 2,
+				"order" : 122.1,
+				"text" : "Image 1",
+				"type" : "file"
+			},
+			"backgroundImage2" : 
+			{
+				"condition" : "selectBackgroundType.value == 3",
+				"index" : 2,
+				"order" : 122.2,
+				"text" : "Image 3",
+				"type" : "file"
+			},
+			"backgroundImage3" : 
+			{
+				"condition" : "selectBackgroundType.value == 3",
+				"index" : 2,
+				"order" : 122.3,
+				"text" : "Image 2",
+				"type" : "file"
+			},
+			"backgroundImageRotation" : 
+			{
+				"condition" : "selectBackgroundType.value == 3",
+				"fraction" : false,
+				"index" : 8,
+				"max" : 60,
+				"min" : 0,
+				"order" : 122.4,
+				"text" : "Shuffle Images every x minutes",
+				"type" : "slider",
+				"value" : 0
+			},
+			"bodycolorOne" : 
+			{
+				"condition" : "selectBackgroundType.value == 1",
+				"index" : 26,
+				"order" : 126,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#1b1b1b"
+			},
+			"calendar-Div1" : 
+			{
+				"index" : 112,
+				"order" : 212,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"calendarALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 108,
+				"max" : 1,
+				"min" : 0,
+				"order" : 208,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"calendarBackground" : 
+			{
+				"index" : 121,
+				"order" : 221,
+				"text" : "Calendar Background",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"calendarBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 122,
+				"max" : 1,
+				"min" : 0,
+				"order" : 222,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0.21
+			},
+			"calendarBordercolor" : 
+			{
+				"index" : 115,
+				"order" : 215,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"calendarCurrentDay" : 
+			{
+				"index" : 127,
+				"order" : 227,
+				"text" : "CurrentDay Color",
+				"type" : "color",
+				"value" : "#0464ec"
+			},
+			"calendarDiv1" : 
+			{
+				"index" : 117,
+				"order" : 217,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"calendarDiv2" : 
+			{
+				"index" : 120,
+				"order" : 220,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"calendarDiv3" : 
+			{
+				"index" : 128,
+				"order" : 228,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"calendarMonthText" : 
+			{
+				"condition" : "calendarMonthVisibility.value == true",
+				"index" : 119,
+				"order" : 219,
+				"text" : "Month Color",
+				"type" : "color",
+				"value" : "#0464ec"
+			},
+			"calendarMonthVisibility" : 
+			{
+				"index" : 118,
+				"order" : 218,
+				"text" : "Show Month",
+				"type" : "bool",
+				"value" : true
+			},
+			"calendarNotesColor" : 
+			{
+				"index" : 129,
+				"order" : 229,
+				"text" : "Notes Color",
+				"type" : "color",
+				"value" : "#a52a2a"
+			},
+			"calendarPanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 109,
+				"max" : 4,
+				"min" : 0,
+				"order" : 209,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"calendarTitle" : 
+			{
+				"index" : 106,
+				"order" : 206,
+				"text" : "📆 Calendar",
+				"type" : "group"
+			},
+			"calendarWeekDays" : 
+			{
+				"index" : 125,
+				"order" : 225,
+				"text" : "Days Color",
+				"type" : "color",
+				"value" : "#646667"
+			},
+			"calendarWeekNames" : 
+			{
+				"index" : 123,
+				"order" : 223,
+				"text" : "Week Names Color",
+				"type" : "color",
+				"value" : "#37619e"
+			},
+			"calendarWeekendDays" : 
+			{
+				"index" : 126,
+				"order" : 226,
+				"text" : "Weekend Days Color",
+				"type" : "color",
+				"value" : "#122c51"
+			},
+			"calendarWeekendNames" : 
+			{
+				"index" : 124,
+				"order" : 224,
+				"text" : "Weekend Names Color",
+				"type" : "color",
+				"value" : "#122c51"
+			},
+			"calendarWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 111,
+				"max" : 20,
+				"min" : 0,
+				"order" : 211,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"calendarWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 113,
+				"max" : 3,
+				"min" : 0,
+				"order" : 213,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"calendarWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 116,
+				"max" : 50,
+				"min" : 0,
+				"order" : 216,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"calendarWindowColor" : 
+			{
+				"index" : 107,
+				"order" : 207,
+				"text" : "Window Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"calendarWindowPadding" : 
+			{
+				"fraction" : true,
+				"index" : 114,
+				"max" : 30,
+				"min" : 0,
+				"order" : 214,
+				"step" : 1,
+				"text" : "Window Padding",
+				"type" : "slider",
+				"value" : 30
+			},
+			"calendarindex" : 
+			{
+				"fraction" : false,
+				"index" : 110,
+				"max" : 10,
+				"min" : -10,
+				"order" : 210,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"clock2-Div1" : 
+			{
+				"index" : 164,
+				"order" : 264,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"clock2ALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 160,
+				"max" : 1,
+				"min" : 0,
+				"order" : 260,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0.15
+			},
+			"clock2BackgroundColor" : 
+			{
+				"index" : 159,
+				"order" : 259,
+				"text" : "Background",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"clock2Bordercolor" : 
+			{
+				"index" : 166,
+				"order" : 266,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"clock2Color1" : 
+			{
+				"index" : 150,
+				"order" : 250,
+				"text" : "• Color 1",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"clock2Color2" : 
+			{
+				"index" : 151,
+				"order" : 251,
+				"text" : "• Color 2",
+				"type" : "color",
+				"value" : "#514c4c"
+			},
+			"clock2Color3" : 
+			{
+				"condition" : "clock2Theme.value == 2 || clock2Theme.value == 3 || clock2Theme.value == 4 || clock2Theme.value == 5 || clock2Theme.value == 7",
+				"index" : 152,
+				"order" : 252,
+				"text" : "• Color 3",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"clock2Div" : 
+			{
+				"index" : 158,
+				"order" : 258,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"clock2EmojiTime" : 
+			{
+				"condition" : " clock2Theme.value == 2 || clock2Theme.value == 5 ",
+				"index" : 157,
+				"order" : 257,
+				"text" : "Time Emoji",
+				"type" : "bool",
+				"value" : true
+			},
+			"clock2Font" : 
+			{
+				"index" : 153,
+				"options" : 
+				[
+					{
+						"label" : "San Francisco",
+						"value" : "1"
+					},
+					{
+						"label" : "Roboto",
+						"value" : "2"
+					},
+					{
+						"label" : "Console",
+						"value" : "3"
+					},
+					{
+						"label" : "Anurati",
+						"value" : "4"
+					},
+					{
+						"label" : "Custom",
+						"value" : "5"
+					}
+				],
+				"order" : 253,
+				"text" : "Font Type",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"clock2FontShadow" : 
+			{
+				"condition" : "clock2Theme.value == 1 || clock2Theme.value == 6",
+				"index" : 149,
+				"order" : 249,
+				"text" : "Text Shadow",
+				"type" : "bool",
+				"value" : false
+			},
+			"clock2Format" : 
+			{
+				"index" : 156,
+				"order" : 256,
+				"text" : "Clock Format (12hs / 24hs)",
+				"type" : "bool",
+				"value" : true
+			},
+			"clock2PanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 162,
+				"max" : 4,
+				"min" : 0,
+				"order" : 262,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"clock2ShowSeconds" : 
+			{
+				"condition" : "clock2Theme.value == 1 || clock2Theme.value == 6",
+				"index" : 148,
+				"order" : 248,
+				"text" : "Show Clock Seconds",
+				"type" : "bool",
+				"value" : true
+			},
+			"clock2Theme" : 
+			{
+				"index" : 147,
+				"options" : 
+				[
+					{
+						"label" : "Digital",
+						"value" : "1"
+					},
+					{
+						"label" : "Compact",
+						"value" : "2"
+					},
+					{
+						"label" : "Analogic",
+						"value" : "3"
+					},
+					{
+						"label" : "Speedometer",
+						"value" : "4"
+					},
+					{
+						"label" : "Mini",
+						"value" : "5"
+					},
+					{
+						"label" : "Vertical",
+						"value" : "6"
+					},
+					{
+						"label" : "Flat",
+						"value" : "7"
+					}
+				],
+				"order" : 247,
+				"text" : "Clock Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"clock2WindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 163,
+				"max" : 20,
+				"min" : 0,
+				"order" : 263,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"clock2WindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 165,
+				"max" : 3,
+				"min" : 0,
+				"order" : 265,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 0
+			},
+			"clock2WindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 167,
+				"max" : 50,
+				"min" : 0,
+				"order" : 267,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"clock2index" : 
+			{
+				"fraction" : false,
+				"index" : 161,
+				"max" : 10,
+				"min" : -10,
+				"order" : 261,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"clockTitle" : 
+			{
+				"index" : 134,
+				"order" : 234,
+				"text" : "🕓 Floating Clock",
+				"type" : "group"
+			},
+			"clockTitle2" : 
+			{
+				"index" : 146,
+				"order" : 246,
+				"text" : "🕓 Window Clock",
+				"type" : "group"
+			},
+			"cuadroDiv" : 
+			{
+				"index" : 31,
+				"order" : 131,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"cursorDiv" : 
+			{
+				"index" : 42,
+				"order" : 142,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"cursorDiv2" : 
+			{
+				"index" : 47,
+				"order" : 147,
+				"text" : "<p class='ugcDanger'>__________________________________</p>"
+			},
+			"cursorImage" : 
+			{
+				"condition" : "cursorStyle.value == 0",
+				"index" : 41,
+				"order" : 141,
+				"text" : "Custom Cursor",
+				"type" : "file"
+			},
+			"cursorStyle" : 
+			{
+				"condition" : "ShowCursor.value == true",
+				"index" : 40,
+				"options" : 
+				[
+					{
+						"label" : "Custom",
+						"value" : "0"
+					},
+					{
+						"label" : "template 1",
+						"value" : "1"
+					},
+					{
+						"label" : "template 2",
+						"value" : "2"
+					},
+					{
+						"label" : "template 3",
+						"value" : "3"
+					},
+					{
+						"label" : "template 4",
+						"value" : "4"
+					},
+					{
+						"label" : "template 5",
+						"value" : "5"
+					},
+					{
+						"label" : "template 6",
+						"value" : "6"
+					},
+					{
+						"label" : "template 7",
+						"value" : "7"
+					},
+					{
+						"label" : "template 8",
+						"value" : "8"
+					},
+					{
+						"label" : "template 9",
+						"value" : "9"
+					}
+				],
+				"order" : 140,
+				"text" : "Cursor Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"cursorTrail" : 
+			{
+				"index" : 48,
+				"order" : 148,
+				"text" : "Show Trail",
+				"type" : "bool",
+				"value" : true
+			},
+			"cursorTrailColor" : 
+			{
+				"condition" : "cursorTrail.value == true",
+				"index" : 49,
+				"order" : 149,
+				"text" : "Trail Color",
+				"type" : "color",
+				"value" : "#2d69d8"
+			},
+			"customHostName" : 
+			{
+				"index" : 53,
+				"order" : 153,
+				"text" : "Title",
+				"type" : "textinput",
+				"value" : "My Title Here"
+			},
+			"customImageShadow" : 
+			{
+				"index" : 237,
+				"order" : 337,
+				"text" : "Image Shadow",
+				"type" : "bool",
+				"value" : false
+			},
+			"customImageWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 235,
+				"max" : 20,
+				"min" : 0,
+				"order" : 335,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"customImageindex" : 
+			{
+				"fraction" : false,
+				"index" : 234,
+				"max" : 10,
+				"min" : -10,
+				"order" : 334,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"customMainColor" : 
+			{
+				"index" : 70,
+				"order" : 170,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#171a21"
+			},
+			"customMainColorALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 71,
+				"max" : 1,
+				"min" : 0,
+				"order" : 171,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"customText-Div1" : 
+			{
+				"index" : 295,
+				"order" : 395,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"customText-Div2" : 
+			{
+				"index" : 303,
+				"order" : 403,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"customText1" : 
+			{
+				"index" : 54,
+				"order" : 154,
+				"text" : "Text-1",
+				"type" : "textinput",
+				"value" : "my name"
+			},
+			"customText2" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 55,
+				"order" : 155,
+				"text" : "Text-2",
+				"type" : "textinput",
+				"value" : "my Os"
+			},
+			"customText3" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 56,
+				"order" : 156,
+				"text" : "Text-3",
+				"type" : "textinput",
+				"value" : "x64"
+			},
+			"customText4" : 
+			{
+				"index" : 57,
+				"order" : 157,
+				"text" : "Text-4",
+				"type" : "textinput",
+				"value" : "@name"
+			},
+			"customText5" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 58,
+				"order" : 158,
+				"text" : "Text-5",
+				"type" : "textinput",
+				"value" : "ErR0r"
+			},
+			"customText6" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 59,
+				"order" : 159,
+				"text" : "Text-6",
+				"type" : "textinput",
+				"value" : "Established"
+			},
+			"customText7" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 60,
+				"order" : 160,
+				"text" : "Text-7",
+				"type" : "textinput",
+				"value" : "Loading..."
+			},
+			"customText8" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 61,
+				"order" : 161,
+				"text" : "Text-8",
+				"type" : "textinput",
+				"value" : "Welcome user 🜲"
+			},
+			"customTextAnimation" : 
+			{
+				"index" : 292,
+				"order" : 392,
+				"text" : "Text Animation",
+				"type" : "bool",
+				"value" : false
+			},
+			"customTextBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 305,
+				"max" : 1,
+				"min" : 0,
+				"order" : 405,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0.25
+			},
+			"customTextBackround" : 
+			{
+				"index" : 304,
+				"order" : 404,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"customTextBorderColor" : 
+			{
+				"condition" : "customTextBorderShow.value == true",
+				"index" : 299,
+				"order" : 399,
+				"text" : "Text Border Color",
+				"type" : "color",
+				"value" : "#fff"
+			},
+			"customTextBorderShow" : 
+			{
+				"index" : 298,
+				"order" : 398,
+				"text" : "Text border",
+				"type" : "bool",
+				"value" : false
+			},
+			"customTextColor" : 
+			{
+				"index" : 296,
+				"order" : 396,
+				"text" : "Text Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"customTextColor1" : 
+			{
+				"condition" : "panelTextStyle.value == 1 || panelTextStyle.value == 2",
+				"index" : 66,
+				"order" : 166,
+				"text" : "Color 1",
+				"type" : "color",
+				"value" : "#4b4b4b"
+			},
+			"customTextColor2" : 
+			{
+				"condition" : "panelTextStyle.value == 1 || panelTextStyle.value == 2",
+				"index" : 67,
+				"order" : 167,
+				"text" : "Color 2",
+				"type" : "color",
+				"value" : "#5482d6"
+			},
+			"customTextColor3" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 68,
+				"order" : 168,
+				"text" : "Font Color 3",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"customTextColorALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 297,
+				"max" : 1,
+				"min" : 0,
+				"order" : 397,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0.25
+			},
+			"customTextContent" : 
+			{
+				"index" : 291,
+				"order" : 391,
+				"text" : "Custom Text",
+				"type" : "textinput",
+				"value" : "- My Text Here -"
+			},
+			"customTextDiv" : 
+			{
+				"index" : 62,
+				"order" : 162,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"customTextDiv2" : 
+			{
+				"index" : 69,
+				"order" : 169,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"customTextFont" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 63,
+				"options" : 
+				[
+					{
+						"label" : "Console",
+						"value" : "1"
+					},
+					{
+						"label" : "San Francisco",
+						"value" : "2"
+					},
+					{
+						"label" : "Roboto",
+						"value" : "3"
+					}
+				],
+				"order" : 163,
+				"text" : "Font Type",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"customTextFontSize" : 
+			{
+				"fraction" : true,
+				"index" : 302,
+				"max" : 400,
+				"min" : 9,
+				"order" : 402,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Font Size",
+				"type" : "slider",
+				"value" : 35
+			},
+			"customTextPANELFont" : 
+			{
+				"index" : 300,
+				"options" : 
+				[
+					{
+						"label" : "Console",
+						"value" : "1"
+					},
+					{
+						"label" : "San Francisco",
+						"value" : "2"
+					},
+					{
+						"label" : "Roboto",
+						"value" : "3"
+					},
+					{
+						"label" : "Anurati",
+						"value" : "4"
+					},
+					{
+						"label" : "Custom",
+						"value" : "5"
+					}
+				],
+				"order" : 400,
+				"text" : "Font Type",
+				"type" : "combo",
+				"value" : "3"
+			},
+			"customTextPANELFontPath" : 
+			{
+				"condition" : "customTextPANELFont.value == 5",
+				"index" : 301,
+				"order" : 401,
+				"text" : "Font url",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"customTextPanel" : 
+			{
+				"index" : 290,
+				"order" : 390,
+				"text" : "📃 Custom Text",
+				"type" : "group"
+			},
+			"customTextPanelSizeX" : 
+			{
+				"fraction" : true,
+				"index" : 307,
+				"max" : 2000,
+				"min" : 0,
+				"order" : 407,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Custom Size X",
+				"type" : "slider",
+				"value" : 270
+			},
+			"customTextPositionindex" : 
+			{
+				"fraction" : false,
+				"index" : 308,
+				"max" : 10,
+				"min" : -10,
+				"order" : 408,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"customTextRepeat" : 
+			{
+				"index" : 293,
+				"order" : 393,
+				"text" : "Repeat Text",
+				"type" : "bool",
+				"value" : false
+			},
+			"customTextRepeatAmount" : 
+			{
+				"condition" : "customTextRepeat.value == true",
+				"index" : 294,
+				"order" : 394,
+				"text" : "Repeat Amount",
+				"type" : "textinput",
+				"value" : "5"
+			},
+			"customTextScale" : 
+			{
+				"fraction" : true,
+				"index" : 306,
+				"max" : 5,
+				"min" : 0,
+				"order" : 406,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"customTitleColor" : 
+			{
+				"condition" : "panelTextStyle.value == 1",
+				"index" : 65,
+				"order" : 165,
+				"text" : "TITLE",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"customToDoColor" : 
+			{
+				"index" : 93,
+				"order" : 193,
+				"text" : "Window Color",
+				"type" : "color",
+				"value" : "#171717"
+			},
+			"customimage" : 
+			{
+				"index" : 52,
+				"order" : 152,
+				"text" : "Host image",
+				"type" : "file"
+			},
+			"floatinClockColorDate" : 
+			{
+				"condition" : "floatinClockShowDate.value == true",
+				"index" : 137,
+				"order" : 237,
+				"text" : "• Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"floatinClockColorDay" : 
+			{
+				"index" : 135,
+				"order" : 235,
+				"text" : "Date Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"floatinClockColorTime" : 
+			{
+				"condition" : "floatinClockShowTime.value == true",
+				"index" : 139,
+				"order" : 239,
+				"text" : "• Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"floatinClockFont" : 
+			{
+				"index" : 142,
+				"options" : 
+				[
+					{
+						"label" : "Console",
+						"value" : "1"
+					},
+					{
+						"label" : "San Francisco",
+						"value" : "2"
+					},
+					{
+						"label" : "Roboto",
+						"value" : "3"
+					},
+					{
+						"label" : "Anurati",
+						"value" : "4"
+					},
+					{
+						"label" : "Custom",
+						"value" : "5"
+					}
+				],
+				"order" : 242,
+				"text" : "Font Type",
+				"type" : "combo",
+				"value" : "4"
+			},
+			"floatinClockFontCustomPath" : 
+			{
+				"condition" : "floatinClockFont.value == 5",
+				"index" : 143,
+				"order" : 243,
+				"text" : "Font url",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"floatinClockOpacity" : 
+			{
+				"fraction" : true,
+				"index" : 141,
+				"max" : 1,
+				"min" : 0,
+				"order" : 241,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Opacity",
+				"type" : "slider",
+				"value" : 1
+			},
+			"floatinClockPanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 144,
+				"max" : 3,
+				"min" : 0,
+				"order" : 244,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Text Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"floatinClockShowDate" : 
+			{
+				"index" : 136,
+				"order" : 236,
+				"text" : "Show Date",
+				"type" : "bool",
+				"value" : true
+			},
+			"floatinClockShowTime" : 
+			{
+				"index" : 138,
+				"order" : 238,
+				"text" : "Show Time",
+				"type" : "bool",
+				"value" : true
+			},
+			"floatingClockindex" : 
+			{
+				"fraction" : false,
+				"index" : 145,
+				"max" : 10,
+				"min" : -10,
+				"order" : 245,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"generalSettings" : 
+			{
+				"index" : 0,
+				"order" : 100.1,
+				"text" : "🌠 General Settings",
+				"type" : "group"
+			},
+			"hud" : 
+			{
+				"index" : 50,
+				"order" : 150,
+				"text" : "🎛️ Information Panel",
+				"type" : "group"
+			},
+			"localStorageSettings" : 
+			{
+				"index" : 2,
+				"order" : 102,
+				"text" : "<span class='ugcWarning'><b>📂Settings</b></span>",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"localStorageinfo" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "<span class='ugcSub'>Paste here your <b>Settings</b> to share it via UserProperties<br><a href='https://youtu.be/rXePq2glCl0?t=220'>⋄ Simple tutorial how to use Here ⋄</a></span><br><br>"
+			},
+			"music-Div1" : 
+			{
+				"index" : 186,
+				"order" : 286,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"musicBordercolor" : 
+			{
+				"index" : 188,
+				"order" : 288,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"musicColor1" : 
+			{
+				"condition" : "musicPanelStyle.value == 1  || musicPanelStyle.value == 5 ||  musicPanelStyle.value == 6",
+				"index" : 176,
+				"order" : 276,
+				"text" : "Color1",
+				"type" : "color",
+				"value" : "#090a0c"
+			},
+			"musicColor1ALPHA" : 
+			{
+				"condition" : "musicPanelStyle.value == 1 || musicPanelStyle.value == 5",
+				"fraction" : true,
+				"index" : 177,
+				"max" : 1,
+				"min" : 0,
+				"order" : 277,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Color1 Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"musicDiv" : 
+			{
+				"index" : 178,
+				"order" : 278,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"musicPanelAnimatedText" : 
+			{
+				"condition" : "musicPanelStyle.value == 3",
+				"index" : 172,
+				"order" : 272,
+				"text" : "Animated Text",
+				"type" : "bool",
+				"value" : false
+			},
+			"musicPanelCircleRadius" : 
+			{
+				"condition" : "musicPanelStyle.value == 5",
+				"fraction" : false,
+				"index" : 173,
+				"max" : 174,
+				"min" : 50,
+				"order" : 273,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Circle Radius",
+				"type" : "slider",
+				"value" : 174
+			},
+			"musicPanelFont1" : 
+			{
+				"index" : 179,
+				"order" : 279,
+				"text" : "Font1 Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"musicPanelFont2" : 
+			{
+				"index" : 180,
+				"order" : 280,
+				"text" : "Font2 Color",
+				"type" : "color",
+				"value" : "#9b9b9b"
+			},
+			"musicPanelImgBackground" : 
+			{
+				"condition" : "musicPanelStyle.value == 1 || musicPanelStyle.value == 2",
+				"index" : 170,
+				"order" : 270,
+				"text" : "Background Image",
+				"type" : "bool",
+				"value" : true
+			},
+			"musicPanelImgTimeLine" : 
+			{
+				"condition" : "musicPanelStyle.value == 1",
+				"index" : 171,
+				"order" : 271,
+				"text" : "Play Time",
+				"type" : "bool",
+				"value" : true
+			},
+			"musicPanelPanelSizeX" : 
+			{
+				"condition" : "musicPanelStyle.value == 3",
+				"fraction" : true,
+				"index" : 175,
+				"max" : 2000,
+				"min" : 0,
+				"order" : 275,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Custom Size X",
+				"type" : "slider",
+				"value" : 270
+			},
+			"musicPanelRotation" : 
+			{
+				"condition" : "musicPanelStyle.value == 3",
+				"fraction" : false,
+				"index" : 174,
+				"max" : 360,
+				"min" : 0,
+				"order" : 274,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Text Rotation",
+				"type" : "slider",
+				"value" : 0
+			},
+			"musicPanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 183,
+				"max" : 4,
+				"min" : 0,
+				"order" : 283,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"musicPanelStyle" : 
+			{
+				"index" : 169,
+				"options" : 
+				[
+					{
+						"label" : "Horizontal",
+						"value" : "1"
+					},
+					{
+						"label" : "Vertical",
+						"value" : "2"
+					},
+					{
+						"label" : "Text Only",
+						"value" : "3"
+					},
+					{
+						"label" : "Big",
+						"value" : "4"
+					},
+					{
+						"label" : "Circle",
+						"value" : "5"
+					},
+					{
+						"label" : "Flat",
+						"value" : "6"
+					}
+				],
+				"order" : 269,
+				"text" : "Music Panel Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"musicPanelindex" : 
+			{
+				"fraction" : false,
+				"index" : 184,
+				"max" : 10,
+				"min" : -10,
+				"order" : 284,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"musicWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 185,
+				"max" : 20,
+				"min" : 0,
+				"order" : 285,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"musicWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 187,
+				"max" : 3,
+				"min" : 0,
+				"order" : 287,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 0
+			},
+			"musicWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 189,
+				"max" : 50,
+				"min" : 0,
+				"order" : 289,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mymedia" : 
+			{
+				"index" : 353,
+				"order" : 100,
+				"text" : " <a href='https://steamcommunity.com/id/nicouhc/myworkshopfiles/'><img src='https://i.imgur.com/tAUVBFm.gif' width='290' height='90' > </img></a><br><br><a href='https://www.paypal.com/donate/?hosted_button_id=UBDDRKEZ4XABE'><img src='https://i.imgur.com/GiXFUZe.gif' width='290' height='90' > </img></a><br><br><a href='https://discord.com/invite/63EUyQBZPm'><img src='https://i.imgur.com/1aNDQN0.gif' width='290' height='90' > </img></a>"
+			},
+			"panelCalendarDiv2" : 
+			{
+				"index" : 130,
+				"order" : 230,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"panelCalendarTitleBar" : 
+			{
+				"index" : 131,
+				"order" : 231,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"panelCalendarTitleBarColor1" : 
+			{
+				"condition" : "panelCalendarTitleBar.value == true",
+				"index" : 132,
+				"order" : 232,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"panelCalendarTitleBarColor2" : 
+			{
+				"condition" : "panelCalendarTitleBar.value == true",
+				"index" : 133,
+				"order" : 233,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"panelMusicDiv2" : 
+			{
+				"index" : 190,
+				"order" : 290,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"panelMusicTitleBar" : 
+			{
+				"index" : 191,
+				"order" : 291,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"panelMusicTitleBarColor1" : 
+			{
+				"condition" : "panelMusicTitleBar.value == true",
+				"index" : 192,
+				"order" : 292,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"panelMusicTitleBarColor2" : 
+			{
+				"condition" : "panelMusicTitleBar.value == true",
+				"index" : 193,
+				"order" : 293,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"panelTextStyle" : 
+			{
+				"index" : 51,
+				"options" : 
+				[
+					{
+						"label" : "Anime Console 1.0",
+						"value" : "1"
+					},
+					{
+						"label" : "Profile UI",
+						"value" : "2"
+					}
+				],
+				"order" : 151,
+				"text" : "Panel Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"parallaxBackground" : 
+			{
+				"condition" : "backgroundImage.value",
+				"index" : 24,
+				"order" : 124,
+				"text" : "Background Parallax",
+				"type" : "bool",
+				"value" : false
+			},
+			"parallaxBackgroundForce" : 
+			{
+				"condition" : "parallaxBackground.value == true && backgroundImage.value",
+				"fraction" : true,
+				"index" : 25,
+				"max" : 50,
+				"min" : 0,
+				"order" : 125,
+				"precision" : 1,
+				"step" : 0.1,
+				"text" : "Parallax Force",
+				"type" : "slider",
+				"value" : 15
+			},
+			"parallaxImage" : 
+			{
+				"index" : 241,
+				"order" : 341,
+				"text" : "Image Parallax",
+				"type" : "bool",
+				"value" : false
+			},
+			"parallaxImageForce" : 
+			{
+				"condition" : "parallaxImage.value == true",
+				"fraction" : true,
+				"index" : 242,
+				"max" : 30,
+				"min" : 0,
+				"order" : 342,
+				"precision" : 1,
+				"step" : 0.1,
+				"text" : "Parallax Force",
+				"type" : "slider",
+				"value" : 15
+			},
+			"parallaxWindows" : 
+			{
+				"index" : 4,
+				"order" : 104,
+				"text" : "Windows Parallax",
+				"type" : "bool",
+				"value" : false
+			},
+			"parallaxWindowsForce" : 
+			{
+				"condition" : "parallaxWindows.value == true",
+				"fraction" : true,
+				"index" : 5,
+				"max" : 100,
+				"min" : 0,
+				"order" : 105,
+				"precision" : 1,
+				"step" : 0.1,
+				"text" : "Parallax Force",
+				"type" : "slider",
+				"value" : 10
+			},
+			"schemecolor" : 
+			{
+				"order" : 1,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"search-Div1" : 
+			{
+				"index" : 318,
+				"order" : 418,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"search-Div2" : 
+			{
+				"index" : 312,
+				"order" : 412,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"searchBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 314,
+				"max" : 1,
+				"min" : 0,
+				"order" : 414,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"searchBackround" : 
+			{
+				"index" : 313,
+				"order" : 413,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#252427"
+			},
+			"searchBordercolor" : 
+			{
+				"index" : 320,
+				"order" : 420,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#161719"
+			},
+			"searchColor1" : 
+			{
+				"index" : 311,
+				"order" : 411,
+				"text" : "Color 1",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"searchPositionindex" : 
+			{
+				"fraction" : false,
+				"index" : 316,
+				"max" : 10,
+				"min" : -10,
+				"order" : 416,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"searchScale" : 
+			{
+				"fraction" : true,
+				"index" : 315,
+				"max" : 5,
+				"min" : 0,
+				"order" : 415,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"searchStyle" : 
+			{
+				"index" : 310,
+				"options" : 
+				[
+					{
+						"label" : "Clasic",
+						"value" : "1"
+					},
+					{
+						"label" : "Button",
+						"value" : "2"
+					},
+					{
+						"label" : "Line",
+						"value" : "3"
+					}
+				],
+				"order" : 410,
+				"text" : "Search Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"searchWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 317,
+				"max" : 20,
+				"min" : 0,
+				"order" : 417,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"searchWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 319,
+				"max" : 3,
+				"min" : 0,
+				"order" : 419,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 0
+			},
+			"searchWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 321,
+				"max" : 50,
+				"min" : 0,
+				"order" : 421,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 14.48
+			},
+			"selectBackgroundType" : 
+			{
+				"index" : 1,
+				"options" : 
+				[
+					{
+						"label" : "Solid Color",
+						"value" : "1"
+					},
+					{
+						"label" : "Image",
+						"value" : "2"
+					},
+					{
+						"label" : "Multiple Images",
+						"value" : "3"
+					}
+				],
+				"order" : 122,
+				"text" : "Background Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"settings-Div1" : 
+			{
+				"index" : 17,
+				"order" : 117,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"settings-Div3" : 
+			{
+				"index" : 11,
+				"order" : 111,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"settingsALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 13,
+				"max" : 1,
+				"min" : 0,
+				"order" : 113,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 0.31
+			},
+			"settingsBordercolor" : 
+			{
+				"index" : 19,
+				"order" : 119,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"settingsButtonColor" : 
+			{
+				"index" : 14,
+				"order" : 114,
+				"text" : "Buttons",
+				"type" : "color",
+				"value" : "#707174"
+			},
+			"settingsButtonIconColor" : 
+			{
+				"index" : 15,
+				"order" : 115,
+				"text" : "Icons",
+				"type" : "color",
+				"value" : "#00000"
+			},
+			"settingsPanelTitle" : 
+			{
+				"index" : 9,
+				"order" : 109,
+				"text" : "⚙️ Settings Panel",
+				"type" : "group"
+			},
+			"settingsWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 16,
+				"max" : 20,
+				"min" : 0,
+				"order" : 116,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"settingsWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 18,
+				"max" : 3,
+				"min" : 0,
+				"order" : 118,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"settingsWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 20,
+				"max" : 50,
+				"min" : 0,
+				"order" : 120,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"settingsWindowColor" : 
+			{
+				"index" : 12,
+				"order" : 112,
+				"text" : "Window",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"shadowDiv" : 
+			{
+				"index" : 236,
+				"order" : 336,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"shortcutDesktop" : 
+			{
+				"index" : 334,
+				"order" : 434,
+				"text" : "Desktop",
+				"type" : "bool",
+				"value" : true
+			},
+			"shortcutDocuments" : 
+			{
+				"index" : 336,
+				"order" : 436,
+				"text" : "Documents",
+				"type" : "bool",
+				"value" : true
+			},
+			"shortcutDownload" : 
+			{
+				"index" : 338,
+				"order" : 438,
+				"text" : "Downloads",
+				"type" : "bool",
+				"value" : true
+			},
+			"shortcutTerminal" : 
+			{
+				"index" : 340,
+				"order" : 440,
+				"text" : "Terminal",
+				"type" : "bool",
+				"value" : true
+			},
+			"shortcuts" : 
+			{
+				"index" : 333,
+				"order" : 433,
+				"text" : "🔹Shortcuts",
+				"type" : "group"
+			},
+			"shortcuts-Div1" : 
+			{
+				"index" : 348,
+				"order" : 448,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"shortcuts-Div2" : 
+			{
+				"index" : 342,
+				"order" : 442,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"shortcutsBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 344,
+				"max" : 1,
+				"min" : 0,
+				"order" : 444,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"shortcutsBackround" : 
+			{
+				"index" : 343,
+				"order" : 443,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#252427"
+			},
+			"shortcutsBordercolor" : 
+			{
+				"index" : 350,
+				"order" : 450,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#181819"
+			},
+			"shortcutsColorDesktop" : 
+			{
+				"condition" : "shortcutDesktop.value == true",
+				"index" : 335,
+				"order" : 435,
+				"text" : "Color",
+				"type" : "color",
+				"value" : "#E97777"
+			},
+			"shortcutsColorDocuments" : 
+			{
+				"condition" : "shortcutDocuments.value == true",
+				"index" : 337,
+				"order" : 437,
+				"text" : "Color",
+				"type" : "color",
+				"value" : "#7F669D"
+			},
+			"shortcutsColorDownload" : 
+			{
+				"condition" : "shortcutDownload.value == true",
+				"index" : 339,
+				"order" : 439,
+				"text" : "Color",
+				"type" : "color",
+				"value" : "#898AA6"
+			},
+			"shortcutsColorTerminal" : 
+			{
+				"condition" : "shortcutTerminal.value == true",
+				"index" : 341,
+				"order" : 441,
+				"text" : "Color",
+				"type" : "color",
+				"value" : "#967E76"
+			},
+			"shortcutsPositionindex" : 
+			{
+				"fraction" : false,
+				"index" : 346,
+				"max" : 10,
+				"min" : -10,
+				"order" : 446,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"shortcutsScale" : 
+			{
+				"fraction" : true,
+				"index" : 345,
+				"max" : 5,
+				"min" : 0,
+				"order" : 445,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"shortcutsWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 347,
+				"max" : 20,
+				"min" : 0,
+				"order" : 447,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"shortcutsWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 349,
+				"max" : 3,
+				"min" : 0,
+				"order" : 449,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 0
+			},
+			"shortcutsWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 351,
+				"max" : 50,
+				"min" : 0,
+				"order" : 451,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 12
+			},
+			"showAlignLines" : 
+			{
+				"index" : 6,
+				"order" : 106,
+				"text" : "Align Lines",
+				"type" : "bool",
+				"value" : true
+			},
+			"showBorders1" : 
+			{
+				"index" : 32,
+				"order" : 132,
+				"text" : "Show Border Bottom",
+				"type" : "bool",
+				"value" : false
+			},
+			"showBorders2" : 
+			{
+				"index" : 33,
+				"order" : 133,
+				"text" : "Show Border Top",
+				"type" : "bool",
+				"value" : false
+			},
+			"showNewsPanel" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "🔻 Show News Window",
+				"type" : "bool",
+				"value" : true
+			},
+			"showSettingsPanel" : 
+			{
+				"index" : 10,
+				"order" : 110,
+				"text" : "Show Settings Panel",
+				"type" : "bool",
+				"value" : true
+			},
+			"showUsageText2" : 
+			{
+				"index" : 283,
+				"order" : 383,
+				"text" : "Show Title",
+				"type" : "bool",
+				"value" : true
+			},
+			"showWaves" : 
+			{
+				"index" : 28,
+				"order" : 128,
+				"text" : "Show Waves",
+				"type" : "bool",
+				"value" : true
+			},
+			"showWavesDiv" : 
+			{
+				"index" : 27,
+				"order" : 127,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"startupFontColor" : 
+			{
+				"index" : 323,
+				"order" : 423,
+				"text" : "Font Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"starup-Div1" : 
+			{
+				"index" : 329,
+				"order" : 429,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"starupBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 325,
+				"max" : 1,
+				"min" : 0,
+				"order" : 425,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"starupBackround" : 
+			{
+				"index" : 324,
+				"order" : 424,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#252427"
+			},
+			"starupBordercolor" : 
+			{
+				"index" : 331,
+				"order" : 431,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#161719"
+			},
+			"starupPositionindex" : 
+			{
+				"fraction" : false,
+				"index" : 327,
+				"max" : 10,
+				"min" : -10,
+				"order" : 427,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"starupScale" : 
+			{
+				"fraction" : true,
+				"index" : 326,
+				"max" : 5,
+				"min" : 0,
+				"order" : 426,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"starupWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 328,
+				"max" : 20,
+				"min" : 0,
+				"order" : 428,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"starupWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 330,
+				"max" : 3,
+				"min" : 0,
+				"order" : 430,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 0
+			},
+			"starupWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 332,
+				"max" : 50,
+				"min" : 0,
+				"order" : 432,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 15
+			},
+			"textPanel-Div1" : 
+			{
+				"index" : 75,
+				"order" : 175,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"textPanelBordercolor" : 
+			{
+				"index" : 77,
+				"order" : 177,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"textPanelDiv2" : 
+			{
+				"index" : 79,
+				"order" : 179,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"textPanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 72,
+				"max" : 4,
+				"min" : 0,
+				"order" : 172,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size <br>",
+				"type" : "slider",
+				"value" : 1
+			},
+			"textPanelTitleBar" : 
+			{
+				"index" : 80,
+				"order" : 180,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"textPanelTitleBarColor1" : 
+			{
+				"condition" : "textPanelTitleBar.value == true",
+				"index" : 81,
+				"order" : 181,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"textPanelTitleBarColor2" : 
+			{
+				"condition" : "textPanelTitleBar.value == true",
+				"index" : 82,
+				"order" : 182,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"textPanelWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 74,
+				"max" : 20,
+				"min" : 0,
+				"order" : 174,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"textPanelWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 76,
+				"max" : 3,
+				"min" : 0,
+				"order" : 176,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"textPanelWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 78,
+				"max" : 50,
+				"min" : 0,
+				"order" : 178,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"textPanelindex" : 
+			{
+				"fraction" : false,
+				"index" : 73,
+				"max" : 10,
+				"min" : -10,
+				"order" : 173,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"todo-Div1" : 
+			{
+				"index" : 98,
+				"order" : 198,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"todoBordercolor" : 
+			{
+				"index" : 100,
+				"order" : 200,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#af4c4c"
+			},
+			"todoDiv" : 
+			{
+				"index" : 92,
+				"order" : 192,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"todoDiv2" : 
+			{
+				"index" : 102,
+				"order" : 202,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"todoIcon" : 
+			{
+				"condition" : "todoTitleContainer.value == true",
+				"index" : 86,
+				"order" : 186,
+				"text" : "Icon Color",
+				"type" : "color",
+				"value" : "#af4c4c"
+			},
+			"todoIconBackground" : 
+			{
+				"condition" : "todoTitleContainer.value == true",
+				"index" : 87,
+				"order" : 187,
+				"text" : "Icon Background Color",
+				"type" : "color",
+				"value" : "#af4c4c"
+			},
+			"todoIconBackgroundAlpha" : 
+			{
+				"condition" : "todoTitleContainer.value == true",
+				"fraction" : true,
+				"index" : 89,
+				"max" : 1,
+				"min" : 0,
+				"order" : 189,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "icon Background Alpha",
+				"type" : "slider",
+				"value" : 0.31
+			},
+			"todoList" : 
+			{
+				"index" : 83,
+				"order" : 183,
+				"text" : "📜 ToDo Notes",
+				"type" : "group"
+			},
+			"todoListALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 94,
+				"max" : 1,
+				"min" : 0,
+				"order" : 194,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"todoListInfo" : 
+			{
+				"index" : 84,
+				"order" : 184,
+				"text" : "<span class='ugcSub'>🔻Tutorial how to use <a href='https://youtu.be/1s-l17dJ2BE'>WP-Extension</a></span>"
+			},
+			"todoListTitleBar" : 
+			{
+				"index" : 103,
+				"order" : 203,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"todoListTitleBarColor1" : 
+			{
+				"condition" : "todoListTitleBar.value == true",
+				"index" : 104,
+				"order" : 204,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"todoListTitleBarColor2" : 
+			{
+				"condition" : "todoListTitleBar.value == true",
+				"index" : 105,
+				"order" : 205,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"todoPanelScale" : 
+			{
+				"fraction" : true,
+				"index" : 95,
+				"max" : 4,
+				"min" : 0,
+				"order" : 195,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"todoTaskColor" : 
+			{
+				"index" : 90,
+				"order" : 190,
+				"text" : "CheckBox Color",
+				"type" : "color",
+				"value" : "#af4c4c"
+			},
+			"todoTaskTextColor" : 
+			{
+				"index" : 91,
+				"order" : 191,
+				"text" : "Font Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"todoTitleColor" : 
+			{
+				"condition" : "todoTitleContainer.value == true",
+				"index" : 88,
+				"order" : 188,
+				"text" : "Title Color",
+				"type" : "color",
+				"value" : "#af4c4c"
+			},
+			"todoTitleContainer" : 
+			{
+				"index" : 85,
+				"order" : 185,
+				"text" : "Show Title",
+				"type" : "bool",
+				"value" : true
+			},
+			"todoWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 97,
+				"max" : 20,
+				"min" : 0,
+				"order" : 197,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"todoWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 99,
+				"max" : 3,
+				"min" : 0,
+				"order" : 199,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"todoWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 101,
+				"max" : 50,
+				"min" : 0,
+				"order" : 201,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"todolindex" : 
+			{
+				"fraction" : false,
+				"index" : 96,
+				"max" : 10,
+				"min" : -10,
+				"order" : 196,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"usage-Div1" : 
+			{
+				"index" : 285,
+				"order" : 385,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"usagePositionindex" : 
+			{
+				"fraction" : false,
+				"index" : 289,
+				"max" : 10,
+				"min" : -10,
+				"order" : 389,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"usageScale" : 
+			{
+				"fraction" : true,
+				"index" : 288,
+				"max" : 4,
+				"min" : 0,
+				"order" : 388,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"usageStyle" : 
+			{
+				"index" : 279,
+				"options" : 
+				[
+					{
+						"label" : "Circles",
+						"value" : "1"
+					},
+					{
+						"label" : "Horizontal",
+						"value" : "2"
+					},
+					{
+						"label" : "Simple",
+						"value" : "3"
+					},
+					{
+						"label" : "Flat",
+						"value" : "4"
+					}
+				],
+				"order" : 379,
+				"text" : "Usage Style",
+				"type" : "combo",
+				"value" : "1"
+			},
+			"waveColor" : 
+			{
+				"condition" : "showWaves.value == true",
+				"index" : 29,
+				"order" : 129,
+				"text" : "Waves Color",
+				"type" : "color",
+				"value" : "#000000"
+			},
+			"waveColorALPHA" : 
+			{
+				"condition" : "showWaves.value == true",
+				"fraction" : true,
+				"index" : 30,
+				"max" : 1,
+				"min" : 0,
+				"order" : 130,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Waves Alpha",
+				"type" : "slider",
+				"value" : 10.57
+			},
+			"weather-Div1" : 
+			{
+				"index" : 269,
+				"order" : 369,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"weather-Div2" : 
+			{
+				"index" : 263,
+				"order" : 363,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"weather-Div3" : 
+			{
+				"index" : 255,
+				"order" : 355,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"weatherBackgroundALPHA" : 
+			{
+				"fraction" : true,
+				"index" : 265,
+				"max" : 1,
+				"min" : 0,
+				"order" : 365,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Alpha",
+				"type" : "slider",
+				"value" : 1
+			},
+			"weatherBackround" : 
+			{
+				"index" : 264,
+				"order" : 364,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#101318"
+			},
+			"weatherBordercolor" : 
+			{
+				"index" : 271,
+				"order" : 371,
+				"text" : "Border Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"weatherDiv2" : 
+			{
+				"index" : 273,
+				"order" : 373,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"weatherDiv3" : 
+			{
+				"index" : 251,
+				"order" : 351.1,
+				"text" : "<p class='ugcDanger'>__________________________________"
+			},
+			"weatherFahrenheit" : 
+			{
+				"index" : 252,
+				"order" : 352,
+				"text" : "Degrees Fahrenheit",
+				"type" : "bool",
+				"value" : false
+			},
+			"weatherHideMoreInfo" : 
+			{
+				"condition" : "weatherSize.value == false",
+				"index" : 252,
+				"order" : 360.2,
+				"text" : "Show current info",
+				"type" : "bool",
+				"value" : true
+			},
+			"weatherIcon" : 
+			{
+				"index" : 259,
+				"order" : 359,
+				"text" : "Show Icon",
+				"type" : "bool",
+				"value" : true
+			},
+			"weatherLatitude" : 
+			{
+				"index" : 249,
+				"order" : 349,
+				"text" : "Latitude",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"weatherLongitude" : 
+			{
+				"index" : 250,
+				"order" : 350,
+				"text" : "Longitude",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"weatherNextDaysHourFormat" : 
+			{
+				"index" : 254,
+				"order" : 354,
+				"text" : "NextDays In AM/PM",
+				"type" : "bool",
+				"value" : false
+			},
+			"weatherPositionindex" : 
+			{
+				"fraction" : false,
+				"index" : 267,
+				"max" : 10,
+				"min" : -10,
+				"order" : 367,
+				"precision" : 21,
+				"step" : 1,
+				"text" : "Window Position",
+				"type" : "slider",
+				"value" : 0
+			},
+			"weatherScale" : 
+			{
+				"fraction" : true,
+				"index" : 266,
+				"max" : 4,
+				"min" : 0,
+				"order" : 366,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Size",
+				"type" : "slider",
+				"value" : 1
+			},
+			"weatherSize" : 
+			{
+				"index" : 256,
+				"order" : 356,
+				"text" : "Compact Mode",
+				"type" : "bool",
+				"value" : false
+			},
+			"weatherText" : 
+			{
+				"index" : 260,
+				"order" : 360,
+				"text" : "Show temperature Degrees",
+				"type" : "bool",
+				"value" : true
+			},
+			"weatherTextColor" : 
+			{
+				"index" : 261,
+				"order" : 361,
+				"text" : "Text Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"weatherTextColor2" : 
+			{
+				"index" : 262,
+				"order" : 362,
+				"text" : "Text Color 2",
+				"type" : "color",
+				"value" : "#94a3b8"
+			},
+			"weatherTitle" : 
+			{
+				"index" : 247,
+				"order" : 347,
+				"text" : "🌦️ Weather",
+				"type" : "group"
+			},
+			"weatherTitleBar" : 
+			{
+				"index" : 274,
+				"order" : 374,
+				"text" : "Show Title Bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"weatherTitleBarColor1" : 
+			{
+				"condition" : "weatherTitleBar.value == true",
+				"index" : 275,
+				"order" : 375,
+				"text" : "Background Color",
+				"type" : "color",
+				"value" : "#3a588e"
+			},
+			"weatherTitleBarColor2" : 
+			{
+				"condition" : "weatherTitleBar.value == true",
+				"index" : 276,
+				"order" : 376,
+				"text" : "Buttons Color",
+				"type" : "color",
+				"value" : "#ffffff"
+			},
+			"weatherTodayExtended" : 
+			{
+				"condition" : "weatherSize.value == false",
+				"index" : 257,
+				"order" : 357,
+				"text" : "Today Weather",
+				"type" : "bool",
+				"value" : true
+			},
+			"weatherWeekExtended" : 
+			{
+				"condition" : "weatherSize.value == false",
+				"index" : 258,
+				"order" : 358,
+				"text" : "Week Weather",
+				"type" : "bool",
+				"value" : true
+			},
+			"weatherWindowBlur" : 
+			{
+				"fraction" : true,
+				"index" : 268,
+				"max" : 20,
+				"min" : 0,
+				"order" : 368,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Window Blur",
+				"type" : "slider",
+				"value" : 15
+			},
+			"weatherWindowBorder" : 
+			{
+				"fraction" : true,
+				"index" : 270,
+				"max" : 3,
+				"min" : 0,
+				"order" : 370,
+				"step" : 1,
+				"text" : "Window Border",
+				"type" : "slider",
+				"value" : 2
+			},
+			"weatherWindowBorderRadius" : 
+			{
+				"fraction" : true,
+				"index" : 272,
+				"max" : 50,
+				"min" : 0,
+				"order" : 372,
+				"precision" : 2,
+				"step" : 0.01,
+				"text" : "Border Radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"weatherinfo" : 
+			{
+				"index" : 248,
+				"order" : 348,
+				"text" : "<span class='ugcSub'>🔻 Powered By <b>open-meteo.com</b></span>"
+			},
+			"windspeedInMph" : 
+			{
+				"index" : 253,
+				"order" : 353,
+				"text" : "WindSpeed in Mph",
+				"type" : "bool",
+				"value" : false
+			},
+			"wp info" : 
+			{
+				"index" : 278,
+				"order" : 100.0,
+				"text" : "<span class='ugcSub'>🔻Github <a href='https://github.com/NicouHc/WidgetsProject-Extension/'>WP-Extension</a></span>"
+			}
+		},
+		"supportsaudioprocessing" : true
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"tags" : [ "Technology" ],
+	"title" : "Widgets Project | Customizable | Clock, ToDo Notes, Calendar and more",
+	"type" : "Web",
+	"version" : 23,
+	"visibility" : "public",
+	"workshopid" : "3137947556",
+	"workshopurl" : "steam://url/CommunityFilePage/3137947556"
+}

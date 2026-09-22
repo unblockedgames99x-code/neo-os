@@ -1,0 +1,150 @@
+/*
+ * Shared liquid-glass scrollbars for the shell and every first-party NEO app.
+ * Keep this stylesheet last so older app-specific scrollbar colors cannot leak
+ * through and make different windows feel like different products.
+ */
+
+:root,
+html[data-neo-theme] {
+  --neo-scrollbar-size: 12px;
+  --neo-scrollbar-track: color-mix(in srgb, var(--desktop-surface) 38%, transparent);
+  --neo-scrollbar-track-line: color-mix(in srgb, var(--desktop-text) 10%, transparent);
+  --neo-scrollbar-thumb: color-mix(in srgb, color-mix(in srgb, var(--desktop-text) 82%, var(--desktop-accent)) 42%, transparent);
+  --neo-scrollbar-thumb-hover: color-mix(in srgb, color-mix(in srgb, var(--desktop-text) 76%, var(--desktop-accent)) 62%, transparent);
+  --neo-scrollbar-thumb-active: color-mix(in srgb, color-mix(in srgb, var(--desktop-text) 68%, var(--desktop-accent)) 76%, transparent);
+}
+
+html[data-neo-theme],
+html[data-neo-theme] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neo-scrollbar-thumb) transparent;
+}
+
+html[data-neo-theme]::-webkit-scrollbar,
+html[data-neo-theme] *::-webkit-scrollbar {
+  width: var(--neo-scrollbar-size);
+  height: var(--neo-scrollbar-size);
+  background: transparent;
+}
+
+html[data-neo-theme]::-webkit-scrollbar-track,
+html[data-neo-theme] *::-webkit-scrollbar-track {
+  margin: 6px 2px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--desktop-text) 4%, transparent), transparent 52%),
+    var(--neo-scrollbar-track);
+  border: 1px solid var(--neo-scrollbar-track-line);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .04),
+    inset 0 -1px 1px rgba(0, 0, 0, .16);
+}
+
+html[data-neo-theme]::-webkit-scrollbar-thumb,
+html[data-neo-theme] *::-webkit-scrollbar-thumb {
+  min-width: 38px;
+  min-height: 38px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .19), rgba(255, 255, 255, .03) 46%, rgba(0, 0, 0, .09)),
+    var(--neo-scrollbar-thumb);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .2),
+    0 2px 8px rgba(0, 0, 0, .18);
+}
+
+html[data-neo-theme]::-webkit-scrollbar-thumb:hover,
+html[data-neo-theme] *::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .25), rgba(255, 255, 255, .05) 48%, rgba(0, 0, 0, .08)),
+    var(--neo-scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+
+html[data-neo-theme]::-webkit-scrollbar-thumb:active,
+html[data-neo-theme] *::-webkit-scrollbar-thumb:active {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .28), rgba(255, 255, 255, .06) 48%, rgba(0, 0, 0, .08)),
+    var(--neo-scrollbar-thumb-active);
+  background-clip: padding-box;
+}
+
+html[data-neo-theme]::-webkit-scrollbar-button,
+html[data-neo-theme] *::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+html[data-neo-theme]::-webkit-scrollbar-corner,
+html[data-neo-theme] *::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Document-style apps own one reliable scroll region. This remains true in
+   floating-titlebar mode, where the window body itself is intentionally
+   clipped. Workspace apps with dedicated inner panes keep their own rails. */
+html[data-neo-theme] .neo-window > .window-body:has(> .desktop-app),
+html[data-neo-theme] .neo-window > .window-body:has(> .native-app:not(.neo-messages, .wallpaper-studio, .neo-library)) {
+  overflow: hidden;
+  border-radius: 0 0 calc(var(--neo-radius-panel, 18px) - 1px) calc(var(--neo-radius-panel, 18px) - 1px);
+  background-clip: padding-box;
+  isolation: isolate;
+}
+
+html[data-neo-theme] .neo-window.is-maximized > .window-body:has(> .desktop-app),
+html[data-neo-theme] .neo-window.is-maximized > .window-body:has(> .native-app:not(.neo-messages, .wallpaper-studio, .neo-library)) {
+  border-radius: 0 0 11px 11px;
+}
+
+html[data-neo-theme][data-window-bar-style="pill"] .neo-window > .window-body:has(> .desktop-app),
+html[data-neo-theme][data-window-bar-style="pill"] .neo-window > .window-body:has(> .native-app:not(.neo-messages, .wallpaper-studio, .neo-library)) {
+  border-radius: inherit;
+}
+
+html[data-neo-theme] .neo-window > .window-body > .desktop-app,
+html[data-neo-theme] .neo-window > .window-body > .native-app:not(.neo-messages, .wallpaper-studio, .neo-library) {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: inherit;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Compact utilities and modal surfaces must stay usable after a window is
+   resized or the browser viewport becomes short. */
+html[data-neo-theme] .neo-window > .window-body > .neo-utility {
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+html[data-neo-theme] :is(.desktop-palette, .feature-dialog) {
+  max-height: min(760px, calc(100dvh - 32px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+html[data-neo-theme] .desktop-context-menu:not(:has(.context-submenu:not([hidden]))),
+html[data-neo-theme] .context-submenu {
+  max-height: calc(100dvh - 16px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+html[data-neo-theme="contrast"] {
+  --neo-scrollbar-track-line: color-mix(in srgb, var(--desktop-text) 38%, transparent);
+  --neo-scrollbar-thumb: color-mix(in srgb, var(--desktop-text) 72%, transparent);
+  --neo-scrollbar-thumb-hover: var(--desktop-text);
+  --neo-scrollbar-thumb-active: var(--desktop-accent);
+}

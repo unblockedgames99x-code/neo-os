@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="/ad-cleanup.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Escape Road Fake GTA</title>
+  <meta name="description" content="Escape Road Fake GTA embedded activity.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="learningzone-embed-source" content="StaticQuasar931 gm3z/escape-road-fake-gta">
+  <meta name="learningzone-original-source" content="https://sites.google.com/view/staticquasar931/gm3z/escape-road-fake-gta">
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #050505;
+      color: #fff;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    .embed-shell {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background: #050505;
+    }
+
+    .embed-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.72);
+      box-sizing: border-box;
+    }
+
+    .embed-fallback strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .embed-frame {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #050505;
+    }
+
+    .embed-tools {
+      position: absolute;
+      right: max(10px, env(safe-area-inset-right));
+      bottom: max(10px, env(safe-area-inset-bottom));
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    body:hover .embed-tools,
+    body:focus-within .embed-tools {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .embed-tools button {
+      min-height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 0 12px;
+      background: rgba(20, 20, 20, 0.78);
+      color: #fff;
+      font: 800 12px/1 Inter, Arial, sans-serif;
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .embed-tools button:hover,
+    .embed-tools button:focus-visible {
+      border-color: #ff7a2f;
+      outline: 2px solid rgba(255, 122, 47, 0.3);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <main class="embed-shell" aria-label="Escape Road Fake GTA">
+    <div class="embed-fallback" aria-hidden="true">
+      <div>
+        <strong>Loading embedded activity...</strong>
+        <span>If the activity stays blank, the provider may not allow classroom embedding.</span>
+      </div>
+    </div>
+    <iframe
+      id="activity-frame"
+      class="embed-frame"
+      src="https://1030900163-atari-embeds.googleusercontent.com/embeds/8ba78a5061a5008d7a0bac8cfaf5dc0c/inner-frame-minified.html"
+      title="Escape Road Fake GTA"
+      loading="eager"
+      referrerpolicy="no-referrer"
+      allow="autoplay; fullscreen; gamepad; pointer-lock; clipboard-read; clipboard-write; encrypted-media"
+      allowfullscreen
+      sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads"
+    ></iframe>
+    <div class="embed-tools">
+      <button type="button" id="reload-activity">Reload activity</button>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const frame = document.getElementById("activity-frame");
+      document.getElementById("reload-activity")?.addEventListener("click", () => {
+        if (!frame) return;
+        frame.src = frame.src;
+      });
+    })();
+  </script>
+</body>
+</html>

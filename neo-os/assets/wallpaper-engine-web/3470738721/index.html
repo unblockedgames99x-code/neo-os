@@ -1,0 +1,2531 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../../../neo-wallpaper-web-compat.js?v=20260805-chrome-v1"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>widget wallpaper</title>
+    <script src="vendor/suncalc-1.8.0.min.js"></script>
+    <script src="vendor/p5-1.9.0.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img id="fullScreenImage" />
+    <video id="fullScreenVideo"></video>
+
+    <!-- clock -->
+    <div class="block0 block">
+      <div class="widget0 widget">
+        <div class="clock-narrow narrow">
+          <div class="clock-time"></div>
+          <div class="clock-ampm"></div>
+          <div class="clock-line"></div>
+        </div>
+
+        <div class="clock-wide wide">
+          <div class="clock-row">
+            <div class="clock-time-wide"></div>
+            <div class="clock-ampm-wide"></div>
+          </div>
+          <div class="world-clock">
+            <div class="wc1"></div>
+            <div class="wc2"></div>
+            <div class="wc3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- date -->
+    <div class="block1 block">
+      <div class="widget1 widget">
+        <div class="date-narrow narrow">
+          <div class="date"></div>
+        </div>
+
+        <div class="date-wide wide">
+          <div class="date-left">
+            <div class="date-left-top"></div>
+            <div class="date-left-bottom"></div>
+          </div>
+          <div class="date-right"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- weather -->
+    <div class="block2 block">
+      <div class="widget2 widget">
+        <div class="weather-narrow narrow">
+          <div class="forecast"></div>
+          <div class="temp"></div>
+        </div>
+
+        <div class="weather-wide wide">
+          <div class="weather-top"></div>
+          <div class="weather-bottom">
+            <div class="temp-wide"></div>
+            <div class="vertical-line"></div>
+            <div class="precipitation"></div>
+            <div class="wind"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- performance -->
+    <div class="block3 block">
+      <div class="widget3 widget">
+        <div class="performance-narrow narrow">
+          <div class="monitor vertical">
+            <div class="monitor-name-1"></div>
+            <div class="monitor-bar-1"><div class="bar-1"></div></div>
+            <div class="monitor-per-1"></div>
+          </div>
+          <div class="monitor vertical">
+            <div class="monitor-name-2"></div>
+            <div class="monitor-bar-2"><div class="bar-2"></div></div>
+            <div class="monitor-per-2"></div>
+          </div>
+
+          <div class="monitor-left horizontal">
+            <div class="monitor">
+              <div class="monitor-name-1"></div>
+              <div class="monitor-line-1"><div class="line-1"></div></div>
+              <div class="monitor-per-1"></div>
+            </div>
+            <div class="monitor">
+              <div class="monitor-name-2"></div>
+              <div class="monitor-line-2"><div class="line-2"></div></div>
+              <div class="monitor-per-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="performance-wide wide">
+          <div class="monitor vertical">
+            <div class="monitor-name-1"></div>
+            <div class="monitor-bar-1"><div class="bar-1"></div></div>
+            <div class="monitor-per-1"></div>
+          </div>
+          <div class="monitor vertical">
+            <div class="monitor-name-2"></div>
+            <div class="monitor-bar-2"><div class="bar-2"></div></div>
+            <div class="monitor-per-2"></div>
+          </div>
+          <div class="monitor vertical">
+            <div class="monitor-name-3"></div>
+            <div class="monitor-bar-3"><div class="bar-3"></div></div>
+            <div class="monitor-per-3"></div>
+          </div>
+          <div class="monitor vertical">
+            <div class="monitor-name-4"></div>
+            <div class="monitor-bar-4"><div class="bar-4"></div></div>
+            <div class="monitor-per-4"></div>
+          </div>
+          <div class="monitor vertical">
+            <div class="monitor-name-5"></div>
+            <div class="monitor-bar-5"><div class="bar-5"></div></div>
+            <div class="monitor-per-5"></div>
+          </div>
+
+          <div class="monitor-left horizontal">
+            <div class="monitor">
+              <div class="monitor-name-1"></div>
+              <div class="monitor-line-1"><div class="line-1"></div></div>
+              <div class="monitor-per-1"></div>
+            </div>
+            <div class="monitor">
+              <div class="monitor-name-2"></div>
+              <div class="monitor-line-2"><div class="line-2"></div></div>
+              <div class="monitor-per-2"></div>
+            </div>
+          </div>
+          <div class="monitor-right horizontal">
+            <div class="monitor">
+              <div class="monitor-name-3"></div>
+              <div class="monitor-line-3"><div class="line-3"></div></div>
+              <div class="monitor-per-3"></div>
+            </div>
+            <div class="monitor">
+              <div class="monitor-name-4"></div>
+              <div class="monitor-line-4"><div class="line-4"></div></div>
+              <div class="monitor-per-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- visualizer -->
+    <div class="block4 block">
+      <div class="widget4 widget">
+        <div class="visualizer-wide">
+          <div class="media-info-wide">
+            <div class="album-cover" onclick="reRegisterMediaListener()">
+              <img id="albumCoverArt" />
+            </div>
+            <div class="title">&nbsp;</div>
+            <div class="artist">&nbsp;</div>
+            <div class="media-line"></div>
+            <div class="media-bottom">
+              <div class="album-title">NO MEDIA DATA DETECTED</div>
+              <div class="duration"></div>
+            </div>
+          </div>
+          <div id="myCanvas-wide"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- custom -->
+    <div class="block5 block">
+      <div class="widget5 widget">
+        <div class="custom-narrow narrow">
+          <div class="custom-text"></div>
+        </div>
+        <div class="custom-wide wide">
+          <div class="custom-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- performance narrow -->
+    <div class="block6 block">
+      <div class="widget6 widget">
+        <div class="performance-narrow-block narrow">
+          <canvas id="narrow-canvas-6"></canvas>
+          <div class="narrow-monitor-name-6"></div>
+          <div class="narrow-monitor-per-6"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block7 block">
+      <div class="widget7 widget">
+        <div class="performance-narrow-block narrow">
+          <canvas id="narrow-canvas-7"></canvas>
+          <div class="narrow-monitor-name-7"></div>
+          <div class="narrow-monitor-per-7"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block8 block">
+      <div class="widget8 widget">
+        <div class="performance-narrow-block narrow">
+          <canvas id="narrow-canvas-8"></canvas>
+          <div class="narrow-monitor-name-8"></div>
+          <div class="narrow-monitor-per-8"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block9 block">
+      <div class="widget9 widget">
+        <div class="performance-narrow-block narrow">
+          <canvas id="narrow-canvas-9"></canvas>
+          <div class="narrow-monitor-name-9"></div>
+          <div class="narrow-monitor-per-9"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block10 block">
+      <div class="widget10 widget">
+        <div class="performance-narrow-block narrow">
+          <canvas id="narrow-canvas-10"></canvas>
+          <div class="narrow-monitor-name-10"></div>
+          <div class="narrow-monitor-per-10"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block11 block">
+      <div class="widget11 widget">
+        <div class="performance-narrow-block narrow">
+          <canvas id="narrow-canvas-11"></canvas>
+          <div class="narrow-monitor-name-11"></div>
+          <div class="narrow-monitor-per-11"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- progress -->
+    <div class="block12 block">
+      <div class="widget12 widget">
+        <div class="progress narrow">
+          <div class="progress-label"></div>
+          <div class="progress-dots"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block13 block">
+      <div class="widget13 widget">
+        <div class="progress narrow">
+          <div class="progress-label"></div>
+          <div class="progress-dots"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block14 block">
+      <div class="widget14 widget">
+        <div class="progress narrow">
+          <div class="progress-label"></div>
+          <div class="progress-dots"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block15 block">
+      <div class="widget15 widget">
+        <div class="progress narrow">
+          <div class="progress-label"></div>
+          <div class="progress-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- countdown -->
+    <div class="block16 block">
+      <div class="widget16 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block17 block">
+      <div class="widget17 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block18 block">
+      <div class="widget18 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block19 block">
+      <div class="widget19 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block20 block">
+      <div class="widget20 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block21 block">
+      <div class="widget21 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block22 block">
+      <div class="widget22 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block23 block">
+      <div class="widget23 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block24 block">
+      <div class="widget24 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+    <div class="block25 block">
+      <div class="widget25 widget">
+        <div class="countdown narrow">
+          <div class="countdown-bar"></div>
+          <div class="countdown-name"></div>
+          <div class="countdown-date"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 0-5 blocks: default (clock, date, weather, performance, visualizer, custom)
+      // 6-11 blocks: performance narrow (cpu, ram, gpu, vram, up, down)
+      // 12-15 blocks: progress (day, week, month, year)
+      // 16-25 blocks: countdown
+
+      // for blocks
+      const savedStates = JSON.parse(localStorage.getItem("divStates") || "[]");
+      let useDynamicBackground = true;
+      let lockDragging = false;
+      let borderThickness = 1;
+      let pixelScale = 1;
+      let radius = 10;
+      let row = 12;
+      let gridSize = window.innerWidth / row;
+      let divs = [];
+      let use24hformat = false;
+      let clockBlock = true;
+      let dateBlock = true;
+      let weatherBlock = false;
+      let customBlock = "";
+      let progressBlocks = [""];
+      // ['day', 'week', 'month', 'year']
+      let previousprogressBlocks = [];
+      let countdownBlocks = {
+        16: { name: "", date: "" },
+        17: { name: "", date: "" },
+        18: { name: "", date: "" },
+        19: { name: "", date: "" },
+        20: { name: "", date: "" },
+        21: { name: "", date: "" },
+        22: { name: "", date: "" },
+        23: { name: "", date: "" },
+        24: { name: "", date: "" },
+        25: { name: "", date: "" },
+      };
+      let previousCountdownBlocks = {};
+      let blockStartTimes = {};
+
+      // for world clock and weather
+      let latitude = 35.6764; // tokyo
+      let longitude = 139.65;
+      let cityName = "Tokyo, Japan";
+      let wc1 = "Asia/Tokyo";
+      let wc2 = "Europe/London";
+      let wc3 = "America/New_York";
+      let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      // prettier-ignore
+      let apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=precipitation_probability,temperature_2m,weather_code&current=temperature_2m,precipitation,wind_speed_10m,weather_code,relative_humidity_2m&timezone=${encodeURIComponent(timezone)}&forecast_days=1`;
+      let weatherFetchInProgress = false; // function in progress flag to prevent from being double run.
+      let customWeatherFetchInProgress = false; // function in progress flag to prevent from being double run.
+      let useFahrenheit = false;
+      const weatherDescriptions = {
+        0: { text: "Clear", bg: "#dcba31", color: "#000" }, // yellow
+        1: { text: "Mainly Clear", bg: "#dcba31", color: "#000" },
+        2: { text: "Partly Cloudy", bg: "#b2aa99", color: "#000" }, // grayish yellow
+        3: { text: "Cloudy", bg: "#A9A9A9", color: "#000" }, // gray
+        45: { text: "Foggy", bg: "#A9A9A9", color: "#000" },
+        48: { text: "Rime Fog", bg: "#A9A9A9", color: "#000" },
+
+        // 霧雨
+        51: { text: "Light Drizzle", bg: "#9FB4C7", color: "#000" }, // light blue
+        53: { text: "Drizzle", bg: "#9FB4C7", color: "#000" },
+        55: { text: "Heavy Drizzle", bg: "#9FB4C7", color: "#000" },
+        56: { text: "Light Freezing Drizzle", bg: "#9FB4C7", color: "#000" },
+        57: { text: "Freezing Drizzle", bg: "#9FB4C7", color: "#000" },
+
+        61: { text: "Light Rain", bg: "#123285", color: "#fff" }, // blue
+        63: { text: "Rain", bg: "#123285", color: "#fff" },
+        65: { text: "Heavy Rain", bg: "#123285", color: "#fff" },
+        66: { text: "Light Freezing Rain", bg: "#123285", color: "#fff" },
+        67: { text: "Freezing Rain", bg: "#123285", color: "#fff" },
+
+        71: { text: "Slight Snow", bg: "#fff", color: "#000" }, // white
+        73: { text: "Snow", bg: "#fff", color: "#000" },
+        75: { text: "Heavy Snow", bg: "#fff", color: "#000" },
+        77: { text: "Snow Grains", bg: "#fff", color: "#000" },
+
+        // にわか雨
+        80: { text: "Light Showers", bg: "#9FB4C7", color: "#000" }, // light blue
+        81: { text: "Showers", bg: "#9FB4C7", color: "#000" },
+        82: { text: "Heavy Showers", bg: "#9FB4C7", color: "#000" },
+        85: { text: "Light Snow Showers", bg: "#9FB4C7", color: "#000" },
+        86: { text: "Snow Showers", bg: "#9FB4C7", color: "#000" },
+
+        95: { text: "Thunderstorm", bg: "#000", color: "#fff" }, // black
+        96: { text: "Light Thunderstorm With Hail", bg: "#000", color: "#fff" },
+        99: { text: "Thunderstorm With Hail", bg: "#000", color: "#fff" },
+      };
+
+      // for performance monitor
+      let performanceBlock = false; // wide/narrow
+      let useHorizontal = false;
+      let port = "5000";
+      let monitor1 = "cpu";
+      let monitor2 = "ram";
+      let monitor3 = "gpu";
+      let monitor4 = "vram";
+      let monitor5 = "c";
+      let performanceNarrowBlocks = [""]; // narrow block ['cpu', 'ram', 'gpu', 'vram', 'up', 'down'];
+      let previousNarrowBlocks = [];
+      let narrowHistory = {
+        cpu: Array(10).fill(0),
+        ram: Array(10).fill(0),
+        gpu: Array(10).fill(0),
+        vram: Array(10).fill(0),
+        up: Array(10).fill(0),
+        down: Array(10).fill(0),
+      };
+
+      // for visualizer
+      let bgColor = [0, 0, 0];
+      let visualizerBlock = true;
+      let isPlaying = false;
+      let isInvalidThumbnail = false;
+      let albumTitleDetection = false;
+      let newFirstValues = [0, 0, 0, 0];
+      let newLastValues = [0, 0, 0, 0];
+      let currentMax = 0;
+      let multiplier = 0.35;
+      let segments = 50;
+      let x1, x2;
+      let yBase1, yBase2;
+      let lineShift = 0;
+      let zeroVal = 0.0001;
+      let strokeColor = [33, 33, 33];
+      let targetStrokeColor = [...strokeColor];
+      let transitionStartTime = 0;
+      const transitionDuration = 2000;
+
+      let smoothedFirstValues = [0.2, 0.1, 0.08, 0.12, 0.15, 0, 0, 0];
+      let smoothedLastValues = [0, 0.15, 0.1, 0.08, 0.11, 0.22, 0.3, 0];
+      let smoothing = 0.25; // smaller the more smooth
+
+      let defaultScaling = 220; // bigger the less height 250
+      let thicknessMin = gridSize / (defaultScaling / 80);
+      let thicknessMax = gridSize / (defaultScaling / 1000);
+      let offset = gridSize / (defaultScaling / 400);
+
+      let runningMax = 0;
+      let decayRate = 0.95;
+
+      let animationTimer;
+      let gap = gridSize / 10;
+
+      let prevCanvasWidth, prevCanvasHeight, xOffset;
+
+      // user property
+      window.wallpaperPropertyListener = {
+        applyUserProperties: function (properties) {
+          if (properties.customimage) {
+            let img = document.getElementById("fullScreenImage");
+            img.src = properties.customimage.value ? `file:///` + properties.customimage.value : `background.jpeg`;
+            img.style.backgroundSize = "cover";
+            img.style.backgroundPosition = "center center";
+          }
+          if (properties.customvideo) {
+            let vid = document.getElementById("fullScreenVideo");
+            if (properties.customvideo.value) {
+              vid.src = `file:///` + properties.customvideo.value;
+              vid.loop = true;
+              vid.autoplay = true;
+              // vid.muted = true;
+              vid.play();
+              vid.muted = true;
+              vid.style.display = "block";
+              vid.style.backgroundSize = "cover";
+              vid.style.backgroundPosition = "center center";
+            } else {
+              vid.pause();
+              vid.style.display = "none";
+            }
+          }
+          if (properties.lockwidget) {
+            lockDragging = properties.lockwidget.value;
+          }
+          if (properties.dynamicbackground) {
+            useDynamicBackground = properties.dynamicbackground.value;
+          }
+          if (properties.opacity) {
+            document.documentElement.style.setProperty("--opacity", properties.opacity.value);
+          }
+          if (properties.widgetborder) {
+            borderThickness = properties.widgetborder.value;
+            document.documentElement.style.setProperty("--border", borderThickness + "px");
+          }
+          if (properties.scalepixel) {
+            pixelScale = properties.scalepixel.value;
+            document.documentElement.style.setProperty("--pixel", pixelScale + "px");
+          }
+          if (properties.cornerradius) {
+            radius = properties.cornerradius.value;
+            document.documentElement.style.setProperty("--radius", radius + "%");
+          }
+          if (properties.widgetsize) {
+            row = properties.widgetsize.value;
+          }
+          if (properties.clockwidget) {
+            clockBlock = properties.clockwidget.value;
+          }
+          if (properties.worldclock1) {
+            if (!properties.worldclock1.value || properties.worldclock1.value === "") {
+              wc1 = "Asia/Tokyo";
+            } else {
+              wc1 = properties.worldclock1.value;
+            }
+          }
+          if (properties.worldclock2) {
+            if (!properties.worldclock2.value || properties.worldclock2.value === "") {
+              wc2 = "Europe/London";
+            } else {
+              wc2 = properties.worldclock2.value;
+            }
+          }
+          if (properties.worldclock3) {
+            if (!properties.worldclock3.value || properties.worldclock3.value === "") {
+              wc3 = "America/New_York";
+            } else {
+              wc3 = properties.worldclock3.value;
+            }
+          }
+          if (properties.use24hclock) {
+            use24hformat = properties.use24hclock.value;
+          }
+          if (properties.datewidget) {
+            dateBlock = properties.datewidget.value;
+          }
+          if (properties.visualizerwidget) {
+            visualizerBlock = properties.visualizerwidget.value;
+          }
+          if (properties.weatherwidget) {
+            weatherBlock = properties.weatherwidget.value;
+          }
+          if (properties.latitude) {
+            if (!properties.latitude.value || properties.latitude.value === "") {
+              latitude = "35.6764";
+            } else {
+              latitude = properties.latitude.value;
+            }
+          }
+          if (properties.longitude) {
+            if (!properties.longitude.value || properties.longitude.value === "") {
+              longitude = "139.6500";
+            } else {
+              longitude = properties.longitude.value;
+            }
+          }
+          if (properties.cityname) {
+            cityName = properties.cityname.value;
+          }
+          if (properties.usefahrenheit) {
+            useFahrenheit = properties.usefahrenheit.value;
+          }
+          if (properties.customwidget) {
+            customBlock = properties.customwidget.value;
+          }
+          if (properties.progresswidget) {
+            progressBlocks = properties.progresswidget.value.trim().split(/\s+/);
+          }
+          if (properties.performancewidget) {
+            performanceBlock = properties.performancewidget.value;
+          }
+          if (properties.horizontalbar) {
+            useHorizontal = properties.horizontalbar.value;
+            if (useHorizontal) {
+              document.querySelectorAll(".horizontal").forEach((e) => (e.style.display = "flex"));
+              document.querySelectorAll(".vertical").forEach((e) => (e.style.display = "none"));
+            } else {
+              document.querySelectorAll(".horizontal").forEach((e) => (e.style.display = "none"));
+              document.querySelectorAll(".vertical").forEach((e) => (e.style.display = "flex"));
+            }
+          }
+          if (properties.monitor1) {
+            monitor1 = properties.monitor1.value;
+          }
+          if (properties.monitor2) {
+            monitor2 = properties.monitor2.value;
+          }
+          if (properties.monitor3) {
+            monitor3 = properties.monitor3.value;
+          }
+          if (properties.monitor4) {
+            monitor4 = properties.monitor4.value;
+          }
+          if (properties.monitor5) {
+            monitor5 = properties.monitor5.value;
+          }
+          if (properties.port) {
+            port = properties.port.value;
+          }
+          if (properties.performancewidgetindividual) {
+            performanceNarrowBlocks = properties.performancewidgetindividual.value.trim().split(/\s+/);
+          }
+          if (properties.countdownname1) {
+            countdownBlocks[16].name = properties.countdownname1.value;
+          }
+          if (properties.countdown1) {
+            countdownBlocks[16].date = properties.countdown1.value;
+          }
+
+          if (properties.countdownname2) {
+            countdownBlocks[17].name = properties.countdownname2.value;
+          }
+          if (properties.countdown2) {
+            countdownBlocks[17].date = properties.countdown2.value;
+          }
+
+          if (properties.countdownname3) {
+            countdownBlocks[18].name = properties.countdownname3.value;
+          }
+          if (properties.countdown3) {
+            countdownBlocks[18].date = properties.countdown3.value;
+          }
+
+          if (properties.countdownname4) {
+            countdownBlocks[19].name = properties.countdownname4.value;
+          }
+          if (properties.countdown4) {
+            countdownBlocks[19].date = properties.countdown4.value;
+          }
+
+          if (properties.countdownname5) {
+            countdownBlocks[20].name = properties.countdownname5.value;
+          }
+          if (properties.countdown5) {
+            countdownBlocks[20].date = properties.countdown5.value;
+          }
+
+          if (properties.countdownname6) {
+            countdownBlocks[21].name = properties.countdownname6.value;
+          }
+          if (properties.countdown6) {
+            countdownBlocks[21].date = properties.countdown6.value;
+          }
+
+          if (properties.countdownname7) {
+            countdownBlocks[22].name = properties.countdownname7.value;
+          }
+          if (properties.countdown7) {
+            countdownBlocks[22].date = properties.countdown7.value;
+          }
+
+          if (properties.countdownname8) {
+            countdownBlocks[23].name = properties.countdownname8.value;
+          }
+          if (properties.countdown8) {
+            countdownBlocks[23].date = properties.countdown8.value;
+          }
+
+          if (properties.countdownname9) {
+            countdownBlocks[24].name = properties.countdownname9.value;
+          }
+          if (properties.countdown9) {
+            countdownBlocks[24].date = properties.countdown9.value;
+          }
+
+          if (properties.countdownname10) {
+            countdownBlocks[25].name = properties.countdownname10.value;
+          }
+          if (properties.countdown10) {
+            countdownBlocks[25].date = properties.countdown10.value;
+          }
+          // block size
+          gridSize = window.innerWidth / row;
+          divs.forEach((div) => {
+            const isExpanded = div.isExpanded;
+            div.style.width = isExpanded ? gridSize * 2 + "px" : gridSize + "px";
+            div.style.height = gridSize + "px";
+          });
+          updateFontSizes();
+          // prettier-ignore
+          apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=precipitation_probability,temperature_2m,weather_code&current=temperature_2m,precipitation,wind_speed_10m,weather_code,relative_humidity_2m&timezone=${encodeURIComponent(timezone)}&forecast_days=1`;
+          clockWidget();
+          dateWidget();
+          weatherWidget();
+          performanceWidget();
+          performanceNarrowWidget();
+          progressWidget();
+          countdownWidget();
+          customWidget();
+        },
+      };
+
+      // save to local storage
+      function saveState() {
+        const states = divs.map((div) => ({
+          left: div.style.left,
+          top: div.style.top,
+          isExpanded: div.isExpanded,
+        }));
+        localStorage.setItem("divStates", JSON.stringify(states));
+      }
+
+      // draggable
+      function makeDraggable(element) {
+        let offsetX = 0,
+          offsetY = 0;
+        let isDragging = false;
+
+        element.addEventListener("mousedown", function (e) {
+          e.preventDefault();
+          isDragging = true;
+          offsetX = e.clientX - parseInt(element.style.left);
+          offsetY = e.clientY - parseInt(element.style.top);
+          element.style.zIndex = "100";
+        });
+
+        document.addEventListener("mousemove", function (e) {
+          if (!isDragging || lockDragging) return;
+
+          let newX = e.clientX - offsetX;
+          let newY = e.clientY - offsetY;
+
+          const maxX = element.isExpanded ? window.innerWidth - gridSize * 2 : window.innerWidth - gridSize;
+          const maxY = window.innerHeight - gridSize;
+
+          newX = Math.max(0, Math.min(newX, maxX));
+          newY = Math.max(0, Math.min(newY, maxY));
+
+          const snapResult = checkSnap(element, newX, newY);
+          newX = snapResult.x;
+          newY = snapResult.y;
+
+          element.style.left = newX + "px";
+          element.style.top = newY + "px";
+        });
+
+        document.addEventListener("mouseup", function () {
+          if (!isDragging) return;
+          isDragging = false;
+          element.style.zIndex = "1";
+          saveState();
+        });
+      }
+
+      // expand on double click
+      function enableDoubleClick(element) {
+        let lastClickTime = 0;
+
+        element.addEventListener("mousedown", function (e) {
+          if (e.button !== 0) return;
+
+          const currentTime = Date.now();
+          if (currentTime - lastClickTime <= 300) {
+            const rect = element.getBoundingClientRect();
+            const currentX = rect.left;
+            const currentY = rect.top;
+
+            // fallback: set top and left if not set yet
+            if (!element.style.left) element.style.left = `${rect.left}px`;
+            if (!element.style.top) element.style.top = `${rect.top}px`;
+
+            if (element.isExpanded) {
+              element.style.width = gridSize + "px";
+              element.classList.remove("expanded");
+              element.isExpanded = false;
+
+              element.querySelectorAll(".narrow").forEach((e) => (e.style.display = ""));
+              element.querySelectorAll(".wide").forEach((e) => (e.style.display = "none"));
+            } else {
+              const fitsHorizontally = currentX + gridSize * 2 <= window.innerWidth;
+              const fitsVertically = currentY + gridSize <= window.innerHeight;
+
+              if (fitsHorizontally && fitsVertically) {
+                element.style.width = gridSize * 2 + "px";
+                element.classList.add("expanded");
+                element.isExpanded = true;
+
+                element.querySelectorAll(".narrow").forEach((e) => (e.style.display = "none"));
+                element.querySelectorAll(".wide").forEach((e) => (e.style.display = ""));
+              }
+            }
+
+            saveState();
+            lastClickTime = 0;
+          } else {
+            lastClickTime = currentTime;
+          }
+
+          updateFontSizes();
+        });
+      }
+
+      // snap
+      function checkSnap(element, x, y) {
+        const snapThreshold = 5;
+        let snapX = x;
+        let snapY = y;
+
+        const elemWidth = element.isExpanded ? gridSize * 2 : gridSize;
+        const elemHeight = gridSize;
+
+        const snapPoints = [
+          { x: x, y: y },
+          { x: x + elemWidth, y: y },
+          { x: x, y: y + elemHeight },
+          { x: x + elemWidth, y: y + elemHeight },
+        ];
+
+        for (const div of divs) {
+          if (div === element || getComputedStyle(div).display === "none") continue;
+
+          const divX = parseInt(div.style.left);
+          const divY = parseInt(div.style.top);
+          const divWidth = div.isExpanded ? gridSize * 2 : gridSize;
+          const divHeight = gridSize;
+
+          const divPoints = [
+            { x: divX, y: divY },
+            { x: divX + divWidth, y: divY },
+            { x: divX, y: divY + divHeight },
+            { x: divX + divWidth, y: divY + divHeight },
+          ];
+
+          for (const snapPoint of snapPoints) {
+            for (const targetPoint of divPoints) {
+              const dx = snapPoint.x - x;
+              const dy = snapPoint.y - y;
+
+              if (
+                Math.abs(snapPoint.x - targetPoint.x) <= snapThreshold &&
+                Math.abs(snapPoint.y - targetPoint.y) <= snapThreshold
+              ) {
+                snapX = targetPoint.x - dx;
+                snapY = targetPoint.y - dy;
+                return { x: snapX, y: snapY };
+              }
+
+              if (Math.abs(snapPoint.x - targetPoint.x) <= snapThreshold) {
+                snapX = targetPoint.x - dx;
+              }
+
+              if (Math.abs(snapPoint.y - targetPoint.y) <= snapThreshold) {
+                snapY = targetPoint.y - dy;
+              }
+            }
+          }
+        }
+
+        return { x: snapX, y: snapY };
+      }
+
+      // clock widget
+      function clockWidget() {
+        document.querySelector(".block0").style.display = clockBlock ? "flex" : "none";
+        if (!clockBlock) return;
+        const now = new Date();
+        let hour = now.getHours();
+        const minute = now.getMinutes();
+        const seconds = now.getSeconds();
+        const ampm = hour >= 12 ? "PM" : "AM";
+
+        const timeEl = document.querySelector(".clock-time");
+        const ampmEl = document.querySelector(".clock-ampm");
+        const timeElWide = document.querySelector(".clock-time-wide");
+        const ampmElwide = document.querySelector(".clock-ampm-wide");
+        const lineEl = document.querySelector(".clock-line");
+
+        let displayHour = hour;
+        if (use24hformat) {
+          ampmEl.style.display = "none";
+          ampmElwide.style.display = "none";
+        } else {
+          ampmEl.style.display = "";
+          ampmElwide.style.display = "";
+          displayHour = hour % 12;
+          displayHour = displayHour === 0 ? 12 : displayHour;
+        }
+
+        // narrow clock
+        const timeString = use24hformat
+          ? `${String(hour).padStart(2, "0")}\n${String(minute).padStart(2, "0")}`
+          : `${String(displayHour).padStart(2, "0")}\n${String(minute).padStart(2, "0")}`;
+        timeEl.textContent = timeString;
+        ampmEl.textContent = ampm;
+        timeEl.style.fontSize = `${gridSize * 0.41}px`;
+        ampmEl.style.fontSize = `${gridSize * 0.12}px`;
+        // clock line
+        if (seconds === 0) {
+          lineEl.style.display = "none";
+        } else {
+          const lineHeight = 100 / 60;
+          const bottomPercent = lineHeight + ((seconds - 1) / 58) * (100 - 2 * lineHeight);
+          lineEl.style.bottom = `${bottomPercent}%`;
+          lineEl.style.display = "block";
+        }
+
+        // clock-time-wide
+        timeElWide.innerHTML = `
+        ${String(use24hformat ? hour : displayHour).padStart(2, "0")}:${String(minute).padStart(
+          2,
+          "0"
+        )}<span style="opacity: 0.5;">:${String(seconds).padStart(2, "0")}</span>
+    `;
+        timeElWide.style.fontSize = `${gridSize * 0.31}px`;
+
+        // clock-ampm-wide
+        ampmElwide.innerHTML = `
+    <div style="opacity: ${ampm === "AM" ? 1 : 0.5};">AM</div>
+    <div style="opacity: ${ampm === "PM" ? 1 : 0.5};">PM</div>
+    `;
+        ampmElwide.style.fontSize = `${gridSize * 0.095}px`;
+
+        // world clocks
+        const zones = [wc1, wc2, wc3];
+        const wcEls = [document.querySelector(".wc1"), document.querySelector(".wc2"), document.querySelector(".wc3")];
+        const worldClock = document.querySelector(".world-clock");
+        zones.forEach((zone, i) => {
+          const tzNow = new Date().toLocaleString("en-US", { timeZone: zone });
+          const d = new Date(tzNow);
+          let h = d.getHours();
+          const m = d.getMinutes();
+          const zAmpm = h >= 12 ? "PM" : "AM";
+          const localDay = now.getDate();
+          const targetDay = d.getDate();
+
+          const marker = targetDay < localDay ? " ↓" : targetDay > localDay ? " ↑" : "";
+
+          const name = zone.split("/")[1].replace(/_/g, " ");
+
+          const displayH = use24hformat ? h : h % 12 === 0 ? 12 : h % 12;
+          const ampmDisplay = use24hformat ? "" : ` ${zAmpm}`;
+
+          wcEls[i].innerHTML = `
+    <div style="font-size: ${gridSize * 0.07}px; opacity: 0.5;">${name}</div>
+    <div style="font-size: ${gridSize * 0.09}px;">
+      ${String(displayH).padStart(2, "0")}:${String(m).padStart(2, "0")}${ampmDisplay}${marker}
+    </div>
+  `;
+        });
+
+        // calc sunrise and sunset
+        const times = SunCalc.getTimes(now, latitude, longitude);
+        const sunrise = times.sunrise;
+        const sunset = times.sunset;
+        const isDaytime = now >= sunrise && now <= sunset;
+        const widget0 = document.querySelector(".widget0");
+        if (isDaytime && useDynamicBackground) {
+          const baseOpacity = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--opacity")) || 0;
+          const mappedOpacity = 0.3 + baseOpacity * 0.7;
+          widget0.style.backgroundColor = `rgba(255, 255, 255, ${mappedOpacity})`;
+          widget0.style.color = "black";
+          lineEl.style.backgroundColor = `rgba(0, 0, 0)`;
+          worldClock.style.fontWeight = "400";
+        } else {
+          widget0.style.backgroundColor = `rgba(0, 0, 0, var(--opacity))`;
+          widget0.style.color = "white";
+          lineEl.style.backgroundColor = `rgba(255, 255, 255)`;
+          worldClock.style.fontWeight = "300";
+        }
+      }
+
+      // date widget
+      function dateWidget() {
+        document.querySelector(".block1").style.display = dateBlock ? "flex" : "none";
+        if (!dateBlock) return;
+        const left = document.querySelector(".date-left");
+        const right = document.querySelector(".date-right");
+        const now = new Date();
+
+        // narrow date
+        const narrowDate = document.querySelector(".date-narrow .date");
+        const weekdayShort = now.toLocaleDateString(undefined, { weekday: "short" }).toUpperCase(); // "WED"
+        const monthStr = now.toLocaleDateString(undefined, { month: "short" }).toUpperCase(); // "APR"
+        const dayOfMonth = now.getDate();
+
+        if (narrowDate) {
+          narrowDate.innerHTML = `
+            <div style="text-align:left; font-size:${gridSize * 0.4}px;">
+                <span style="opacity: 0.5; letter-spacing: -0.02em;">${weekdayShort}</span><br>${dayOfMonth}
+            </div>
+        `;
+        }
+
+        // wide date (left)
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const day = now.getDay();
+        const date = now.getDate();
+
+        const quarters = ["1st", "2nd", "3rd", "4th"];
+        const quarter = quarters[Math.floor(month / 3)];
+
+        const weekday = now.toLocaleDateString(undefined, { weekday: "long" });
+        const formattedDate = `${monthStr}.${date}`;
+
+        document.querySelector(".date-left-top").innerHTML = `
+        <span style="font-size: ${gridSize * 0.075}px;">${year}</span>&nbsp<span class="dim" style="font-size: ${
+          gridSize * 0.075
+        }px;">${quarter} Quarter</span>
+    `;
+
+        document.querySelector(".date-left-bottom").innerHTML = `
+        <span class="dim" style="font-size: ${gridSize * 0.2}px;">${weekday}</span><br>
+        <span style="font-weight:bold; font-size: ${gridSize * 0.2}px;">${formattedDate}</span>
+    `;
+
+        // wide date (right)
+        right.style.fontSize = gridSize * 0.075 + "px";
+        // get calendar week number
+        const getISOWeek = (d) => {
+          const date = new Date(d.getTime());
+          date.setHours(0, 0, 0, 0);
+          date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7)); // 木曜日で週を判定
+          const week1 = new Date(date.getFullYear(), 0, 4);
+          return 1 + Math.round(((date - week1) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
+        };
+        // today's week number
+        const weekNumber = getISOWeek(now);
+        // day and date list
+        const firstDay = new Date(now);
+        firstDay.setDate(now.getDate() - ((now.getDay() + 6) % 7)); // get monday of this week
+        const weekDates = Array.from({ length: 7 }, (_, i) => {
+          const d = new Date(firstDay);
+          d.setDate(firstDay.getDate() + i);
+          const day = d.getDate();
+          const weekday = d.toLocaleDateString(undefined, { weekday: "short" });
+          const isToday = d.toDateString() === now.toDateString();
+          // (regular)
+          if (i === 0) {
+            return `<div><span style="opacity: 0.25;">CW${weekNumber} &nbsp;+ &nbsp;</span><span class="${
+              isToday ? "" : "dim"
+            }">${day} &nbsp;${weekday}</span></div>`;
+          } else {
+            return `<div class="${isToday ? "" : "dim"}">${day} &nbsp;${weekday}</div>`;
+          }
+        });
+        right.innerHTML = weekDates.join("");
+      }
+
+      // weather widget
+      async function weatherWidget() {
+        if (weatherFetchInProgress) return; // return if function is middle of fetch
+        weatherFetchInProgress = true;
+
+        try {
+          document.querySelector(".block2").style.display = weatherBlock ? "flex" : "none";
+          if (!weatherBlock) return;
+
+          const now = Date.now();
+          const lastFetchTime = parseInt(localStorage.getItem("weather_lastFetchTime") || "0", 10);
+          const lastApiUrl = localStorage.getItem("weather_lastApiUrl") || "";
+          const cache = JSON.parse(localStorage.getItem("weather_cache") || "{}");
+          const tenMinutes = 10 * 60 * 1000;
+
+          let data;
+
+          if (now - lastFetchTime > tenMinutes || apiUrl !== lastApiUrl || !cache.current) {
+            try {
+              const response = await fetch(apiUrl);
+              data = await response.json();
+
+              localStorage.setItem("weather_lastFetchTime", now.toString());
+              localStorage.setItem("weather_lastApiUrl", apiUrl);
+              localStorage.setItem("weather_cache", JSON.stringify(data));
+              console.log("[weatherWidget] Fetche excuted.");
+            } catch (e) {
+              console.error("Failed to fetch weather data:", e);
+
+              // use cache if fetch fails and cache exists
+              if (cache.current) {
+                data = cache;
+                console.log("[weatherWidget] Using cached data due to fetch failure.");
+              } else {
+                return; // return if there's no cache
+              }
+            }
+            weatherFetchInProgress = false;
+          } else {
+            data = cache;
+            console.log("[weatherWidget] Cache used.");
+          }
+
+          const nowDate = new Date();
+          const hour = nowDate.getHours();
+          const current = data.current;
+          const hourly = data.hourly;
+
+          const currentCode = current.weather_code;
+          const currentTemp = current.temperature_2m;
+          const windSpeed = current.wind_speed_10m;
+          const currentPrecipProb = hourly.precipitation_probability[hour];
+
+          const weatherInfo = weatherDescriptions[currentCode] || { text: "Unknown", bg: "#000", color: "#fff" };
+          const temperature = useFahrenheit ? Math.round((currentTemp * 9) / 5 + 32) : Math.round(currentTemp);
+          const unit = "°";
+
+          // narrow weather
+          const forecastEl = document.querySelector(".forecast");
+          const tempEl = document.querySelector(".temp");
+          forecastEl.style.fontSize = `${gridSize * (currentCode >= 95 ? 0.09 : 0.1)}px`;
+          tempEl.style.fontSize = `${gridSize * 0.26}px`;
+          forecastEl.textContent = weatherInfo.text.toUpperCase();
+          tempEl.innerHTML = `${temperature}<span class="extended-font">${unit}</span>`;
+
+          // wide weather
+          const topEl = document.querySelector(".weather-top");
+          const tempWideEl = document.querySelector(".temp-wide");
+          const precipEl = document.querySelector(".precipitation");
+          const windEl = document.querySelector(".wind");
+
+          topEl.innerHTML = `
+            <div style="font-size: ${gridSize * 0.075}px;">${cityName}</div>
+            <div style="font-size: ${gridSize * 0.115}px; font-weight: bold;">${weatherInfo.text}</div>
+        `;
+          tempWideEl.innerHTML = `
+            <div style="font-size: ${gridSize * 0.23}px; font-weight: bold;">${temperature}°</div>
+        `;
+          precipEl.innerHTML = `
+            <div style="font-size: ${gridSize * 0.07}px; opacity: 0.5;">Precipitation</div>
+            <div style="font-size: ${gridSize * 0.09}px;">${currentPrecipProb} %</div>
+        `;
+          windEl.innerHTML = `
+            <div style="font-size: ${gridSize * 0.07}px; opacity: 0.5;">Wind</div>
+            <div style="font-size: ${gridSize * 0.09}px;">${windSpeed} m/s</div>
+        `;
+
+          // colors
+          const widget2El = document.querySelector(".widget2");
+          const opacity = getComputedStyle(document.documentElement).getPropertyValue("--opacity").trim();
+          if (useDynamicBackground) {
+            applyHexWithOpacity(widget2El, weatherInfo.bg, opacity);
+            widget2El.style.color = weatherInfo.color;
+            document.querySelector(".vertical-line").style.backgroundColor = weatherInfo.color;
+          } else {
+            widget2El.style.background = `rgba(0, 0, 0, ${opacity})`;
+            widget2El.style.color = "white";
+            document.querySelector(".vertical-line").style.backgroundColor = "white";
+          }
+        } catch (e) {
+          console.error("[weatherWidget] Unexpected error:", e);
+        } finally {
+          weatherFetchInProgress = false;
+        }
+      }
+
+      // opacity to hex
+      function applyHexWithOpacity(element, hexColor, opacity) {
+        const hex = hexColor.replace("#", "");
+
+        const r = hex.slice(0, 2);
+        const g = hex.slice(2, 4);
+        const b = hex.slice(4, 6);
+
+        const mappedOpacity = 0.3 + opacity * 0.7;
+        const alpha = Math.round(mappedOpacity * 255)
+          .toString(16)
+          .padStart(2, "0");
+
+        const hexWithAlpha = `#${r}${g}${b}${alpha}`;
+
+        element.style.backgroundColor = hexWithAlpha;
+      }
+
+      // performance widget
+      async function performanceWidget() {
+        document.querySelector(".block3").style.display = performanceBlock ? "flex" : "none";
+        if (!performanceBlock) return;
+        try {
+          const response = await fetch(`http://127.0.0.1:${port}/performance`);
+          const data = await response.json();
+          Object.assign(data, data.psutil ?? {});
+
+          const getDiskUsagePercent = (diskStr) => {
+            const [used, total] = diskStr.split("/").map((s) => parseFloat(s));
+            return Math.round((used / total) * 100);
+          };
+
+          const monitorKeys = [monitor1, monitor2, monitor3, monitor4, monitor5];
+          for (let i = 0; i < monitorKeys.length; i++) {
+            const monitorKey = monitorKeys[i];
+            if (!monitorKey) continue;
+
+            const lowerKey = monitorKey.toLowerCase();
+            let value, percent, usageText;
+
+            switch (lowerKey) {
+              case "cpu":
+                value = data.cpu;
+                percent = value;
+                break;
+              case "ram":
+                value = data.memory;
+                percent = value;
+                break;
+              case "gpu":
+                value = data.gpu_usage;
+                percent = value;
+                break;
+              case "vram":
+                value = data.vram_usage;
+                percent = value;
+                break;
+              default:
+                // disk (e.g. 'c', 'd', etc.)
+                const diskKey = `${lowerKey}_disk`;
+                usageText = data[diskKey]; // e.g. "408.0 GB/488.4 GB"
+                if (usageText) {
+                  const [used, total] = usageText.split("/").map((s) => parseFloat(s));
+                  percent = (used / total) * 100;
+                  value = percent;
+                }
+                break;
+            }
+
+            // Apply to DOM
+            if (value !== undefined) {
+              const isDisk = !["cpu", "ram", "gpu", "vram"].includes(lowerKey);
+              const label = isDisk ? "DISK " + monitorKey.toUpperCase() : monitorKey.toUpperCase();
+              const displayPercent = percent % 1 === 0 ? `${percent.toFixed(0)}%` : `${percent.toFixed(1)}%`;
+              const barOpacity = (percent * 0.75) / 100 + 0.25;
+
+              document.querySelectorAll(`.monitor-name-${i + 1}`).forEach((el) => {
+                el.textContent = label;
+                el.style.fontSize = gridSize * 0.07 + "px";
+              });
+
+              document.querySelectorAll(`.monitor-per-${i + 1}`).forEach((el) => {
+                const isNarrow = el.closest(".performance-narrow");
+                if (isDisk && useHorizontal) {
+                  const [usedRaw, totalRaw] = usageText.split("/").map((s) => parseFloat(s));
+                  let used, total, unit;
+
+                  if (totalRaw >= 1024) {
+                    used = Math.floor((usedRaw / 1024) * 100) / 100;
+                    total = Math.floor((totalRaw / 1024) * 100) / 100;
+                    unit = "TB";
+                  } else {
+                    used = Math.floor(usedRaw);
+                    total = Math.floor(totalRaw);
+                    unit = "GB";
+                  }
+
+                  el.textContent = isNarrow ? `${used}/${total} ${unit}` : `${used}${unit} / ${total}${unit}`;
+                } else {
+                  el.textContent = displayPercent;
+                }
+                el.style.fontSize = isNarrow ? gridSize * 0.09 + "px" : gridSize * 0.1 + "px";
+              });
+
+              if (useHorizontal) {
+                document.querySelectorAll(`.line-${i + 1}`).forEach((el) => {
+                  el.style.width = `${percent}%`;
+                });
+              } else {
+                document.querySelectorAll(`.bar-${i + 1}`).forEach((el) => {
+                  el.style.height = `${percent}%`;
+                  el.style.opacity = barOpacity;
+                });
+              }
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching performance data:", error);
+        }
+      }
+
+      // performance narrow widget
+      async function performanceNarrowWidget() {
+        if (!performanceNarrowBlocks || performanceNarrowBlocks.length === 0) return;
+        const blockMap = {
+          cpu: 6,
+          ram: 7,
+          gpu: 8,
+          vram: 9,
+          up: 10,
+          down: 11,
+        };
+
+        const hasChanged =
+          performanceNarrowBlocks.length !== previousNarrowBlocks.length ||
+          performanceNarrowBlocks.some((v, i) => v !== previousNarrowBlocks[i]);
+
+        if (hasChanged) {
+          Object.entries(blockMap).forEach(([key, i]) => {
+            const block = document.querySelector(`.block${i}`);
+            if (block) {
+              block.style.display = performanceNarrowBlocks.includes(key) ? "flex" : "none";
+            }
+          });
+          previousNarrowBlocks = [...performanceNarrowBlocks];
+        }
+        if (performanceNarrowBlocks.every((v) => v.trim() === "")) return;
+
+        try {
+          const response = await fetch(`http://127.0.0.1:${port}/performance`);
+          const data = await response.json();
+          Object.assign(data, data.psutil ?? {});
+
+          let upDownMaxValue = 0;
+          if (performanceNarrowBlocks.includes("up") || performanceNarrowBlocks.includes("down")) {
+            const upValues = narrowHistory["up"] || [];
+            const downValues = narrowHistory["down"] || [];
+            const combinedValues = [...upValues, ...downValues];
+            if (combinedValues.length > 0) {
+              upDownMaxValue = getAutoMax(combinedValues);
+            }
+          }
+
+          performanceNarrowBlocks.forEach((key) => {
+            const i = blockMap[key];
+            if (i === undefined) return;
+
+            const block = document.querySelector(`.block${i}`);
+            if (block) block.style.display = "flex";
+
+            const nameDiv = document.querySelector(`.narrow-monitor-name-${i}`);
+            const perDiv = document.querySelector(`.narrow-monitor-per-${i}`);
+            if (!nameDiv || !perDiv) return;
+
+            let percent = 0;
+            let label = key.toUpperCase();
+
+            switch (key) {
+              case "cpu":
+                percent = data.cpu;
+                var temp = data.cpu_temp;
+                break;
+              case "ram":
+                percent = data.memory;
+                break;
+              case "gpu":
+                percent = data.gpu_usage;
+                var temp = data.gpu_temp;
+                break;
+              case "vram":
+                percent = data.vram_usage;
+                break;
+              case "up":
+                percent = data.upload_speed;
+                label = "UPLOAD";
+                break;
+              case "down":
+                percent = data.download_speed;
+                label = "DOWNLOAD";
+                break;
+            }
+
+            const displayMaxValue = ["up", "down"].includes(key) ? upDownMaxValue : null;
+
+            nameDiv.innerHTML =
+              label +
+              (["up", "down"].includes(key)
+                ? `<br><span style="font-size: ${gridSize * 0.075}px; opacity: 0.5;">${displayMaxValue} Kbps</span>`
+                : ["cpu", "gpu"].includes(key) && temp !== undefined && temp !== null
+                ? `<br><span style="font-size: ${
+                    gridSize * 0.075
+                  }px; opacity: 0.5;">${temp} </span><span class="extended-font" style="font-size: ${
+                    gridSize * 0.075
+                  }px; opacity: 0.5;">℃</span>`
+                : "");
+            nameDiv.style.fontSize = gridSize * 0.1 + "px";
+
+            let percentText = percent % 1 === 0 ? percent.toFixed(0) : percent.toFixed(1);
+            let scale = 1;
+
+            if (["up", "down"].includes(key)) {
+              const len = percentText.length;
+              const minScale = 0.1 / 0.15;
+              const maxLen = 6;
+              scale = Math.max(minScale, 1 - (len - 2) * 0.05);
+              perDiv.style.fontSize = gridSize * 0.15 * scale + "px";
+              perDiv.innerHTML = percentText + `<span style="font-size: ${gridSize * 0.1 * scale}px;"> Kbps</span>`;
+            } else {
+              perDiv.style.fontSize = gridSize * 0.15 + "px";
+              perDiv.innerHTML = percentText + "%";
+            }
+
+            // canvas
+            if (narrowHistory[key]) {
+              narrowHistory[key].push(percent);
+              if (narrowHistory[key].length > 10) {
+                narrowHistory[key].shift();
+              }
+
+              if (["up", "down"].includes(key)) {
+                // use same max val for up and down
+                drawNarrowGraph(`narrow-canvas-${i}`, narrowHistory[key], false, upDownMaxValue);
+              } else {
+                drawNarrowGraph(`narrow-canvas-${i}`, narrowHistory[key], true);
+              }
+            }
+          });
+        } catch (err) {
+          console.error("Error in performanceNarrowWidget:", err);
+        }
+      }
+
+      function drawNarrowGraph(canvasId, values, isPercent = true, forcedMaxValue = null) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const width = (canvas.width = canvas.offsetWidth);
+        const height = (canvas.height = canvas.offsetHeight);
+
+        ctx.clearRect(0, 0, width, height);
+
+        const maxValue = isPercent ? 100 : forcedMaxValue || getAutoMax(values);
+        const points = values.map((v, i) => {
+          const x = (i / (values.length - 1)) * width;
+          const y = height - (v / maxValue) * height;
+          return { x, y };
+        });
+
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, height);
+        for (let p of points) ctx.lineTo(p.x, p.y);
+        ctx.lineTo(points[points.length - 1].x, height);
+        ctx.closePath();
+
+        // const gradient = ctx.createLinearGradient(0, 0, width, 0);
+        // gradient.addColorStop(0, 'rgba(255, 255, 255, 0.05)');
+        // gradient.addColorStop(1, 'rgba(255, 255, 255, 0.25)');
+        // ctx.fillStyle = gradient;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.25)";
+        ctx.fill();
+      }
+
+      function getAutoMax(values) {
+        if (!values || values.length === 0) return 10;
+
+        const avg = values.reduce((a, b) => a + b, 0) / values.length;
+        const max = Math.max(...values);
+        const target = Math.max(avg * 2, max * 1.2);
+
+        if (target <= 10) return 10;
+
+        // 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, ...
+        const magnitude = Math.floor(Math.log10(target));
+        const powerOfTen = Math.pow(10, magnitude);
+        const scaleFactors = [1, 2, 5];
+        let selectedScale = powerOfTen * 10;
+
+        for (const factor of scaleFactors) {
+          const scale = powerOfTen * factor;
+          if (scale >= target) {
+            selectedScale = scale;
+            break;
+          }
+        }
+
+        return Math.max(10, selectedScale);
+      }
+
+      // progress widget
+      function progressWidget() {
+        if (!progressBlocks || progressBlocks.length === 0) return;
+
+        const blockMap = {
+          day: 12,
+          week: 13,
+          month: 14,
+          year: 15,
+        };
+
+        const hasChanged =
+          progressBlocks.length !== previousprogressBlocks.length ||
+          progressBlocks.some((v, i) => v !== previousprogressBlocks[i]);
+
+        if (hasChanged) {
+          Object.entries(blockMap).forEach(([key, i]) => {
+            const block = document.querySelector(`.block${i}`);
+            if (block) {
+              block.style.display = progressBlocks.includes(key) ? "flex" : "none";
+            }
+          });
+          previousprogressBlocks = [...progressBlocks];
+        }
+
+        const now = new Date();
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const second = now.getSeconds();
+        const totalSecondsToday = hour * 3600 + minute * 60 + second;
+        const percentDay = (totalSecondsToday / (24 * 3600)) * 100;
+
+        const dayOfWeek = now.getDay();
+        const startOfWeek = new Date(now);
+        startOfWeek.setDate(now.getDate() - dayOfWeek);
+        startOfWeek.setHours(0, 0, 0, 0);
+        const secondsThisWeek = (now - startOfWeek) / 1000;
+        const percentWeek = (secondsThisWeek / (7 * 24 * 3600)) * 100;
+
+        const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        const dayOfMonth = now.getDate();
+        const percentMonth = ((dayOfMonth - 1 + totalSecondsToday / (24 * 3600)) / daysInMonth) * 100;
+
+        const startOfYear = new Date(now.getFullYear(), 0, 1);
+        const dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
+        const totalDaysInYear = new Date(now.getFullYear(), 11, 31).getDate() === 31 ? 366 : 365;
+        const percentYear = (dayOfYear / totalDaysInYear) * 100;
+
+        const configs = {
+          day: { percent: percentDay, grid: { rows: 2, cols: 12 } },
+          week: { percent: percentWeek, grid: { rows: 1, cols: 7 } },
+          month: { percent: percentMonth, grid: { rows: 6, cols: 7 }, calendar: true },
+          year: { percent: percentYear, grid: { rows: 2, cols: 6 } },
+        };
+
+        progressBlocks.forEach((type) => {
+          const blockNum = blockMap[type];
+          const el = document.querySelector(`.block${blockNum}`);
+          if (!el) return;
+
+          const labelEl = el.querySelector(".progress-label");
+          const dotsWrap = el.querySelector(".progress-dots");
+          if (!labelEl || !dotsWrap) return;
+
+          const { percent, grid, calendar } = configs[type];
+          if (type === "month") {
+            const monthNames = [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ];
+            labelEl.innerHTML = `
+                <div style="font-size: ${gridSize * 0.1}px;">${monthNames[now.getMonth()].toUpperCase()}</div>
+                <div style="font-size: ${gridSize * 0.12}px;">${percent.toFixed(1)}%</div>
+            `;
+            labelEl.style.lineHeight = "1.5";
+            dotsWrap.style.width = "60%";
+          } else if (type === "day") {
+            labelEl.innerHTML = `
+                <div style="font-size: ${gridSize * 0.1}px;">TODAY</div>
+                <div style="font-size: ${gridSize * 0.15}px;">${percent.toFixed(1)}%</div>
+            `;
+            dotsWrap.style.width = "100%";
+          } else {
+            labelEl.innerHTML = `
+                <div style="font-size: ${gridSize * 0.1}px;">${type.toUpperCase()}</div>
+                <div style="font-size: ${gridSize * 0.15}px;">${percent.toFixed(1)}%</div>
+            `;
+            dotsWrap.style.width = "100%";
+          }
+
+          dotsWrap.innerHTML = "";
+          dotsWrap.style.gridTemplateColumns = `repeat(${grid.cols}, ${100 / grid.cols}%)`;
+          dotsWrap.style.gridTemplateRows = `repeat(${grid.rows}, ${100 / grid.rows}%)`;
+
+          let totalDots = calendar ? 42 : grid.rows * grid.cols;
+          let fullDots;
+          let partialAlpha;
+
+          if (calendar) {
+            const totalDaysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+            fullDots = Math.floor((percent / 100) * totalDaysInMonth);
+            partialAlpha = (percent / 100) * totalDaysInMonth - fullDots;
+          } else {
+            fullDots = Math.floor((percent / 100) * totalDots);
+            partialAlpha = (percent / 100) * totalDots - fullDots;
+          }
+
+          for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement("div");
+            let alpha = 0.1;
+
+            if (calendar) {
+              const year = now.getFullYear();
+              const month = now.getMonth();
+              const startDate = new Date(year, month, 1);
+              const startDay = startDate.getDay(); // 0=Sun, ..., 6=Sat
+              const lastDate = new Date(year, month + 1, 0).getDate();
+              const todayDate = now.getDate();
+
+              const totalWeeks = Math.ceil((startDay + lastDate) / 7);
+              const visibleStartRow = grid.rows - totalWeeks;
+
+              const row = Math.floor(i / grid.cols);
+              const col = i % grid.cols;
+
+              if (row < visibleStartRow) {
+                alpha = 0.0;
+              } else {
+                const dayIndex = (row - visibleStartRow) * 7 + col;
+                const dateNum = dayIndex - startDay + 1;
+
+                if (dateNum < 1 || dateNum > lastDate) {
+                  alpha = 0.0;
+                } else if (dateNum < todayDate) {
+                  alpha = 1.0;
+                } else if (dateNum === todayDate) {
+                  alpha = 0.1 + partialAlpha * 0.9;
+                } else {
+                  alpha = 0.1;
+                }
+              }
+            } else {
+              if (i < fullDots) alpha = 1.0;
+              else if (i === fullDots) alpha = 0.1 + partialAlpha * 0.9;
+            }
+
+            dot.style.backgroundColor = `rgba(255, 255, 255, ${alpha})`;
+            dotsWrap.appendChild(dot);
+          }
+        });
+      }
+
+      // countdown widget
+      function getNextValidDate(dateStr) {
+        const now = new Date();
+        const today = new Date(now);
+        today.setHours(0, 0, 0, 0);
+
+        // For full date format: mm-dd-yyyy
+        if (/^\d{1,2}-\d{1,2}-\d{4}$/.test(dateStr)) {
+          const [month, day, year] = dateStr.split("-").map(Number);
+          const targetDate = new Date(year, month - 1, day);
+          targetDate.setHours(0, 0, 0, 0);
+
+          // Check if date is valid
+          if (
+            targetDate.getMonth() !== month - 1 ||
+            targetDate.getDate() !== day ||
+            targetDate.getFullYear() !== year
+          ) {
+            return null; // Invalid date
+          }
+          return targetDate;
+        }
+
+        // For mm-dd format
+        else if (/^\d{1,2}-\d{1,2}$/.test(dateStr)) {
+          const [month, day] = dateStr.split("-").map(Number);
+          let year = now.getFullYear();
+          let targetDate = null;
+          let validDateFound = false;
+
+          // Try with current year and up to 4 years ahead
+          for (let yearOffset = 0; yearOffset <= 4; yearOffset++) {
+            const checkYear = year + yearOffset;
+            const checkDate = new Date(checkYear, month - 1, day);
+            checkDate.setHours(0, 0, 0, 0);
+
+            // Check if date is valid and not in the past
+            if (checkDate.getMonth() === month - 1 && checkDate.getDate() === day && checkDate >= today) {
+              targetDate = checkDate;
+              validDateFound = true;
+              break;
+            }
+          }
+
+          // If no valid date found within the range
+          if (!validDateFound) {
+            return null; // Invalid date or not found within 4 years
+          }
+
+          return targetDate;
+        }
+
+        // For single day (dd) format
+        else if (/^\d{1,2}$/.test(dateStr)) {
+          const day = parseInt(dateStr, 10);
+          let month = now.getMonth();
+          let year = now.getFullYear();
+
+          // Try current month and year first
+          let targetDate = new Date(year, month, day);
+          targetDate.setHours(0, 0, 0, 0);
+
+          // If date has passed or is invalid, try next month
+          if (targetDate < today || targetDate.getDate() !== day) {
+            month++;
+            if (month > 11) {
+              month = 0;
+              year++;
+            }
+            targetDate = new Date(year, month, day);
+            targetDate.setHours(0, 0, 0, 0);
+
+            // Keep trying until we find a valid date or have tried all 12 months
+            let monthsChecked = 1;
+            while ((targetDate.getDate() !== day || targetDate < today) && monthsChecked < 12) {
+              month++;
+              if (month > 11) {
+                month = 0;
+                year++;
+              }
+              targetDate = new Date(year, month, day);
+              targetDate.setHours(0, 0, 0, 0);
+              monthsChecked++;
+            }
+
+            if (targetDate.getDate() !== day) {
+              return null; // No valid day found in any month
+            }
+          }
+
+          return targetDate;
+        }
+
+        // For weekday format (mon, tue, wed, etc.)
+        else if (/^(mon|tue|wed|thu|fri|sat|sun)$/i.test(dateStr)) {
+          const dayNames = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+          const targetDayIndex = dayNames.indexOf(dateStr.toLowerCase());
+
+          if (targetDayIndex === -1) return null;
+
+          const currentDayIndex = now.getDay();
+
+          // Check if today is the target day
+          if (currentDayIndex === targetDayIndex) {
+            // If it's today, use today's date at midnight
+            const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            targetDate.setHours(0, 0, 0, 0);
+            return targetDate;
+          }
+
+          // Otherwise calculate next occurrence
+          let daysToAdd = (targetDayIndex - currentDayIndex + 7) % 7;
+          if (daysToAdd === 0) daysToAdd = 7; // If it would be today, get next week
+
+          const targetDate = new Date(now);
+          targetDate.setDate(now.getDate() + daysToAdd);
+          targetDate.setHours(0, 0, 0, 0);
+          return targetDate;
+        }
+
+        return null; // Unsupported format
+      }
+
+      function countdownWidget() {
+        const now = new Date();
+
+        // get archived start time
+        blockStartTimes = JSON.parse(localStorage.getItem("blockStartTimes")) || blockStartTimes;
+        previousCountdownBlocks =
+          JSON.parse(localStorage.getItem("previousCountdownBlocks")) || previousCountdownBlocks;
+
+        // check if array has changed since last execution
+        const isChanged = JSON.stringify(previousCountdownBlocks) !== JSON.stringify(countdownBlocks);
+
+        // toggle display if date has changed or is missing.
+        for (let blockNum in countdownBlocks) {
+          const blockData = countdownBlocks[blockNum]; // num, name, date
+          const blockElement = document.querySelector(`.block${blockNum}`);
+          if (!blockElement) continue; // if no element, go to next process
+
+          // Change display if date is missing or if date has changed
+          if (!blockData.date || isChanged) {
+            blockElement.style.display = blockData.date ? "flex" : "none";
+          }
+        }
+
+        // return if no data exists
+        let hasValidDate = Object.values(countdownBlocks).some((block) => block.date);
+        if (!hasValidDate) return;
+
+        // reassign start-time if date has updated
+        if (isChanged) {
+          for (let blockNum in countdownBlocks) {
+            const current = countdownBlocks[blockNum];
+            const previous = previousCountdownBlocks[blockNum];
+            if (current.date && (!previous || current.date !== previous.date)) {
+              blockStartTimes[blockNum] = now.getTime();
+            }
+          }
+        }
+
+        // process each block
+        for (let blockNum in countdownBlocks) {
+          const blockData = countdownBlocks[blockNum]; // num, name, date
+          const blockElement = document.querySelector(`.block${blockNum}`);
+          if (!blockElement || !blockData.date) continue; // if no element nor date, go to next "for" process
+
+          // If no start time, set current time
+          if (!blockStartTimes[blockNum]) {
+            blockStartTimes[blockNum] = now.getTime();
+          }
+
+          const nameElement = blockElement.querySelector(".countdown-name");
+          const dateElement = blockElement.querySelector(".countdown-date");
+          const barElement = blockElement.querySelector(".countdown-bar");
+          const countdownElement = blockElement.querySelector(".countdown");
+
+          // Get target date based on format
+          let targetDate = getNextValidDate(blockData.date);
+
+          // Skip if invalid date format or date
+          if (!targetDate) {
+            blockElement.style.display = "none";
+            continue;
+          }
+
+          // For repeating dates (non mm-dd-yyyy format),
+          // check if the date has passed and recalculate if needed
+          if (!/^\d{1,2}-\d{1,2}-\d{4}$/.test(blockData.date)) {
+            if (targetDate.getTime() < now.getTime()) {
+              // Store the previous target date for progress calculation
+              const previousTargetDate = new Date(targetDate);
+              previousTargetDate.setDate(previousTargetDate.getDate() + 1); // Next day after previous target
+              previousTargetDate.setHours(0, 0, 0, 0);
+
+              // Get the next occurrence of this date pattern
+              targetDate = getNextValidDate(blockData.date);
+
+              if (!targetDate) {
+                blockElement.style.display = "none";
+                continue;
+              }
+
+              // Update start time to the day after previous target date for the new countdown cycle
+              blockStartTimes[blockNum] = previousTargetDate.getTime();
+            }
+          }
+
+          // calc days remaining till targetDate, assign true to isToday if 0.
+          const currentDate = new Date(now);
+          const daysRemaining = Math.ceil((targetDate - currentDate) / (1000 * 60 * 60 * 24));
+          const isToday = daysRemaining === 0;
+
+          // change style by today or not
+          const formattedName = blockData.name.replace(/\\n/g, "<br>");
+          nameElement.innerHTML = isToday ? "TODAY" : formattedName;
+          nameElement.style.fontSize = gridSize * 0.1 + "px";
+          dateElement.innerHTML = isToday
+            ? formattedName
+            : `${daysRemaining}<span style="font-size: ${gridSize * 0.11}px;">d</span>`;
+          dateElement.style.fontSize = isToday ? gridSize * 0.1 + "px" : gridSize * 0.15 + "px";
+          dateElement.style.lineHeight = isToday ? 1.2 : 1;
+          countdownElement.style.color = isToday && useDynamicBackground ? "black" : "";
+
+          const startTime = blockStartTimes[blockNum]; // last date updated time
+          const totalDuration = targetDate.getTime() - startTime; // time between start and target
+          const elapsedDuration = now.getTime() - startTime; // time passed since start
+
+          // calc percentage between start and target in the rage of 100, return 100 if passed.
+          const progressPercentage =
+            totalDuration > 0 ? Math.min(100, Math.max(0, (elapsedDuration / totalDuration) * 100)) : 100;
+
+          // apply bar height and opacity by percentage. max opacity is 50.
+          const widget = document.querySelector(`.widget${blockNum}`);
+          const baseOpacity = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--opacity")) || 0;
+          if (useDynamicBackground) {
+            barElement.style.opacity = isToday ? 0 : 0.1 + progressPercentage * 0.004;
+            // if today, hide bar and change widget background to white with 0.3 - 1 alpha.
+            const mappedOpacity = 0.3 + baseOpacity * 0.7;
+            widget.style.backgroundColor = isToday
+              ? `rgba(255, 255, 255, ${mappedOpacity})`
+              : `rgba(0, 0, 0, ${baseOpacity})`;
+          } else {
+            const mappedOpacity = 0.3 + baseOpacity * 0.7;
+            const mappedOpacity2 = 0.5 + baseOpacity * 0.2;
+            barElement.style.opacity = isToday ? mappedOpacity2 : 0.1 + progressPercentage * 0.002;
+            widget.style.backgroundColor = `rgba(0, 0, 0, ${baseOpacity})`;
+          }
+          barElement.style.height = `${progressPercentage}%`;
+        }
+
+        // archive last array and start time
+        if (isChanged) {
+          previousCountdownBlocks = JSON.parse(JSON.stringify(countdownBlocks));
+          localStorage.setItem("previousCountdownBlocks", JSON.stringify(previousCountdownBlocks));
+        }
+        localStorage.setItem("blockStartTimes", JSON.stringify(blockStartTimes));
+      }
+
+      // custom widget
+      async function customWidget() {
+        if (customWeatherFetchInProgress) return;
+        customWeatherFetchInProgress = true;
+
+        try {
+          const blockElement = document.querySelector(".block5");
+          const customTextElements = document.querySelectorAll(".custom-text");
+          if (!customTextElements) {
+            return;
+          }
+
+          if (!customBlock || customBlock.trim() === "") {
+            blockElement.style.display = "none";
+            return;
+          } else {
+            blockElement.style.display = "flex";
+          }
+
+          const now = new Date();
+          const weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+          const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+          const hour = now.getHours();
+          const minute = now.getMinutes().toString().padStart(2, "0");
+
+          const time12 = `${((hour + 11) % 12) + 1}:${minute} ${hour < 12 ? "AM" : "PM"}`;
+          const time24 = `${hour.toString().padStart(2, "0")}:${minute}`;
+          const day = weekdays[now.getDay()].toUpperCase();
+          const day3 = weekdays[now.getDay()].slice(0, 3).toUpperCase();
+          const month = months[now.getMonth()].toUpperCase();
+          const date = now.getDate();
+          const year = now.getFullYear();
+
+          let forecast = "",
+            temp = "",
+            precip = "",
+            wind = "";
+          const needWeather = /forecast|temp|precip|wind/i.test(customBlock);
+          const nowTime = Date.now();
+          const tenMinutes = 10 * 60 * 1000;
+          const lastFetchTime = parseInt(localStorage.getItem("lastCustomWeatherFetchTime") || "0", 10);
+          const lastApiUrl = localStorage.getItem("lastFetchedApiUrl") || "";
+
+          if (needWeather) {
+            let useCache = true;
+
+            if (nowTime - lastFetchTime > tenMinutes || apiUrl !== lastApiUrl) {
+              try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                console.log("[customWidget] Fetch executed.");
+                const hourNow = now.getHours();
+
+                const weatherCode = data.current.weather_code;
+                forecast = weatherDescriptions[weatherCode]?.text.toUpperCase() || "Unknown";
+
+                let temperature = data.current.temperature_2m;
+                temp = useFahrenheit ? `${Math.round((temperature * 9) / 5 + 32)}°` : `${Math.round(temperature)}°`;
+
+                precip = data.hourly.precipitation_probability[hourNow] + "%";
+                wind = data.current.wind_speed_10m + " m/s";
+
+                localStorage.setItem("lastCustomWeatherFetchTime", nowTime.toString());
+                localStorage.setItem("lastFetchedApiUrl", apiUrl);
+                localStorage.setItem(
+                  "custom_weather_cache",
+                  JSON.stringify({
+                    forecast,
+                    temp,
+                    precip,
+                    wind,
+                  })
+                );
+
+                useCache = false;
+              } catch (e) {
+                console.warn("[customWidget] Weather fetch failed:", e);
+              }
+            }
+
+            if (useCache) {
+              const cached = JSON.parse(localStorage.getItem("custom_weather_cache") || "{}");
+              forecast = cached.forecast || "N/A";
+              temp = cached.temp || "N/A";
+              precip = cached.precip || "N/A";
+              wind = cached.wind || "N/A";
+              console.log("[customWidget] Cache used.");
+            }
+          }
+
+          const times = SunCalc.getTimes(now, latitude, longitude);
+
+          function formatTime(date) {
+            const h = date.getHours();
+            const m = date.getMinutes().toString().padStart(2, "0");
+            const ampm = h < 12 ? "AM" : "PM";
+            const h12 = ((h + 11) % 12) + 1;
+            return `${h12}:${m} ${ampm}`;
+          }
+
+          const nextSunrise =
+            times.sunrise > now
+              ? times.sunrise
+              : SunCalc.getTimes(new Date(now.getTime() + 86400000), latitude, longitude).sunrise;
+          const nextSunset =
+            times.sunset > now
+              ? times.sunset
+              : SunCalc.getTimes(new Date(now.getTime() + 86400000), latitude, longitude).sunset;
+
+          const sunrise = `${formatTime(nextSunrise)}`;
+          const sunset = `${formatTime(nextSunset)}`;
+
+          const replacements = {
+            day,
+            day3,
+            month,
+            date,
+            year,
+            time12,
+            time24,
+            forecast,
+            temp,
+            precip,
+            wind,
+            sunrise,
+            sunset,
+            precip2: "☂️ " + precip,
+            wind2: "☴ " + wind,
+            sunrise2: "☀︎ " + sunrise,
+            sunset2: "◐ " + sunset,
+          };
+
+          let text = customBlock;
+          for (let key in replacements) {
+            const regex = new RegExp(`\\b${key}\\b`, "gi");
+            text = text.replace(regex, replacements[key]);
+          }
+
+          customTextElements.forEach((el) => {
+            el.innerHTML = text.replace(/\\n/g, "<br>");
+            el.style.fontSize = `${gridSize * 0.1}px`;
+          });
+        } catch (e) {
+          console.error("[customWidget] Unexpected error:", e);
+        } finally {
+          customWeatherFetchInProgress = false;
+        }
+      }
+
+      // visualizer widget
+      function wallpaperAudioListener(audioArray) {
+        const firstValues = audioArray.slice(0, 32);
+        const lastValues = audioArray.slice(32, 64);
+
+        currentMax = Math.max(...audioArray);
+        runningMax = Math.max(runningMax * decayRate, currentMax); // 過去最大音量の記録（徐々に減衰）
+        let normalizationFactor = runningMax > 0 ? 1 / runningMax : 1; // 正規化係数（大小を一定のスケールに）
+
+        const getAverages = (arr) =>
+          Array.from({ length: 4 }, (_, i) => arr.slice(i * 8, (i + 1) * 8).reduce((sum, v) => sum + v, 0) / 8);
+
+        const scaleFactor = 12 / row;
+        newFirstValues = getAverages(firstValues).map((v) => v * normalizationFactor * multiplier * scaleFactor);
+        newLastValues = getAverages(lastValues).map((v) => v * normalizationFactor * multiplier * scaleFactor);
+
+        if (currentMax <= zeroVal) return;
+
+        for (let i = 0; i < 4; i++) {
+          smoothedFirstValues[i] = lerp(smoothedFirstValues[i], newFirstValues[i], smoothing);
+          smoothedLastValues[i] = lerp(smoothedLastValues[i], newLastValues[i], smoothing);
+          smoothedFirstValues[i + 4] = smoothedFirstValues[i];
+          smoothedLastValues[i + 4] = smoothedLastValues[i];
+        }
+      }
+
+      function wallpaperMediaTimelineListener(event) {
+        let seconds = event.duration || 0;
+        let hours = Math.floor(seconds / 3600);
+        let minutes = Math.floor((seconds % 3600) / 60);
+        let sec = seconds % 60;
+        let formattedDuration = "";
+        if (hours > 0) {
+          formattedDuration = `${hours}:${minutes.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+        } else {
+          formattedDuration = `${minutes}:${sec.toString().padStart(2, "0")}`;
+        }
+        if (event.duration) {
+          document.querySelector(".duration").textContent = `${formattedDuration}`;
+        } else {
+          document.querySelector(".duration").textContent = ``;
+        }
+      }
+
+      function wallpaperMediaThumbnailListener(event) {
+        // console.log(event.thumbnail);
+        if (
+          event.thumbnail.startsWith(
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAAsTAAALEwEAmpwYAAAgAElEQVR4nO2"
+          )
+        ) {
+          isInvalidThumbnail = true;
+        } else {
+          isInvalidThumbnail = false;
+        }
+        document.getElementById("albumCoverArt").src = event.thumbnail;
+        if (event.primaryColor && /^#([0-9A-F]{6})$/i.test(event.primaryColor)) {
+          const hex = event.primaryColor.slice(1);
+          const r = parseInt(hex.substring(0, 2), 16);
+          const g = parseInt(hex.substring(2, 4), 16);
+          const b = parseInt(hex.substring(4, 6), 16);
+
+          // RGB to HSB
+          const rgbToHsb = (r, g, b) => {
+            const rr = r / 255,
+              gg = g / 255,
+              bb = b / 255;
+            const max = Math.max(rr, gg, bb);
+            const min = Math.min(rr, gg, bb);
+            const delta = max - min;
+
+            let h = 0;
+            if (delta !== 0) {
+              if (max === rr) {
+                h = ((gg - bb) / delta) % 6;
+              } else if (max === gg) {
+                h = (bb - rr) / delta + 2;
+              } else {
+                h = (rr - gg) / delta + 4;
+              }
+              h *= 60;
+              if (h < 0) h += 360;
+            }
+
+            const s = max === 0 ? 0 : delta / max;
+            const v = max;
+
+            return [h, s, v];
+          };
+
+          // HSB to RGB
+          const hsbToRgb = (h, s, v) => {
+            const c = v * s;
+            const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+            const m = v - c;
+
+            let [r1, g1, b1] = [0, 0, 0];
+            if (h < 60) [r1, g1, b1] = [c, x, 0];
+            else if (h < 120) [r1, g1, b1] = [x, c, 0];
+            else if (h < 180) [r1, g1, b1] = [0, c, x];
+            else if (h < 240) [r1, g1, b1] = [0, x, c];
+            else if (h < 300) [r1, g1, b1] = [x, 0, c];
+            else [r1, g1, b1] = [c, 0, x];
+
+            return [Math.round((r1 + m) * 255), Math.round((g1 + m) * 255), Math.round((b1 + m) * 255)];
+          };
+
+          const [h, s, v] = rgbToHsb(r, g, b);
+
+          // Brightness 89% for strokeColor
+          targetStrokeColor = hsbToRgb(h, s, 0.89);
+          transitionStartTime = millis();
+
+          // Brightness 15.7% for background color
+          bgColor = hsbToRgb(h, s, 0.157);
+          // if (!isPlaying || isInvalidThumbnail) {
+          //     document.querySelector('.visualizer-wide').style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+          // } else {
+          //     document.querySelector('.visualizer-wide').style.backgroundColor = `rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, ${opacity})`;
+          // }
+        }
+      }
+
+      function wallpaperMediaPropertiesListener(event) {
+        if (!event.title || event.title === "") {
+          document.querySelector(".title").textContent = "\u00A0";
+        } else {
+          document.querySelector(".title").textContent = event.title;
+        }
+
+        if (!event.artist || event.artist === "") {
+          isPlaying = false;
+          document.querySelector(".artist").textContent = "\u00A0";
+        } else {
+          isPlaying = true;
+          var artistCheck = event.artist;
+          if (artistCheck.endsWith(" - Topic")) {
+            artistCheck = artistCheck.slice(0, -8);
+          }
+          document.querySelector(".artist").textContent = artistCheck;
+        }
+
+        if ((!event.albumTitle || event.albumTitle === "") && (event.title || event.title !== "")) {
+          document.querySelector(".album-title").textContent = "NO ALBUM TITLE DETECTED";
+        } else if ((!event.albumTitle || event.albumTitle === "") && (!event.title || event.title === "")) {
+          document.querySelector(".album-title").textContent = "NO MEDIA DATA DETECTED";
+        } else {
+          document.querySelector(".album-title").textContent = event.albumTitle;
+        }
+      }
+
+      function setup() {
+        noFill();
+
+        const canvasWidth = document.getElementById("myCanvas-wide").clientWidth * 2;
+        const canvasHeight = document.getElementById("myCanvas-wide").clientHeight;
+        let canvas = createCanvas(canvasWidth, canvasHeight);
+        canvas.parent("myCanvas-wide");
+        prevCanvasWidth = canvasWidth;
+        prevCanvasHeight = canvasHeight;
+
+        const canvasEl = document.getElementById("myCanvas-wide");
+        const isCanvasExpanded = canvasEl.closest(".expanded") !== null;
+        xOffset = isCanvasExpanded ? -(gridSize / (defaultScaling / 90)) : -(gridSize / defaultScaling);
+
+        x1 = 0;
+        x2 = width;
+        yBase1 = 0;
+        yBase2 = height;
+      }
+
+      function windowResized() {
+        resizeCanvas(
+          document.getElementById("myCanvas-wide").clientWidth * 2,
+          document.getElementById("myCanvas-wide").clientHeight
+        );
+        x1 = 0;
+        x2 = width;
+        yBase1 = 0;
+        yBase2 = height;
+      }
+
+      function draw() {
+        document.querySelector(".block4").style.display = visualizerBlock ? "flex" : "none";
+        if (!visualizerBlock) return;
+        // update canvas size
+        const opacity = getComputedStyle(document.documentElement).getPropertyValue("--opacity").trim();
+        const container = document.getElementById("myCanvas-wide");
+        const currentWidth = container.clientWidth * 2;
+        const currentHeight = container.clientHeight;
+        container.style.opacity = useDynamicBackground ? "min(1, calc(var(--opacity) + 0.3))" : "var(--opacity)";
+
+        if (currentWidth !== prevCanvasWidth || currentHeight !== prevCanvasHeight) {
+          resizeCanvas(currentWidth, currentHeight);
+          prevCanvasWidth = currentWidth;
+          prevCanvasHeight = currentHeight;
+
+          x1 = 0;
+          x2 = width;
+          yBase1 = 0;
+          yBase2 = height;
+        }
+        background(0);
+        clear();
+
+        // color
+        let ease = 0.03;
+        const t = constrain((millis() - transitionStartTime) / transitionDuration, 0, 1);
+        if (!isPlaying || isInvalidThumbnail) {
+          document.querySelector(".visualizer-wide").style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+          const grayTarget = [33, 33, 33];
+          for (let i = 0; i < 3; i++) {
+            strokeColor[i] = lerp(strokeColor[i], grayTarget[i], t);
+          }
+        } else {
+          document.querySelector(
+            ".visualizer-wide"
+          ).style.backgroundColor = `rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, ${opacity})`;
+          for (let i = 0; i < 3; i++) {
+            strokeColor[i] = lerp(strokeColor[i], targetStrokeColor[i], t);
+          }
+        }
+        stroke(strokeColor[0], strokeColor[1], strokeColor[2]);
+
+        const canvasEl = document.getElementById("myCanvas-wide");
+        const isCanvasExpanded = canvasEl.closest(".expanded") !== null;
+
+        // when playing: move canvas and increase thicknessMin
+        if (currentMax > zeroVal) {
+          xOffset -= gridSize / defaultScaling;
+          if (xOffset <= -(width / 1.725)) {
+            // when canvas fully shifted,
+            xOffset = 0; // reset position
+          }
+          thicknessMin += (gridSize / (defaultScaling / 200) - thicknessMin) * ease;
+        }
+
+        // when not playing: change line pos, offset and thicknessMin
+        if (currentMax <= zeroVal) {
+          let targetFirst, targetLast;
+          if (isCanvasExpanded) {
+            targetFirst = [0.2, 0.1, 0.08, 0.12, 0.15, 0, 0, 0];
+            targetLast = [0, 0.15, 0.1, 0.08, 0.1, 0.18, 0.23, 0];
+          } else {
+            targetFirst = [0.23, 0.2, 0.17, 0.15, 0.17, 0.17, 0.12, 0];
+            targetLast = [0, 0.12, 0.18, 0.12, 0.16, 0.17, 0.23, 0.27];
+          }
+
+          for (let i = 0; i < smoothedFirstValues.length; i++) {
+            smoothedFirstValues[i] += (targetFirst[i] - smoothedFirstValues[i]) * ease;
+          }
+          for (let i = 0; i < smoothedLastValues.length; i++) {
+            smoothedLastValues[i] += (targetLast[i] - smoothedLastValues[i]) * ease;
+          }
+
+          if (isCanvasExpanded) {
+            thicknessMin += (gridSize / (defaultScaling / 80) - thicknessMin) * ease;
+            xOffset += (-(gridSize / (defaultScaling / 90)) - xOffset) * ease;
+          } else {
+            thicknessMin += (gridSize / defaultScaling - thicknessMin) * ease;
+            xOffset += (-(gridSize / (defaultScaling / 90)) - xOffset) * ease;
+          }
+        }
+
+        // first line
+        for (let i = 0; i < segments; i++) {
+          let t1 = i / segments;
+          let t2 = (i + 1) / segments;
+
+          let xStart = lerp(x1 + xOffset, x2 + xOffset, t1) - lineShift;
+          let xEnd = lerp(x1 + xOffset, x2 + xOffset, t2) - lineShift;
+
+          let offsetY1 = curvePointFromArray(smoothedFirstValues, t1, 0, offset);
+          let offsetY2 = curvePointFromArray(smoothedFirstValues, t2, 0, offset);
+          let yStart = yBase1 + offsetY1;
+          let yEnd = yBase1 + offsetY2;
+
+          let weight = curvePointFromArray(smoothedFirstValues, t1, thicknessMin, thicknessMax);
+          strokeWeight(weight);
+          line(xStart, yStart, xEnd, yEnd);
+        }
+
+        // second line
+        for (let i = 0; i < segments; i++) {
+          let t1 = i / segments;
+          let t2 = (i + 1) / segments;
+
+          let xStart = lerp(x1 + xOffset, x2 + xOffset, t1) + lineShift;
+          let xEnd = lerp(x1 + xOffset, x2 + xOffset, t2) + lineShift;
+
+          let offsetY1 = curvePointFromArray(smoothedLastValues, t1, 0, -offset);
+          let offsetY2 = curvePointFromArray(smoothedLastValues, t2, 0, -offset);
+          let yStart = yBase2 + offsetY1;
+          let yEnd = yBase2 + offsetY2;
+
+          let weight = curvePointFromArray(smoothedLastValues, t1, thicknessMin, thicknessMax);
+          strokeWeight(weight);
+          line(xStart, yStart, xEnd, yEnd);
+        }
+      }
+
+      function curvePointFromArray(arr, t, minVal, maxVal) {
+        let total = arr.length;
+        let index = t * (total - 1);
+        let i = floor(index);
+        let f = index - i;
+
+        let v0 = arr[max(i - 1, 0)];
+        let v1 = arr[i];
+        let v2 = arr[min(i + 1, total - 1)];
+        let v3 = arr[min(i + 2, total - 1)];
+
+        let interpolated = curvePoint(v0, v1, v2, v3, f);
+        return map(interpolated, 0, 1, minVal, maxVal);
+      }
+
+      window.wallpaperRegisterAudioListener(wallpaperAudioListener);
+      window.wallpaperRegisterMediaPropertiesListener(wallpaperMediaPropertiesListener);
+      window.wallpaperRegisterMediaThumbnailListener(wallpaperMediaThumbnailListener);
+      window.wallpaperRegisterMediaTimelineListener(wallpaperMediaTimelineListener);
+
+      function reRegisterMediaListener() {
+        window.wallpaperRegisterMediaPropertiesListener(wallpaperMediaPropertiesListener);
+        window.wallpaperRegisterMediaThumbnailListener(wallpaperMediaThumbnailListener);
+        window.wallpaperRegisterMediaTimelineListener(wallpaperMediaTimelineListener);
+      }
+
+      // font size for visualizer
+      function updateFontSizes() {
+        const titleElement = document.querySelector(".title");
+        const artistElement = document.querySelector(".artist");
+        const coverArtElement = document.getElementById("albumCoverArt");
+        const coverElement = document.querySelector(".album-cover");
+        const isInExpanded = titleElement.closest(".expanded") !== null;
+
+        titleElement.style.fontSize = `${gridSize * (isInExpanded ? 0.09 : 0.085)}px`;
+        artistElement.style.fontSize = `${gridSize * 0.07}px`;
+        coverArtElement.style.height = `${gridSize * (isInExpanded ? 0.2 : 0.25)}px`;
+        coverElement.style.height = `${gridSize * (isInExpanded ? 0.2 : 0.25)}px`;
+
+        document.querySelector(".media-line").style.width = `${gridSize * 0.2}px`;
+        document.querySelector(".album-title").style.fontSize = `${gridSize * 0.065}px`;
+        document.querySelector(".duration").style.fontSize = `${gridSize * 0.065}px`;
+        document.querySelector(".album-cover").style.boxShadow = `0 ${gridSize * 0.05}px ${
+          gridSize * 0.1
+        }px rgba(0, 0, 0, 0.75)`;
+        document.getElementById("myCanvas-wide").style.filter = `blur(${gridSize / 5}px)`;
+      }
+
+      // DOM load
+      document.addEventListener("DOMContentLoaded", function () {
+        // default style for blocks
+        divs = Array.from(document.querySelectorAll(".block"));
+        divs.forEach((div, i) => {
+          div.style.width = gridSize + "px";
+          div.style.height = gridSize + "px";
+
+          // get local storage and apply styles on reload, use default if none
+          const state = savedStates[i];
+          if (state) {
+            div.style.left = state.left;
+            div.style.top = state.top;
+            div.isExpanded = state.isExpanded;
+            if (div.isExpanded) {
+              div.style.width = gridSize * 2 + "px";
+              div.classList.add("expanded");
+              div.querySelectorAll(".narrow").forEach((e) => (e.style.display = "none"));
+              div.querySelectorAll(".wide").forEach((e) => (e.style.display = ""));
+            } else {
+              div.style.width = gridSize + "px";
+              div.classList.remove("expanded");
+              div.querySelectorAll(".narrow").forEach((e) => (e.style.display = ""));
+              div.querySelectorAll(".wide").forEach((e) => (e.style.display = "none"));
+            }
+          } else {
+            const blocksPerRow = Math.floor(window.innerWidth / gridSize);
+            const row = Math.floor(i / blocksPerRow);
+            const col = i % blocksPerRow;
+            div.style.left = col * gridSize + "px";
+            div.style.top = row * gridSize + "px";
+            div.isExpanded = false;
+          }
+
+          makeDraggable(div);
+          if (i <= 5) enableDoubleClick(div);
+        });
+        updateFontSizes();
+
+        const storedBlocks = localStorage.getItem("previousCountdownBlocks");
+        if (storedBlocks) {
+          countdownBlocks = JSON.parse(storedBlocks);
+        }
+
+        // functions on DOM load
+        clockWidget();
+        dateWidget();
+        weatherWidget();
+        performanceWidget();
+        performanceNarrowWidget();
+        progressWidget();
+        countdownWidget();
+        customWidget();
+
+        // functions after DOM load
+        setInterval(() => {
+          clockWidget();
+          dateWidget();
+          performanceWidget();
+          performanceNarrowWidget();
+          progressWidget();
+          countdownWidget();
+          customWidget();
+        }, 1000);
+
+        setInterval(() => {
+          weatherWidget();
+        }, 600000);
+      });
+
+      // window resize
+      window.addEventListener("resize", () => {
+        // block size
+        gridSize = window.innerWidth / row;
+        divs.forEach((div) => {
+          const isExpanded = div.isExpanded;
+          div.style.width = isExpanded ? gridSize * 2 + "px" : gridSize + "px";
+          div.style.height = gridSize + "px";
+        });
+        updateFontSizes();
+
+        // functions on window resize
+        clockWidget();
+        dateWidget();
+        weatherWidget();
+        performanceWidget();
+        performanceNarrowWidget();
+        progressWidget();
+        countdownWidget();
+        customWidget();
+      });
+    </script>
+  </body>
+</html>

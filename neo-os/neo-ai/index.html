@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" data-neo-app="ai">
+<head>
+  <script src="../neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>NEO AI</title>
+  <link rel="icon" href="../assets/neo-ai-logo.svg?v=20260910-chatgpt-white-v1">
+  <link rel="stylesheet" href="../neo-theme-system.css?v=20260910-ai-v1">
+  <link rel="stylesheet" href="app.css?v=20260920-ai-restored-v2">
+  <script defer src="../neo-app-theme.js?v=20260910-ai-v1"></script>
+  <script defer src="../neo-link-proxy.js?v=20260912-all-links-v2"></script>
+  <script defer src="../neo-proxy-client.js?v=20260919-nested-bridge-v1"></script>
+  <script async data-neo-puter-sdk src="https://js.puter.com/v2/"></script>
+  <script defer src="app.js?v=20260920-ai-restored-v2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Conversations">
+      <div class="brand-row">
+        <div class="brand"><img src="../assets/neo-ai-logo.svg?v=20260910-chatgpt-white-v1" alt=""><span>NEO AI</span></div>
+        <button class="icon-button sidebar-close" type="button" data-action="close-sidebar" aria-label="Close sidebar">
+          <svg><use href="#i-close"></use></svg>
+        </button>
+      </div>
+      <button class="new-chat" type="button" data-action="new-chat">
+        <svg><use href="#i-plus"></use></svg><span>New chat</span><kbd>Ctrl N</kbd>
+      </button>
+      <label class="chat-search">
+        <svg><use href="#i-search"></use></svg>
+        <input id="chat-search" type="search" placeholder="Search chats" autocomplete="off">
+        <kbd>Ctrl F</kbd>
+      </label>
+      <div class="history-label">Recent</div>
+      <div class="chat-list" id="chat-list"></div>
+      <div class="sidebar-footer">
+        <div class="activity" aria-label="Local activity">
+          <div><strong id="chat-count">0</strong><span>chats</span></div>
+          <div><strong id="message-count">0</strong><span>messages</span></div>
+          <div><strong class="online-dot">●</strong><span>ready</span></div>
+        </div>
+        <button class="footer-button" type="button" data-action="install"><svg><use href="#i-download"></use></svg><span>Installed in NEO OS</span></button>
+        <button class="footer-button" type="button" data-action="shortcuts"><svg><use href="#i-keyboard"></use></svg><span>Keyboard shortcuts</span><kbd>?</kbd></button>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <button class="icon-button sidebar-open" type="button" data-action="open-sidebar" aria-label="Open sidebar">
+          <svg><use href="#i-menu"></use></svg>
+        </button>
+        <button class="model-badge" id="model-badge" type="button" data-action="models" aria-label="Choose AI model" title="Choose AI model">
+          <img src="../assets/neo-ai-logo.svg?v=20260910-chatgpt-white-v1" alt="">
+          <span><strong id="active-model-name">GPT-OSS 20B (Fast)</strong><small id="active-model-provider">Puter</small></span>
+          <svg><use href="#i-chevron"></use></svg>
+        </button>
+        <div class="top-actions">
+          <button class="top-action" id="cowork-top" type="button" data-action="cowork" aria-pressed="false"><svg><use href="#i-cowork"></use></svg><span>Cowork</span></button>
+          <button class="top-action" type="button" data-action="study" aria-pressed="false"><svg><use href="#i-study"></use></svg><span>Study</span></button>
+          <button class="top-action" type="button" data-action="screen"><svg><use href="#i-screen"></use></svg><span>Screen capture</span></button>
+          <button class="icon-button" type="button" data-action="settings" aria-label="AI settings"><svg><use href="#i-settings"></use></svg></button>
+        </div>
+      </header>
+
+      <section class="conversation" id="conversation" aria-live="polite">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark"><img src="../assets/neo-ai-logo.svg?v=20260910-chatgpt-white-v1" alt=""></div>
+          <h1>What can I help you with?</h1>
+          <p>Choose from three fast chat models, ask the whole team to work together, add files, or search the web. Chats stay on this device.</p>
+          <div class="prompt-grid" id="prompt-grid">
+            <button type="button" data-prompt="Explain this simply: "><svg><use href="#i-sparkles"></use></svg><span><strong>Explain simply</strong><small>Break down a hard topic</small></span></button>
+            <button type="button" data-prompt="Summarize the following: "><svg><use href="#i-lines"></use></svg><span><strong>Summarize</strong><small>Pull out the main points</small></span></button>
+            <button type="button" data-prompt="Translate this to "><svg><use href="#i-language"></use></svg><span><strong>Translate to…</strong><small>Keep tone and meaning</small></span></button>
+            <button type="button" data-prompt="Find and fix the problems in this code:\n\n"><svg><use href="#i-code"></use></svg><span><strong>Fix this code</strong><small>Debug and improve it</small></span></button>
+            <button type="button" data-prompt="Give me the pros and cons of "><svg><use href="#i-balance"></use></svg><span><strong>Pros and cons</strong><small>Compare both sides</small></span></button>
+            <button type="button" data-prompt="Teach me this step by step: "><svg><use href="#i-steps"></use></svg><span><strong>Step by step</strong><small>Work through a process</small></span></button>
+            <button type="button" data-prompt="Create a study guide for "><svg><use href="#i-study"></use></svg><span><strong>Study guide</strong><small>Review and self-test</small></span></button>
+            <button type="button" data-prompt="Help me write "><svg><use href="#i-pen"></use></svg><span><strong>Creative writing</strong><small>Brainstorm and revise</small></span></button>
+          </div>
+        </div>
+        <div class="messages" id="messages"></div>
+      </section>
+
+      <div class="composer-zone">
+        <div class="attachment-strip" id="attachment-strip" hidden></div>
+        <form class="composer" id="composer">
+          <div class="tools-menu" id="tools-menu" hidden>
+            <div class="menu-label">Sources</div>
+            <button type="button" data-action="pick-file"><svg><use href="#i-paperclip"></use></svg><span><strong>Add files &amp; images</strong><small>Upload, paste, or drop</small></span></button>
+            <button type="button" data-action="web" aria-pressed="false"><svg><use href="#i-globe"></use></svg><span><strong>Web search</strong><small>Include current sources</small></span><i class="toggle"></i></button>
+            <div class="menu-label">Tools</div>
+            <button type="button" data-action="models"><svg><use href="#i-model"></use></svg><span><strong>Choose model</strong><small>Three chat models</small></span></button>
+            <button type="button" data-action="cowork" aria-pressed="false"><svg><use href="#i-cowork"></use></svg><span><strong>AI Coworkers</strong><small>Several models, one answer</small></span><i class="toggle"></i></button>
+            <button type="button" data-action="study" aria-pressed="false"><svg><use href="#i-study"></use></svg><span><strong>Study mode</strong><small>Quizzes, flashcards, and more</small></span><i class="toggle"></i></button>
+          </div>
+          <button class="composer-tool" type="button" data-action="tools" aria-label="Add and tools" aria-expanded="false"><svg><use href="#i-plus"></use></svg></button>
+          <textarea id="prompt" rows="1" placeholder="Message NEO AI…" aria-label="Message NEO AI"></textarea>
+          <button class="send-button" id="send" type="submit" aria-label="Send message" disabled><svg><use href="#i-arrow"></use></svg></button>
+          <button class="send-button stop-button" id="stop" type="button" data-action="stop" aria-label="Stop generating" hidden><span></span></button>
+        </form>
+        <p class="disclaimer">AI can make mistakes. Verify important information. OpenAI marks belong to OpenAI; NEO AI is an independent client.</p>
+      </div>
+    </main>
+  </div>
+
+  <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif,text/plain,text/markdown,text/csv,application/json,.js,.jsx,.ts,.tsx,.html,.css,.py,.java,.c,.cpp,.h,.md,.txt,.csv,.json" multiple hidden>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <div class="chat-context-menu" id="chat-context-menu" role="menu" aria-label="Chat options" hidden>
+    <button type="button" role="menuitem" data-chat-menu-action="rename"><svg><use href="#i-pen"></use></svg><span>Rename</span></button>
+    <button class="danger" type="button" role="menuitem" data-chat-menu-action="delete"><svg><use href="#i-trash"></use></svg><span>Delete</span></button>
+  </div>
+
+  <dialog id="shortcuts-dialog">
+    <div class="dialog-head"><div><small>NEO AI</small><h2>Keyboard shortcuts</h2></div><button class="icon-button" type="button" data-action="close-dialog" aria-label="Close"><svg><use href="#i-close"></use></svg></button></div>
+    <div class="shortcut-grid">
+      <span>Send message</span><kbd>Enter</kbd><span>New line</span><kbd>Shift Enter</kbd>
+      <span>New chat</span><kbd>Ctrl N</kbd><span>Search chats</span><kbd>Ctrl F</kbd>
+      <span>Close menus / stop</span><kbd>Esc</kbd><span>Show shortcuts</span><kbd>?</kbd>
+      <span>Add pasted image</span><kbd>Ctrl V</kbd><span>Focus message</span><kbd>/</kbd>
+    </div>
+  </dialog>
+
+  <dialog id="settings-dialog">
+    <div class="dialog-head"><div><small>NEO AI</small><h2>Settings</h2></div><button class="icon-button" type="button" data-action="close-dialog" aria-label="Close"><svg><use href="#i-close"></use></svg></button></div>
+    <label class="setting-row"><span><strong>Compact responses</strong><small>Ask for shorter answers by default</small></span><input id="compact-setting" type="checkbox"></label>
+    <label class="setting-row"><span><strong>Enter sends</strong><small>Use Shift + Enter for a new line</small></span><input id="enter-setting" type="checkbox" checked></label>
+    <label class="setting-row"><span><strong>Web search</strong><small>Search before answering when enabled</small></span><input id="web-setting" type="checkbox"></label>
+    <button class="danger-button" type="button" data-action="clear-chats">Clear all chats</button>
+  </dialog>
+
+  <dialog id="models-dialog" class="catalog-dialog">
+    <div class="dialog-head"><div><small>3 AVAILABLE MODELS</small><h2>Choose a model</h2></div><button class="icon-button" type="button" data-action="close-dialog" aria-label="Close"><svg><use href="#i-close"></use></svg></button></div>
+    <div class="model-toolbar">
+      <label class="model-search"><svg><use href="#i-search"></use></svg><input id="model-search" type="search" placeholder="Search models or providers" autocomplete="off"></label>
+      <div class="model-filters" id="model-filters" aria-label="Model type"><button type="button" data-model-filter="all" aria-pressed="true">All</button><button type="button" data-model-filter="text" aria-pressed="false">Chat</button></div>
+    </div>
+    <div class="model-list" id="model-list"></div>
+    <div class="generation-options">
+      <label><span>Reasoning effort</span><select id="reasoning-setting"><option value="auto">Automatic</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
+      <div id="image-options" class="option-group" hidden>
+        <label><span>Image ratio</span><select id="image-ratio"><option value="1:1">Square 1:1</option><option value="16:9">Wide 16:9</option><option value="9:16">Portrait 9:16</option><option value="4:3">Landscape 4:3</option></select></label>
+        <label><span>Style</span><select id="image-style"><option value="auto">Automatic</option><option value="photorealistic">Photorealistic</option><option value="cinematic">Cinematic</option><option value="illustration">Illustration</option><option value="anime">Anime</option></select></label>
+      </div>
+      <div id="video-options" class="option-group" hidden>
+        <label><span>Duration</span><select id="video-duration"><option value="5">5 seconds</option><option value="10">10 seconds</option></select></label>
+        <label><span>Resolution</span><select id="video-resolution"><option value="480p">480p</option><option value="720p">720p</option><option value="1080p">1080p</option></select></label>
+        <label class="check-label"><span>Generate audio</span><input id="video-audio" type="checkbox" checked></label>
+        <label><span>Seed</span><input id="video-seed" type="number" min="0" step="1" placeholder="Random"></label>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="cowork-dialog" class="cowork-dialog">
+    <div class="dialog-head"><div><small>AI COWORKERS</small><h2>Models that work together</h2></div><button class="icon-button" type="button" data-action="close-dialog" aria-label="Close"><svg><use href="#i-close"></use></svg></button></div>
+    <div class="cowork-body">
+      <label class="cowork-master"><span><strong>Use AI Coworkers</strong><small>Ask multiple models, then let the lead model combine their work.</small></span><input id="cowork-enabled" type="checkbox"></label>
+      <div class="cowork-modes" aria-label="Cowork mode"><button type="button" data-cowork-mode="auto" aria-pressed="true"><strong>Auto</strong><small>Balanced team of 3</small></button><button type="button" data-cowork-mode="custom" aria-pressed="false"><strong>Custom</strong><small>Pick up to 5</small></button></div>
+      <div class="cowork-summary" id="cowork-summary"></div>
+      <div class="cowork-models" id="cowork-models"></div>
+    </div>
+  </dialog>
+
+  <svg class="svg-defs" aria-hidden="true">
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6 1.7 1.7 0 0 0 10 3v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m12 19 0-14M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.3 4.2L17 9l-3.7 1.8L12 15l-1.3-4.2L7 9l3.7-1.8L12 3ZM5 15l.7 2.3L8 18l-2.3.7L5 21l-.7-2.3L2 18l2.3-.7L5 15Zm14-2 .7 2.3 2.3.7-2.3.7L19 19l-.7-2.3L16 16l2.3-.7L19 13Z"/></symbol>
+    <symbol id="i-lines" viewBox="0 0 24 24"><path d="M5 6h14M5 10h14M5 14h9M5 18h7"/></symbol>
+    <symbol id="i-language" viewBox="0 0 24 24"><path d="M4 5h9M8.5 3v2M6 5c.7 3.2 2.4 5.7 5 7M11 5c-.7 3.5-3 6.2-7 8M14 19l3.5-9 3.5 9M15.3 16h4.4"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></symbol>
+    <symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 3v18M5 6h14M5 6l-3 7h6L5 6Zm14 0-3 7h6l-3-7ZM8 21h8"/></symbol>
+    <symbol id="i-steps" viewBox="0 0 24 24"><path d="M5 7h5M14 7h5M8 4l3 3-3 3M5 17h5M14 17h5M16 14l-3 3 3 3"/></symbol>
+    <symbol id="i-study" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5-9 5-9-5Zm4 3v5c3 2.3 7 2.3 10 0v-5M21 9v7"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="m4 20 4.5-1L19 8.5 15.5 5 5 15.5 4 20ZM13.5 7l3.5 3.5"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 20"/></symbol>
+    <symbol id="i-paperclip" viewBox="0 0 24 24"><path d="m8 12 6.5-6.5a3.5 3.5 0 0 1 5 5L10 20a5 5 0 0 1-7-7l9-9"/></symbol>
+    <symbol id="i-model" viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/><path d="m4 7 8 4 8-4M12 11v10"/></symbol>
+    <symbol id="i-cowork" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.3-4 2-6 5-6s4.7 2 5 6M13 15c1-.9 2.2-1.3 3.6-1.3 2.7 0 4.1 1.8 4.4 5.3"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 13h.01M10 13h.01M14 13h.01M18 13h.01M7 16h10"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></symbol>
+  </svg>
+</body>
+</html>

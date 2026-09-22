@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171a21">
+  <meta name="description" content="Steam — a focused desktop game library powered by Fern.">
+  <title>Steam</title>
+  <script src="../neo-app-theme.js?v=20260907-theme-system-v2"></script>
+  <link rel="stylesheet" href="../neo-fonts.css?v=20260912-native-fast-v1">
+  <link rel="stylesheet" href="./app.css?v=20260919-steam-client-v2">
+  <script src="../neo-proxy-client.js?v=20260919-nested-bridge-v1"></script>
+  <script src="./config.js?v=20260921-fern-only-v1"></script>
+  <script defer src="./app.js?v=20260921-fern-only-v1"></script>
+</head>
+<body>
+  <div class="steam-boot" data-steam-boot role="status" aria-live="polite" aria-label="Steam is starting">
+    <div class="steam-boot-glow" aria-hidden="true"></div>
+    <div class="steam-boot-logo" aria-hidden="true">
+      <span class="steam-boot-ring"></span>
+      <img src="../assets/steam.svg?v=20260919-current-steam-logo-v2" alt="">
+    </div>
+    <strong>STEAM</strong>
+    <span data-steam-boot-status>Starting Steam…</span>
+    <i class="steam-boot-progress" aria-hidden="true"></i>
+  </div>
+  <div class="steam-shell" data-shell aria-busy="true">
+    <header class="client-menu">
+      <button class="client-brand" type="button" data-home aria-label="Steam home">
+        <img class="brand-orbit" src="../assets/steam.svg?v=20260919-current-steam-logo-v2" alt="">
+        <strong>STEAM</strong>
+      </button>
+      <nav aria-label="Application menu">
+        <button type="button" data-menu="view">View</button>
+        <button type="button" data-menu="games">Games</button>
+        <button type="button" data-menu="help">Help</button>
+      </nav>
+      <div class="client-status" data-provider-status>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Connecting to game services</span>
+      </div>
+    </header>
+
+    <header class="library-tabs">
+      <button class="history-button" type="button" data-history-back disabled aria-label="Previous selection">‹</button>
+      <button class="history-button" type="button" data-history-forward disabled aria-label="Next selection">›</button>
+      <nav class="primary-destinations" aria-label="Steam sections">
+        <button class="library-tab library-tab-muted" type="button" data-menu="store">STORE</button>
+        <button class="library-tab is-active" type="button" data-home>LIBRARY</button>
+      </nav>
+      <div class="catalog-summary"><span data-count>LOADING</span><small>FERN</small></div>
+    </header>
+
+    <div class="library-workspace">
+      <aside class="library-sidebar" aria-label="Game library">
+        <button class="library-home is-active" type="button" data-home>
+          <span>Library home</span>
+          <span class="home-grid" aria-hidden="true">▦</span>
+        </button>
+
+        <div class="library-kind-row">
+          <button type="button" data-menu="collection"><span>Games and Software</span><span aria-hidden="true">⌄</span></button>
+          <button type="button" data-menu="view" aria-label="Library grid view" title="Library view">▦</button>
+        </div>
+
+        <div class="library-filter-row">
+          <label class="library-filter">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" data-search aria-label="Search games" autocomplete="off" spellcheck="false" placeholder="Search games">
+            <kbd>Ctrl F</kbd>
+          </label>
+        </div>
+
+        <div class="library-scroll" data-library-scroll>
+          <section class="game-group" data-local-group hidden>
+            <button class="group-heading" type="button" data-toggle-local aria-expanded="true">
+              <span><span class="disclosure">▾</span> LOCAL GAMES</span><span data-local-count>0</span>
+            </button>
+            <div class="game-list" data-local-list></div>
+          </section>
+
+          <section class="game-group" data-favorites-group hidden>
+            <button class="group-heading" type="button" data-toggle-favorites aria-expanded="true">
+              <span><span class="disclosure">▾</span> FAVORITES</span><span data-favorite-count>0</span>
+            </button>
+            <div class="game-list" data-favorites-list></div>
+          </section>
+
+          <section class="game-group">
+            <button class="group-heading" type="button" data-toggle-library aria-expanded="true">
+              <span><span class="disclosure">▾</span> ALL GAMES</span><span data-loaded-count>0</span>
+            </button>
+            <div class="game-list" data-game-list></div>
+            <button class="load-more" type="button" data-load-more hidden>Load more games</button>
+            <div class="list-state" data-list-state>Connecting to the catalog…</div>
+          </section>
+        </div>
+      </aside>
+
+      <main class="game-detail" data-main>
+        <section class="library-welcome" data-welcome>
+          <img class="welcome-mark" src="../assets/steam.svg?v=20260919-current-steam-logo-v2" alt="">
+          <h1>Steam</h1>
+          <p>Your game library is loading.</p>
+          <button type="button" data-retry hidden>Retry connection</button>
+        </section>
+
+        <article class="selected-game" data-selected-game hidden>
+          <header class="game-hero" data-hero>
+            <div class="hero-backdrop" data-hero-backdrop></div>
+            <div class="hero-shade"></div>
+            <div class="hero-title">
+              <span class="hero-category" data-game-category>Game</span>
+              <h1 data-game-title>Game</h1>
+            </div>
+          </header>
+
+          <section class="play-strip">
+            <button class="play-button" type="button" data-play>
+              <span aria-hidden="true">▶</span>
+              <strong>PLAY</strong>
+            </button>
+            <dl class="game-stats">
+              <div><dt>STATUS</dt><dd data-game-status><span class="ready-check">✓</span> Ready to play</dd></div>
+              <div><dt>LAST PLAYED</dt><dd data-last-played>Never</dd></div>
+              <div><dt>PLAY TIME</dt><dd data-play-time>0 minutes</dd></div>
+            </dl>
+            <div class="game-actions">
+              <button type="button" data-detail-pin aria-label="Add to taskbar" title="Add to taskbar">Add to taskbar</button>
+              <button type="button" data-remove-local hidden aria-label="Remove local game" title="Remove local game">×</button>
+              <button type="button" data-favorite aria-label="Add game to favorites" title="Add to favorites">♡</button>
+            </div>
+          </section>
+
+          <nav class="detail-tabs" aria-label="Game details">
+            <button class="is-active" type="button">Game overview</button>
+            <span data-game-source>Fern</span>
+          </nav>
+
+          <div class="detail-content">
+            <section class="about-panel">
+              <div class="section-kicker">RECENT ACTIVITY</div>
+              <h2 data-about-title>Ready to play</h2>
+              <p data-about-copy>Select Play to launch this title from its game service.</p>
+              <div class="recent-row" data-recent-row hidden>
+                <span class="recent-icon" aria-hidden="true">↻</span>
+                <div><strong>Recently played</strong><small data-recent-copy></small></div>
+              </div>
+            </section>
+            <aside class="metadata-panel">
+              <h2>Game information</h2>
+              <dl>
+                <div><dt>Provider</dt><dd data-meta-provider>Fern</dd></div>
+                <div><dt>Category</dt><dd data-meta-category>Game</dd></div>
+                <div><dt>Catalog ID</dt><dd data-meta-id>—</dd></div>
+              </dl>
+              <p class="trademark-note">Unofficial interface. Steam and the Steam logo are trademarks of Valve Corporation. Not affiliated with Valve.</p>
+            </aside>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="client-footer">
+      <button type="button" data-add-local><span aria-hidden="true">＋</span> Add a local game</button>
+      <span class="downloads-state"><span aria-hidden="true">⇩</span> Downloads</span>
+      <span data-footer-status>Initializing game services…</span>
+    </footer>
+  </div>
+
+  <dialog class="local-game-dialog" data-local-dialog aria-labelledby="local-game-title">
+    <form method="dialog" data-local-form>
+      <header>
+        <div>
+          <span class="dialog-kicker">LOCAL LIBRARY</span>
+          <h2 id="local-game-title">Add a local game</h2>
+        </div>
+        <button class="dialog-close" type="button" data-local-cancel aria-label="Close">×</button>
+      </header>
+      <div class="local-game-form-grid">
+        <div class="local-cover-picker">
+          <div class="local-cover-preview" data-local-cover-preview><span>GAME<br>ART</span></div>
+          <label class="file-button">Choose picture<input type="file" data-local-cover accept="image/png,image/jpeg,image/webp,image/gif"></label>
+        </div>
+        <div class="local-fields">
+          <label><span>Game name</span><input type="text" data-local-name maxlength="64" required placeholder="My game"></label>
+          <label><span>Category</span><input type="text" data-local-category maxlength="36" placeholder="Indie"></label>
+          <label class="file-field"><span>Game file</span><input type="file" data-local-file accept=".html,.htm,text/html" required><small>Choose a self-contained HTML game (up to 16 MB).</small></label>
+          <label class="file-field"><span>Header artwork <em>optional</em></span><input type="file" data-local-banner accept="image/png,image/jpeg,image/webp,image/gif"><small>Wide artwork looks best. The cover is used when omitted.</small></label>
+        </div>
+      </div>
+      <p class="local-form-error" data-local-error hidden></p>
+      <footer>
+        <button type="button" class="dialog-secondary" data-local-cancel>Cancel</button>
+        <button type="submit" class="dialog-primary" data-local-submit>Add to library</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <section class="player" data-player hidden aria-label="Game player">
+    <header class="player-bar">
+      <button class="player-back" type="button" data-player-close><span aria-hidden="true">‹</span> LIBRARY</button>
+      <div class="player-title"><span class="player-dot"></span><strong data-player-title>Game</strong></div>
+      <div class="player-actions">
+        <button type="button" data-player-refresh title="Reload game">Refresh</button>
+        <button type="button" data-player-fullscreen>Fullscreen</button>
+        <button type="button" data-player-pin>Add to taskbar</button>
+        <button type="button" data-player-close aria-label="Close game">Close</button>
+      </div>
+    </header>
+    <div class="frame-wrap">
+      <iframe data-game-frame title="Game" src="about:blank" allow="autoplay; encrypted-media; fullscreen; gamepad; microphone; camera; pointer-lock; clipboard-read; clipboard-write" allowfullscreen></iframe>
+      <div class="frame-status" data-frame-status>
+        <span class="loading-ring" aria-hidden="true"></span>
+        <strong>Preparing game…</strong>
+        <small>Requesting a launch URL from the game service</small>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" data-toast role="status" aria-live="polite" hidden></div>
+</body>
+</html>

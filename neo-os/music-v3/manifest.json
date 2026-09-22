@@ -1,0 +1,28 @@
+{
+    "name": "NEO Music",
+    "short_name": "NEO Music",
+    "description": "A minimalist music streaming application",
+    "start_url": "./",
+    "display": "standalone",
+    "display_override": ["window-controls-overlay"],
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait-primary",
+    "icons": [],
+    "categories": ["music", "entertainment"],
+    "shortcuts": [
+        {
+            "name": "Search",
+            "short_name": "Search",
+            "description": "Search for music",
+            "url": "./#search",
+            "icons": [
+                {
+                    "src": "assets/96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                }
+            ]
+        }
+    ]
+}

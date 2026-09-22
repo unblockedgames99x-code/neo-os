@@ -1,0 +1,3958 @@
+{
+	"approved" : true,
+	"contentrating" : "Everyone",
+	"description" : "[b]Official presets can only publish Edwfur, if someone puts out presets marked as CWAV, please inform me on Steam or Discord.[/b]\n\n[h1]Update 2.0: Media Integration[/h1]\n\n[h2]What's New[/h2]\n\n- [b]Removed Spotify Sync Module:[/b] Due to unavailability in Russia (where development is based), the Spotify synchronization module has been removed.\n\n- [b]Added Media Integration Module:[/b]\n  - [b]Features:[/b]\n    - [b]Display Current Track Information:[/b] The new media integration module allows users to view information about the currently playing track, including the album cover, title, artist, and duration.\n[img] https://cdn.discordapp.com/attachments/446685594895122442/1178469097030303964/image.png?ex=657641df&is=6563ccdf&hm=0342077fa89042aa7aea9058c844776bb80dafa62cbebe8908504cb208079525& [/img]\n[img] https://media.discordapp.net/attachments/446685594895122442/1178469224587477185/image.png?ex=657641fe&is=6563ccfe&hm=6dc1c04f3993b51a952359008605b452b299195fd1561726f7ba586a6a25f901&=&format=webp&width=667&height=203 [/img]\n[img] https://media.discordapp.net/attachments/446685594895122442/1178469614628376576/image.png?ex=6576425b&is=6563cd5b&hm=f5f9e0db84c657b7195dd77fe5d1513b8195c04c7e52eb7507b7d95f047cf22f&=&format=webp&width=788&height=200 [/img]\n  \n    - [b]Seamless Settings Integration:[/b] The settings for the media integration module mirror those of the Spotify module, providing a familiar and user-friendly experience.\n\n  [h2]How to Use[/h2]\n    1. [b]Navigate to the CWAV settings.[/b]\n    2. [b]Find the \"Media Integration\" section.[/b]\n    3. [b]Enable the module[/b] to start enjoying enhanced track information while using the app.\n\n[b]Enjoy the upgraded media experience with our latest update![/b]\n\nThank you for using [b]CWAV[/b]! If you have any feedback or encounter issues, please let us know at discord. You can always offer your improvements to us and we will certainly listen to you.\n\n[b]Note:[/b] If you wish for CWAV to continue receiving updates, please let us know your feedback.\n\n\n[url=https://steamcommunity.com/workshop/filedetails/discussion/1509243786/2140840224668431912/]FaQ & Guide[/url]\nDeveloped by RedProject Inc.\n[url=redproject.dev?utm_source=cwav&utm_medium=organic][img] https://i.imgur.com/YnTBWZb.png [/img][/url]",
+	"file" : "index.html",
+	"general" : 
+	{
+		"localization" : 
+		{
+			"en-us" : 
+			{
+				"ui_alignment" : "Alignment",
+				"ui_background_mode" : "Wallpaper Mode",
+				"ui_background_mode_color" : "Color",
+				"ui_background_mode_img" : "Image",
+				"ui_background_mode_img_custom" : "Custom background",
+				"ui_background_mode_img_custom_fg" : "Custom foreground",
+				"ui_background_mode_img_size" : "Alignment",
+				"ui_background_mode_img_size_adapt" : "Adaptive",
+				"ui_background_mode_img_size_center" : "Center",
+				"ui_background_mode_img_size_fg" : "Alignment foreground",
+				"ui_background_mode_img_size_fill" : "Fill",
+				"ui_background_mode_img_size_repiat" : "Repeat",
+				"ui_background_mode_img_size_stretch" : "Strerch",
+				"ui_background_mode_slide" : "Slide show",
+				"ui_background_mode_slide_custom" : "Custom file directory",
+				"ui_background_mode_slide_rundom" : "Random order",
+				"ui_background_mode_slide_time" : "Time to change wallpaper",
+				"ui_background_mode_slide_time_10_min" : "10 min",
+				"ui_background_mode_slide_time_10_sec" : "10 second",
+				"ui_background_mode_slide_time_1_h" : "1 hour",
+				"ui_background_mode_slide_time_1_min" : "1 min",
+				"ui_background_mode_slide_time_30_min" : "30 min",
+				"ui_background_mode_slide_time_5_min" : "5 min",
+				"ui_background_mode_stand" : "Default wallpaper",
+				"ui_background_mode_video" : "Video",
+				"ui_background_mode_video_custom" : "Custom video",
+				"ui_background_mode_video_stand" : "Default video",
+				"ui_background_mode_video_text" : "<small>★Video must be in the WebM format.</small>",
+				"ui_background_mode_video_volume" : "Volume",
+				"ui_background_text" : "<hr><h4>●  Setting background</h4><hr>",
+				"ui_blur_gradient" : "Bluring chromo",
+				"ui_blur_size" : "Blur Size",
+				"ui_blur_spid" : "Speed chromo",
+				"ui_center" : "Center",
+				"ui_color" : "Color",
+				"ui_color__highContrastColor" : "High Contrast color <small>Black or white, depending on what has higher contrast with the primary color.</small>",
+				"ui_color__primaryColor" : "Primary color",
+				"ui_color__secondaryColor" : "Secondary color",
+				"ui_color__tertiaryColor" : "Tertiary color",
+				"ui_color__textColor" : "Text color <small>Guaranteed to have sufficient contrast with primary color.</small>",
+				"ui_color_blur" : "Color Blur",
+				"ui_color_blur_type" : "Color Blur mode",
+				"ui_color_rhythm" : "Color rhythm",
+				"ui_color_type" : "Color mode",
+				"ui_color_type_chromo" : "Chromo",
+				"ui_color_type_gradient" : "Gradient",
+				"ui_color_type_mono" : "Static",
+				"ui_count" : "Count",
+				"ui_dir" : "Direction",
+				"ui_dir_x" : "Direction X",
+				"ui_dir_y" : "Direction Y",
+				"ui_disable" : "<span class='ugcDanger'>Disable</span>",
+				"ui_effect_blur" : "Coming Soon",
+				"ui_effect_bounce" : "Coming Soon",
+				"ui_effect_colorshift" : "Coming Soon",
+				"ui_effect_glitch" : "Coming Soon",
+				"ui_effect_hilight" : "Coming Soon",
+				"ui_effect_parcticl_dir_down" : "Down",
+				"ui_effect_parcticl_dir_downl" : "Down-left",
+				"ui_effect_parcticl_dir_downr" : "Down-right",
+				"ui_effect_parcticl_dir_l" : "Left",
+				"ui_effect_parcticl_dir_none" : "None",
+				"ui_effect_parcticl_dir_r" : "Right",
+				"ui_effect_parcticl_dir_up" : "Up",
+				"ui_effect_parcticl_dir_upl" : "Up-left",
+				"ui_effect_parcticl_dir_upr" : "Up-right",
+				"ui_effect_parcticl_form_custom" : "Custom",
+				"ui_effect_parcticl_form_custom_file" : "Custom Image",
+				"ui_effect_parcticl_form_round" : "Circle",
+				"ui_effect_parcticl_form_snow" : "Snow",
+				"ui_effect_parcticl_form_square" : "Square",
+				"ui_effect_parcticl_form_star" : "Star",
+				"ui_effect_parcticl_form_triangle" : "Triangle",
+				"ui_effect_parcticl_go" : "Direction straight",
+				"ui_effect_parcticl_line" : "🠞Lines",
+				"ui_effect_parcticl_line_color" : "Line color",
+				"ui_effect_parcticl_line_leght" : "Line lenght",
+				"ui_effect_parcticl_line_size" : "Line size",
+				"ui_effect_parcticl_line_transpent" : "Line transpent",
+				"ui_effect_parcticl_mirror" : "Mirror motion",
+				"ui_effect_parcticl_mode_move" : "Mode motion",
+				"ui_effect_parcticl_mode_move_in" : "In",
+				"ui_effect_parcticl_mode_move_out" : "Out",
+				"ui_effect_parcticl_move" : "🠞Particles motion",
+				"ui_effect_parcticl_music_bass" : "Bass",
+				"ui_effect_parcticl_music_mezzo_soprano" : "Mezzo Soprano",
+				"ui_effect_parcticl_music_soprano" : "Soprano",
+				"ui_effect_parcticl_music_speed" : "Movement of particles from music",
+				"ui_effect_parcticl_music_strengh" : "The influence of music",
+				"ui_effect_parcticl_music_tenor" : "Tenor",
+				"ui_effect_parcticl_music_tone" : "Frequency range",
+				"ui_effect_parcticl_random" : "Random opacity",
+				"ui_effect_parcticl_random_size" : "Random size",
+				"ui_effect_parcticl_random_speed" : "Random speed",
+				"ui_effect_parcticl_size" : "Particle size",
+				"ui_effect_parcticl_speed" : "Particle speed",
+				"ui_effect_parcticl_text" : "🠞Particles",
+				"ui_effect_text" : "<hr><h4>●  Setting effects</h4><hr>",
+				"ui_enable" : "<span class='ugcSuccess'>Enable</span>",
+				"ui_font" : "Font",
+				"ui_font_dir" : "File .ttf (.png)",
+				"ui_form" : "Figure",
+				"ui_gradient_color" : "Gradient color",
+				"ui_height" : "Height",
+				"ui_large" : "Large",
+				"ui_left" : "Left",
+				"ui_mMediaInegration__artist" : "<b>Artist</b>",
+				"ui_mMediaInegration__blur" : "Blur border",
+				"ui_mMediaInegration__color_line" : "ProgressBar color",
+				"ui_mMediaInegration__color_line_type" : "ProgressBar color mode",
+				"ui_mMediaInegration__duration" : "<b>Duration</b>",
+				"ui_mMediaInegration__img" : "<b>Image album</b>",
+				"ui_mMediaInegration__label" : "<b>Title</b>",
+				"ui_mMediaInegration__lable" : "<hr><h4>● Media Integration</h4><hr>",
+				"ui_mMediaInegration__line" : "<b>ProgressBar</b>",
+				"ui_mMediaInegration__progress" : "<b>Progress</b>",
+				"ui_medium" : "Medium",
+				"ui_music_1_dir_2" : "2 side",
+				"ui_music_1_dir_in" : "In",
+				"ui_music_1_dir_out" : "Out",
+				"ui_music_1_low_round" : "Semicircle ",
+				"ui_music_1_size" : "Size",
+				"ui_music_1_text" : "----[Circle] 1----",
+				"ui_music_2_1_dot" : "1st dot",
+				"ui_music_2_2_dot" : "2d dot",
+				"ui_music_2_ball_text" : "<small>●  Balls settings</small>",
+				"ui_music_2_dot_in" : "In ring",
+				"ui_music_2_dot_out" : "Out ring",
+				"ui_music_2_dot_static" : "Static right",
+				"ui_music_2_in_ring" : "Show interior ring",
+				"ui_music_2_lenght" : "Distance from rings",
+				"ui_music_2_line_text" : "<small>●  Lines settings</small>",
+				"ui_music_2_mouse" : "Mouse set",
+				"ui_music_2_out_ring" : "Show external ring",
+				"ui_music_2_ring" : "Show ring",
+				"ui_music_2_smash_text" : "<small>●  Smoothing settings </small>",
+				"ui_music_2_stat_ring" : "Show static ring",
+				"ui_music_2_text" : "----[Circle] 2----",
+				"ui_music_3_dir_down" : "Vertical",
+				"ui_music_3_dir_up" : "Horizontal",
+				"ui_music_3_line" : "Line",
+				"ui_music_3_text" : "----[Line] 1----",
+				"ui_music_count" : "Numer bar",
+				"ui_music_monstercat_barWidth" : "Bar Width",
+				"ui_music_monstercat_double" : "Mirror repetition",
+				"ui_music_monstercat_reverse" : "Flip",
+				"ui_music_style" : "Style",
+				"ui_music_style_type" : "Typical",
+				"ui_music_style_up" : "Tops",
+				"ui_music_style_up_no_line" : "Non-line tops",
+				"ui_music_text" : "<hr><h4>●  Equalizer</h4><hr>",
+				"ui_music_type" : "Equalizer type",
+				"ui_music_type_0" : "None",
+				"ui_music_type_1" : "[Circle] 1",
+				"ui_music_type_2" : "[Circle] 2",
+				"ui_music_type_3" : "[Line] 1",
+				"ui_music_type_4" : "[MonsterCat]",
+				"ui_music_type_5" : "[Coming]",
+				"ui_music_type_6" : "[Coming]",
+				"ui_music_type_7" : "[Coming]",
+				"ui_music_type_8" : "[Coming]",
+				"ui_music_type_9" : "[Coming]",
+				"ui_new_reactor" : "CWAV UI",
+				"ui_note" : "<hr><h4>●  Note</h4><hr>",
+				"ui_note_inner" : "Text note",
+				"ui_off" : "Off",
+				"ui_posX" : "Position X",
+				"ui_posY" : "Position Y",
+				"ui_radius" : "Radius",
+				"ui_reactor_code" : "Offline code",
+				"ui_reactor_link" : "Link code for online",
+				"ui_reactor_text" : "<small>This functionality is in the Alpha Closed Test. For more details, see steam, discord.</small>",
+				"ui_reactor_web" : "Loading preset from web",
+				"ui_right" : "Right",
+				"ui_rounding" : "Rotation",
+				"ui_sens" : "Sensitivity",
+				"ui_setting_colortheme" : "Color theme Windows",
+				"ui_size" : "Size",
+				"ui_small" : "Small",
+				"ui_smash" : "Smoothing",
+				"ui_space" : "Space",
+				"ui_time_24" : "24 Hour",
+				"ui_time_date" : "Date",
+				"ui_time_date_format" : "Date format",
+				"ui_time_date_text" : "<small>★You can change date format manually <br />{DD} {MM} {YYYY}<br />{week} {wek} {month} {,}<br />For example:{month} {DD}<br />Результат: September 20</small>",
+				"ui_time_dot1" : "Dot flashing",
+				"ui_time_dot2" : "Colon flashing",
+				"ui_time_glitch_bg" : "Background glitches",
+				"ui_time_sec" : "Seconds",
+				"ui_time_text" : "<hr><h4>● Time settings</h4><hr>",
+				"ui_time_text_date" : "-----Date settings-----",
+				"ui_time_text_time" : "-----Clock settings-----",
+				"ui_time_time" : "Time",
+				"ui_time_type" : "Style clock",
+				"ui_time_type_classic" : "Classic",
+				"ui_time_type_digital" : "Digital",
+				"ui_time_type_glitch" : "Glitch",
+				"ui_time_type_slide" : "Slider",
+				"ui_transparency" : "Transparency",
+				"ui_weather_api" : "Primary APIkey",
+				"ui_weather_city" : "City",
+				"ui_weather_city_text" : "<small>City(zip-cod, ip, cordin) for example: Moscow</small>",
+				"ui_weather_fahrenheit" : "Fahrenheit",
+				"ui_weather_format" : "Weather format",
+				"ui_weather_format_text" : "<small>★You can change weather format manually <br />{city} {temp} {feels} {,}<br />{pressure} {wind} {winddir} {uv_index}<br />{weather} {precip} {humidity} {visibility}<br />For example: {temp}℃, feels {feels}℃ and now  {weather}<br />Result: 26℃, feels 24℃ and now Cloudy</small>",
+				"ui_weather_metric" : "Metric",
+				"ui_weather_scientific" : "Scientific",
+				"ui_weather_secondary_api" : "Secondary APIkey",
+				"ui_weather_slow_dis" : "Slow update: 2t/h",
+				"ui_weather_slow_en" : "Slow update: 1t/h",
+				"ui_weather_text" : "<hr><h4>●  Weather</h4><hr>",
+				"ui_weather_units" : "Units"
+			},
+			"ru-ru" : 
+			{
+				"ui_alignment" : "Выравнивание",
+				"ui_background_mode" : "Режим обоев",
+				"ui_background_mode_img" : "Изображение",
+				"ui_background_mode_img_custom" : "Кастомный фон",
+				"ui_background_mode_img_custom_fg" : "Передний фон",
+				"ui_background_mode_img_size" : "Выравнивание",
+				"ui_background_mode_img_size_adapt" : "Адаптивно",
+				"ui_background_mode_img_size_center" : "Центр",
+				"ui_background_mode_img_size_fg" : "Выравнивание переднего фона",
+				"ui_background_mode_img_size_fill" : "Заполнить",
+				"ui_background_mode_img_size_repiat" : "Повтор",
+				"ui_background_mode_img_size_stretch" : "Растянуть",
+				"ui_background_mode_slide" : "Слайд шоу",
+				"ui_background_mode_slide_custom" : "Папка слайд шоу",
+				"ui_background_mode_slide_rundom" : "Случайный порядок",
+				"ui_background_mode_slide_time" : "Время смены обоев",
+				"ui_background_mode_slide_time_10_min" : "10 минут",
+				"ui_background_mode_slide_time_10_sec" : "10 секунд",
+				"ui_background_mode_slide_time_1_h" : "1 час",
+				"ui_background_mode_slide_time_1_min" : "1 минута",
+				"ui_background_mode_slide_time_30_min" : "30 минут",
+				"ui_background_mode_slide_time_5_min" : "5 минут",
+				"ui_background_mode_stand" : "Стандартные обои",
+				"ui_background_mode_video" : "Видео",
+				"ui_background_mode_video_custom" : "Кастомное видео",
+				"ui_background_mode_video_stand" : "Видео с мастерской",
+				"ui_background_mode_video_text" : "<small>★Видео должен быть форматом webm.</small>",
+				"ui_background_mode_video_volume" : "Громкость",
+				"ui_background_text" : "<hr><h4>●  Настройки фона</h4><hr>",
+				"ui_blur_gradient" : "Свечение градиента",
+				"ui_blur_size" : "Размер свечения",
+				"ui_blur_spid" : "Скорость переливания",
+				"ui_center" : "Центр",
+				"ui_color" : "Цвет",
+				"ui_color__highContrastColor" : "Высокий контраст <small>Черный или белый, в зависимости от того, что имеет больший контраст с основным цветом.</small>",
+				"ui_color__primaryColor" : "Основной цвет",
+				"ui_color__secondaryColor" : "Дополнительный цвет",
+				"ui_color__tertiaryColor" : "Третичный цвет",
+				"ui_color__textColor" : "Цвет текста <small>Гарантируется достаточный контраст с основным цветом.</small>",
+				"ui_color_blur" : "Цвет свечения",
+				"ui_color_blur_type" : "Цвет свечения",
+				"ui_color_rhythm" : "Цвет Rhythm",
+				"ui_color_type" : "Режим цвета",
+				"ui_color_type_chromo" : "Chromo",
+				"ui_color_type_gradient" : "Градиент",
+				"ui_color_type_mono" : "Статичный",
+				"ui_count" : "Количество",
+				"ui_dir" : "Направление",
+				"ui_dir_x" : "Направление X",
+				"ui_dir_y" : "Направление Y",
+				"ui_disable" : "<span class='ugcDanger'>Выключено</span>",
+				"ui_effect_blur" : "Coming Soon",
+				"ui_effect_bounce" : "Coming Soon",
+				"ui_effect_colorshift" : "Coming Soon",
+				"ui_effect_glitch" : "Coming Soon",
+				"ui_effect_hilight" : "Coming Soon",
+				"ui_effect_parcticl_dir_down" : "Вниз",
+				"ui_effect_parcticl_dir_downl" : "Вниз-влево",
+				"ui_effect_parcticl_dir_downr" : "Вниз-вправо",
+				"ui_effect_parcticl_dir_l" : "Влево",
+				"ui_effect_parcticl_dir_none" : "Нет",
+				"ui_effect_parcticl_dir_r" : "Вправо",
+				"ui_effect_parcticl_dir_up" : "Вверх",
+				"ui_effect_parcticl_dir_upl" : "Вверх-влево",
+				"ui_effect_parcticl_dir_upr" : "Вверх-вправо",
+				"ui_effect_parcticl_form_custom" : "Кастомное",
+				"ui_effect_parcticl_form_custom_file" : "Кастомное изобр.",
+				"ui_effect_parcticl_form_round" : "Круг",
+				"ui_effect_parcticl_form_snow" : "Снегопад",
+				"ui_effect_parcticl_form_square" : "Квадрат",
+				"ui_effect_parcticl_form_star" : "Звезда",
+				"ui_effect_parcticl_form_triangle" : "Треугольник",
+				"ui_effect_parcticl_go" : "Движение ровно",
+				"ui_effect_parcticl_line" : "🠞Линии",
+				"ui_effect_parcticl_line_color" : "Цвет линий",
+				"ui_effect_parcticl_line_leght" : "Длина линий",
+				"ui_effect_parcticl_line_size" : "Размер линий",
+				"ui_effect_parcticl_line_transpent" : "Прозрачность линий",
+				"ui_effect_parcticl_mirror" : "Зеркальное движение",
+				"ui_effect_parcticl_mode_move" : "Режим движения",
+				"ui_effect_parcticl_mode_move_in" : "Внутри",
+				"ui_effect_parcticl_mode_move_out" : "За экран",
+				"ui_effect_parcticl_move" : "🠞Движение частиц",
+				"ui_effect_parcticl_music_bass" : "Басс",
+				"ui_effect_parcticl_music_mezzo_soprano" : "Меццо Сопрано",
+				"ui_effect_parcticl_music_soprano" : "Сопрано",
+				"ui_effect_parcticl_music_speed" : "Движение частиц от музыки",
+				"ui_effect_parcticl_music_strengh" : "Влияние музыки",
+				"ui_effect_parcticl_music_tenor" : "Тенор",
+				"ui_effect_parcticl_music_tone" : "Диапазон частот",
+				"ui_effect_parcticl_random" : "Разброс прозрачности",
+				"ui_effect_parcticl_random_size" : "Разброс размера",
+				"ui_effect_parcticl_random_speed" : "Разброс скорости",
+				"ui_effect_parcticl_size" : "Размер частиц",
+				"ui_effect_parcticl_speed" : "Скорость",
+				"ui_effect_parcticl_text" : "🠞Частицы",
+				"ui_effect_text" : "<hr><h4>●  Настройка эффектов</h4><hr>",
+				"ui_enable" : "<span class='ugcSuccess'>Включено</span>",
+				"ui_font" : "Шрифт",
+				"ui_font_dir" : "File .ttf (.png)",
+				"ui_form" : "Форма",
+				"ui_gradient_color" : "Цвет градиент",
+				"ui_height" : "Высота",
+				"ui_large" : "Большой",
+				"ui_left" : "Слева",
+				"ui_medium" : "Средний",
+				"ui_music_1_dir_2" : "В обе стороны",
+				"ui_music_1_dir_in" : "Внутрь",
+				"ui_music_1_dir_out" : "Снаружи",
+				"ui_music_1_low_round" : "Полукруг",
+				"ui_music_1_size" : "Толщина секций",
+				"ui_music_1_text" : "----[Круг] 1----",
+				"ui_music_2_1_dot" : "Первая точка",
+				"ui_music_2_2_dot" : "Вторая точка",
+				"ui_music_2_ball_text" : "<small>●  Настройки  шаров</small>",
+				"ui_music_2_dot_in" : "Внутреннее кольцо",
+				"ui_music_2_dot_out" : "Внешенее кольцо",
+				"ui_music_2_dot_static" : "Статичное кольцо",
+				"ui_music_2_in_ring" : "Показывать внутреннее кольцо",
+				"ui_music_2_lenght" : "Растояние от колец",
+				"ui_music_2_line_text" : "<small>●  Настройки линий</small>",
+				"ui_music_2_mouse" : "Установка мышью",
+				"ui_music_2_out_ring" : "Показывать наружнее кольцо",
+				"ui_music_2_ring" : "Показывать кольцо",
+				"ui_music_2_smash_text" : "<small>●  Настройки плавности</small>",
+				"ui_music_2_stat_ring" : "Показывать статичное кольцо",
+				"ui_music_2_text" : "----[Круг] 2----",
+				"ui_music_3_dir_down" : "Вертикально",
+				"ui_music_3_dir_up" : "Горизонтально",
+				"ui_music_3_line" : "Линия",
+				"ui_music_3_text" : "----[Линия] 1----",
+				"ui_music_count" : "Количество секций",
+				"ui_music_monstercat_barWidth" : "Ширина делений",
+				"ui_music_monstercat_double" : "Зеркальное повторение",
+				"ui_music_monstercat_reverse" : "Перевернуть",
+				"ui_music_style" : "Стиль",
+				"ui_music_style_type" : "Типичный",
+				"ui_music_style_up" : "Вершины",
+				"ui_music_style_up_no_line" : "Вершины без линий",
+				"ui_music_text" : "<hr><h4>●  Эквалайзер</h4><hr>",
+				"ui_music_type" : "Тип эквалайзера",
+				"ui_music_type_0" : "Нет",
+				"ui_music_type_1" : "[Круг] 1",
+				"ui_music_type_2" : "[Круг] 2",
+				"ui_music_type_3" : "[Линия] 1",
+				"ui_music_type_4" : "[MonsterCat]",
+				"ui_music_type_5" : "[Coming]",
+				"ui_music_type_6" : "[Coming]",
+				"ui_music_type_7" : "[Coming]",
+				"ui_music_type_8" : "[Coming]",
+				"ui_music_type_9" : "[Coming]",
+				"ui_new_reactor" : "CWAV UI",
+				"ui_note" : "<hr><h4>●  Текст</h4><hr>",
+				"ui_note_inner" : "Текст",
+				"ui_off" : "Выключено",
+				"ui_posX" : "Позиция X",
+				"ui_posY" : "Позиция Y",
+				"ui_radius" : "Радиус",
+				"ui_reactor_code" : "Локальный код",
+				"ui_reactor_link" : "Код для загрузки кода",
+				"ui_reactor_text" : "<small>Данный функцианал находиться в Alpha Closed Test. Более подробно вы можете ознакомится в steam, discord.</small>",
+				"ui_reactor_web" : "Загружать пресеты из интернета",
+				"ui_right" : "Справа",
+				"ui_rounding" : "Вращение",
+				"ui_sens" : "Чувствительность",
+				"ui_setting_colortheme" : "Цветовая схема",
+				"ui_size" : "Размер",
+				"ui_small" : "Маленький",
+				"ui_smash" : "Сглаживание",
+				"ui_space" : "Пропуск",
+				"ui_time_24" : "24-часа",
+				"ui_time_date" : "Дата",
+				"ui_time_date_format" : "Формат даты",
+				"ui_time_date_text" : "<small>★Формат даты можно прописать вручную <br />{DD} {MM} {YYYY} {,}<br />{week} {wek} {неделя} {нд}<br />{месяц}  {month}<br />Например:{месяц} {DD}<br />Результат: Сентябрь 20</small>",
+				"ui_time_dot1" : "Мигание точки",
+				"ui_time_dot2" : "Мигание двоеточего",
+				"ui_time_glitch_bg" : "Глюки заднего фона",
+				"ui_time_sec" : "Секунды",
+				"ui_time_text" : "<hr><h4>●  Настройки времени</h4><hr>",
+				"ui_time_text_date" : "------Настройка  даты------",
+				"ui_time_text_time" : "-----Настройка часов-----",
+				"ui_time_time" : "Время",
+				"ui_time_type" : "Стиль часов",
+				"ui_time_type_classic" : "Классические",
+				"ui_time_type_digital" : "Цифровые",
+				"ui_time_type_glitch" : "Глючные",
+				"ui_time_type_slide" : "Слайдеры",
+				"ui_transparency" : "Прозрачность",
+				"ui_weather_api" : "Основной APIkey",
+				"ui_weather_city" : "Город",
+				"ui_weather_city_text" : "<small>★Город(zip-cod, ip, cordin) должен быть на англ. например: Moscow</small>",
+				"ui_weather_fahrenheit" : "Фаренгейт",
+				"ui_weather_format" : "Формат погоды",
+				"ui_weather_format_text" : "<small>★Формат погоды можно прописать вручную <br />{city} {temp} {feels} {,}<br />{pressure} {wind} {winddir} {uv_index}<br />{weather} {precip} {humidity} {visibility}<br />Например: {temp}℃, по ощущениям {feels}℃ и сейчас {weather}<br />Результат: 26℃, по ощущениям 24℃ и сейчас Cloudy</small>",
+				"ui_weather_metric" : "Метрические",
+				"ui_weather_scientific" : "Научные",
+				"ui_weather_secondary_api" : "Дополнительный APIkey",
+				"ui_weather_slow_dis" : "Медленное обновление: 2р/ч",
+				"ui_weather_slow_en" : "Медленное обновление: 1р/ч",
+				"ui_weather_text" : "<hr><h4>●  Погода</h4><hr>",
+				"ui_weather_units" : "Единицы измерения",
+				"ui_widht" : "Ширина"
+			},
+			"uk-ua" : 
+			{
+				"ui_alignment" : "Вирівнювання",
+				"ui_background_mode" : "Режим тла",
+				"ui_background_mode_img" : "Зображення",
+				"ui_background_mode_img_custom" : "Кастомний фон",
+				"ui_background_mode_img_custom_fg" : "Передній фон",
+				"ui_background_mode_img_size" : "Вирівнювання",
+				"ui_background_mode_img_size_adapt" : "Адаптивно",
+				"ui_background_mode_img_size_center" : "Центр",
+				"ui_background_mode_img_size_fg" : "Вирівнювання переднього фону",
+				"ui_background_mode_img_size_fill" : "Заповнити",
+				"ui_background_mode_img_size_repiat" : "Повтор",
+				"ui_background_mode_img_size_stretch" : "Розтянути",
+				"ui_background_mode_slide" : "Слайд-шоу",
+				"ui_background_mode_slide_custom" : "Папка слайд-шоу",
+				"ui_background_mode_slide_rundom" : "Випадковий порядок",
+				"ui_background_mode_slide_time" : "Час зміни тла",
+				"ui_background_mode_slide_time_10_min" : "10 хвилин",
+				"ui_background_mode_slide_time_1_h" : "1 година",
+				"ui_background_mode_slide_time_1_min" : "1 хвилина",
+				"ui_background_mode_slide_time_30_min" : "30 хвилин",
+				"ui_background_mode_slide_time_5_min" : "5 хвилин",
+				"ui_background_mode_stand" : "Стандартне тло",
+				"ui_background_mode_video" : "Відео",
+				"ui_background_mode_video_custom" : "Кастомне відео",
+				"ui_background_mode_video_stand" : "Відео з майстерні",
+				"ui_background_mode_video_text" : "<small>★Відео повинно бути формату .webm</small>",
+				"ui_background_mode_video_volume" : "Гучність",
+				"ui_background_text" : "<hr><h4>●  Налаштування фону</h4><hr>",
+				"ui_blur_gradient" : "Світіння градієнту",
+				"ui_blur_size" : "Розмір світіння",
+				"ui_blur_spid" : "Швидкість переливання",
+				"ui_center" : "Центр",
+				"ui_color" : "Колір",
+				"ui_color__highContrastColor" : "Високий контраст <small>Чорний або білий, залежно від того, що має більший контраст з основним кольором.</small>",
+				"ui_color__primaryColor" : "Основний колір",
+				"ui_color__secondaryColor" : "Додатковий колір",
+				"ui_color__tertiaryColor" : "Третинний колір",
+				"ui_color__textColor" : "Колір тексту <small>Гарантується достатній контраст з основним кольором.</small>",
+				"ui_color_blur" : "Колір світіння",
+				"ui_color_blur_type" : "Колір світіння",
+				"ui_color_rhythm" : "Колір Rhythm",
+				"ui_color_type" : "Режим кольору",
+				"ui_color_type_chromo" : "Chromo",
+				"ui_color_type_gradient" : "Градієнт",
+				"ui_color_type_mono" : "Статичний",
+				"ui_count" : "Кількість",
+				"ui_dir" : "Напрямок",
+				"ui_dir_x" : "Напрямок X",
+				"ui_dir_y" : "Напрямок Y",
+				"ui_disable" : "<span class='ugcDanger'>Вимкнено</span>",
+				"ui_effect_blur" : "Coming Soon",
+				"ui_effect_bounce" : "Coming Soon",
+				"ui_effect_colorshift" : "Coming Soon",
+				"ui_effect_glitch" : "Coming Soon",
+				"ui_effect_hilight" : "Coming Soon",
+				"ui_effect_parcticl_dir_down" : "Вниз",
+				"ui_effect_parcticl_dir_downl" : "Вниз-вліво",
+				"ui_effect_parcticl_dir_downr" : "Вниз-вправо",
+				"ui_effect_parcticl_dir_l" : "Вліво",
+				"ui_effect_parcticl_dir_none" : "Ні(Нема)",
+				"ui_effect_parcticl_dir_r" : "Вправо",
+				"ui_effect_parcticl_dir_up" : "Вверх",
+				"ui_effect_parcticl_dir_upl" : "Вверх-вліво",
+				"ui_effect_parcticl_dir_upr" : "Вверх-вправо",
+				"ui_effect_parcticl_form_custom" : "Кастомна",
+				"ui_effect_parcticl_form_custom_file" : "Кастомне зобр.",
+				"ui_effect_parcticl_form_round" : "Коло",
+				"ui_effect_parcticl_form_snow" : "Снігопад",
+				"ui_effect_parcticl_form_square" : "Квадрат",
+				"ui_effect_parcticl_form_star" : "Зірка",
+				"ui_effect_parcticl_form_triangle" : "Трикутник",
+				"ui_effect_parcticl_go" : "Статично",
+				"ui_effect_parcticl_line" : "🠞Лінії",
+				"ui_effect_parcticl_line_color" : "Колір ліній",
+				"ui_effect_parcticl_line_leght" : "Довжина ліній",
+				"ui_effect_parcticl_line_size" : "Розмір ліній",
+				"ui_effect_parcticl_line_transpent" : "Прозорість ліній",
+				"ui_effect_parcticl_mirror" : "Дзеркальний рух",
+				"ui_effect_parcticl_mode_move" : "Режим руху",
+				"ui_effect_parcticl_mode_move_in" : "Всередині",
+				"ui_effect_parcticl_mode_move_out" : "За екран",
+				"ui_effect_parcticl_move" : "🠞Рух частинок",
+				"ui_effect_parcticl_music_bass" : "Бас",
+				"ui_effect_parcticl_music_mezzo_soprano" : "Меццо Сопрано",
+				"ui_effect_parcticl_music_soprano" : "Сопрано",
+				"ui_effect_parcticl_music_speed" : "Рух частинок від музики",
+				"ui_effect_parcticl_music_strengh" : "Вплив музики",
+				"ui_effect_parcticl_music_tenor" : "Тенор",
+				"ui_effect_parcticl_music_tone" : "Діапазон частот",
+				"ui_effect_parcticl_random" : "Розкид прозорості",
+				"ui_effect_parcticl_random_size" : "Розкид розміру",
+				"ui_effect_parcticl_random_speed" : "Розкид швидкості",
+				"ui_effect_parcticl_size" : "Розмір частинок",
+				"ui_effect_parcticl_speed" : "Швидкість",
+				"ui_effect_parcticl_text" : "🠞Частинки",
+				"ui_effect_text" : "<hr><h4>●  Налаштування ефектів</h4><hr>",
+				"ui_enable" : "<span class='ugcSuccess'>Увімкнено</span>",
+				"ui_font" : "Шрифт",
+				"ui_font_dir" : "File .ttf (.png)",
+				"ui_form" : "Форма",
+				"ui_gradient_color" : "Колір градієнту",
+				"ui_height" : "Висота",
+				"ui_large" : "Великий",
+				"ui_left" : "Зліва",
+				"ui_medium" : "Середній",
+				"ui_music_1_dir_2" : "В обидві сторони",
+				"ui_music_1_dir_in" : "Всередину",
+				"ui_music_1_dir_out" : "Ззовні",
+				"ui_music_1_low_round" : "Напівколо",
+				"ui_music_1_size" : "Товщина секцій",
+				"ui_music_1_text" : "----[Коло] 1----",
+				"ui_music_2_1_dot" : "Перша крапка",
+				"ui_music_2_2_dot" : "Друга крапка",
+				"ui_music_2_ball_text" : "<small>●  Налаштування кульок</small>",
+				"ui_music_2_dot_in" : "Внутрішнє кільце",
+				"ui_music_2_dot_out" : "Зовнішнє кільце",
+				"ui_music_2_dot_static" : "Статичне кільце",
+				"ui_music_2_in_ring" : "Показувати внутрішнє кільце",
+				"ui_music_2_lenght" : "Відстань від кілець",
+				"ui_music_2_line_text" : "<small>●  Налаштування лінії</small>",
+				"ui_music_2_mouse" : "Встановлення мишкою",
+				"ui_music_2_out_ring" : "Показувати зовнішнє кільце",
+				"ui_music_2_ring" : "Показувати кільце",
+				"ui_music_2_smash_text" : "<small>●  Налаштування плавності</small>",
+				"ui_music_2_stat_ring" : "Показувати статичне кільце",
+				"ui_music_2_text" : "----[Коло] 2----",
+				"ui_music_3_dir_down" : "Вертикально",
+				"ui_music_3_dir_up" : "Горизонтально",
+				"ui_music_3_line" : "Лінія",
+				"ui_music_3_text" : "----[Лінія] 1----",
+				"ui_music_count" : "Кількість секцій",
+				"ui_music_monstercat_barWidth" : "Ширина поділу",
+				"ui_music_monstercat_double" : "Дзеркальне повторення",
+				"ui_music_monstercat_reverse" : "Перевернути",
+				"ui_music_style" : "Стиль",
+				"ui_music_style_type" : "Типовий",
+				"ui_music_style_up" : "Вершини",
+				"ui_music_style_up_no_line" : "Вершини без ліній",
+				"ui_music_text" : "<hr><h4>●  Еквалайзер</h4><hr>",
+				"ui_music_type" : "Тип еквалайзера",
+				"ui_music_type_0" : "Нема",
+				"ui_music_type_1" : "[Коло] 1",
+				"ui_music_type_2" : "[Коло] 2",
+				"ui_music_type_3" : "[Лінія] 1",
+				"ui_music_type_4" : "[MonsterCat]",
+				"ui_music_type_5" : "[Coming]",
+				"ui_music_type_6" : "[Coming]",
+				"ui_music_type_7" : "[Coming]",
+				"ui_music_type_8" : "[Coming]",
+				"ui_music_type_9" : "[Coming]",
+				"ui_note" : "<hr><h4>●  Текст</h4><hr>",
+				"ui_note_inner" : "Текст",
+				"ui_off" : "Вимкнено",
+				"ui_posX" : "Позиція X",
+				"ui_posY" : "Позиція Y",
+				"ui_radius" : "Радіус",
+				"ui_right" : "Справа",
+				"ui_rounding" : "Обертання",
+				"ui_sens" : "Чутливість",
+				"ui_setting_colortheme" : "Схема кольорів",
+				"ui_size" : "Розмір",
+				"ui_small" : "Маленький",
+				"ui_smash" : "Згладжування",
+				"ui_space" : "Пропуск",
+				"ui_time_24" : "24 години",
+				"ui_time_date" : "Дата",
+				"ui_time_date_format" : "Формат дати",
+				"ui_time_date_text" : "<small>★Формат дати можна налаштувати самостійно <br />{DD} {MM} {YYYY} {,}<br />{week} {wek} {тиждень} {тжд}<br />{місяць}  {month}<br />Наприклад:{DD} {місяць}<br />Результат: 20 вересня</small>",
+				"ui_time_dot1" : "Миготіння крапки",
+				"ui_time_dot2" : "Миготіння двокрапки",
+				"ui_time_glitch_bg" : "Глюки заднього фона",
+				"ui_time_sec" : "Секунди",
+				"ui_time_text" : "<hr><h4>●  Налаштування часу</h4><hr>",
+				"ui_time_text_date" : "------Налаштування  дати------",
+				"ui_time_text_time" : "-----Налаштування годинника-----",
+				"ui_time_time" : "Час",
+				"ui_time_type" : "Стиль годинника",
+				"ui_time_type_classic" : "Класичний",
+				"ui_time_type_digital" : "Цифровий",
+				"ui_time_type_glitch" : "Глючний",
+				"ui_time_type_slide" : "Слайдер",
+				"ui_transparency" : "Прозорість",
+				"ui_weather_api" : "Основний APIkey",
+				"ui_weather_city" : "Місто",
+				"ui_weather_city_text" : "<small>★Місто(zip-cod, ip, cordin) повинно бути англ. Наприклад: Poltava</small>",
+				"ui_weather_fahrenheit" : "Фаренгейт",
+				"ui_weather_format" : "Формат погоди",
+				"ui_weather_format_text" : "<small>★Формат погоди можна налаштувати самостійно <br />{city} {temp} {feels} {,}<br />{pressure} {wind} {winddir} {uv_index}<br />{weather} {precip} {humidity} {visibility}<br />Наприклад: {temp}℃, відчувається як {feels}℃ і зараз {weather}<br />Результат: 26℃, відчувається як 24℃ і зараз Cloudy</small>",
+				"ui_weather_metric" : "Метрична",
+				"ui_weather_scientific" : "Наукова",
+				"ui_weather_secondary_api" : "Додатковий APIkey",
+				"ui_weather_slow_dis" : "Повільне оновлення: 2р/год",
+				"ui_weather_slow_en" : "Повільне оновлення: 1р/год",
+				"ui_weather_text" : "<hr><h4>●  Погода</h4><hr>",
+				"ui_weather_units" : "Одиниця вимірювання",
+				"ui_widht" : "Ширина"
+			}
+		},
+		"properties" : 
+		{
+			"BlurColorGradient" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && ColorMode.value == 2",
+				"order" : 60,
+				"text" : "ui_blur_gradient",
+				"type" : "bool",
+				"value" : true
+			},
+			"ColorMode" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"options" : 
+				[
+					{
+						"condition" : "PWLinePosition.value == 1",
+						"label" : "ui_color_type_mono",
+						"value" : 1
+					},
+					{
+						"condition" : "PWLinePosition.value == 1",
+						"label" : "ui_color_type_gradient",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color_type_chromo",
+						"value" : 3
+					}
+				],
+				"order" : 58,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"ColorRhythm" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && ColorMode.value == 3",
+				"order" : 61,
+				"text" : "ui_color_rhythm",
+				"type" : "bool",
+				"value" : true
+			},
+			"DateAlignment" : 
+			{
+				"condition" : "showDate.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 160.9,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "right"
+			},
+			"DateBlurColor" : 
+			{
+				"condition" : "showDate.value && DateColorRhythm.value != true",
+				"order" : 160.5,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "0.8 0.8 0.8"
+			},
+			"DateColor" : 
+			{
+				"condition" : "showDate.value && DateColorRhythm.value != true",
+				"order" : 160.4,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"DateFormat" : 
+			{
+				"condition" : "showDate.value",
+				"order" : 161,
+				"text" : "ui_time_date_format",
+				"type" : "textinput",
+				"value" : "{DD} {month} {YYYY}"
+			},
+			"DateSize" : 
+			{
+				"condition" : "showDate.value",
+				"max" : 50,
+				"min" : 10,
+				"order" : 162,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 17
+			},
+			"DateX" : 
+			{
+				"condition" : "showDate.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 163,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 59
+			},
+			"DateY" : 
+			{
+				"condition" : "showDate.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 164,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 56
+			},
+			"DefaultWallpaper" : 
+			{
+				"condition" : "wallpapermode.value == 1 || wallpapermode.value == 2",
+				"options" : 
+				[
+					{
+						"label" : "[UltraHD]Mountains",
+						"value" : 1
+					},
+					{
+						"label" : "[2K+]Mountains 2",
+						"value" : 2
+					},
+					{
+						"label" : "[UltraHD]Nier Automata",
+						"value" : 3
+					},
+					{
+						"label" : "[FullHD]The Older I Get",
+						"value" : 4
+					},
+					{
+						"label" : "[HHQ]Fern",
+						"value" : 5
+					},
+					{
+						"label" : "[UltraHD]Sky",
+						"value" : 6
+					},
+					{
+						"label" : "[UltraHD]Sky 2",
+						"value" : 7
+					},
+					{
+						"label" : "[FullHD]Nakano",
+						"value" : 8
+					},
+					{
+						"label" : "[UltraHD]Guns Girl",
+						"value" : 9
+					},
+					{
+						"label" : "[2K]桜 吹雪 の 中",
+						"value" : 10
+					},
+					{
+						"label" : "[2K]Wlop 1",
+						"value" : 11
+					},
+					{
+						"label" : "[4K]Wlop 2",
+						"value" : 12
+					},
+					{
+						"label" : "[2K]Wlop 3",
+						"value" : 13
+					},
+					{
+						"label" : "[UltraHD]Wlop 4",
+						"value" : 14
+					},
+					{
+						"label" : "[UltraHD]Wlop 5",
+						"value" : 15
+					},
+					{
+						"label" : "[FullHD]Wlop 6",
+						"value" : 16
+					},
+					{
+						"label" : "[FullHD]Wlop 7",
+						"value" : 17
+					},
+					{
+						"label" : "[UltraHD]Wlop 8",
+						"value" : 18
+					},
+					{
+						"label" : "[UltraHD]Wlop 9",
+						"value" : 19
+					},
+					{
+						"label" : "[UltraHD]Mountains 3",
+						"value" : 21
+					},
+					{
+						"label" : "[4K+]El Capitan",
+						"value" : 22
+					},
+					{
+						"label" : "[4K+]Forest",
+						"value" : 23
+					},
+					{
+						"label" : "[4K+]Forest 2",
+						"value" : 24
+					},
+					{
+						"label" : "[4K+]Landscape",
+						"value" : 25
+					},
+					{
+						"label" : "[4K+]Black Mountains",
+						"value" : 26
+					},
+					{
+						"label" : "[4K+]Black Mountains 2",
+						"value" : 27
+					},
+					{
+						"label" : "[4K+]Landscape 2",
+						"value" : 28
+					},
+					{
+						"label" : "[4K+]Forest 3",
+						"value" : 29
+					}
+				],
+				"order" : 11.5,
+				"text" : "ui_background_mode_stand",
+				"type" : "combo",
+				"value" : 2
+			},
+			"GlitchBG" : 
+			{
+				"condition" : "showTime.value && timeType.value == 2 && wallpapermode.value != 3",
+				"order" : 155.55,
+				"text" : "ui_time_glitch_bg",
+				"type" : "bool",
+				"value" : true
+			},
+			"GradientRate" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && ColorMode.value != 1",
+				"max" : 40,
+				"min" : 1,
+				"order" : 64,
+				"text" : "ui_blur_spid",
+				"type" : "slider",
+				"value" : 5
+			},
+			"PWLineBlurColor" : 
+			{
+				"condition" : "(visual_audio_model.value == 2 && (PWLineColorMode.value == 1 || PWLineColorMode.value == 3))||(PWLineColorMode.value == 2 && PWLineBlurColorGradient.value == false )",
+				"order" : 91,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 0.8 0.8"
+			},
+			"PWLineBlurColorGradient" : 
+			{
+				"condition" : "visual_audio_model.value == 2 && PWLineColorMode.value == 2",
+				"order" : 78,
+				"text" : "ui_blur_gradient",
+				"type" : "bool",
+				"value" : true
+			},
+			"PWLineColor" : 
+			{
+				"condition" : "visual_audio_model.value == 2 && PWLineColorMode.value == 1||(PWLineColorMode.value == 2 && PWLineSolidColorGradient.value == false )",
+				"order" : 90,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"PWLineColorMode" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"options" : 
+				[
+					{
+						"condition" : "PWLinePosition.value == 1",
+						"label" : "ui_color_type_mono",
+						"value" : 1
+					},
+					{
+						"condition" : "PWLinePosition.value == 1",
+						"label" : "ui_color_type_gradient",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color_type_chromo",
+						"value" : 3
+					}
+				],
+				"order" : 76,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"PWLineColorRhythm" : 
+			{
+				"condition" : "visual_audio_model.value == 2 && PWLineColorMode.value == 3",
+				"order" : 79,
+				"text" : "ui_color_rhythm",
+				"type" : "bool",
+				"value" : true
+			},
+			"PWLineDensity" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 12,
+				"min" : 1,
+				"order" : 71,
+				"text" : "ui_music_count",
+				"type" : "slider",
+				"value" : 12
+			},
+			"PWLineDirection" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"options" : 
+				[
+					{
+						"condition" : "PWLinePosition.value == 1",
+						"label" : "ui_effect_parcticl_dir_upl",
+						"value" : 1
+					},
+					{
+						"condition" : "PWLinePosition.value == 1",
+						"label" : "ui_effect_parcticl_dir_downr",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_1_dir_2",
+						"value" : 3
+					}
+				],
+				"order" : 68,
+				"text" : "ui_dir",
+				"type" : "combo",
+				"value" : 3
+			},
+			"PWLineGradientRate" : 
+			{
+				"condition" : "visual_audio_model.value == 2 && PWLineColorMode.value != 1",
+				"max" : 40,
+				"min" : 1,
+				"order" : 92,
+				"text" : "ui_blur_spid",
+				"type" : "slider",
+				"value" : 5
+			},
+			"PWLinePosition" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"options" : 
+				[
+					{
+						"label" : "ui_music_3_dir_up",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_3_dir_down",
+						"value" : 2
+					}
+				],
+				"order" : 66,
+				"text" : "ui_dir",
+				"type" : "combo",
+				"value" : 1
+			},
+			"PWLineRange" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 15,
+				"min" : 1,
+				"order" : 72,
+				"text" : "ui_sens",
+				"type" : "slider",
+				"value" : 8
+			},
+			"PWLineShow" : 
+			{
+				"condition" : "visual_audio_model.value == 2 ? PWLineShow.value ? PWLineShow.text = 'ui_enable' : PWLineShow.text = 'ui_disable' : false",
+				"order" : 65,
+				"text" : "ui_enable",
+				"type" : "bool",
+				"value" : true
+			},
+			"PWLineSolidColorGradient" : 
+			{
+				"condition" : "visual_audio_model.value == 2 && PWLineColorMode.value == 6",
+				"order" : 77,
+				"text" : "ui_gradient_color",
+				"type" : "bool",
+				"value" : true
+			},
+			"PWLineSpacing" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 10,
+				"min" : 0,
+				"order" : 70,
+				"text" : "ui_space",
+				"type" : "slider",
+				"value" : 8
+			},
+			"PWLineStyle" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"options" : 
+				[
+					{
+						"label" : "ui_music_style_type",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_style_up",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_style_up_no_line",
+						"value" : 3
+					}
+				],
+				"order" : 67,
+				"text" : "ui_music_style",
+				"type" : "combo",
+				"value" : 1
+			},
+			"PWLineTransparency" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 100,
+				"min" : 0,
+				"order" : 73,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 80
+			},
+			"PWLineWidth" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 10,
+				"min" : 1,
+				"order" : 69,
+				"text" : "ui_music_1_size",
+				"type" : "slider",
+				"value" : 9
+			},
+			"PWLineX" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 1000,
+				"min" : 0,
+				"order" : 74,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 500
+			},
+			"PWLineY" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"max" : 1000,
+				"min" : 0,
+				"order" : 75,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 500
+			},
+			"PWMiddleLine" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"order" : 68.5,
+				"text" : "ui_music_3_line",
+				"type" : "bool",
+				"value" : false
+			},
+			"PolygonAngle" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && showSemiCircle.value == false",
+				"max" : 12,
+				"min" : 1,
+				"order" : 50,
+				"text" : "ui_music_count",
+				"type" : "slider",
+				"value" : 12
+			},
+			"SemiCircledirection" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && showSemiCircle.value",
+				"max" : 360,
+				"min" : 0,
+				"order" : 47,
+				"text" : "ui_dir",
+				"type" : "slider",
+				"value" : 180
+			},
+			"SolidColorGradient" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && ColorMode.value == 6",
+				"order" : 59,
+				"text" : "Цвет градиента",
+				"type" : "bool",
+				"value" : true
+			},
+			"Text_Background_Options" : 
+			{
+				"order" : 10,
+				"text" : "ui_background_text",
+				"type" : "text"
+			},
+			"Text_Date_1" : 
+			{
+				"condition" : "showDate.value",
+				"order" : 161.1,
+				"text" : "ui_time_date_text",
+				"type" : "text"
+			},
+			"Text_SpecialEffects" : 
+			{
+				"order" : 30,
+				"text" : "ui_effect_text",
+				"type" : "text"
+			},
+			"Text_Visual_Time" : 
+			{
+				"order" : 150,
+				"text" : "ui_time_text",
+				"type" : "text"
+			},
+			"Text_Visual_audio" : 
+			{
+				"order" : 40,
+				"text" : "ui_music_text",
+				"type" : "text"
+			},
+			"Text_explain17" : 
+			{
+				"condition" : "wallpapermode.value == 3",
+				"order" : 17,
+				"text" : "ui_background_mode_video_text",
+				"type" : "text"
+			},
+			"TimeBlurColor" : 
+			{
+				"condition" : "showTime.value && TimeColorRhythm.value != true && timeType.value != 2",
+				"order" : 155.6,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "0.8 0.8 0.8"
+			},
+			"TimeColor" : 
+			{
+				"condition" : "showTime.value && TimeColorRhythm.value != true",
+				"order" : 155.5,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"VideoVolume" : 
+			{
+				"condition" : "wallpapermode.value == 3",
+				"max" : 100,
+				"min" : 0,
+				"order" : 16,
+				"text" : "ui_background_mode_video_volume",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audio_AudioText" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 94.5,
+				"text" : "ui_music_2_smash_text",
+				"type" : "text"
+			},
+			"audio_BallText" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 95.5,
+				"text" : "ui_music_2_ball_text",
+				"type" : "text"
+			},
+			"audio_LineText" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 94.8,
+				"text" : "ui_music_2_line_text",
+				"type" : "text"
+			},
+			"audio_amplitude" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 30,
+				"min" : 1,
+				"order" : 94.6,
+				"text" : "ui_sens",
+				"type" : "slider",
+				"value" : 5
+			},
+			"audio_ballRotation" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isBall.value",
+				"max" : 60,
+				"min" : -60,
+				"order" : 95.9,
+				"text" : "ui_rounding",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audio_ballSize" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isBall.value",
+				"max" : 10,
+				"min" : 1,
+				"order" : 95.8,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 3
+			},
+			"audio_ballSpacer" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isBall.value",
+				"max" : 10,
+				"min" : 1,
+				"order" : 95.7,
+				"text" : "ui_space",
+				"type" : "slider",
+				"value" : 4
+			},
+			"audio_color" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 93.9,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"audio_decline" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 20,
+				"min" : 0,
+				"order" : 94.7,
+				"text" : "ui_smash",
+				"type" : "slider",
+				"value" : 20
+			},
+			"audio_distance" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 100,
+				"min" : 0,
+				"order" : 95.3,
+				"text" : "ui_music_2_lenght",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audio_firstPoint" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isLineTo.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_music_2_dot_static",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_2_dot_in",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_2_dot_out",
+						"value" : 3
+					}
+				],
+				"order" : 95,
+				"text" : "ui_music_2_1_dot",
+				"type" : "combo",
+				"value" : 2
+			},
+			"audio_isBall" : 
+			{
+				"condition" : "visual_audio_model.value == 3 ? audio_isBall.value ? audio_isBall.text = 'ui_enable' : audio_isBall.text = 'ui_disable' : false",
+				"order" : 95.6,
+				"text" : "ui_enable",
+				"type" : "bool",
+				"value" : true
+			},
+			"audio_isClickOffset" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 94.2,
+				"text" : "ui_music_2_mouse",
+				"type" : "bool",
+				"value" : false
+			},
+			"audio_isInnerRing" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 93.4,
+				"text" : "ui_music_2_in_ring",
+				"type" : "bool",
+				"value" : true
+			},
+			"audio_isLineTo" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 94.9,
+				"text" : "ui_effect_parcticl_line",
+				"type" : "bool",
+				"value" : false
+			},
+			"audio_isOuterRing" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 93.5,
+				"text" : "ui_music_2_out_ring",
+				"type" : "bool",
+				"value" : true
+			},
+			"audio_isRing" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 93.2,
+				"text" : "ui_music_2_ring",
+				"type" : "bool",
+				"value" : true
+			},
+			"audio_isStaticRing" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 93.3,
+				"text" : "ui_music_2_stat_ring",
+				"type" : "bool",
+				"value" : false
+			},
+			"audio_lineWidth" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 10,
+				"min" : 1,
+				"order" : 95.4,
+				"text" : "ui_music_1_size",
+				"type" : "slider",
+				"value" : 5
+			},
+			"audio_offsetX" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isClickOffset.value == false",
+				"max" : 1000,
+				"min" : 0,
+				"order" : 94.3,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 500
+			},
+			"audio_offsetY" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isClickOffset.value == false",
+				"max" : 1000,
+				"min" : 0,
+				"order" : 94.4,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 500
+			},
+			"audio_opacity" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 100,
+				"min" : 0,
+				"order" : 93.8,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 90
+			},
+			"audio_pointNum" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 120,
+				"min" : 3,
+				"order" : 95.2,
+				"text" : "ui_music_count",
+				"type" : "slider",
+				"value" : 120
+			},
+			"audio_radius" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 1000,
+				"min" : 1,
+				"order" : 93.6,
+				"text" : "ui_radius",
+				"type" : "slider",
+				"value" : 500
+			},
+			"audio_ringRotation" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 60,
+				"min" : -60,
+				"order" : 93.7,
+				"text" : "ui_rounding",
+				"type" : "slider",
+				"value" : 0
+			},
+			"audio_secondPoint" : 
+			{
+				"condition" : "visual_audio_model.value == 3 && audio_isLineTo.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_music_2_dot_static",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_2_dot_in",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_2_dot_out",
+						"value" : 3
+					}
+				],
+				"order" : 95.1,
+				"text" : "ui_music_2_2_dot",
+				"type" : "combo",
+				"value" : 3
+			},
+			"audio_shadowBlur" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"max" : 10,
+				"min" : 0,
+				"order" : 94.1,
+				"text" : "ui_blur_size",
+				"type" : "slider",
+				"value" : 3
+			},
+			"audio_shadowColor" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 94,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"authorInformation" : 
+			{
+				"order" : 10000,
+				"text" : "<hr><small>Develop: FLomka<br/>Перевод на русский язык by FLomka.<br/>Translate English by FLomka.<br/>Переклад на українську зробив Ante Kruts.</small><br/><br/><a href='https://fonts.google.com/'><img src='https://i.imgur.com/zjEegVZ.png'></a><br /><a href='https://steamcommunity.com/workshop/filedetails/discussion/1509243786/2140840224668431912/'><img src='https://i.imgur.com/OqsTkxD.png'></a><br /><a href='https://discord.gg/KuNA3cu/'><img src='https://i.imgur.com/l3fiQ2Z.png'></a>",
+				"type" : "text"
+			},
+			"backgroundColor" : 
+			{
+				"condition" : "wallpapermode.value == 4",
+				"order" : 11.3,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "0.26 0.32 0.38"
+			},
+			"blurColor" : 
+			{
+				"condition" : "(visual_audio_model.value == 1 && (ColorMode.value == 1 || ColorMode.value == 3))||(ColorMode.value == 2 && BlurColorGradient.value == false )",
+				"order" : 63,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 0.8 0.8"
+			},
+			"cX" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"max" : 1000,
+				"min" : 0,
+				"order" : 55,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 500
+			},
+			"cY" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"max" : 1000,
+				"min" : 0,
+				"order" : 56,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 500
+			},
+			"clockFont" : 
+			{
+				"condition" : "showTime.value && timeType.value == 1",
+				"order" : 155.25,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : "Lato"
+			},
+			"clockFontDir" : 
+			{
+				"condition" : "(showTime.value && timeType.value == 1 && clockFont.value == 'custom') || clockFontDir.value != ''",
+				"order" : 155.27,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"color" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && ColorMode.value == 1||(ColorMode.value == 2 && SolidColorGradient.value == false )",
+				"order" : 62,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"customdirectory" : 
+			{
+				"condition" : "wallpapermode.value == 2",
+				"mode" : "fetchall",
+				"order" : 13,
+				"text" : "ui_background_mode_slide_custom",
+				"type" : "directory"
+			},
+			"dateFont" : 
+			{
+				"condition" : "showDate.value",
+				"order" : 160.17,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : "Lato"
+			},
+			"dateFontDir" : 
+			{
+				"condition" : "(showDate.value && dateFont.value == 'custom') || dateFontDir.value != ''",
+				"order" : 160.19,
+				"text" : "ui_font_dir",
+				"type" : "file"
+			},
+			"datetransparency" : 
+			{
+				"condition" : "showDate.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 160.16,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 80
+			},
+			"direction" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"options" : 
+				[
+					{
+						"label" : "ui_music_1_dir_out",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_1_dir_in",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_1_dir_2",
+						"value" : 3
+					}
+				],
+				"order" : 49,
+				"text" : "ui_dir",
+				"type" : "combo",
+				"value" : 1
+			},
+			"foreground" : 
+			{
+				"condition" : "wallpapermode.value == 1",
+				"order" : 12.5,
+				"text" : "ui_background_mode_img_custom_fg",
+				"type" : "file"
+			},
+			"foregroundDisplayStlye" : 
+			{
+				"condition" : "wallpapermode.value == 1",
+				"options" : 
+				[
+					{
+						"label" : "ui_background_mode_img_size_fill",
+						"value" : 1
+					},
+					{
+						"label" : "ui_background_mode_img_size_stretch",
+						"value" : 2
+					},
+					{
+						"label" : "ui_background_mode_img_size_adapt",
+						"value" : 3
+					},
+					{
+						"label" : "ui_background_mode_img_size_repiat",
+						"value" : 4
+					},
+					{
+						"label" : "ui_background_mode_img_size_center",
+						"value" : 5
+					}
+				],
+				"order" : 22.5,
+				"text" : "ui_background_mode_img_size_fg",
+				"type" : "combo",
+				"value" : 1
+			},
+			"image" : 
+			{
+				"condition" : "wallpapermode.value == 1",
+				"order" : 12,
+				"text" : "ui_background_mode_img_custom",
+				"type" : "file"
+			},
+			"imagedisplaystlye" : 
+			{
+				"condition" : "wallpapermode.value == 1",
+				"options" : 
+				[
+					{
+						"label" : "ui_background_mode_img_size_fill",
+						"value" : 1
+					},
+					{
+						"label" : "ui_background_mode_img_size_stretch",
+						"value" : 2
+					},
+					{
+						"label" : "ui_background_mode_img_size_adapt",
+						"value" : 3
+					},
+					{
+						"label" : "ui_background_mode_img_size_repiat",
+						"value" : 4
+					},
+					{
+						"label" : "ui_background_mode_img_size_center",
+						"value" : 5
+					}
+				],
+				"order" : 22,
+				"text" : "ui_background_mode_img_size",
+				"type" : "combo",
+				"value" : 1
+			},
+			"imageswitchtimes" : 
+			{
+				"condition" : "wallpapermode.value == 2",
+				"options" : 
+				[
+					{
+						"label" : "ui_background_mode_slide_time_10_sec",
+						"value" : 0.16
+					},
+					{
+						"label" : "ui_background_mode_slide_time_1_min",
+						"value" : 1
+					},
+					{
+						"label" : "ui_background_mode_slide_time_5_min",
+						"value" : 5
+					},
+					{
+						"label" : "ui_background_mode_slide_time_10_min",
+						"value" : 10
+					},
+					{
+						"label" : "ui_background_mode_slide_time_30_min",
+						"value" : 30
+					},
+					{
+						"label" : "ui_background_mode_slide_time_1_h",
+						"value" : 60
+					}
+				],
+				"order" : 19,
+				"text" : "ui_background_mode_slide_time",
+				"type" : "combo",
+				"value" : 1
+			},
+			"line155" : 
+			{
+				"condition" : "showTime.value",
+				"order" : 155.1,
+				"text" : "ui_time_text_time",
+				"type" : "text"
+			},
+			"line160" : 
+			{
+				"condition" : "showDate.value",
+				"order" : 160.1,
+				"text" : "ui_time_text_date",
+				"type" : "text"
+			},
+			"line42" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"order" : 42,
+				"text" : "ui_music_1_text",
+				"type" : "text"
+			},
+			"line43" : 
+			{
+				"condition" : "visual_audio_model.value == 2",
+				"order" : 43,
+				"text" : "ui_music_3_text",
+				"type" : "text"
+			},
+			"line83" : 
+			{
+				"condition" : "visual_audio_model.value == 3",
+				"order" : 93,
+				"text" : "ui_music_2_text",
+				"type" : "text"
+			},
+			"lineWidth" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"max" : 10,
+				"min" : 1,
+				"order" : 52,
+				"text" : "ui_music_1_size",
+				"type" : "slider",
+				"value" : 9
+			},
+			"mMediaInegration_Artist" : 
+			{
+				"condition" : "mMediaInegration_Enable.value",
+				"order" : 8230,
+				"text" : "ui_mMediaInegration__artist",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_ArtistAlignment" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 8260,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "center"
+			},
+			"mMediaInegration_ArtistColor" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value && mMediaInegration_ArtistColorType.value == 1",
+				"order" : 8280,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_ArtistColorBlur" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value && mMediaInegration_ArtistColorBlurType.value == 1",
+				"order" : 8300,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_ArtistColorBlurType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8290,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_ArtistColorType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8270,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_ArtistFont" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"order" : 8240,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"mMediaInegration_ArtistFontDir" : 
+			{
+				"condition" : "(mMediaInegration_Enable.value && mMediaInegration_Artist.value && mMediaInegration_ArtistFont.value == 'custom') || mMediaInegration_ArtistFontDir.value != ''",
+				"order" : 8250,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"mMediaInegration_ArtistSize" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"max" : 60,
+				"min" : 10,
+				"order" : 8310,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mMediaInegration_ArtistTransparency" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8320,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"mMediaInegration_ArtistX" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8330,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_ArtistY" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Artist.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8340,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_Duration" : 
+			{
+				"condition" : "mMediaInegration_Enable.value",
+				"order" : 8470,
+				"text" : "ui_mMediaInegration__duration",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_DurationAlignment" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 8500,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "center"
+			},
+			"mMediaInegration_DurationColor" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value && mMediaInegration_DurationColorType.value == 1",
+				"order" : 8520,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_DurationColorBlur" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value && mMediaInegration_DurationColorBlurType.value == 1",
+				"order" : 8540,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_DurationColorBlurType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8530,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_DurationColorType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8510,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_DurationFont" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"order" : 8480,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"mMediaInegration_DurationFontDir" : 
+			{
+				"condition" : "(mMediaInegration_Enable.value && mMediaInegration_Duration.value && mMediaInegration_DurationFont.value == 'custom') || mMediaInegration_DurationFontDir.value != ''",
+				"order" : 8490,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"mMediaInegration_DurationSize" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"max" : 60,
+				"min" : 10,
+				"order" : 8550,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mMediaInegration_DurationTransparency" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8560,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"mMediaInegration_DurationX" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8570,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_DurationY" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Duration.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8580,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_Enable" : 
+			{
+				"order" : 8010,
+				"text" : "ui_mMediaInegration__lable",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_Img" : 
+			{
+				"condition" : "mMediaInegration_Enable.value",
+				"order" : 8040,
+				"text" : "ui_mMediaInegration__img",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_ImgBlur" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Img.value",
+				"order" : 8090,
+				"text" : "ui_mMediaInegration__blur",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_ImgSize" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Img.value",
+				"max" : 512,
+				"min" : 64,
+				"order" : 8050,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 300
+			},
+			"mMediaInegration_ImgTransparency" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Img.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8060,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"mMediaInegration_ImgX" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Img.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8070,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_ImgY" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Img.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8080,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_Label" : 
+			{
+				"condition" : "mMediaInegration_Enable.value",
+				"order" : 8110,
+				"text" : "ui_mMediaInegration__label",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_LabelAlignment" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 8140,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "center"
+			},
+			"mMediaInegration_LabelColor" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value && mMediaInegration_LabelColorType.value == 1",
+				"order" : 8160,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_LabelColorBlur" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value && mMediaInegration_LabelColorBlurType.value == 1",
+				"order" : 8180,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_LabelColorBlurType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8170,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_LabelColorType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8150,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_LabelFont" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"order" : 8120,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"mMediaInegration_LabelFontDir" : 
+			{
+				"condition" : "(mMediaInegration_Enable.value && mMediaInegration_Label.value && mMediaInegration_LabelFont.value == 'custom') || mMediaInegration_LabelFontDir.value != ''",
+				"order" : 8130,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"mMediaInegration_LabelSize" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"max" : 60,
+				"min" : 10,
+				"order" : 8190,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mMediaInegration_LabelTransparency" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8200,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"mMediaInegration_LabelX" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8210,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_LabelY" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Label.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8220,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_Line" : 
+			{
+				"condition" : "mMediaInegration_Enable.value",
+				"order" : 8590,
+				"text" : "ui_mMediaInegration__line",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_LineColor" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value && mMediaInegration_LineColorType.value == 1",
+				"order" : 8660,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_LineColorBlur" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value && mMediaInegration_LineColorBlurType.value == 1",
+				"order" : 8680,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_LineColorBlurType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8670,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_LineColorLine" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value && mMediaInegration_LineColorLineType.value == 1",
+				"order" : 8640,
+				"text" : "ui_mMediaInegration__color_line",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_LineColorLineType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8630,
+				"text" : "ui_mMediaInegration__color_line_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_LineColorType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8650,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_LineHeight" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"max" : 40,
+				"min" : 1,
+				"order" : 8610,
+				"text" : "ui_height",
+				"type" : "slider",
+				"value" : 7
+			},
+			"mMediaInegration_LineRadius" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"max" : 15,
+				"min" : 0,
+				"order" : 8620,
+				"text" : "ui_radius",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mMediaInegration_LineTransparency" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8690,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"mMediaInegration_LineWidth" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"max" : 100,
+				"min" : 1,
+				"order" : 8600,
+				"text" : "ui_widht",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mMediaInegration_LineX" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8700,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_LineY" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Line.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8710,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_Progress" : 
+			{
+				"condition" : "mMediaInegration_Enable.value",
+				"order" : 8350,
+				"text" : "ui_mMediaInegration__progress",
+				"type" : "bool",
+				"value" : false
+			},
+			"mMediaInegration_ProgressAlignment" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 8380,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "center"
+			},
+			"mMediaInegration_ProgressColor" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value && mMediaInegration_ProgressColorType.value == 1",
+				"order" : 8400,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_ProgressColorBlur" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value && mMediaInegration_ProgressColorBlurType.value == 1",
+				"order" : 8420,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"mMediaInegration_ProgressColorBlurType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8410,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_ProgressColorType" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 8390,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"mMediaInegration_ProgressFont" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"order" : 8360,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"mMediaInegration_ProgressFontDir" : 
+			{
+				"condition" : "(mMediaInegration_Enable.value && mMediaInegration_Progress.value && mMediaInegration_ProgressFont.value == 'custom') || mMediaInegration_ProgressFontDir.value != ''",
+				"order" : 8370,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"mMediaInegration_ProgressSize" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"max" : 60,
+				"min" : 10,
+				"order" : 8430,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 10
+			},
+			"mMediaInegration_ProgressTransparency" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8440,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"mMediaInegration_ProgressX" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8450,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"mMediaInegration_ProgressY" : 
+			{
+				"condition" : "mMediaInegration_Enable.value && mMediaInegration_Progress.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 8460,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"monstercat_barPadding" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"max" : 35,
+				"min" : 0,
+				"order" : 45,
+				"text" : "ui_space",
+				"type" : "slider",
+				"value" : 4
+			},
+			"monstercat_barWidth" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"max" : 35,
+				"min" : 1,
+				"order" : 44,
+				"text" : "ui_music_monstercat_barWidth",
+				"type" : "slider",
+				"value" : 27
+			},
+			"monstercat_color" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"order" : 42,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"monstercat_double" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"order" : 48,
+				"text" : "ui_music_monstercat_double",
+				"type" : "bool",
+				"value" : false
+			},
+			"monstercat_opacity" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"max" : 100,
+				"min" : 0,
+				"order" : 50,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"monstercat_reverse" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"order" : 47,
+				"text" : "ui_music_monstercat_reverse",
+				"type" : "bool",
+				"value" : false
+			},
+			"monstercat_smoothing" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"max" : 10,
+				"min" : 1,
+				"order" : 43,
+				"text" : "ui_smash",
+				"type" : "slider",
+				"value" : 3
+			},
+			"monstercat_xPos" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"max" : 100,
+				"min" : 0,
+				"order" : 46,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"monstercat_yPos" : 
+			{
+				"condition" : "visual_audio_model.value == 4",
+				"max" : 100,
+				"min" : 0,
+				"order" : 48,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 97
+			},
+			"newReactor" : 
+			{
+				"order" : -10,
+				"text" : "ui_new_reactor",
+				"type" : "bool",
+				"value" : false
+			},
+			"noteAlignment" : 
+			{
+				"condition" : "noteShow.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 9830,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "left"
+			},
+			"noteColor" : 
+			{
+				"condition" : "noteShow.value",
+				"order" : 9850,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"noteColorBlur" : 
+			{
+				"condition" : "noteShow.value && noteColorBlurType.value != 0",
+				"order" : 9870,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "0.2 0.2 0.2"
+			},
+			"noteColorBlurType" : 
+			{
+				"condition" : "noteShow.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 9860,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"noteColorType" : 
+			{
+				"condition" : "noteShow.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 9840,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"noteFont" : 
+			{
+				"condition" : "noteShow.value",
+				"order" : 9810,
+				"text" : "ui_font",
+				"type" : "textinput",
+				"value" : "Lato"
+			},
+			"noteFontDir" : 
+			{
+				"condition" : "(noteShow.value && noteFont.value == 'custom') || noteFontDir.value != ''",
+				"order" : 9820,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"noteInner" : 
+			{
+				"condition" : "noteShow.value",
+				"order" : 9800,
+				"text" : "ui_note_inner",
+				"type" : "textinput",
+				"value" : "Customize your wallpaper"
+			},
+			"noteShow" : 
+			{
+				"order" : 9790,
+				"text" : "ui_note",
+				"type" : "bool",
+				"value" : false
+			},
+			"noteSize" : 
+			{
+				"condition" : "noteShow.value",
+				"max" : 50,
+				"min" : 10,
+				"order" : 9880,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 16
+			},
+			"noteTransparency" : 
+			{
+				"condition" : "noteShow.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 9890,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 80
+			},
+			"noteX" : 
+			{
+				"condition" : "noteShow.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 9900,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 41
+			},
+			"noteY" : 
+			{
+				"condition" : "noteShow.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 9910,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 44
+			},
+			"particles_color" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"order" : 33.5,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"particles_direction_x" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"max" : 100,
+				"min" : -100,
+				"order" : 35,
+				"text" : "ui_dir_x",
+				"type" : "slider",
+				"value" : 0
+			},
+			"particles_direction_y" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"max" : 100,
+				"min" : -100,
+				"order" : 35.001,
+				"text" : "ui_dir_y",
+				"type" : "slider",
+				"value" : 0
+			},
+			"particles_image" : 
+			{
+				"condition" : "particles_isParticles.value && particles_shapeType.value == 5",
+				"order" : 33.9,
+				"text" : "ui_effect_parcticl_form_custom_file",
+				"type" : "file"
+			},
+			"particles_isBounce" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"order" : 35.2,
+				"text" : "ui_effect_parcticl_mirror",
+				"type" : "bool",
+				"value" : false
+			},
+			"particles_isMove" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"order" : 34.7,
+				"text" : "ui_effect_parcticl_move",
+				"type" : "bool",
+				"value" : true
+			},
+			"particles_isParticles" : 
+			{
+				"order" : 33.1,
+				"text" : "ui_effect_parcticl_text",
+				"type" : "bool",
+				"value" : true
+			},
+			"particles_isStraight" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"order" : 35.1,
+				"text" : "ui_effect_parcticl_go",
+				"type" : "bool",
+				"value" : false
+			},
+			"particles_linkColor" : 
+			{
+				"condition" : "particles_isParticles.value && particles_linkEnable.value",
+				"order" : 34.5,
+				"text" : "ui_effect_parcticl_line_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"particles_linkDistance" : 
+			{
+				"condition" : "particles_isParticles.value && particles_linkEnable.value",
+				"max" : 300,
+				"min" : 0,
+				"order" : 34.3,
+				"text" : "ui_effect_parcticl_line_leght",
+				"type" : "slider",
+				"value" : 60
+			},
+			"particles_linkEnable" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"order" : 34.2,
+				"text" : "ui_effect_parcticl_line",
+				"type" : "bool",
+				"value" : false
+			},
+			"particles_linkOpacity" : 
+			{
+				"condition" : "particles_isParticles.value && particles_linkEnable.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 34.6,
+				"text" : "ui_effect_parcticl_line_transpent",
+				"type" : "slider",
+				"value" : 75
+			},
+			"particles_linkWidth" : 
+			{
+				"condition" : "particles_isParticles.value && particles_linkEnable.value",
+				"max" : 10,
+				"min" : 0,
+				"order" : 34.4,
+				"text" : "ui_effect_parcticl_line_size",
+				"type" : "slider",
+				"value" : 2
+			},
+			"particles_moveOutMode" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_effect_parcticl_mode_move_out",
+						"value" : 1
+					},
+					{
+						"label" : "ui_effect_parcticl_mode_move_in",
+						"value" : 2
+					}
+				],
+				"order" : 35.3,
+				"text" : "ui_effect_parcticl_mode_move",
+				"type" : "combo",
+				"value" : 1
+			},
+			"particles_musicRandom" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"order" : 34.91,
+				"text" : "ui_effect_parcticl_music_speed",
+				"type" : "bool",
+				"value" : false
+			},
+			"particles_musicStrengh" : 
+			{
+				"condition" : "particles_isParticles.value && particles_musicRandom.value && particles_isMove.value",
+				"max" : 100,
+				"min" : 1,
+				"order" : 34.92,
+				"text" : "ui_effect_parcticl_music_strengh",
+				"type" : "slider",
+				"value" : 50
+			},
+			"particles_musicTone" : 
+			{
+				"condition" : "particles_isParticles.value && particles_musicRandom.value && particles_isMove.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_effect_parcticl_music_bass",
+						"value" : 1
+					},
+					{
+						"label" : "ui_effect_parcticl_music_tenor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_effect_parcticl_music_mezzo_soprano",
+						"value" : 3
+					},
+					{
+						"label" : "ui_effect_parcticl_music_soprano",
+						"value" : 4
+					}
+				],
+				"order" : 34.915,
+				"text" : "ui_effect_parcticl_music_tone",
+				"type" : "combo",
+				"value" : 1
+			},
+			"particles_number" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"max" : 2000,
+				"min" : 0,
+				"order" : 33.2,
+				"text" : "ui_count",
+				"type" : "slider",
+				"value" : 700
+			},
+			"particles_opacity" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 33.3,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 75
+			},
+			"particles_opacityRandom" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"order" : 33.4,
+				"text" : "ui_effect_parcticl_random",
+				"type" : "bool",
+				"value" : true
+			},
+			"particles_shadowBlur" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"max" : 5,
+				"min" : 0,
+				"order" : 33.7,
+				"text" : "ui_blur_size",
+				"type" : "slider",
+				"value" : 0
+			},
+			"particles_shadowColor" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"order" : 33.6,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"particles_shapeType" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_effect_parcticl_form_round",
+						"value" : 1
+					},
+					{
+						"label" : "ui_effect_parcticl_form_square",
+						"value" : 2
+					},
+					{
+						"label" : "ui_effect_parcticl_form_triangle",
+						"value" : 3
+					},
+					{
+						"label" : "ui_effect_parcticl_form_star",
+						"value" : 4
+					},
+					{
+						"label" : "ui_effect_parcticl_form_custom",
+						"value" : 5
+					},
+					{
+						"label" : "ui_effect_parcticl_form_snow",
+						"value" : 6
+					}
+				],
+				"order" : 33.8,
+				"text" : "ui_form",
+				"type" : "combo",
+				"value" : 1
+			},
+			"particles_sizeRandom" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"order" : 34.1,
+				"text" : "ui_effect_parcticl_random_size",
+				"type" : "bool",
+				"value" : true
+			},
+			"particles_sizeValue" : 
+			{
+				"condition" : "particles_isParticles.value",
+				"max" : 50,
+				"min" : 0,
+				"order" : 34,
+				"text" : "ui_effect_parcticl_size",
+				"type" : "slider",
+				"value" : 2
+			},
+			"particles_speed" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"max" : 100,
+				"min" : 1,
+				"order" : 34.8,
+				"text" : "ui_effect_parcticl_speed",
+				"type" : "slider",
+				"value" : 5
+			},
+			"particles_speedRandom" : 
+			{
+				"condition" : "particles_isParticles.value && particles_isMove.value",
+				"order" : 34.9,
+				"text" : "ui_effect_parcticl_random_speed",
+				"type" : "bool",
+				"value" : true
+			},
+			"radius" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"max" : 1000,
+				"min" : 1,
+				"order" : 53,
+				"text" : "ui_radius",
+				"type" : "slider",
+				"value" : 500
+			},
+			"random" : 
+			{
+				"condition" : "wallpapermode.value == 2",
+				"order" : 18,
+				"text" : "ui_background_mode_slide_rundom",
+				"type" : "bool",
+				"value" : false
+			},
+			"range" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"max" : 60,
+				"min" : 1,
+				"order" : 54,
+				"text" : "ui_sens",
+				"type" : "slider",
+				"value" : 9
+			},
+			"reactorCode" : 
+			{
+				"condition" : "newReactor.value && !reactorWeb.value",
+				"order" : -8,
+				"text" : "ui_reactor_code",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"reactorLink" : 
+			{
+				"condition" : "newReactor.value && reactorWeb.value",
+				"order" : -7,
+				"text" : "ui_reactor_link",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"reactorText" : 
+			{
+				"order" : -6,
+				"text" : "ui_reactor_text",
+				"type" : "text"
+			},
+			"reactorWeb" : 
+			{
+				"condition" : "newReactor.value",
+				"order" : -9,
+				"text" : "ui_reactor_web",
+				"type" : "bool",
+				"value" : false
+			},
+			"rotation" : 
+			{
+				"condition" : "visual_audio_model.value == 1 && showSemiCircle.value == false",
+				"max" : 10,
+				"min" : -10,
+				"order" : 51,
+				"text" : "ui_rounding",
+				"type" : "slider",
+				"value" : 0
+			},
+			"schemecolor" : 
+			{
+				"order" : 1,
+				"text" : "ui_setting_colortheme",
+				"type" : "color",
+				"value" : "#151515"
+			},
+			"selectvideo" : 
+			{
+				"condition" : "wallpapermode.value == 3",
+				"fileType" : "video",
+				"order" : 15,
+				"text" : "ui_background_mode_video_custom",
+				"type" : "file",
+				"value" : null
+			},
+			"showCircle" : 
+			{
+				"condition" : "visual_audio_model.value == 1 ? showCircle.value ? showCircle.text = 'ui_enable' : showCircle.text = 'ui_disable' : false",
+				"order" : 45,
+				"text" : "ui_enable",
+				"type" : "bool",
+				"value" : true
+			},
+			"showDate" : 
+			{
+				"order" : 152,
+				"text" : "ui_time_date",
+				"type" : "bool",
+				"value" : true
+			},
+			"showSemiCircle" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"order" : 46,
+				"text" : "ui_music_1_low_round",
+				"type" : "bool",
+				"value" : false
+			},
+			"showTime" : 
+			{
+				"order" : 151,
+				"text" : "ui_time_time",
+				"type" : "bool",
+				"value" : true
+			},
+			"style" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"options" : 
+				[
+					{
+						"label" : "ui_music_style_type",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_style_up",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_style_up_no_line",
+						"value" : 3
+					}
+				],
+				"order" : 49,
+				"text" : "ui_music_style",
+				"type" : "combo",
+				"value" : 1
+			},
+			"tAlignment" : 
+			{
+				"condition" : "showTime.value && timeType.value == 1",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 158.09,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "center"
+			},
+			"tDotSec" : 
+			{
+				"condition" : "showTime.value && tDotSec2.value == false && timeType.value != 3 && timeType.value != 4",
+				"order" : 158.1,
+				"text" : "ui_time_dot1",
+				"type" : "bool",
+				"value" : false
+			},
+			"tDotSec2" : 
+			{
+				"condition" : "showTime.value && tDotSec.value == false && timeType.value != 3 && timeType.value != 4",
+				"order" : 158.11,
+				"text" : "ui_time_dot2",
+				"type" : "bool",
+				"value" : false
+			},
+			"tShowSencends" : 
+			{
+				"condition" : "showTime.value && timeType.value != 3",
+				"order" : 158,
+				"text" : "ui_time_sec",
+				"type" : "bool",
+				"value" : false
+			},
+			"tSize" : 
+			{
+				"condition" : "showTime.value",
+				"max" : 50,
+				"min" : 10,
+				"order" : 156,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 34
+			},
+			"tStyle" : 
+			{
+				"condition" : "showTime.value && timeType.value != 3",
+				"order" : 157,
+				"text" : "ui_time_24",
+				"type" : "bool",
+				"value" : true
+			},
+			"tX" : 
+			{
+				"condition" : "showTime.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 159,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"tY" : 
+			{
+				"condition" : "showTime.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 160,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 50
+			},
+			"testOld" : 
+			{
+				"order" : 9999,
+				"text" : "Old settings",
+				"type" : "bool",
+				"value" : true
+			},
+			"timeType" : 
+			{
+				"condition" : "showTime.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_time_type_classic",
+						"value" : 1
+					},
+					{
+						"label" : "ui_time_type_glitch",
+						"value" : 2
+					},
+					{
+						"label" : "ui_time_type_digital",
+						"value" : 3
+					},
+					{
+						"label" : "ui_time_type_slide",
+						"value" : 4
+					}
+				],
+				"order" : 155.2,
+				"text" : "ui_time_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"timetransparency" : 
+			{
+				"condition" : "showTime.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 155.3,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"videomodel" : 
+			{
+				"condition" : "wallpapermode.value == 3",
+				"options" : 
+				[
+					{
+						"label" : "Miko Fox",
+						"value" : 1
+					},
+					{
+						"label" : "Water Effect",
+						"value" : 2
+					},
+					{
+						"label" : "Rain Drops",
+						"value" : 3
+					},
+					{
+						"label" : "智子三体",
+						"value" : 4
+					},
+					{
+						"label" : "WLOP",
+						"value" : 5
+					},
+					{
+						"label" : "WLOP",
+						"value" : 6
+					},
+					{
+						"label" : "WLOP-Aeolion",
+						"value" : 8
+					},
+					{
+						"label" : "Nier Automata",
+						"value" : 9
+					}
+				],
+				"order" : 14,
+				"text" : "ui_background_mode_video_stand",
+				"type" : "combo",
+				"value" : 1
+			},
+			"visual_audio_model" : 
+			{
+				"options" : 
+				[
+					{
+						"label" : "ui_music_type_0",
+						"value" : 0
+					},
+					{
+						"label" : "ui_music_type_1",
+						"value" : 1
+					},
+					{
+						"label" : "ui_music_type_2",
+						"value" : 3
+					},
+					{
+						"label" : "ui_music_type_3",
+						"value" : 2
+					},
+					{
+						"label" : "ui_music_type_4",
+						"value" : 4
+					}
+				],
+				"order" : 41,
+				"text" : "ui_music_type",
+				"type" : "combo",
+				"value" : 4
+			},
+			"wallpapermode" : 
+			{
+				"options" : 
+				[
+					{
+						"label" : "ui_background_mode_img",
+						"value" : 1
+					},
+					{
+						"label" : "ui_background_mode_slide",
+						"value" : 2
+					},
+					{
+						"label" : "ui_background_mode_video",
+						"value" : 3
+					},
+					{
+						"label" : "ui_background_mode_color",
+						"value" : 4
+					}
+				],
+				"order" : 11,
+				"text" : "ui_background_mode",
+				"type" : "combo",
+				"value" : 1
+			},
+			"wavetransparency" : 
+			{
+				"condition" : "visual_audio_model.value == 1",
+				"max" : 100,
+				"min" : 0,
+				"order" : 57,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 80
+			},
+			"weatherApiKeySecondary" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9010,
+				"text" : "ui_weather_secondary_api",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"weatherApiText" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9020,
+				"text" : "<small>★API-key: <a href='https://weatherstack.com/'>Weatherstack</a></small>",
+				"type" : "text"
+			},
+			"weatherColorBlurType" : 
+			{
+				"condition" : "weather_show.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_off",
+						"value" : 0
+					},
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 9140,
+				"text" : "ui_color_blur_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"weatherColorType" : 
+			{
+				"condition" : "weather_show.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_color",
+						"value" : 1
+					},
+					{
+						"label" : "ui_color__textColor",
+						"value" : 2
+					},
+					{
+						"label" : "ui_color__tertiaryColor",
+						"value" : 3
+					},
+					{
+						"label" : "ui_color__primaryColor",
+						"value" : 4
+					},
+					{
+						"label" : "ui_color__secondaryColor",
+						"value" : 5
+					},
+					{
+						"label" : "ui_color__highContrastColor",
+						"value" : 6
+					}
+				],
+				"order" : 9120,
+				"text" : "ui_color_type",
+				"type" : "combo",
+				"value" : 1
+			},
+			"weatherFont" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9090,
+				"text" : "ui_font",
+				"type" : "textinput"
+			},
+			"weatherFontDir" : 
+			{
+				"condition" : "(weather_show.value && weatherFont.value == 'custom') || weatherFontDir.value != ''",
+				"order" : 9100,
+				"text" : "ui_font_dir",
+				"type" : "file",
+				"value" : ""
+			},
+			"weatherSlowUpdate" : 
+			{
+				"condition" : "weather_show.value ? weatherSlowUpdate.value ? weatherSlowUpdate.text = 'ui_weather_slow_en' : weatherSlowUpdate.text = 'ui_weather_slow_dis' : false",
+				"order" : 9030,
+				"type" : "bool",
+				"value" : false
+			},
+			"weatherText2" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9050,
+				"text" : "ui_weather_city_text",
+				"type" : "text"
+			},
+			"weatherText3" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9070,
+				"text" : "ui_weather_format_text",
+				"type" : "text"
+			},
+			"weatherX" : 
+			{
+				"condition" : "weather_show.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 9180,
+				"text" : "ui_posX",
+				"type" : "slider",
+				"value" : 50
+			},
+			"weatherY" : 
+			{
+				"condition" : "weather_show.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 9190,
+				"text" : "ui_posY",
+				"type" : "slider",
+				"value" : 57
+			},
+			"weather_Alignment" : 
+			{
+				"condition" : "weather_show.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_left",
+						"value" : "left"
+					},
+					{
+						"label" : "ui_center",
+						"value" : "center"
+					},
+					{
+						"label" : "ui_right",
+						"value" : "right"
+					}
+				],
+				"order" : 9110,
+				"text" : "ui_alignment",
+				"type" : "combo",
+				"value" : "center"
+			},
+			"weather_ApiKey" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9000,
+				"text" : "ui_weather_api",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"weather_BlurColor" : 
+			{
+				"condition" : "weather_show.value && weatherColorBlurType.value != 0",
+				"order" : 9150,
+				"text" : "ui_color_blur",
+				"type" : "color",
+				"value" : "1 0.8 0.8"
+			},
+			"weather_CityText" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9040,
+				"text" : "ui_weather_city",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"weather_Color" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9130,
+				"text" : "ui_color",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+			"weather_Format" : 
+			{
+				"condition" : "weather_show.value",
+				"order" : 9060,
+				"text" : "ui_weather_format",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"weather_show" : 
+			{
+				"order" : 8990,
+				"text" : "<hr><img src='https://weatherstack.com/site_images/weatherstack_logo_white.png' width='140px' heigth='20px'><hr>",
+				"type" : "bool",
+				"value" : false
+			},
+			"weather_size" : 
+			{
+				"condition" : "weather_show.value",
+				"max" : 50,
+				"min" : 10,
+				"order" : 9160,
+				"text" : "ui_size",
+				"type" : "slider",
+				"value" : 10
+			},
+			"weather_timetransparency" : 
+			{
+				"condition" : "weather_show.value",
+				"max" : 100,
+				"min" : 0,
+				"order" : 9170,
+				"text" : "ui_transparency",
+				"type" : "slider",
+				"value" : 100
+			},
+			"weather_units" : 
+			{
+				"condition" : "weather_show.value",
+				"options" : 
+				[
+					{
+						"label" : "ui_weather_metric",
+						"value" : "m"
+					},
+					{
+						"label" : "ui_weather_scientific",
+						"value" : "s"
+					},
+					{
+						"label" : "ui_weather_fahrenheit",
+						"value" : "f"
+					}
+				],
+				"order" : 9080,
+				"text" : "ui_weather_units",
+				"type" : "combo",
+				"value" : "m"
+			}
+		},
+		"supportsaudioprocessing" : true
+	},
+	"preview" : "preview.jpg",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"tags" : [ "Unspecified" ],
+	"title" : "[CWAV Engine] Custom Wallpaper Audio Visual Engine | Now with Media Integration",
+	"type" : "web",
+	"version" : 11,
+	"visibility" : "public",
+	"workshopid" : "1509243786",
+	"workshopurl" : "steam://url/CommunityFilePage/1509243786"
+}

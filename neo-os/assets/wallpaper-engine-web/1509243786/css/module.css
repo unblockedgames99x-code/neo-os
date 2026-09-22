@@ -1,0 +1,33 @@
+.module {
+	width: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	position: absolute;
+	color: #fff;
+	text-shadow: 0 0 10px white;
+	transform: translate(0%, -50%);
+	z-index: 90;
+	font-family: "Jost", "等线 Light", "Microsoft Yahei Light";
+	font-size: 200px;
+	transition: 0.2s;
+}
+
+.moduleSlim {
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	color: #fff;
+	text-shadow: 0 0 10px white;
+	z-index: 90;
+	font-family: "Jost";
+	font-size: 0.1vw;
+	transition: 0.2s;
+	white-space: nowrap;
+}

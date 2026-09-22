@@ -1,0 +1,501 @@
+.neo-taskbar-preview {
+  position: fixed;
+  z-index: 5600;
+  width: min(320px, calc(100vw - 20px));
+  padding: 6px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.9);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(18px) saturate(1.05);
+  backdrop-filter: blur(18px) saturate(1.05);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(7px) scale(0.98);
+  transform-origin: bottom center;
+  transition:
+    opacity 160ms ease,
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+  will-change: opacity, transform;
+}
+
+.neo-taskbar-preview[hidden] { display: none; }
+
+.neo-taskbar-preview.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.neo-taskbar-preview.is-open:hover,
+.neo-taskbar-preview.is-open:focus-within {
+  background: rgba(8, 9, 11, 0.94);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+  transform: translateY(-2px) scale(1.012);
+}
+
+.neo-taskbar-preview-titlebar {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 3px 0 7px;
+}
+
+.neo-taskbar-preview-titlebar > span {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.neo-taskbar-preview-titlebar strong,
+.neo-taskbar-preview-titlebar small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.neo-taskbar-preview-titlebar strong { font-size: 11px; font-weight: 700; }
+.neo-taskbar-preview-titlebar small { color: rgba(255, 255, 255, 0.52); font-size: 9px; }
+
+.neo-taskbar-preview-titlebar button {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.neo-taskbar-preview-titlebar button:hover,
+.neo-taskbar-preview-titlebar button:focus-visible { color: #fff; background: rgba(255, 255, 255, 0.12); }
+.neo-taskbar-preview-titlebar .icon { width: 14px; height: 14px; }
+
+.neo-taskbar-preview-open {
+  width: 100%;
+  display: block;
+  padding: 0;
+  color: inherit;
+  background: #090909;
+  border: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.neo-taskbar-preview-open:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.neo-taskbar-preview-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  overflow: hidden;
+  background: #090909;
+}
+
+.neo-taskbar-preview-clone.neo-window {
+  position: absolute !important;
+  inset: auto !important;
+  display: grid !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  resize: none !important;
+  pointer-events: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform-origin: top left !important;
+  transition: none !important;
+}
+
+.neo-taskbar-preview-clone,
+.neo-taskbar-preview-clone * {
+  pointer-events: none !important;
+  animation-play-state: paused !important;
+  caret-color: transparent !important;
+  user-select: none !important;
+}
+
+.neo-taskbar-preview-media,
+.neo-taskbar-preview-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.58);
+  background: #0b0b0b;
+  font-size: 22px;
+}
+
+.neo-taskbar-preview-media-icon,
+.neo-taskbar-preview-fallback-icon {
+  width: 58px !important;
+  height: 58px !important;
+  display: grid;
+  place-items: center;
+}
+
+.neo-taskbar-preview-media-icon .app-image-icon,
+.neo-taskbar-preview-fallback-icon .app-image-icon { width: 100%; height: 100%; object-fit: contain; }
+.neo-taskbar-preview-media > span { font-size: 14px; }
+.neo-taskbar-preview-fallback > span { display: grid; gap: 3px; text-align: center; }
+.neo-taskbar-preview-fallback strong { color: #fff; font-size: 14px; }
+.neo-taskbar-preview-fallback small { font-size: 10px; }
+
+.dock-button.is-running:hover::before,
+.dock-button.is-running:focus-visible::before { opacity: 0; }
+
+.neo-minimized-tray {
+  position: fixed;
+  z-index: 5650;
+  top: 38px;
+  left: 50%;
+  max-width: min(760px, calc(100vw - 28px));
+  display: flex;
+  gap: 8px;
+  padding: 0 2px 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.42) rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%);
+}
+
+.neo-minimized-tray::-webkit-scrollbar {
+  display: block;
+  height: 7px;
+}
+
+.neo-minimized-tray::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+}
+
+.neo-minimized-tray::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+}
+
+.neo-minimized-tray::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.62);
+}
+.neo-minimized-tray[hidden] { display: none; }
+
+html.has-tab-fullscreen .neo-taskbar-preview,
+html[data-tab-fullscreen] .neo-taskbar-preview,
+html[data-fullscreen="true"] .neo-taskbar-preview {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+html.has-tab-fullscreen .neo-minimized-tray,
+html[data-tab-fullscreen] .neo-minimized-tray,
+html[data-fullscreen="true"] .neo-minimized-tray {
+  z-index: 9100;
+}
+
+.neo-minimized-card {
+  position: relative;
+  width: 220px;
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  color: #fff;
+  background: rgba(12, 13, 15, 0.7);
+  border: 0;
+  border-radius: 7px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+  -webkit-backdrop-filter: blur(20px) saturate(1.22);
+  backdrop-filter: blur(20px) saturate(1.22);
+  animation: neo-minimized-card-in 150ms ease both;
+  transform-origin: top center;
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+  will-change: transform;
+}
+
+.neo-minimized-card:hover,
+.neo-minimized-card:focus-within {
+  background: rgba(17, 19, 23, 0.86);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
+  transform: translateY(3px) scale(1.025);
+}
+
+.neo-minimized-card-open {
+  transition: filter 160ms ease, transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center;
+}
+
+.neo-minimized-card:hover .neo-minimized-card-open,
+.neo-minimized-card:focus-within .neo-minimized-card-open {
+  filter: brightness(1.08);
+  transform: scale(0.985);
+}
+
+.neo-minimized-card-header {
+  height: 28px;
+  flex: 0 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 0 5px;
+}
+
+.neo-minimized-card button {
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.neo-minimized-card-identity {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 4px;
+  text-align: left;
+}
+
+.neo-minimized-card-identity strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.neo-minimized-card-icon {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.neo-minimized-card-icon .app-image-icon,
+.neo-minimized-card-icon.app-image-icon { width: 100%; height: 100%; object-fit: contain; }
+
+.neo-minimized-card-controls { display: flex; gap: 1px; }
+
+.neo-minimized-card-controls > button {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.neo-minimized-card-controls > button:hover,
+.neo-minimized-card-controls > button:focus-visible { background: rgba(255, 255, 255, 0.13); }
+.neo-minimized-card-controls .icon { width: 13px; height: 13px; }
+.neo-minimized-card-mute.is-muted::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 1px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+.neo-minimized-card-open {
+  width: 100%;
+  min-height: 92px;
+  flex: 1 1 92px;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  background: #090909 !important;
+  border-radius: 0 !important;
+}
+
+.neo-minimized-card-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 92px;
+  aspect-ratio: auto;
+  display: block;
+  overflow: hidden;
+  background: #090909;
+}
+
+.neo-taskbar-preview-snapshot {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  background: #08090b;
+  pointer-events: none;
+}
+
+.neo-minimized-card-viewport .neo-taskbar-preview-fallback,
+.neo-minimized-card-viewport .neo-taskbar-preview-media { font-size: 12px; }
+.neo-minimized-card-viewport .neo-taskbar-preview-fallback-icon,
+.neo-minimized-card-viewport .neo-taskbar-preview-media-icon { width: 34px !important; height: 34px !important; }
+.neo-minimized-card-viewport .neo-taskbar-preview-fallback strong { font-size: 10px; }
+.neo-minimized-card-viewport .neo-taskbar-preview-fallback small,
+.neo-minimized-card-viewport .neo-taskbar-preview-media > span { font-size: 8px; }
+
+.neo-minimized-card .neo-taskbar-preview-fallback::before {
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.neo-minimized-card.is-music-now-playing {
+  width: 180px;
+  flex-basis: 180px;
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #08090a;
+}
+
+.neo-minimized-card.is-music-now-playing .neo-minimized-card-header { display: none; }
+
+.neo-minimized-card.is-music-now-playing .neo-minimized-card-open {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.neo-minimized-card.is-music-now-playing .neo-minimized-card-viewport {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: inherit;
+}
+
+.neo-minimized-now-playing {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(31, 219, 107, 0.25), transparent 54%),
+    #0a0b0c;
+}
+
+.neo-minimized-now-playing::after {
+  content: "";
+  position: absolute;
+  inset: 38% 0 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.74));
+}
+
+.neo-minimized-now-playing-cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.neo-minimized-now-playing-cover[hidden] { display: none; }
+
+.neo-minimized-now-playing-fallback {
+  width: 62px !important;
+  height: 62px !important;
+}
+
+.neo-minimized-now-playing-fallback .app-image-icon,
+.neo-minimized-now-playing-fallback.app-image-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.neo-minimized-media-controls {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(7, 8, 10, 0.64);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  transform: translateX(-50%);
+}
+
+.neo-minimized-media-controls[hidden] { display: none; }
+
+.neo-minimized-media-control {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.09) !important;
+}
+
+.neo-minimized-media-control:hover,
+.neo-minimized-media-control:focus-visible {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.neo-minimized-media-control .icon { width: 14px; height: 14px; }
+
+.neo-minimized-media-toggle {
+  width: 36px;
+  height: 36px;
+  color: #0a0b0c !important;
+  background: #fff !important;
+}
+
+.neo-minimized-media-toggle:hover,
+.neo-minimized-media-toggle:focus-visible { background: #dfffea !important; }
+
+@keyframes neo-minimized-card-in {
+  from { opacity: 0; transform: translateY(-5px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 640px) {
+  .neo-taskbar-preview { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-taskbar-preview { transition: none; }
+  .neo-minimized-card,
+  .neo-minimized-card-open {
+    animation: none;
+    transition: none;
+  }
+}

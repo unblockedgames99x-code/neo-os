@@ -1,0 +1,862 @@
+<html><head>
+    <script>
+      (function () {
+        var WD = "cdn.jsdelivr.net";
+        var WT = "jsdelivr";
+        function fix(u) {
+          if (!u || typeof u !== "string") return u;
+          var m = u.match(/https?:\/\/((?:cdn|fastly|gcore|quantil|originfastly|testingcf)\.jsdelivr\.net|cdn\.statically\.io|rawcdn\.githack\.com|raw\.githack\.com)\/(?:gh\/)?([^\/]+)\/([^@\/]+)[@\/]([^\\/]+)\/(.*)/);
+          if (!m) return u;
+          var user = m[2], repo = m[3], tag = m[4], file = m[5];
+          if (WT === "statically") return "https://cdn.statically.io/gh/" + user + "/" + repo + "@" + tag + "/" + file;
+          if (WT === "rawcdn_githack") return "https://rawcdn.githack.com/" + user + "/" + repo + "/" + tag + "/" + file;
+          if (WT === "raw_githack") return "https://raw.githack.com/" + user + "/" + repo + "/" + tag + "/" + file;
+          return "https://" + WD + "/gh/" + user + "/" + repo + "@" + tag + "/" + file;
+        }
+        var oF = window.fetch;
+        window.fetch = function (i, n) {
+          if (typeof i === "string") i = fix(i);
+          else if (i && i.url) i = new Request(fix(i.url), i);
+          return oF.apply(this, [i, n]);
+        };
+        var oX = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function (m, u) {
+          var a = Array.prototype.slice.call(arguments);
+          a[1] = fix(u);
+          return oX.apply(this, a);
+        };
+      })();
+    </script>
+    <meta charset="utf-8">
+    <base href="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/gardenless/">
+    <title>PvZ2 Gardendless Online | 0.6.0</title>
+    <script>
+      (function () {
+        const originalImage = window.Image;
+        window.Image = function () {
+          const img = new originalImage();
+          img.crossOrigin = "anonymous";
+          return img;
+        };
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <link rel="stylesheet" type="text/css" href="style.f76d1.css">
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #000;
+      }
+      #GameDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: rotate(0deg);
+        margin: 0 auto;
+        width: 100vw;
+        height: 100vh;
+      }
+      #Cocos3dGameContainer,
+      #GameCanvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  <style>
+      #hard-save-panel {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 2147483647;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(255,255,255,.24);
+        border-radius: 8px;
+        background: rgba(16,16,16,.82);
+        color: #fff;
+        font: 13px/1.2 Arial, sans-serif;
+        box-shadow: 0 8px 24px rgba(0,0,0,.35);
+      }
+      #hard-save-panel button {
+        min-width: 72px;
+        min-height: 34px;
+        border: 0;
+        border-radius: 6px;
+        background: #f4d35e;
+        color: #151515;
+        cursor: pointer;
+        font: 700 13px/1 Arial, sans-serif;
+      }
+      #hard-save-panel button:hover { background: #ffe27a; }
+      #hard-save-panel button:active { transform: translateY(1px); }
+      #hard-save-status {
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #dce7ff;
+      }
+      #hard-save-status[data-error="true"] { color: #ffb8b8; }
+    </style></head>
+  <body>
+    <div id="GameDiv" cc_exact_fit_screen="true" style="display: flex; justify-content: center; align-items: center; transform: rotate(0deg); margin: 0px auto; width: 2260px; height: 1270px;">
+      <div id="Cocos3dGameContainer" style="width: 100%; height: 100%;">
+        <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99" width="2260" height="1270"></canvas>
+      </div>
+    </div>
+
+    <script src="src/polyfills.bundle.5adbf.js" charset="utf-8"></script>
+    <script src="src/system.bundle.543e6.js" charset="utf-8"></script>
+    <script src="src/import-map.4399c.json" type="systemjs-importmap" charset="utf-8"></script>
+    <script>
+      System.import("./index.bed7f.js").catch(function (err) {
+        console.error(err);
+      });
+    </script>
+    <script src="tmpPatch.js"></script>
+
+    <script>
+      window.HARD_SAVE_CONFIG = {
+        appName: "PvZ2 Gardendless Online",
+        filenamePrefix: "pvz2-gardendless-save",
+        includeSessionStorage: true,
+        includeIndexedDB: true,
+        clearStorageOnImport: true,
+        showUI: true
+      };
+    </script>
+    <script>
+(() => {
+  "use strict";
+
+  const FORMAT = "hard-save-v1";
+  const TYPE = "__hardSaveType";
+
+  const config = {
+    appName: document.title || "web-game",
+    filenamePrefix: "game-save",
+    includeSessionStorage: true,
+    includeIndexedDB: true,
+    clearStorageOnImport: true,
+    indexedDBNames: [],
+    showUI: true,
+    ...(window.HARD_SAVE_CONFIG || {}),
+  };
+
+  let statusNode = null;
+
+  function setStatus(message, isError = false) {
+    if (statusNode) {
+      statusNode.textContent = message;
+      statusNode.dataset.error = isError ? "true" : "false";
+    }
+    const logger = isError ? console.error : console.log;
+    logger.call(console, `[HardSave] ${message}`);
+  }
+
+  function sanitizeFilename(value) {
+    return String(value || "save")
+      .trim()
+      .replace(/[<>:"/\\|?*\x00-\x1f]+/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 80) || "save";
+  }
+
+  function timestampForFilename(date = new Date()) {
+    return date.toISOString().replace(/[:.]/g, "-");
+  }
+
+  function downloadText(filename, text) {
+    const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function readFileAsText(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ""));
+      reader.onerror = () => reject(reader.error || new Error("Could not read file."));
+      reader.readAsText(file);
+    });
+  }
+
+  function requestToPromise(request) {
+    return new Promise((resolve, reject) => {
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error || new Error("IndexedDB request failed."));
+    });
+  }
+
+  function transactionDone(transaction) {
+    return new Promise((resolve, reject) => {
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error || new Error("IndexedDB transaction failed."));
+      transaction.onabort = () => reject(transaction.error || new Error("IndexedDB transaction aborted."));
+    });
+  }
+
+  function getIndexedDB() {
+    return window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || null;
+  }
+
+  function bytesToBase64(bytes) {
+    let binary = "";
+    const chunkSize = 0x8000;
+    for (let index = 0; index < bytes.length; index += chunkSize) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(index, index + chunkSize));
+    }
+    return btoa(binary);
+  }
+
+  function base64ToBytes(base64) {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let index = 0; index < binary.length; index += 1) {
+      bytes[index] = binary.charCodeAt(index);
+    }
+    return bytes;
+  }
+
+  async function encodeNode(value, seen = new WeakSet()) {
+    if (value === null) return { [TYPE]: "null" };
+    if (value === undefined) return { [TYPE]: "undefined" };
+
+    const kind = typeof value;
+    if (kind === "string") return { [TYPE]: "string", value };
+    if (kind === "boolean") return { [TYPE]: "boolean", value };
+    if (kind === "bigint") return { [TYPE]: "bigint", value: value.toString() };
+    if (kind === "number") {
+      if (Number.isNaN(value)) return { [TYPE]: "number", value: "NaN" };
+      if (value === Infinity) return { [TYPE]: "number", value: "Infinity" };
+      if (value === -Infinity) return { [TYPE]: "number", value: "-Infinity" };
+      if (Object.is(value, -0)) return { [TYPE]: "number", value: "-0" };
+      return { [TYPE]: "number", value };
+    }
+
+    if (kind !== "object") {
+      throw new Error(`Cannot save ${kind} values.`);
+    }
+
+    if (seen.has(value)) {
+      throw new Error("Cannot save cyclic IndexedDB values.");
+    }
+    seen.add(value);
+
+    try {
+      if (value instanceof Date) {
+        return { [TYPE]: "date", value: value.toISOString() };
+      }
+      if (value instanceof RegExp) {
+        return { [TYPE]: "regexp", source: value.source, flags: value.flags };
+      }
+      if (value instanceof ArrayBuffer) {
+        return { [TYPE]: "arraybuffer", base64: bytesToBase64(new Uint8Array(value)) };
+      }
+      if (ArrayBuffer.isView(value)) {
+        const bytes = new Uint8Array(value.buffer, value.byteOffset, value.byteLength);
+        if (value instanceof DataView) {
+          return { [TYPE]: "dataview", base64: bytesToBase64(bytes) };
+        }
+        return { [TYPE]: "typedarray", name: value.constructor.name, base64: bytesToBase64(bytes) };
+      }
+      if (value instanceof Blob) {
+        const bytes = new Uint8Array(await value.arrayBuffer());
+        const payload = {
+          [TYPE]: value instanceof File ? "file" : "blob",
+          mimeType: value.type || "",
+          base64: bytesToBase64(bytes),
+        };
+        if (value instanceof File) {
+          payload.name = value.name;
+          payload.lastModified = value.lastModified;
+        }
+        return payload;
+      }
+      if (Array.isArray(value)) {
+        const items = [];
+        for (const item of value) {
+          items.push(await encodeNode(item, seen));
+        }
+        return { [TYPE]: "array", items };
+      }
+      if (value instanceof Map) {
+        const entries = [];
+        for (const [entryKey, entryValue] of value.entries()) {
+          entries.push([await encodeNode(entryKey, seen), await encodeNode(entryValue, seen)]);
+        }
+        return { [TYPE]: "map", entries };
+      }
+      if (value instanceof Set) {
+        const items = [];
+        for (const item of value.values()) {
+          items.push(await encodeNode(item, seen));
+        }
+        return { [TYPE]: "set", items };
+      }
+
+      const entries = [];
+      for (const key of Object.keys(value)) {
+        entries.push([key, await encodeNode(value[key], seen)]);
+      }
+      return { [TYPE]: "object", entries };
+    } finally {
+      seen.delete(value);
+    }
+  }
+
+  function decodeNode(node) {
+    if (!node || typeof node !== "object" || !node[TYPE]) {
+      throw new Error("Save file contains an invalid serialized value.");
+    }
+
+    switch (node[TYPE]) {
+      case "null":
+        return null;
+      case "undefined":
+        return undefined;
+      case "string":
+      case "boolean":
+        return node.value;
+      case "bigint":
+        return BigInt(node.value);
+      case "number":
+        if (node.value === "NaN") return NaN;
+        if (node.value === "Infinity") return Infinity;
+        if (node.value === "-Infinity") return -Infinity;
+        if (node.value === "-0") return -0;
+        return node.value;
+      case "date":
+        return new Date(node.value);
+      case "regexp":
+        return new RegExp(node.source, node.flags || "");
+      case "arraybuffer":
+        return base64ToBytes(node.base64).buffer;
+      case "dataview":
+        return new DataView(base64ToBytes(node.base64).buffer);
+      case "typedarray": {
+        const TypedArrayConstructor = window[node.name];
+        if (typeof TypedArrayConstructor !== "function") {
+          throw new Error(`Unsupported typed array: ${node.name}`);
+        }
+        return new TypedArrayConstructor(base64ToBytes(node.base64).buffer);
+      }
+      case "blob": {
+        const bytes = base64ToBytes(node.base64);
+        return new Blob([bytes], { type: node.mimeType || "" });
+      }
+      case "file": {
+        const bytes = base64ToBytes(node.base64);
+        if (typeof File === "function") {
+          return new File([bytes], node.name || "file", {
+            type: node.mimeType || "",
+            lastModified: node.lastModified || Date.now(),
+          });
+        }
+        const blob = new Blob([bytes], { type: node.mimeType || "" });
+        blob.name = node.name || "file";
+        blob.lastModified = node.lastModified || Date.now();
+        return blob;
+      }
+      case "array":
+        return (node.items || []).map(decodeNode);
+      case "map":
+        return new Map((node.entries || []).map(([entryKey, entryValue]) => [decodeNode(entryKey), decodeNode(entryValue)]));
+      case "set":
+        return new Set((node.items || []).map(decodeNode));
+      case "object": {
+        const result = {};
+        for (const [key, value] of node.entries || []) {
+          result[key] = decodeNode(value);
+        }
+        return result;
+      }
+      default:
+        throw new Error(`Unknown serialized value type: ${node[TYPE]}`);
+    }
+  }
+
+  function readStorage(storage) {
+    const result = {};
+    for (let index = 0; index < storage.length; index += 1) {
+      const key = storage.key(index);
+      if (key !== null) {
+        result[key] = storage.getItem(key);
+      }
+    }
+    return result;
+  }
+
+  function writeStorage(storage, values) {
+    if (config.clearStorageOnImport) {
+      storage.clear();
+    }
+    for (const [key, value] of Object.entries(values || {})) {
+      storage.setItem(key, value);
+    }
+  }
+
+  async function listIndexedDBDatabases() {
+    const idb = getIndexedDB();
+    if (!idb || !config.includeIndexedDB) return [];
+
+    const byName = new Map();
+    for (const name of config.indexedDBNames || []) {
+      if (name) byName.set(name, { name });
+    }
+
+    if (typeof idb.databases === "function") {
+      const databases = await idb.databases();
+      for (const database of databases) {
+        if (database && database.name) {
+          byName.set(database.name, database);
+        }
+      }
+    }
+
+    return Array.from(byName.values()).filter((database) => database.name);
+  }
+
+  function openDatabase(name, version, onUpgradeNeeded) {
+    const idb = getIndexedDB();
+    return new Promise((resolve, reject) => {
+      const request = version ? idb.open(name, version) : idb.open(name);
+      request.onupgradeneeded = (event) => {
+        if (onUpgradeNeeded) onUpgradeNeeded(request.result, event);
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error || new Error(`Could not open IndexedDB database ${name}.`));
+      request.onblocked = () => reject(new Error(`Opening IndexedDB database ${name} was blocked by another tab.`));
+    });
+  }
+
+  async function readObjectStoreRecords(store) {
+    const rawRecords = [];
+    const cursorDone = new Promise((resolve, reject) => {
+      const request = store.openCursor();
+      request.onsuccess = () => {
+        const cursor = request.result;
+        if (!cursor) {
+          resolve();
+          return;
+        }
+        rawRecords.push({ key: cursor.key, value: cursor.value });
+        cursor.continue();
+      };
+      request.onerror = () => reject(request.error || new Error(`Could not read object store ${store.name}.`));
+    });
+    await cursorDone;
+    const records = [];
+    for (const record of rawRecords) {
+      records.push({
+        key: await encodeNode(record.key),
+        value: await encodeNode(record.value),
+      });
+    }
+    return records;
+  }
+
+  async function exportIndexedDBDatabase(databaseInfo) {
+    const db = await openDatabase(databaseInfo.name);
+    const snapshot = {
+      name: db.name,
+      version: db.version || databaseInfo.version || 1,
+      stores: [],
+    };
+
+    try {
+      for (const storeName of Array.from(db.objectStoreNames)) {
+        const transaction = db.transaction(storeName, "readonly");
+        const done = transactionDone(transaction);
+        const store = transaction.objectStore(storeName);
+        const indexes = Array.from(store.indexNames).map((indexName) => {
+          const index = store.index(indexName);
+          return {
+            name: index.name,
+            keyPath: index.keyPath,
+            unique: index.unique,
+            multiEntry: index.multiEntry,
+          };
+        });
+
+        const records = await readObjectStoreRecords(store);
+        await done;
+        snapshot.stores.push({
+          name: store.name,
+          keyPath: store.keyPath,
+          autoIncrement: store.autoIncrement,
+          indexes,
+          records,
+        });
+      }
+    } finally {
+      db.close();
+    }
+
+    return snapshot;
+  }
+
+  async function exportIndexedDB() {
+    const warnings = [];
+    const databases = [];
+    const infos = await listIndexedDBDatabases();
+
+    if (!infos.length && getIndexedDB() && !getIndexedDB().databases && !(config.indexedDBNames || []).length) {
+      warnings.push("This browser cannot enumerate IndexedDB databases. Add HARD_SAVE_CONFIG.indexedDBNames if your game stores data in IndexedDB.");
+    }
+
+    for (const info of infos) {
+      try {
+        const snapshot = await exportIndexedDBDatabase(info);
+        if (snapshot.stores.length) {
+          databases.push(snapshot);
+        }
+      } catch (error) {
+        warnings.push(`Skipped IndexedDB database "${info.name}": ${error.message}`);
+      }
+    }
+
+    return { databases, warnings };
+  }
+
+  async function exportSnapshot() {
+    const warnings = [];
+    const snapshot = {
+      format: FORMAT,
+      appName: config.appName,
+      createdAt: new Date().toISOString(),
+      origin: location.origin,
+      page: location.href,
+      title: document.title,
+      localStorage: {},
+      sessionStorage: {},
+      indexedDB: [],
+      warnings,
+    };
+
+    try {
+      snapshot.localStorage = readStorage(localStorage);
+    } catch (error) {
+      warnings.push(`Could not export localStorage: ${error.message}`);
+    }
+
+    if (config.includeSessionStorage) {
+      try {
+        snapshot.sessionStorage = readStorage(sessionStorage);
+      } catch (error) {
+        warnings.push(`Could not export sessionStorage: ${error.message}`);
+      }
+    }
+
+    if (config.includeIndexedDB) {
+      try {
+        const idbSnapshot = await exportIndexedDB();
+        snapshot.indexedDB = idbSnapshot.databases;
+        warnings.push(...idbSnapshot.warnings);
+      } catch (error) {
+        warnings.push(`Could not export IndexedDB: ${error.message}`);
+      }
+    }
+
+    return snapshot;
+  }
+
+  async function exportToFile() {
+    setStatus("Saving...");
+    const snapshot = await exportSnapshot();
+    const prefix = sanitizeFilename(config.filenamePrefix || config.appName || "game-save");
+    const filename = `${prefix}-${timestampForFilename()}.json`;
+    downloadText(filename, JSON.stringify(snapshot, null, 2));
+    setStatus(snapshot.warnings.length ? `Saved with ${snapshot.warnings.length} warning(s).` : "Save file downloaded.");
+    return snapshot;
+  }
+
+  async function findExistingDatabaseVersion(name) {
+    const idb = getIndexedDB();
+    if (!idb || typeof idb.databases !== "function") return null;
+    const databases = await idb.databases();
+    const match = databases.find((database) => database && database.name === name);
+    return match && match.version ? match.version : null;
+  }
+
+  function applySchema(db, databaseSnapshot, upgradeTransaction) {
+    for (const storeSnapshot of databaseSnapshot.stores || []) {
+      let store;
+      if (db.objectStoreNames.contains(storeSnapshot.name)) {
+        store = upgradeTransaction.objectStore(storeSnapshot.name);
+      } else {
+        const options = { autoIncrement: !!storeSnapshot.autoIncrement };
+        if (storeSnapshot.keyPath !== null && storeSnapshot.keyPath !== undefined) {
+          options.keyPath = storeSnapshot.keyPath;
+        }
+        store = db.createObjectStore(storeSnapshot.name, options);
+      }
+
+      for (const indexSnapshot of storeSnapshot.indexes || []) {
+        if (!store.indexNames.contains(indexSnapshot.name)) {
+          store.createIndex(indexSnapshot.name, indexSnapshot.keyPath, {
+            unique: !!indexSnapshot.unique,
+            multiEntry: !!indexSnapshot.multiEntry,
+          });
+        }
+      }
+    }
+  }
+
+  async function ensureDatabaseSchema(databaseSnapshot) {
+    const snapshotVersion = Math.max(1, Number(databaseSnapshot.version) || 1);
+    const existingVersion = await findExistingDatabaseVersion(databaseSnapshot.name);
+    const firstVersion = Math.max(snapshotVersion, existingVersion || 0) || 1;
+    let db = await openDatabase(databaseSnapshot.name, firstVersion, (database, event) => {
+      applySchema(database, databaseSnapshot, event.target.transaction);
+    });
+    const missingStores = (databaseSnapshot.stores || []).some((store) => !db.objectStoreNames.contains(store.name));
+
+    if (!missingStores) {
+      return db;
+    }
+
+    const nextVersion = Math.max(db.version + 1, snapshotVersion + 1);
+    db.close();
+    db = await openDatabase(databaseSnapshot.name, nextVersion, (database, event) => {
+      applySchema(database, databaseSnapshot, event.target.transaction);
+    });
+    return db;
+  }
+
+  async function prepareStoreRecords(databaseSnapshot) {
+    const stores = [];
+    for (const storeSnapshot of databaseSnapshot.stores || []) {
+      const records = [];
+      for (const record of storeSnapshot.records || []) {
+        records.push({
+          key: decodeNode(record.key),
+          value: decodeNode(record.value),
+        });
+      }
+      stores.push({ ...storeSnapshot, records });
+    }
+    return stores;
+  }
+
+  async function importIndexedDBDatabase(databaseSnapshot) {
+    const stores = await prepareStoreRecords(databaseSnapshot);
+    const db = await ensureDatabaseSchema(databaseSnapshot);
+    const storeNames = stores.map((store) => store.name).filter((name) => db.objectStoreNames.contains(name));
+
+    if (!storeNames.length) {
+      db.close();
+      return;
+    }
+
+    try {
+      const transaction = db.transaction(storeNames, "readwrite");
+      for (const storeSnapshot of stores) {
+        if (!db.objectStoreNames.contains(storeSnapshot.name)) continue;
+
+        const store = transaction.objectStore(storeSnapshot.name);
+        store.clear();
+
+        const hasInlineKey = store.keyPath !== null && store.keyPath !== undefined;
+        for (const record of storeSnapshot.records || []) {
+          if (hasInlineKey || record.key === undefined) {
+            store.put(record.value);
+          } else {
+            store.put(record.value, record.key);
+          }
+        }
+      }
+      await transactionDone(transaction);
+    } finally {
+      db.close();
+    }
+  }
+
+  async function importSnapshot(snapshot) {
+    if (!snapshot || snapshot.format !== FORMAT) {
+      throw new Error("That file is not a compatible hard save file.");
+    }
+
+    const warnings = [];
+    if (snapshot.origin && snapshot.origin !== location.origin) {
+      warnings.push(`Save was created on ${snapshot.origin}; importing into ${location.origin}.`);
+    }
+
+    try {
+      writeStorage(localStorage, snapshot.localStorage || {});
+    } catch (error) {
+      warnings.push(`Could not import localStorage: ${error.message}`);
+    }
+
+    if (config.includeSessionStorage) {
+      try {
+        writeStorage(sessionStorage, snapshot.sessionStorage || {});
+      } catch (error) {
+        warnings.push(`Could not import sessionStorage: ${error.message}`);
+      }
+    }
+
+    if (config.includeIndexedDB && Array.isArray(snapshot.indexedDB)) {
+      for (const databaseSnapshot of snapshot.indexedDB) {
+        try {
+          await importIndexedDBDatabase(databaseSnapshot);
+        } catch (error) {
+          warnings.push(`Could not import IndexedDB database "${databaseSnapshot.name}": ${error.message}`);
+        }
+      }
+    }
+
+    if (warnings.length) {
+      console.warn("[HardSave] Import warnings:", warnings);
+    }
+    return warnings;
+  }
+
+  async function importFromFile(file) {
+    setStatus("Loading...");
+    const text = await readFileAsText(file);
+    const snapshot = JSON.parse(text);
+    const warnings = await importSnapshot(snapshot);
+    setStatus(warnings.length ? `Loaded with ${warnings.length} warning(s). Reloading...` : "Loaded. Reloading...");
+    setTimeout(() => location.reload(), 500);
+    return warnings;
+  }
+
+  function createUI() {
+    if (!config.showUI || document.getElementById("hard-save-panel")) return;
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #hard-save-panel {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 2147483647;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(255,255,255,.24);
+        border-radius: 8px;
+        background: rgba(16,16,16,.82);
+        color: #fff;
+        font: 13px/1.2 Arial, sans-serif;
+        box-shadow: 0 8px 24px rgba(0,0,0,.35);
+      }
+      #hard-save-panel button {
+        min-width: 72px;
+        min-height: 34px;
+        border: 0;
+        border-radius: 6px;
+        background: #f4d35e;
+        color: #151515;
+        cursor: pointer;
+        font: 700 13px/1 Arial, sans-serif;
+      }
+      #hard-save-panel button:hover { background: #ffe27a; }
+      #hard-save-panel button:active { transform: translateY(1px); }
+      #hard-save-status {
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #dce7ff;
+      }
+      #hard-save-status[data-error="true"] { color: #ffb8b8; }
+    `;
+
+    const panel = document.createElement("div");
+    panel.id = "hard-save-panel";
+    panel.innerHTML = `
+      <button type="button" id="hard-save-export" title="Download a portable save file">Save File</button>
+      <button type="button" id="hard-save-import" title="Load a portable save file">Load File</button>
+      <span id="hard-save-status" aria-live="polite"></span>
+      <input type="file" id="hard-save-file" accept="application/json,.json" hidden>
+    `;
+
+    for (const eventName of ["pointerdown", "pointerup", "click", "keydown", "keyup"]) {
+      panel.addEventListener(eventName, (event) => event.stopPropagation(), true);
+    }
+
+    document.head.appendChild(style);
+    document.body.appendChild(panel);
+    statusNode = document.getElementById("hard-save-status");
+
+    const saveButton = document.getElementById("hard-save-export");
+    const loadButton = document.getElementById("hard-save-import");
+    const fileInput = document.getElementById("hard-save-file");
+
+    saveButton.addEventListener("click", async () => {
+      try {
+        await exportToFile();
+      } catch (error) {
+        setStatus(error.message, true);
+      }
+    });
+
+    loadButton.addEventListener("click", () => {
+      const ok = confirm("Load this save file? This replaces the current browser save data for this page and then reloads.");
+      if (ok) fileInput.click();
+    });
+
+    fileInput.addEventListener("change", async () => {
+      const [file] = fileInput.files || [];
+      fileInput.value = "";
+      if (!file) return;
+      try {
+        await importFromFile(file);
+      } catch (error) {
+        setStatus(error.message, true);
+      }
+    });
+  }
+
+  window.HardSave = {
+    exportSnapshot,
+    exportToFile,
+    importSnapshot,
+    importFromFile,
+  };
+
+  if (document.body) {
+    createUI();
+  } else {
+    document.addEventListener("DOMContentLoaded", createUI, { once: true });
+  }
+})();
+
+    </script><div id="hard-save-panel">
+      <button type="button" id="hard-save-export" title="Download a portable save file">Save File</button>
+      <button type="button" id="hard-save-import" title="Load a portable save file">Load File</button>
+      <span id="hard-save-status" aria-live="polite"></span>
+      <input type="file" id="hard-save-file" accept="application/json,.json" hidden="">
+    </div>
+  
+
+<style type="text/css">@font-face { font-family:"OpenSans-Regular_LABEL"; src:url("assets/internal/native/08/0835f102-5471-47a3-9a76-01c07ac9cdb2.629a5/OpenSans-Regular.ttf");}</style><div style="font-family: OpenSans-Regular_LABEL; position: absolute; left: -100px; top: -100px;">.</div><style type="text/css">@font-face { font-family:"OpenSans-Bold_LABEL"; src:url("assets/internal/native/b5/b5475517-23b9-4873-bc1a-968d96616081.50145/OpenSans-Bold.ttf");}</style><div style="font-family: OpenSans-Bold_LABEL; position: absolute; left: -100px; top: -100px;">.</div><style type="text/css">@font-face { font-family:"OpenSans-Italic_LABEL"; src:url("assets/internal/native/0e/0ed97c56-390e-4dd1-96b7-e7f2d93a98ed.c7dcc/OpenSans-Italic.ttf");}</style><div style="font-family: OpenSans-Italic_LABEL; position: absolute; left: -100px; top: -100px;">.</div><style type="text/css">@font-face { font-family:"OpenSans-BoldItalic_LABEL"; src:url("assets/internal/native/b2/b23391b6-52eb-46a6-8da1-6244d9d315fb.78b08/OpenSans-BoldItalic.ttf");}</style><div style="font-family: OpenSans-BoldItalic_LABEL; position: absolute; left: -100px; top: -100px;">.</div><input type="file" accept=".json,.json5" id="fileInput" style="display: none;"><input type="file" accept=".json,.json5" id="fileInput" style="display: none;"><input type="file" accept=".mp3" id="fileInput" style="display: none;"><input type="file" accept=".json,.json5" id="fileInput" style="display: none;"><style type="text/css">@font-face { font-family:"FBUSV8C5EI_LABEL"; src:url("assets/resources/native/86/86615cb2-9939-4358-b8e2-ec2d020efeea.5d0f0/FBUSV8C5EI.ttf");}</style><div style="font-family: FBUSV8C5EI_LABEL; position: absolute; left: -100px; top: -100px;">.</div></body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483000;"></div></html>

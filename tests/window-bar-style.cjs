@@ -1,0 +1,66 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.resolve(__dirname, '..');
+const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const index = read('neo-os/index.html');
+const shell = read('neo-os/neo-os.js');
+const autohide = read('neo-os/neo-topbar-autohide.js');
+const styles = read('neo-os/neo-production-polish.css');
+const appStyles = read('neo-os/neo-apps.css');
+const resizeStyles = read('neo-os/neo-window-resize.css');
+
+assert.match(index, /data-window-bar-style="ultra"/);
+assert.match(index, /data-window-bar-style-option="ultra" aria-pressed="true"/);
+assert.match(index, /data-window-bar-style-option="current"/);
+assert.match(index, /data-window-bar-style-option="pill"/);
+assert.match(index, /Application top bar/);
+assert.match(index, /Floating pill/);
+assert.match(index, /Ultra thin/);
+
+assert.match(shell, /windowBarStyle: "ultra"/);
+assert.match(shell, /function normalizeWindowBarStyle/);
+assert.match(shell, /root\.dataset\.windowBarStyle = settings\.windowBarStyle/);
+assert.match(shell, /\[data-window-bar-style-option\]/);
+assert.match(shell, /savedDesignVersion < 20[\s\S]*?savedSettings\.windowBarStyle = "ultra"/);
+assert.match(shell, /win\.className = "neo-window" \+ \(isSmallScreen\(\) \? "" : " is-maximized"\)/);
+assert.doesNotMatch(shell, /class="window-control fullscreen"/);
+assert.doesNotMatch(shell, /savedWindow\.maximized && !isSmallScreen\(\)/);
+assert.match(autohide, /root\.dataset\.windowBarStyle === "ultra" \? 32 : 11/);
+
+assert.match(styles, /data-window-bar-style="pill"/);
+assert.match(styles, /data-window-bar-style="ultra"/);
+assert.match(styles, /--neo-window-chrome-height: 32px/);
+assert.match(styles, /grid-template-rows: 32px minmax\(0, 1fr\) !important/);
+assert.match(styles, /data-window-bar-style="ultra"\] \.neo-window:not\(\.is-youtube-popout\) \{[\s\S]*?border-top-left-radius: 0 !important;[\s\S]*?border-top-right-radius: 0 !important;/);
+assert.match(styles, /window-bar-style-preview\.is-ultra::before/);
+assert.match(styles, /\.window-control\.fullscreen \{[\s\S]*?display: none !important/);
+assert.match(styles, /grid-template-rows: minmax\(0, 1fr\) !important/);
+assert.match(styles, /\.neo-window::before \{\s*display: none;/);
+assert.match(styles, /width: min\(560px, calc\(100% - 28px\)\)/);
+assert.match(styles, /border-radius: 999px/);
+assert.match(styles, /overflow: visible !important;[\s\S]*?position: absolute !important;[\s\S]*?top: 0;[\s\S]*?transform: translate\(-50%, -50%\) !important/);
+assert.match(styles, /\.neo-window:not\(\.is-maximized\):not\(\.is-tab-fullscreen\):not\(\.is-youtube-popout\) > \.window-chrome \{[\s\S]*?position: relative !important;[\s\S]*?transform: none !important/);
+assert.match(styles, /\.neo-window:is\(\.is-maximized,\.is-tab-fullscreen\) > \.window-chrome \{[\s\S]*?width: 38px;[\s\S]*?border-radius: 999px/);
+assert.match(styles, /\.neo-window\.is-maximized:not\(\.is-tab-fullscreen\)[\s\S]*?\.window-control\.maximize/);
+assert.match(styles, /\.neo-window\.is-tab-fullscreen[\s\S]*?\.window-control\.fullscreen/);
+assert.match(styles, /content: "×"/);
+assert.match(styles, /> \.window-chrome > \.window-app-icon \{[\s\S]*?display: grid !important/);
+assert.match(styles, /grid-template-columns: 24px minmax\(0, 1fr\) auto !important/);
+assert.match(styles, /\.desktop-settings-shortcuts \{ display: none !important; \}/);
+assert.match(styles, /window-bar-style-preview\.is-pill::before/);
+assert.match(styles, /@media \(min-width: 701px\)/);
+assert.match(index, /neo-interface-styles\.css\?v=20260919-rounded-restored-windows-v1/);
+const interfaceStyles = read('neo-os/neo-interface-styles.css');
+assert.match(interfaceStyles, /\.neo-window:not\(\.is-maximized\):not\(\.is-tab-fullscreen\) \{[\s\S]*?border-radius: var\(--neo-restored-window-radius\) !important;/);
+assert.match(interfaceStyles, /\.neo-window:is\(\.is-maximized, \.is-tab-fullscreen\) \{[\s\S]*?border-radius: 0 !important;/);
+assert.match(appStyles, /> \.window-chrome > \.window-app-icon \{[\s\S]*?display: grid !important/);
+assert.match(appStyles, /grid-template-columns: 30px minmax\(0, 1fr\) auto !important/);
+assert.match(shell, /function syncMaximizeButton/);
+assert.match(shell, /button\.title = maximized \? "Restore window" : "Maximize"/);
+assert.match(shell, /class="tab-fullscreen-exit"[^>]*data-window-action="fullscreen"[^>]*aria-label="Exit app fullscreen"/);
+assert.match(resizeStyles, /\.neo-window\.is-tab-fullscreen > \.tab-fullscreen-exit \{[\s\S]*?display: grid !important;[\s\S]*?pointer-events: auto;/);
+assert.match(resizeStyles, /\.neo-window\.is-tab-fullscreen > \.tab-fullscreen-exit \.icon \{[\s\S]*?width: 22px;/);
+
+console.log('Application window bar style checks passed.');

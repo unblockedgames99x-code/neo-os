@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Brotato Hard Save Google Sites Embed</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+  #game-frame {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    border: 0;
+    display: block;
+    background: #000;
+  }
+  #hud {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2147483647;
+    padding: 12px 8px;
+    pointer-events: auto;
+  }
+  .hud-btn {
+    width: 112px;
+    min-height: 42px;
+    border: 0;
+    border-radius: 8px;
+    padding: 9px 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.1;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,.68);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+  .hud-btn:active { transform: scale(.96); }
+  .hud-btn:disabled { opacity: .55; cursor: wait; filter: grayscale(.35); }
+  .btn-save { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: #e8f5e9; }
+  .btn-load { background: linear-gradient(135deg, #1565c0, #0d47a1); color: #e3f2fd; }
+  .btn-restart { background: linear-gradient(135deg, #5d4037, #3e2723); color: #fff3e0; }
+  #toast {
+    position: fixed;
+    left: 10px;
+    top: calc(50% + 122px);
+    transform: translateY(10px);
+    z-index: 2147483647;
+    max-width: min(390px, calc(100vw - 24px));
+    background: rgba(10,10,10,.96);
+    color: #fff;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.14);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.35;
+    white-space: pre-line;
+    opacity: 0;
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    box-shadow: 0 8px 26px rgba(0,0,0,.72);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+  #file-input { display:none; }
+</style>
+</head>
+<body>
+
+<iframe id="game-frame" allow="fullscreen; autoplay; gamepad; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
+<div id="hud">
+  <button id="save-btn" class="hud-btn btn-save" type="button">💾 Save Hard File</button>
+  <button id="load-btn" class="hud-btn btn-load" type="button">📂 Load Hard File</button>
+  <button id="restart-btn" class="hud-btn btn-restart" type="button">🔁 Restart Game</button>
+</div>
+<div id="toast"></div>
+<input id="file-input" type="file" accept=".brotatosave,.json,application/json">
+
+<template id="game-template"><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Brotato</title>
+
+<script>
+(function () {
+  "use strict";
+
+  /*
+    Brotato storage shim, based on the same idea as the PvZ working file:
+    localStorage/sessionStorage are same-shape objects, but they are backed by
+    IndexedDB so their keys can be exported/imported with the hard save file.
+  */
+
+  var DB_NAME = "BROTATO_STORAGE_SHIM_IDB_V1";
+  var STORE_NAME = "items";
+  var memory = new Map();
+  var pending = [];
+  var installError = null;
+
+  function openDb() {
+    return new Promise(function (resolve, reject) {
+      if (!window.indexedDB) {
+        reject(new Error("IndexedDB is not available."));
+        return;
+      }
+      var req = indexedDB.open(DB_NAME, 1);
+      req.onupgradeneeded = function (e) {
+        var db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE_NAME)) {
+          db.createObjectStore(STORE_NAME, { keyPath: "key" });
+        }
+      };
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error("Could not open Brotato storage shim DB")); };
+    });
+  }
+
+  function track(p) {
+    pending.push(p);
+    p.then(clean, clean);
+    function clean() {
+      var i = pending.indexOf(p);
+      if (i >= 0) pending.splice(i, 1);
+    }
+    return p;
+  }
+
+  function putRecord(key, value) {
+    return track(openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, "readwrite");
+        tx.objectStore(STORE_NAME).put({ key: String(key), value: String(value) });
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error("Storage shim write failed")); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error("Storage shim write aborted")); };
+      });
+    }));
+  }
+
+  function removeRecord(key) {
+    return track(openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, "readwrite");
+        tx.objectStore(STORE_NAME).delete(String(key));
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error("Storage shim delete failed")); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error("Storage shim delete aborted")); };
+      });
+    }));
+  }
+
+  function replaceDb(entries) {
+    return track(openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, "readwrite");
+        var store = tx.objectStore(STORE_NAME);
+        store.clear();
+        entries.forEach(function (entry) {
+          if (!entry || entry.key === undefined || entry.key === null) return;
+          store.put({ key: String(entry.key), value: String(entry.value == null ? "" : entry.value) });
+        });
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error("Storage shim replace failed")); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error("Storage shim replace aborted")); };
+      });
+    }));
+  }
+
+  function loadAll() {
+    return openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, "readonly");
+        var req = tx.objectStore(STORE_NAME).openCursor();
+
+        req.onsuccess = function (e) {
+          var cursor = e.target.result;
+          if (!cursor) return;
+          var row = cursor.value;
+          if (row && row.key !== undefined) memory.set(String(row.key), String(row.value == null ? "" : row.value));
+          cursor.continue();
+        };
+
+        req.onerror = function () { reject(req.error || new Error("Storage shim read failed")); };
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error("Storage shim transaction failed")); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error("Storage shim read aborted")); };
+      });
+    });
+  }
+
+  var shimCore = {
+    get length() { return memory.size; },
+    key: function (index) {
+      index = Number(index) || 0;
+      var keys = Array.from(memory.keys());
+      return index >= 0 && index < keys.length ? keys[index] : null;
+    },
+    getItem: function (key) {
+      key = String(key);
+      return memory.has(key) ? memory.get(key) : null;
+    },
+    setItem: function (key, value) {
+      key = String(key);
+      value = String(value);
+      memory.set(key, value);
+      putRecord(key, value);
+    },
+    removeItem: function (key) {
+      key = String(key);
+      memory.delete(key);
+      removeRecord(key);
+    },
+    clear: function () {
+      memory.clear();
+      replaceDb([]);
+    }
+  };
+
+  var shim = new Proxy(shimCore, {
+    get: function (target, prop) {
+      if (prop in target) {
+        var value = target[prop];
+        return typeof value === "function" ? value.bind(target) : value;
+      }
+      if (typeof prop === "string" && memory.has(prop)) return memory.get(prop);
+      return undefined;
+    },
+    set: function (target, prop, value) {
+      if (typeof prop === "string") target.setItem(prop, value);
+      return true;
+    },
+    deleteProperty: function (target, prop) {
+      if (typeof prop === "string") target.removeItem(prop);
+      return true;
+    },
+    has: function (target, prop) {
+      return prop in target || (typeof prop === "string" && memory.has(prop));
+    },
+    ownKeys: function () {
+      return Array.from(memory.keys());
+    },
+    getOwnPropertyDescriptor: function (target, prop) {
+      if (typeof prop === "string" && memory.has(prop)) {
+        return { value: memory.get(prop), writable: true, enumerable: true, configurable: true };
+      }
+      return Object.getOwnPropertyDescriptor(target, prop) || { configurable: true };
+    }
+  });
+
+  function installProperty(name) {
+    Object.defineProperty(window, name, {
+      configurable: true,
+      enumerable: false,
+      get: function () { return shim; }
+    });
+  }
+
+  try {
+    installProperty("local" + "Storage");
+    installProperty("session" + "Storage");
+  } catch (e) {
+    installError = e;
+  }
+
+  var ready = installError ? Promise.resolve() : loadAll();
+  ready.catch(function (e) { console.error("Brotato storage shim failed:", e); });
+
+  window.__brotatoStorageShim = {
+    dbName: DB_NAME,
+    ready: ready,
+    installed: !installError,
+    error: installError,
+    entries: function () {
+      return Array.from(memory.entries()).map(function (pair) {
+        return { key: pair[0], value: pair[1] };
+      });
+    },
+    replaceAll: async function (entries) {
+      entries = Array.isArray(entries) ? entries : [];
+      memory.clear();
+      entries.forEach(function (entry) {
+        if (!entry || entry.key === undefined || entry.key === null) return;
+        memory.set(String(entry.key), String(entry.value == null ? "" : entry.value));
+      });
+      if (!installError) {
+        await replaceDb(Array.from(memory.entries()).map(function (pair) {
+          return { key: pair[0], value: pair[1] };
+        }));
+      }
+      await this.flush();
+    },
+    flush: async function () {
+      while (pending.length) {
+        var current = pending.slice();
+        await Promise.allSettled(current);
+      }
+    }
+  };
+})();
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    touch-action: none;
+  }
+  #canvas {
+    position: fixed;
+    inset: 0;
+    display: block;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    border: none;
+    outline: none;
+    background: #000;
+    object-fit: fill;
+    z-index: 1;
+  }
+  #status {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    pointer-events: none;
+    transition: opacity .45s ease, visibility .45s ease;
+  }
+  #status.hidden { opacity: 0; visibility: hidden; }
+  .loader-box {
+    width: min(520px, calc(100vw - 32px));
+    padding: 24px 22px;
+    border-radius: 18px;
+    background: #111;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 16px 42px rgba(0,0,0,.65);
+    text-align: center;
+  }
+  .loader-box strong { display: block; font-size: 28px; margin-bottom: 8px; }
+  #loaderPercent {
+    display: block;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    margin: 4px 0 6px;
+    line-height: 1.1;
+  }
+  #statusText {
+    color: #ddd;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+    min-height: 22px;
+  }
+  .loader-bar {
+    width: 100%;
+    height: 10px;
+    margin-top: 16px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,.16);
+  }
+  #loaderFill {
+    width: 8%;
+    height: 100%;
+    border-radius: 999px;
+    background: #fff;
+    transition: width .55s ease;
+  }
+  .loader-note {
+    margin-top: 12px;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+</style>
+</head>
+
+<body>
+<canvas id="canvas" tabindex="0"></canvas>
+
+<div id="status">
+  <div class="loader-box">
+    <strong>Loading Brotato</strong>
+    <div id="loaderPercent">8%</div>
+    <div id="statusText">Waiting for hard-save system...</div>
+    <div class="loader-bar"><div id="loaderFill" style="width:8%;"></div></div>
+    <div class="loader-note">
+      Large Godot files may take a moment on school Wi-Fi or Chromebook. Do not refresh while loading.
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/gzuidhof/coi-serviceworker@latest/coi-serviceworker.min.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  var booted = false;
+  var booting = false;
+
+  function byId(id) { return document.getElementById(id); }
+  function sleep(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+
+  function post(type, data) {
+    try {
+      data = data || {};
+      data.type = type;
+      window.parent.postMessage(data, "*");
+    } catch (e) {}
+  }
+
+  function setStatus(percent, message) {
+    var loaderFill = byId("loaderFill");
+    var loaderPercent = byId("loaderPercent");
+    var statusText = byId("statusText");
+    var safePercent = Math.max(8, Math.min(100, Math.round(percent || 8)));
+    if (loaderFill) loaderFill.style.width = safePercent + "%";
+    if (loaderPercent) loaderPercent.textContent = safePercent + "%";
+    if (statusText) statusText.textContent = message || "";
+    post("BROTATO_STATUS", { message: message || "", percent: safePercent });
+  }
+
+  function hideStatus() {
+    setStatus(100, "Game ready.");
+    setTimeout(function () {
+      var status = byId("status");
+      if (status) status.classList.add("hidden");
+      post("BROTATO_GAME_READY", {});
+    }, 600);
+  }
+
+  function abToBase64(buffer) {
+    var bytes = new Uint8Array(buffer);
+    var chunkSize = 0x8000;
+    var binary = "";
+    for (var i = 0; i < bytes.length; i += chunkSize) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+    }
+    return btoa(binary);
+  }
+
+  function base64ToAb(base64) {
+    var binary = atob(base64 || "");
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
+  async function encodeValue(value) {
+    if (value === undefined) return { __brotatoType: "Undefined" };
+    if (value === null) return null;
+
+    if (typeof value === "bigint") {
+      return { __brotatoType: "BigInt", value: value.toString() };
+    }
+
+    if (typeof value !== "object") return value;
+
+    if (value instanceof Date) {
+      return { __brotatoType: "Date", value: value.toISOString() };
+    }
+
+    if (value instanceof ArrayBuffer) {
+      return { __brotatoType: "ArrayBuffer", data: abToBase64(value) };
+    }
+
+    if (ArrayBuffer.isView(value)) {
+      return {
+        __brotatoType: "TypedArray",
+        name: value.constructor && value.constructor.name ? value.constructor.name : "Uint8Array",
+        data: abToBase64(value.buffer.slice(value.byteOffset, value.byteOffset + value.byteLength))
+      };
+    }
+
+    if (typeof Blob !== "undefined" && value instanceof Blob) {
+      return {
+        __brotatoType: "Blob",
+        mime: value.type || "application/octet-stream",
+        data: abToBase64(await value.arrayBuffer())
+      };
+    }
+
+    if (Array.isArray(value)) {
+      var arr = [];
+      for (var i = 0; i < value.length; i++) arr.push(await encodeValue(value[i]));
+      return arr;
+    }
+
+    var out = {};
+    var keys = Object.keys(value);
+    for (var k = 0; k < keys.length; k++) {
+      out[keys[k]] = await encodeValue(value[keys[k]]);
+    }
+    return out;
+  }
+
+  function decodeValue(value) {
+    if (value === null || typeof value !== "object") return value;
+    if (Array.isArray(value)) return value.map(decodeValue);
+
+    var marker = value.__brotatoType || value.__hardSaveType || value.__saveType;
+
+    if (marker === "Undefined") return undefined;
+    if (marker === "BigInt") {
+      try { return BigInt(value.value); } catch (_) { return value.value; }
+    }
+    if (marker === "Date") return new Date(value.value);
+    if (marker === "ArrayBuffer") return base64ToAb(value.data);
+    if (marker === "TypedArray") {
+      var buffer = base64ToAb(value.data);
+      var map = {
+        Int8Array: Int8Array,
+        Uint8Array: Uint8Array,
+        Uint8ClampedArray: Uint8ClampedArray,
+        Int16Array: Int16Array,
+        Uint16Array: Uint16Array,
+        Int32Array: Int32Array,
+        Uint32Array: Uint32Array,
+        Float32Array: Float32Array,
+        Float64Array: Float64Array
+      };
+      if (typeof BigInt64Array !== "undefined") map.BigInt64Array = BigInt64Array;
+      if (typeof BigUint64Array !== "undefined") map.BigUint64Array = BigUint64Array;
+      if (value.name === "DataView") return new DataView(buffer);
+      var Ctor = map[value.name] || Uint8Array;
+      return new Ctor(buffer);
+    }
+    if (marker === "Blob") {
+      return new Blob([base64ToAb(value.data)], { type: value.mime || "application/octet-stream" });
+    }
+
+    if (value.__type) {
+      var arr = new Uint8Array(value.data || []);
+      if (value.__type === "ArrayBuffer") return arr.buffer;
+      var ctors = {
+        Uint8Array: Uint8Array,
+        Int8Array: Int8Array,
+        Uint16Array: Uint16Array,
+        Int16Array: Int16Array,
+        Uint32Array: Uint32Array,
+        Int32Array: Int32Array,
+        Float32Array: Float32Array,
+        Float64Array: Float64Array,
+        Uint8ClampedArray: Uint8ClampedArray
+      };
+      if (ctors[value.__type]) return new ctors[value.__type](arr.buffer);
+    }
+
+    var out = {};
+    var keys = Object.keys(value);
+    for (var i = 0; i < keys.length; i++) out[keys[i]] = decodeValue(value[keys[i]]);
+    return out;
+  }
+
+  function idbReq(req) {
+    return new Promise(function (resolve, reject) {
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error("IndexedDB request failed")); };
+    });
+  }
+
+  function txDone(tx) {
+    return new Promise(function (resolve, reject) {
+      tx.oncomplete = function () { resolve(); };
+      tx.onerror = function () { reject(tx.error || new Error("IndexedDB transaction failed")); };
+      tx.onabort = function () { reject(tx.error || new Error("IndexedDB transaction aborted")); };
+    });
+  }
+
+  async function flushGameSave() {
+    await sleep(900);
+
+    try {
+      if (window.Module && window.Module.FS && typeof window.Module.FS.syncfs === "function") {
+        await new Promise(function (resolve) {
+          try { window.Module.FS.syncfs(false, function () { resolve(); }); }
+          catch (_) { resolve(); }
+        });
+      }
+    } catch (_) {}
+
+    try {
+      if (window.__brotatoStorageShim) await window.__brotatoStorageShim.flush();
+    } catch (_) {}
+
+    await sleep(300);
+  }
+
+  async function listDatabases() {
+    if (indexedDB.databases) return await indexedDB.databases();
+    return [];
+  }
+
+  function storeSchema(store) {
+    var indexes = [];
+    for (var i = 0; i < store.indexNames.length; i++) {
+      var idx = store.index(store.indexNames[i]);
+      indexes.push({
+        name: idx.name,
+        keyPath: idx.keyPath,
+        multiEntry: !!idx.multiEntry,
+        unique: !!idx.unique
+      });
+    }
+    return {
+      name: store.name,
+      keyPath: store.keyPath,
+      autoIncrement: !!store.autoIncrement,
+      indexes: indexes
+    };
+  }
+
+  async function dumpStore(db, storeName) {
+    var tx = db.transaction(storeName, "readonly");
+    var store = tx.objectStore(storeName);
+    var keys = await idbReq(store.getAllKeys());
+    var values = await idbReq(store.getAll());
+    try { await txDone(tx); } catch (_) {}
+
+    var rows = [];
+    for (var i = 0; i < values.length; i++) {
+      rows.push({
+        key: await encodeValue(keys[i]),
+        value: await encodeValue(values[i])
+      });
+    }
+    return rows;
+  }
+
+  async function dumpAllDatabases() {
+    var dbList = await listDatabases();
+    var out = [];
+    var shimDbName = window.__brotatoStorageShim ? window.__brotatoStorageShim.dbName : "";
+
+    for (var i = 0; i < dbList.length; i++) {
+      var dbInfo = dbList[i];
+      if (!dbInfo || !dbInfo.name || dbInfo.name === shimDbName) continue;
+
+      var db;
+      try {
+        db = await idbReq(indexedDB.open(dbInfo.name));
+      } catch (e) {
+        console.warn("Could not open DB for save:", dbInfo.name, e);
+        continue;
+      }
+
+      var storeNames = Array.from(db.objectStoreNames || []);
+      var schemas = [];
+      var stores = [];
+
+      if (storeNames.length) {
+        try {
+          var schemaTx = db.transaction(storeNames, "readonly");
+          storeNames.forEach(function (storeName) {
+            schemas.push(storeSchema(schemaTx.objectStore(storeName)));
+          });
+          try { await txDone(schemaTx); } catch (_) {}
+        } catch (schemaErr) {
+          console.warn("Could not read DB schema:", dbInfo.name, schemaErr);
+        }
+
+        for (var s = 0; s < storeNames.length; s++) {
+          try {
+            stores.push({ name: storeNames[s], rows: await dumpStore(db, storeNames[s]) });
+          } catch (storeErr) {
+            console.warn("Could not dump store:", dbInfo.name, storeNames[s], storeErr);
+          }
+        }
+      }
+
+      out.push({ name: db.name, version: db.version, schemas: schemas, stores: stores });
+      try { db.close(); } catch (_) {}
+    }
+
+    return out;
+  }
+
+  function deleteDatabase(name) {
+    return new Promise(function (resolve) {
+      if (!name) { resolve(false); return; }
+      var done = false;
+      var timer = setTimeout(function () {
+        if (!done) { done = true; resolve(false); }
+      }, 4000);
+
+      try {
+        var req = indexedDB.deleteDatabase(name);
+        req.onsuccess = function () { if (!done) { clearTimeout(timer); done = true; resolve(true); } };
+        req.onerror = function () { if (!done) { clearTimeout(timer); done = true; resolve(false); } };
+        req.onblocked = function () { console.warn("Delete blocked for DB:", name); };
+      } catch (e) {
+        clearTimeout(timer);
+        done = true;
+        resolve(false);
+      }
+    });
+  }
+
+  async function clearNonShimDatabases() {
+    var shimDbName = window.__brotatoStorageShim ? window.__brotatoStorageShim.dbName : "";
+    var dbList = await listDatabases();
+
+    for (var i = 0; i < dbList.length; i++) {
+      var dbInfo = dbList[i];
+      if (!dbInfo || !dbInfo.name || dbInfo.name === shimDbName) continue;
+      await deleteDatabase(dbInfo.name);
+    }
+  }
+
+  async function restoreDatabase(dbSnap) {
+    if (!dbSnap || !dbSnap.name) return;
+    if (window.__brotatoStorageShim && dbSnap.name === window.__brotatoStorageShim.dbName) return;
+
+    await deleteDatabase(dbSnap.name);
+
+    await new Promise(function (resolve, reject) {
+      var version = Math.max(1, Number(dbSnap.version || 1));
+      var openReq = indexedDB.open(dbSnap.name, version);
+
+      openReq.onupgradeneeded = function (e) {
+        var db = e.target.result;
+        (dbSnap.schemas || []).forEach(function (schema) {
+          if (!schema || !schema.name || db.objectStoreNames.contains(schema.name)) return;
+
+          var opts = { autoIncrement: !!schema.autoIncrement };
+          if (schema.keyPath !== null && schema.keyPath !== undefined) opts.keyPath = schema.keyPath;
+
+          var store = db.createObjectStore(schema.name, opts);
+          (schema.indexes || []).forEach(function (idx) {
+            try {
+              store.createIndex(idx.name, idx.keyPath, {
+                multiEntry: !!idx.multiEntry,
+                unique: !!idx.unique
+              });
+            } catch (_) {}
+          });
+        });
+      };
+
+      openReq.onsuccess = function () {
+        var db = openReq.result;
+        var storeNames = (dbSnap.stores || [])
+          .map(function (s) { return s.name; })
+          .filter(function (n) { return db.objectStoreNames.contains(n); });
+
+        if (!storeNames.length) {
+          db.close();
+          resolve();
+          return;
+        }
+
+        var tx = db.transaction(storeNames, "readwrite");
+
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error("DB restore failed")); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error("DB restore aborted")); };
+
+        (dbSnap.stores || []).forEach(function (storeSnap) {
+          if (!storeSnap || !db.objectStoreNames.contains(storeSnap.name)) return;
+
+          var store = tx.objectStore(storeSnap.name);
+          (storeSnap.rows || []).forEach(function (row) {
+            try {
+              var val = decodeValue(row.value);
+              var key = decodeValue(row.key);
+
+              if (store.keyPath !== null && store.keyPath !== undefined) {
+                store.put(val);
+              } else {
+                store.put(val, key);
+              }
+            } catch (err) {
+              console.warn("Could not restore row:", storeSnap.name, err);
+            }
+          });
+        });
+      };
+
+      openReq.onerror = function () { reject(openReq.error || new Error("Could not open DB for restore")); };
+      openReq.onblocked = function () { console.warn("Open blocked for DB:", dbSnap.name); };
+    });
+  }
+
+  async function convertLegacyIndexedDB(legacy) {
+    var out = [];
+    if (!legacy || typeof legacy !== "object") return out;
+
+    var dbNames = Object.keys(legacy);
+    for (var d = 0; d < dbNames.length; d++) {
+      var dbName = dbNames[d];
+      var dump = legacy[dbName];
+      if (!dump || !dump.stores) continue;
+
+      var dbSnap = { name: dbName, version: dump.version || 1, schemas: [], stores: [] };
+      var storeNames = Object.keys(dump.stores || {});
+
+      for (var s = 0; s < storeNames.length; s++) {
+        var storeName = storeNames[s];
+        var meta = dump.stores[storeName] || {};
+        dbSnap.schemas.push({
+          name: storeName,
+          keyPath: meta.keyPath,
+          autoIncrement: !!meta.autoIncrement,
+          indexes: meta.indexes || []
+        });
+
+        var rows = [];
+        var records = meta.records || meta.rows || [];
+        for (var r = 0; r < records.length; r++) {
+          rows.push({
+            key: await encodeValue(decodeValue(records[r].key)),
+            value: await encodeValue(decodeValue(records[r].value))
+          });
+        }
+        dbSnap.stores.push({ name: storeName, rows: rows });
+      }
+
+      out.push(dbSnap);
+    }
+
+    return out;
+  }
+
+  async function normaliseSnapshot(snapshot) {
+    snapshot = snapshot || {};
+
+    var storageEntries = [];
+    if (Array.isArray(snapshot.storageShim)) {
+      storageEntries = snapshot.storageShim;
+    } else if (snapshot.webStorage && Array.isArray(snapshot.webStorage.entries)) {
+      storageEntries = snapshot.webStorage.entries;
+    } else if (snapshot.localStorage && typeof snapshot.localStorage === "object") {
+      storageEntries = Object.keys(snapshot.localStorage).map(function (key) {
+        return { key: key, value: snapshot.localStorage[key] };
+      });
+    }
+
+    var databases = [];
+    if (Array.isArray(snapshot.databases)) {
+      databases = snapshot.databases;
+    } else if (snapshot.indexedDB && typeof snapshot.indexedDB === "object") {
+      databases = await convertLegacyIndexedDB(snapshot.indexedDB);
+    }
+
+    return { storageEntries: storageEntries, databases: databases };
+  }
+
+  function countRows(databases) {
+    return (databases || []).reduce(function (acc, db) {
+      return acc + (db.stores || []).reduce(function (inner, store) {
+        return inner + (store.rows || []).length;
+      }, 0);
+    }, 0);
+  }
+
+  async function makeSnapshot() {
+    setStatus(100, "Making hard save file...");
+    await flushGameSave();
+
+    var storageEntries = window.__brotatoStorageShim ? window.__brotatoStorageShim.entries() : [];
+    var databases = await dumpAllDatabases();
+
+    await flushGameSave();
+
+    return {
+      meta: {
+        savedAt: new Date().toISOString(),
+        game: "Brotato-All-Pain-No-Gain",
+        version: "5.0-pvz-style-hard-save",
+        origin: location.origin,
+        note: "Brotato hard save: storage shim + IndexedDB databases, restored before the Godot engine starts."
+      },
+      storageShim: storageEntries,
+      databases: databases
+    };
+  }
+
+  async function restoreSnapshot(snapshot) {
+    setStatus(8, "Reading hard save...");
+    await window.__brotatoStorageShim.ready;
+
+    var normal = await normaliseSnapshot(snapshot);
+    setStatus(10, "Clearing old Brotato save data...");
+    await clearNonShimDatabases();
+
+    setStatus(12, "Restoring storage keys...");
+    if (window.__brotatoStorageShim) await window.__brotatoStorageShim.replaceAll(normal.storageEntries);
+
+    var databases = normal.databases || [];
+    for (var i = 0; i < databases.length; i++) {
+      setStatus(12 + Math.round(((i + 1) / Math.max(1, databases.length)) * 30), "Restoring save database " + (i + 1) + " / " + databases.length + "...");
+      await restoreDatabase(databases[i]);
+    }
+
+    if (window.__brotatoStorageShim) await window.__brotatoStorageShim.flush();
+
+    return {
+      keys: normal.storageEntries.length,
+      databases: databases.length,
+      rows: countRows(databases)
+    };
+  }
+
+  async function startBrotato() {
+    if (booted || booting) return;
+    booting = true;
+
+    try {
+      await window.__brotatoStorageShim.ready;
+    } catch (_) {}
+
+    setStatus(8, "Preparing All Pain No Gain files...");
+
+    var HASH = "20b998679f3a2a598bf5c10a5dd8422b47272a04";
+    var BASE = "https://cdn.jsdelivr.net/gh/aahspaghetticode/ignore@" + HASH + "/";
+    var TOTAL_BYTES = 160.54 * 1048576;
+
+    var originalFetch = window.fetch.bind(window);
+    var mergedData = {};
+    var pendingRequests = {};
+    var bytesLoadedSoFar = 0;
+
+    function formatMB(bytes) { return (bytes / 1048576).toFixed(2); }
+
+    function updateDownloadStatus() {
+      var percent = Math.round((bytesLoadedSoFar / TOTAL_BYTES) * 85);
+      setStatus(
+        Math.max(8, Math.min(85, percent)),
+        "Downloading files " + formatMB(bytesLoadedSoFar) + " / 160.54 MB"
+      );
+    }
+
+    window.fetch = function (url) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      var u = String(url);
+
+      if (u.indexOf("Brotato.pck") !== -1 || u.indexOf("Brotato.wasm") !== -1) {
+        var fileName = u.indexOf(".pck") !== -1 ? "Brotato.pck" : "Brotato.wasm";
+
+        if (mergedData[fileName]) {
+          return Promise.resolve(new Response(mergedData[fileName], {
+            status: 200,
+            headers: { "Content-Type": "application/octet-stream" }
+          }));
+        }
+
+        return new Promise(function (resolve) {
+          if (!pendingRequests[fileName]) pendingRequests[fileName] = [];
+          pendingRequests[fileName].push(resolve);
+        });
+      }
+
+      return originalFetch.apply(null, [url].concat(args));
+    };
+
+    async function merge(name, start, end) {
+      var buffers = [];
+
+      for (var i = start; i <= end; i++) {
+        var url = BASE + encodeURIComponent(name + ".part" + i);
+        var response = await originalFetch(url);
+
+        if (!response.ok) throw new Error("Failed loading " + url);
+
+        var data = await response.arrayBuffer();
+        buffers.push(data);
+        bytesLoadedSoFar += data.byteLength;
+        updateDownloadStatus();
+      }
+
+      var blob = new Blob(buffers, { type: "application/octet-stream" });
+      mergedData[name] = blob;
+
+      if (pendingRequests[name]) {
+        pendingRequests[name].forEach(function (resolve) {
+          resolve(new Response(blob, {
+            status: 200,
+            headers: { "Content-Type": "application/octet-stream" }
+          }));
+        });
+        delete pendingRequests[name];
+      }
+    }
+
+    async function fetchSingle(name) {
+      var url = BASE + encodeURIComponent(name);
+      var response = await originalFetch(url);
+
+      if (!response.ok) throw new Error("Failed loading " + url);
+
+      var data = await response.arrayBuffer();
+      bytesLoadedSoFar += data.byteLength;
+      updateDownloadStatus();
+
+      var blob = new Blob([data], { type: "application/octet-stream" });
+      mergedData[name] = blob;
+
+      if (pendingRequests[name]) {
+        pendingRequests[name].forEach(function (resolve) {
+          resolve(new Response(blob, {
+            status: 200,
+            headers: { "Content-Type": "application/octet-stream" }
+          }));
+        });
+        delete pendingRequests[name];
+      }
+    }
+
+    function forceCanvasFit() {
+      var canvas = byId("canvas");
+      if (!canvas) return;
+      canvas.style.width = "100vw";
+      canvas.style.height = "100vh";
+      canvas.style.maxWidth = "100vw";
+      canvas.style.maxHeight = "100vh";
+      canvas.style.display = "block";
+      canvas.style.background = "#000";
+      if (canvas.focus) setTimeout(function () { try { canvas.focus(); } catch (_) {} }, 50);
+    }
+
+    window.addEventListener("resize", forceCanvasFit);
+    window.addEventListener("orientationchange", forceCanvasFit);
+    setInterval(forceCanvasFit, 1000);
+
+    try {
+      await merge("Brotato.pck", 0, 8);
+      await fetchSingle("Brotato.wasm");
+
+      setStatus(88, "Starting Brotato engine...");
+
+      var script = document.createElement("script");
+      script.src = BASE + "Brotato.js";
+
+      script.onload = function () {
+        try {
+          var engine = new Engine({
+            args: [],
+            canvasResizePolicy: 2,
+            executable: "Brotato",
+            experimentalVK: false,
+            fileSizes: {
+              "Brotato.pck": 147972096,
+              "Brotato.wasm": 19796835
+            },
+            focusCanvas: true,
+            gdnativeLibs: []
+          });
+
+          window.__brotatoEngine = engine;
+
+          engine.startGame({
+            onProgress: function (current, total) {
+              if (total > 0) {
+                var enginePercent = Math.round((current / total) * 10);
+                setStatus(88 + enginePercent, "Starting game engine...");
+              }
+            }
+          }).then(function () {
+            booted = true;
+            booting = false;
+            hideStatus();
+            forceCanvasFit();
+            window.dispatchEvent(new Event("resize"));
+          }).catch(function (err) {
+            console.error("Brotato engine failed.", err);
+            booting = false;
+            setStatus(100, "Load error. Press Restart Game.");
+            post("BROTATO_ERROR", { message: "Brotato engine failed: " + (err && err.message ? err.message : err) });
+          });
+        } catch (err) {
+          console.error("Brotato startup failed.", err);
+          booting = false;
+          setStatus(100, "Load error. Press Restart Game.");
+          post("BROTATO_ERROR", { message: "Brotato startup failed: " + (err && err.message ? err.message : err) });
+        }
+      };
+
+      script.onerror = function () {
+        booting = false;
+        setStatus(100, "Load error. Game script failed.");
+        post("BROTATO_ERROR", { message: "Game script failed." });
+      };
+
+      document.body.appendChild(script);
+    } catch (err) {
+      console.error("Brotato load failed.", err);
+      booting = false;
+      setStatus(100, "Load error. Press Restart Game.");
+      post("BROTATO_ERROR", { message: "Brotato load failed: " + (err && err.message ? err.message : err) });
+    }
+  }
+
+  window.addEventListener("message", async function (event) {
+    var msg = event.data || {};
+    if (!msg || typeof msg.type !== "string") return;
+
+    if (msg.type === "BROTATO_BOOT") {
+      startBrotato();
+      return;
+    }
+
+    if (msg.type === "BROTATO_RESTORE_AND_BOOT") {
+      try {
+        var stats = await restoreSnapshot(msg.snapshot || {});
+        post("BROTATO_RESTORE_DONE", { stats: stats });
+        setStatus(46, "Save restored. Starting Brotato...");
+        setTimeout(startBrotato, 250);
+      } catch (err) {
+        console.error("Restore failed:", err);
+        setStatus(100, "Save restore failed.");
+        post("BROTATO_ERROR", { message: "Save restore failed: " + (err && err.message ? err.message : err) });
+      }
+      return;
+    }
+
+    if (msg.type === "BROTATO_GET_SAVE") {
+      try {
+        var snapshot = await makeSnapshot();
+        var rows = countRows(snapshot.databases);
+        post("BROTATO_SAVE_RESULT", {
+          id: msg.id,
+          ok: true,
+          snapshot: snapshot,
+          stats: {
+            keys: snapshot.storageShim.length,
+            databases: snapshot.databases.length,
+            rows: rows
+          }
+        });
+      } catch (err) {
+        console.error("Hard save failed:", err);
+        post("BROTATO_SAVE_RESULT", {
+          id: msg.id,
+          ok: false,
+          error: err && err.message ? err.message : String(err)
+        });
+      }
+      return;
+    }
+
+    if (msg.type === "BROTATO_FOCUS") {
+      try {
+        var canvas = byId("canvas");
+        if (canvas && canvas.focus) canvas.focus();
+      } catch (_) {}
+    }
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      setStatus(8, "Hard-save system ready...");
+      post("BROTATO_FRAME_READY", {});
+    });
+  } else {
+    setStatus(8, "Hard-save system ready...");
+    post("BROTATO_FRAME_READY", {});
+  }
+
+  if (window.parent === window) {
+    setTimeout(startBrotato, 300);
+  }
+})();
+</script>
+</body>
+</html></template>
+
+<script>
+(function () {
+  "use strict";
+
+  var frame = null;
+  var busy = false;
+  var gameReady = false;
+  var frameReady = false;
+  var pendingSnapshot = null;
+  var requestMap = {};
+  var requestCounter = 1;
+
+  var frameEl = document.getElementById("game-frame");
+  var template = document.getElementById("game-template");
+  var saveBtn = document.getElementById("save-btn");
+  var loadBtn = document.getElementById("load-btn");
+  var restartBtn = document.getElementById("restart-btn");
+  var fileInput = document.getElementById("file-input");
+  var toastEl = document.getElementById("toast");
+
+  function sleep(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+
+  function toast(msg, duration) {
+    if (duration === undefined) duration = 5200;
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastEl._tid);
+    if (duration > 0) {
+      toastEl._tid = setTimeout(function () { toastEl.classList.remove("show"); }, duration);
+    }
+  }
+
+  function setBusy(value) {
+    busy = !!value;
+    if (saveBtn) saveBtn.disabled = busy;
+    if (loadBtn) loadBtn.disabled = busy;
+    if (restartBtn) restartBtn.disabled = busy;
+  }
+
+  function sendToFrame(message) {
+    if (!frame || !frame.contentWindow) return false;
+    frame.contentWindow.postMessage(message, "*");
+    return true;
+  }
+
+  function destroyFrame() {
+    try {
+      if (frame) {
+        frame.srcdoc = "";
+        frame.src = "about:blank";
+      }
+    } catch (_) {}
+    gameReady = false;
+    frameReady = false;
+  }
+
+  function createFrame(snapshot) {
+    pendingSnapshot = snapshot || null;
+    gameReady = false;
+    frameReady = false;
+    frame = frameEl;
+    frame.srcdoc = template.innerHTML;
+  }
+
+  function downloadSnapshot(snapshot, stats) {
+    var json = JSON.stringify(snapshot, null, 2);
+    var blob = new Blob([json], { type: "application/octet-stream" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var ts = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+    a.href = url;
+    a.download = "brotato_" + ts + ".brotatosave";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+
+    var rowText = stats && typeof stats.rows === "number" ? stats.rows : 0;
+    var dbText = stats && typeof stats.databases === "number" ? stats.databases : 0;
+    var keyText = stats && typeof stats.keys === "number" ? stats.keys : 0;
+
+    if (rowText === 0 && keyText === 0) {
+      toast("⚠️ Save file downloaded, but it found 0 save records.\nPlay until the game actually saves, then save again.", 9000);
+    } else {
+      toast("✅ Hard save downloaded!\nStorage keys: " + keyText + "\nIndexedDB rows: " + rowText + "\nDBs: " + dbText, 7000);
+    }
+  }
+
+  function requestHardSave() {
+    return new Promise(function (resolve, reject) {
+      if (!sendToFrame({ type: "BROTATO_GET_SAVE", id: requestCounter })) {
+        reject(new Error("Game frame is not ready."));
+        return;
+      }
+
+      var id = requestCounter++;
+      requestMap[id] = { resolve: resolve, reject: reject };
+
+      setTimeout(function () {
+        if (requestMap[id]) {
+          delete requestMap[id];
+          reject(new Error("Save timed out. Wait until Brotato is fully loaded, then try again."));
+        }
+      }, 45000);
+    });
+  }
+
+  async function saveGame() {
+    if (busy) return;
+
+    if (!frameReady) {
+      toast("Wait for the game frame to start first.");
+      return;
+    }
+
+    if (!gameReady) {
+      toast("Wait until Brotato fully loads, then press Save Hard File.");
+      return;
+    }
+
+    setBusy(true);
+    toast("⏳ Making Brotato hard save file...\nDo this after the game has actually saved progress.", 0);
+
+    try {
+      var result = await requestHardSave();
+      downloadSnapshot(result.snapshot, result.stats);
+      sendToFrame({ type: "BROTATO_FOCUS" });
+    } catch (err) {
+      console.error("Save failed:", err);
+      toast("❌ Save failed:\n" + (err && err.message ? err.message : err), 8500);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadGameFromFile(file) {
+    if (!file || busy) return;
+
+    setBusy(true);
+    toast("⏳ Reading Brotato hard save file...", 0);
+
+    try {
+      var text = await file.text();
+      var snapshot = JSON.parse(text);
+
+      if (!snapshot || (!snapshot.meta && !snapshot.indexedDB && !snapshot.databases)) {
+        throw new Error("This is not a Brotato hard save file.");
+      }
+
+      toast("⏳ Closing old game and restoring save before Brotato starts...", 0);
+
+      destroyFrame();
+      await sleep(850);
+      createFrame(snapshot);
+
+      setTimeout(function () {
+        if (!frameReady && busy) {
+          toast("Still waiting for the game frame. If it stays here, delete the embed and paste the new one fresh.", 0);
+        }
+      }, 8000);
+    } catch (err) {
+      console.error("Load failed:", err);
+      toast("❌ Load failed:\n" + (err && err.message ? err.message : err), 9000);
+      setBusy(false);
+      if (!frameReady) createFrame(null);
+    }
+  }
+
+  async function restartGame() {
+    if (busy) return;
+    setBusy(true);
+    toast("🔁 Restarting only the game frame...", 2600);
+    destroyFrame();
+    await sleep(600);
+    createFrame(null);
+    setBusy(false);
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!frame || event.source !== frame.contentWindow) return;
+
+    var msg = event.data || {};
+    if (!msg || typeof msg.type !== "string") return;
+
+    if (msg.type === "BROTATO_FRAME_READY") {
+      frameReady = true;
+
+      if (pendingSnapshot) {
+        sendToFrame({ type: "BROTATO_RESTORE_AND_BOOT", snapshot: pendingSnapshot });
+        pendingSnapshot = null;
+      } else {
+        sendToFrame({ type: "BROTATO_BOOT" });
+      }
+      return;
+    }
+
+    if (msg.type === "BROTATO_RESTORE_DONE") {
+      var stats = msg.stats || {};
+      toast("✅ Save restored before start.\nKeys: " + (stats.keys || 0) + "\nRows: " + (stats.rows || 0) + "\nNow starting Brotato...", 7000);
+      setBusy(false);
+      return;
+    }
+
+    if (msg.type === "BROTATO_GAME_READY") {
+      gameReady = true;
+      if (!busy) toast("✅ Brotato loaded.\nHard save system is ready.", 3500);
+      return;
+    }
+
+    if (msg.type === "BROTATO_STATUS") {
+      return;
+    }
+
+    if (msg.type === "BROTATO_ERROR") {
+      toast("❌ " + (msg.message || "Brotato error."), 9000);
+      setBusy(false);
+      return;
+    }
+
+    if (msg.type === "BROTATO_SAVE_RESULT") {
+      var req = requestMap[msg.id];
+      if (!req) return;
+      delete requestMap[msg.id];
+
+      if (msg.ok) req.resolve({ snapshot: msg.snapshot, stats: msg.stats });
+      else req.reject(new Error(msg.error || "Save failed."));
+    }
+  });
+
+  if (saveBtn) saveBtn.addEventListener("click", saveGame);
+  if (loadBtn && fileInput) loadBtn.addEventListener("click", function () { if (!busy) fileInput.click(); });
+  if (restartBtn) restartBtn.addEventListener("click", restartGame);
+  if (fileInput) {
+    fileInput.addEventListener("change", function (event) {
+      var file = event.target.files && event.target.files[0];
+      event.target.value = "";
+      loadGameFromFile(file);
+    });
+  }
+
+  toast("⏳ Starting Brotato...", 2500);
+  createFrame(null);
+})();
+</script>
+
+</body>
+</html>

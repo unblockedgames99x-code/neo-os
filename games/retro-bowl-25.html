@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Retro Bowl - Cross Device Save</title>
+
+<style>
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+  color:white;
+  font-family:Arial,system-ui,sans-serif;
+}
+#gameFrame{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  border:0;
+  background:#000;
+}
+
+/* SAVE BUTTONS — BOTTOM LEFT */
+#savePanel{
+  position:fixed;
+  left:12px;
+  bottom:12px;
+  right:auto;
+  top:auto;
+  z-index:999999;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  align-items:center;
+  max-width:300px;
+  padding:7px;
+  border-radius:12px;
+  background:rgba(15,15,20,.82);
+  border:1px solid rgba(94,225,255,.45);
+  box-shadow:0 0 18px rgba(94,225,255,.35);
+  opacity:.78;
+  transform:scale(.86);
+  transform-origin:bottom left;
+}
+#savePanel:hover,
+#savePanel:focus-within{
+  opacity:1;
+  transform:scale(1);
+}
+#savePanel button{
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.1);
+  color:white;
+  border-radius:9px;
+  padding:7px 8px;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+#savePanel button:hover{
+  background:rgba(94,225,255,.22);
+}
+#saveStatus{
+  display:none;
+  flex-basis:100%;
+  font-size:11px;
+  color:#b8c7d8;
+}
+#savePanel:hover #saveStatus,
+#savePanel:focus-within #saveStatus{
+  display:block;
+}
+#bootCover{
+  position:fixed;
+  inset:0;
+  z-index:999998;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+}
+#bootBox{
+  width:min(460px,92vw);
+  padding:22px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#111827,#020617);
+  border:1px solid rgba(94,225,255,.5);
+  box-shadow:0 0 30px rgba(94,225,255,.35);
+  text-align:center;
+}
+#bootBox h1{
+  margin:0 0 10px;
+  font-size:24px;
+}
+#bootBox p{
+  color:#cbd5e1;
+  font-size:14px;
+  line-height:1.4;
+}
+#bootBox button{
+  margin:6px;
+  border:1px solid rgba(255,255,255,.25);
+  background:#0f172a;
+  color:white;
+  border-radius:10px;
+  padding:10px 14px;
+  font-weight:800;
+  cursor:pointer;
+}
+#bootBox button:hover{
+  background:#1e293b;
+}
+</style>
+</head>
+
+<body>
+
+<iframe id="gameFrame" allow="fullscreen; autoplay; gamepad"></iframe>
+
+<div id="savePanel">
+  <button id="downloadSave">Download Save</button>
+  <button id="loadSave">Load Save File</button>
+  <button id="continueSave">Continue</button>
+  <button id="freshSave">Fresh Start</button>
+  <input id="saveInput" type="file" accept=".sqsave,.json,application/json" hidden>
+  <span id="saveStatus">Uses localStorage while playing. Download .sqsave to move progress cross-device.</span>
+</div>
+
+<div id="bootCover">
+  <div id="bootBox">
+    <h1>Retro Bowl</h1>
+    <p>
+      Same device: click <b>Continue Local Save</b>.<br>
+      Different device: click <b>Load Save File</b> and choose your downloaded <b>.sqsave</b>.
+    </p>
+    <button id="bootContinue">Continue Local Save</button>
+    <button id="bootLoad">Load Save File</button>
+    <button id="bootFresh">Fresh Start</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const FORMAT = "StaticQuasar931-RetroBowl-CrossDeviceSave";
+  const VERSION = 3;
+
+  let frame = document.getElementById("gameFrame");
+  const bootCover = document.getElementById("bootCover");
+  const saveInput = document.getElementById("saveInput");
+  const statusEl = document.getElementById("saveStatus");
+
+  function setStatus(msg){
+    statusEl.textContent = msg;
+  }
+
+  function encodeSave(save){
+    return btoa(unescape(encodeURIComponent(JSON.stringify(save || {}))));
+  }
+
+  function downloadText(filename, text){
+    const blob = new Blob([text], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+
+  function stamp(){
+    return new Date().toISOString().replace(/[:.]/g,"-");
+  }
+
+  function readFile(file){
+    return new Promise((resolve,reject)=>{
+      const r = new FileReader();
+      r.onload = () => resolve(String(r.result || ""));
+      r.onerror = () => reject(r.error || new Error("Could not read file"));
+      r.readAsText(file);
+    });
+  }
+
+  async function pickSaveFile(){
+    return new Promise(resolve=>{
+      saveInput.value = "";
+      saveInput.onchange = () => {
+        resolve(saveInput.files && saveInput.files[0] ? saveInput.files[0] : null);
+      };
+      saveInput.click();
+    });
+  }
+
+  async function loadSaveFileAndStart(){
+    const file = await pickSaveFile();
+    if(!file){
+      setStatus("Load canceled.");
+      return;
+    }
+
+    try{
+      setStatus("Reading save file...");
+      const text = await readFile(file);
+      const save = JSON.parse(text);
+
+      if(!save || save.format !== FORMAT){
+        throw new Error("Wrong save file. Use a .sqsave made by this version.");
+      }
+
+      await startGame("import", save);
+      setStatus("Loaded save file. Game starting...");
+    }catch(e){
+      console.error(e);
+      alert("Load failed: " + (e.message || e));
+      setStatus("Load failed.");
+    }
+  }
+
+  async function resetFrame(){
+    frame.src = "about:blank";
+    await new Promise(r => setTimeout(r, 350));
+  }
+
+  async function startGame(mode, save){
+    bootCover.style.display = "none";
+    await resetFrame();
+    frame.srcdoc = makeGameHTML(mode, save || {});
+  }
+
+  async function downloadCurrentSave(){
+    try{
+      if(!frame.contentWindow || !frame.contentWindow.SQ_exportHardSave){
+        setStatus("Wait until the game finishes loading first.");
+        alert("Wait until the game finishes loading first.");
+        return;
+      }
+
+      setStatus("Building save file...");
+      const save = await frame.contentWindow.SQ_exportHardSave();
+
+      save.format = FORMAT;
+      save.version = VERSION;
+      save.createdAt = new Date().toISOString();
+      save.game = "Retro Bowl";
+
+      downloadText("retro-bowl-" + stamp() + ".sqsave", JSON.stringify(save, null, 2));
+      setStatus("Downloaded .sqsave. Move it to another device and Load Save File there.");
+    }catch(e){
+      console.error(e);
+      alert("Download failed: " + (e.message || e));
+      setStatus("Download failed.");
+    }
+  }
+
+  document.getElementById("bootContinue").onclick = () => startGame("continue", {});
+  document.getElementById("bootFresh").onclick = () => startGame("fresh", {});
+  document.getElementById("bootLoad").onclick = loadSaveFileAndStart;
+
+  document.getElementById("continueSave").onclick = () => startGame("continue", {});
+  document.getElementById("freshSave").onclick = () => {
+    if(confirm("Fresh Start will clear this device's local Retro Bowl storage. Continue?")){
+      startGame("fresh", {});
+    }
+  };
+  document.getElementById("loadSave").onclick = loadSaveFileAndStart;
+  document.getElementById("downloadSave").onclick = downloadCurrentSave;
+
+  function makeGameHTML(mode, save){
+    const modeJson = JSON.stringify(mode);
+    const saveB64Json = JSON.stringify(encodeSave(save || {}));
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<base href="https://cdn.jsdelivr.net/gh/StaticQuasar931/retro-bowl@main/">
+<link rel="stylesheet" href="html5game/code.css">
+<style>
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+  touch-action:none;
+}
+.gm4html5_div_class{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:block;
+  text-align:center;
+}
+#canvas{
+  display:block;
+  outline:none;
+  margin:0 auto;
+  image-rendering:pixelated;
+}
+#childStatus{
+  position:fixed;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  z-index:50;
+  color:#dbeafe;
+  background:rgba(0,0,0,.7);
+  border:1px solid rgba(94,225,255,.35);
+  padding:8px 12px;
+  border-radius:10px;
+  font:13px Arial,sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div class="gm4html5_div_class" id="gm4html5_div_id">
+  <img src="html5game/splash.png" id="GM4HTML5_loadingscreen" alt="loading" style="display:none;">
+  <canvas id="canvas" width="960" height="540"></canvas>
+</div>
+
+<div id="childStatus">Preparing save system...</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const MODE = ${modeJson};
+  const SAVE_B64 = ${saveB64Json};
+  let INITIAL_SAVE = {};
+
+  try{
+    INITIAL_SAVE = JSON.parse(decodeURIComponent(escape(atob(SAVE_B64 || "e30="))));
+  }catch(e){
+    INITIAL_SAVE = {};
+  }
+
+  const childStatus = document.getElementById("childStatus");
+
+  function status(msg){
+    if(childStatus) childStatus.textContent = msg;
+  }
+
+  function dumpStorage(storage){
+    const out = {};
+    try{
+      for(let i = 0; i < storage.length; i++){
+        const key = storage.key(i);
+        if(key != null) out[key] = storage.getItem(key);
+      }
+    }catch(e){}
+    return out;
+  }
+
+  function restoreStorage(storage, data){
+    try{
+      storage.clear();
+      Object.keys(data || {}).forEach(key => {
+        storage.setItem(key, data[key] == null ? "" : String(data[key]));
+      });
+    }catch(e){}
+  }
+
+  function bytesToBase64(bytes){
+    let binary = "";
+    const chunk = 0x8000;
+    for(let i=0;i<bytes.length;i+=chunk){
+      binary += String.fromCharCode.apply(null, bytes.subarray(i,i+chunk));
+    }
+    return btoa(binary);
+  }
+
+  function base64ToBytes(b64){
+    const binary = atob(b64 || "");
+    const bytes = new Uint8Array(binary.length);
+    for(let i=0;i<binary.length;i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
+  }
+
+  async function encodeValue(value, seen){
+    if(value === undefined) return {__sqType:"Undefined"};
+    if(typeof value === "bigint") return {__sqType:"BigInt", value:String(value)};
+    if(value === null || typeof value !== "object") return value;
+
+    seen = seen || new WeakSet();
+    if(seen.has(value)) return {__sqType:"Circular"};
+    seen.add(value);
+
+    if(value instanceof Date){
+      seen.delete(value);
+      return {__sqType:"Date", value:value.toISOString()};
+    }
+
+    if(value instanceof ArrayBuffer){
+      seen.delete(value);
+      return {__sqType:"ArrayBuffer", data:bytesToBase64(new Uint8Array(value))};
+    }
+
+    if(ArrayBuffer.isView(value)){
+      const bytes = new Uint8Array(value.buffer, value.byteOffset, value.byteLength);
+      const type = value.constructor && value.constructor.name ? value.constructor.name : "TypedArray";
+      seen.delete(value);
+      return {__sqType:type, data:bytesToBase64(bytes)};
+    }
+
+    if(typeof Blob !== "undefined" && value instanceof Blob){
+      const ab = await value.arrayBuffer();
+      seen.delete(value);
+      return {__sqType:"Blob", mime:value.type || "", data:bytesToBase64(new Uint8Array(ab))};
+    }
+
+    if(value instanceof Map){
+      const entries = [];
+      for(const [k,v] of value.entries()){
+        entries.push([await encodeValue(k, seen), await encodeValue(v, seen)]);
+      }
+      seen.delete(value);
+      return {__sqType:"Map", entries};
+    }
+
+    if(value instanceof Set){
+      const values = [];
+      for(const v of value.values()){
+        values.push(await encodeValue(v, seen));
+      }
+      seen.delete(value);
+      return {__sqType:"Set", values};
+    }
+
+    if(Array.isArray(value)){
+      const arr = [];
+      for(const v of value){
+        arr.push(await encodeValue(v, seen));
+      }
+      seen.delete(value);
+      return arr;
+    }
+
+    const out = {};
+    for(const k of Object.keys(value)){
+      out[k] = await encodeValue(value[k], seen);
+    }
+    seen.delete(value);
+    return out;
+  }
+
+  function decodeValue(value){
+    if(value === null || typeof value !== "object") return value;
+    if(Array.isArray(value)) return value.map(decodeValue);
+
+    const type = value.__sqType;
+    if(type){
+      if(type === "Undefined") return undefined;
+      if(type === "BigInt") return typeof BigInt === "function" ? BigInt(value.value) : Number(value.value);
+      if(type === "Date") return new Date(value.value);
+      if(type === "ArrayBuffer") return base64ToBytes(value.data).buffer;
+      if(type === "Blob") return new Blob([base64ToBytes(value.data)], {type:value.mime || ""});
+      if(type === "Map") return new Map((value.entries || []).map(e => [decodeValue(e[0]), decodeValue(e[1])]));
+      if(type === "Set") return new Set((value.values || []).map(decodeValue));
+
+      const bytes = base64ToBytes(value.data);
+      const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+
+      const constructors = {
+        Uint8Array, Uint8ClampedArray, Int8Array,
+        Uint16Array, Int16Array,
+        Uint32Array, Int32Array,
+        Float32Array, Float64Array,
+        DataView
+      };
+
+      if(typeof BigInt64Array !== "undefined") constructors.BigInt64Array = BigInt64Array;
+      if(typeof BigUint64Array !== "undefined") constructors.BigUint64Array = BigUint64Array;
+
+      if(constructors[type]){
+        return type === "DataView" ? new DataView(buffer) : new constructors[type](buffer);
+      }
+
+      if(type === "Circular") return null;
+    }
+
+    const out = {};
+    Object.keys(value).forEach(k => out[k] = decodeValue(value[k]));
+    return out;
+  }
+
+  function requestToPromise(req){
+    return new Promise((resolve,reject)=>{
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error || new Error("IndexedDB request failed"));
+    });
+  }
+
+  function txDone(tx){
+    return new Promise((resolve,reject)=>{
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error || new Error("IndexedDB transaction failed"));
+      tx.onabort = () => reject(tx.error || new Error("IndexedDB transaction aborted"));
+    });
+  }
+
+  function deleteDB(name){
+    return new Promise(resolve=>{
+      try{
+        const req = indexedDB.deleteDatabase(name);
+        req.onsuccess = req.onerror = req.onblocked = () => resolve();
+      }catch(e){
+        resolve();
+      }
+    });
+  }
+
+  async function clearAllIndexedDB(){
+    if(!window.indexedDB || !indexedDB.databases) return;
+    const dbs = await indexedDB.databases();
+    for(const info of dbs){
+      if(info && info.name) await deleteDB(info.name);
+    }
+  }
+
+  async function openExistingDB(name){
+    return new Promise((resolve,reject)=>{
+      const req = indexedDB.open(name);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error || new Error("Could not open IndexedDB"));
+      req.onblocked = () => reject(new Error("IndexedDB blocked"));
+    });
+  }
+
+  async function exportIndexedDB(){
+    const result = {available:false, databases:[]};
+
+    if(!window.indexedDB){
+      result.reason = "IndexedDB not available";
+      return result;
+    }
+
+    if(!indexedDB.databases){
+      result.reason = "indexedDB.databases not supported";
+      return result;
+    }
+
+    result.available = true;
+    const infos = await indexedDB.databases();
+
+    for(const info of infos){
+      if(!info || !info.name) continue;
+
+      let db;
+      try{
+        db = await openExistingDB(info.name);
+      }catch(e){
+        continue;
+      }
+
+      const dbSnap = {
+        name: info.name,
+        version: db.version || info.version || 1,
+        stores: []
+      };
+
+      const storeNames = Array.from(db.objectStoreNames || []);
+
+      for(const storeName of storeNames){
+        try{
+          const tx = db.transaction(storeName, "readonly");
+          const store = tx.objectStore(storeName);
+
+          const storeSnap = {
+            name: storeName,
+            keyPath: store.keyPath == null ? null : store.keyPath,
+            autoIncrement: !!store.autoIncrement,
+            indexes: Array.from(store.indexNames || []).map(indexName => {
+              const idx = store.index(indexName);
+              return {
+                name:indexName,
+                keyPath:idx.keyPath,
+                unique:!!idx.unique,
+                multiEntry:!!idx.multiEntry
+              };
+            }),
+            records:[]
+          };
+
+          const keys = await requestToPromise(store.getAllKeys());
+          const values = await requestToPromise(store.getAll());
+          await txDone(tx);
+
+          for(let i=0;i<values.length;i++){
+            storeSnap.records.push({
+              key: await encodeValue(keys[i]),
+              value: await encodeValue(values[i])
+            });
+          }
+
+          dbSnap.stores.push(storeSnap);
+        }catch(e){}
+      }
+
+      db.close();
+      result.databases.push(dbSnap);
+    }
+
+    return result;
+  }
+
+  function openDBForImport(dbSnap){
+    return new Promise((resolve,reject)=>{
+      const req = indexedDB.open(dbSnap.name, Number(dbSnap.version) || 1);
+
+      req.onupgradeneeded = event => {
+        const db = req.result;
+        const tx = event.target.transaction;
+
+        (dbSnap.stores || []).forEach(storeSnap => {
+          try{
+            let store;
+
+            if(db.objectStoreNames.contains(storeSnap.name)){
+              store = tx.objectStore(storeSnap.name);
+            }else{
+              const opts = {};
+              if(storeSnap.keyPath !== null && storeSnap.keyPath !== undefined) opts.keyPath = storeSnap.keyPath;
+              if(storeSnap.autoIncrement) opts.autoIncrement = true;
+              store = db.createObjectStore(storeSnap.name, opts);
+            }
+
+            (storeSnap.indexes || []).forEach(index => {
+              try{
+                if(!store.indexNames.contains(index.name)){
+                  store.createIndex(index.name, index.keyPath, {
+                    unique:!!index.unique,
+                    multiEntry:!!index.multiEntry
+                  });
+                }
+              }catch(e){}
+            });
+          }catch(e){}
+        });
+      };
+
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error || new Error("Could not import IndexedDB"));
+      req.onblocked = () => reject(new Error("Close other tabs for this game, then load again"));
+    });
+  }
+
+  async function importIndexedDB(snapshot){
+    if(!snapshot || !snapshot.databases || !window.indexedDB) return 0;
+
+    let restored = 0;
+
+    for(const dbSnap of snapshot.databases){
+      if(!dbSnap || !dbSnap.name) continue;
+
+      const db = await openDBForImport(dbSnap);
+      const names = (dbSnap.stores || [])
+        .map(s => s.name)
+        .filter(n => db.objectStoreNames.contains(n));
+
+      if(!names.length){
+        db.close();
+        continue;
+      }
+
+      const tx = db.transaction(names, "readwrite");
+
+      for(const storeSnap of dbSnap.stores || []){
+        if(!db.objectStoreNames.contains(storeSnap.name)) continue;
+
+        const store = tx.objectStore(storeSnap.name);
+
+        try{ store.clear(); }catch(e){}
+
+        for(const record of storeSnap.records || []){
+          try{
+            const value = decodeValue(record.value);
+            const key = decodeValue(record.key);
+
+            if(store.keyPath == null){
+              store.put(value, key);
+            }else{
+              store.put(value);
+            }
+
+            restored++;
+          }catch(e){}
+        }
+      }
+
+      await txDone(tx);
+      db.close();
+    }
+
+    return restored;
+  }
+
+  window.SQ_exportHardSave = async function(){
+    return {
+      localStorage: dumpStorage(window.localStorage),
+      sessionStorage: dumpStorage(window.sessionStorage),
+      indexedDB: await exportIndexedDB()
+    };
+  };
+
+  function installGameStubs(){
+    function noop(){}
+
+    window._poki_gameplay_start = noop;
+    window._poki_gameplay_stop = noop;
+    window.poki_pause = noop;
+    window.poki_resume = noop;
+    window.gmcallback_poki_loadbar = noop;
+
+    window.PokiSDK = {
+      init: () => Promise.resolve(),
+      gameLoadingStart: noop,
+      gameLoadingFinished: noop,
+      gameplayStart: noop,
+      gameplayStop: noop,
+      commercialBreak: () => Promise.resolve(),
+      rewardedBreak: () => Promise.resolve({success:true}),
+      setDebug: noop
+    };
+  }
+
+  function loadScript(src){
+    return new Promise((resolve,reject)=>{
+      const s = document.createElement("script");
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error("Could not load " + src));
+      document.body.appendChild(s);
+    });
+  }
+
+  async function boot(){
+    try{
+      if(MODE === "fresh"){
+        status("Clearing old local save...");
+        try{ localStorage.clear(); }catch(e){}
+        try{ sessionStorage.clear(); }catch(e){}
+        await clearAllIndexedDB();
+      }
+
+      if(MODE === "import"){
+        status("Importing cross-device save...");
+        try{ localStorage.clear(); }catch(e){}
+        try{ sessionStorage.clear(); }catch(e){}
+        await clearAllIndexedDB();
+        restoreStorage(localStorage, INITIAL_SAVE.localStorage || {});
+        restoreStorage(sessionStorage, INITIAL_SAVE.sessionStorage || {});
+        await importIndexedDB(INITIAL_SAVE.indexedDB);
+      }
+
+      installGameStubs();
+
+      status("Loading Retro Bowl...");
+      await loadScript("html5game/RetroBowl.js?WAEAC=1633155445");
+
+      status("Starting game...");
+      if(typeof GameMaker_Init === "function"){
+        GameMaker_Init();
+      }
+
+      setTimeout(() => {
+        if(childStatus) childStatus.style.display = "none";
+      }, 2500);
+    }catch(e){
+      console.error(e);
+      status("Game failed to load: " + (e.message || e));
+      alert("Game failed to load: " + (e.message || e));
+    }
+  }
+
+  boot();
+})();
+<\/script>
+
+</body>
+</html>`;
+  }
+})();
+</script>
+
+</body>
+</html>

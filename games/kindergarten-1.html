@@ -1,0 +1,568 @@
+<html lang="en-us"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JZHSM4RCW"></script><script src="//www.google.com/jsapi"></script><script>window.parent.maeExportApis_();</script>
+
+
+
+  <base href="https://cdn.jsdelivr.net/gh/genizy/web-port@main/kindergarten/1/">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=no">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#000000">
+
+  <title>Kindergarten Unblocked - StaticQuasar931</title>
+  <meta name="description" content="Play Kindergarten unblocked in fullscreen. Dark comedy school day adventure with choices, secrets, and goofy chaos, running right in your browser.">
+
+  <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/kindergarten">
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/icon.png">
+  <link rel="stylesheet" href="TemplateData/style.css">
+
+  
+  <script>
+    (function loadGAForGoogleSites(w, d, id){
+      w.dataLayer = w.dataLayer || [];
+      w.gtag = w.gtag || function(){ w.dataLayer.push(arguments); };
+
+      w.gtag('js', new Date());
+
+      var s = d.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+
+      var first = d.getElementsByTagName('script')[0];
+      (first && first.parentNode ? first.parentNode : d.head || d.documentElement).insertBefore(s, first || null);
+
+      w.gtag('config', id, {
+        cookie_domain: (w.location && w.location.hostname) ? w.location.hostname : 'auto',
+        cookie_flags: 'SameSite=None;Secure',
+        send_page_view: true
+      });
+
+      var tried = 0;
+      var retry = function(){
+        if (typeof w.gtag === 'function' && s && s.src && tried < 3){
+          tried++;
+          w.gtag('event', 'page_view_retry', { attempt: tried });
+        }
+      };
+      setTimeout(retry, 3000);
+      setTimeout(retry, 7000);
+      setTimeout(retry, 12000);
+    })(window, document, 'G-5JZHSM4RCW');
+  </script>
+
+  <style>
+    :root{
+      --brand:#5ee1ff;
+      --glow:0 0 12px rgba(94,225,255,.65), 0 0 32px rgba(155,255,183,.35);
+      --shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      background:#000;
+      color:#eaf4ff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    #unity-container {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background:#000;
+    }
+
+    #unity-canvas {
+      display:block;
+      width:100vw !important;
+      height:100vh !important;
+      max-width:100vw;
+      max-height:100vh;
+      background:#000;
+    }
+
+    #unity-loading-bar {
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      z-index:5;
+    }
+
+    #unity-warning {
+      position:absolute;
+      bottom:12px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:6;
+    }
+
+     
+    #loading-text{
+      position:fixed;
+      top:16px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:8;
+      text-align:center;
+      pointer-events:none;
+    }
+
+    .loading-inner{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:10px 18px;
+      border-radius:16px;
+      background:rgba(15,23,42,0.72);
+      box-shadow:var(--glow), var(--shadow);
+      border:1px solid rgba(148,163,184,0.7);
+      text-decoration:none;
+      pointer-events:auto;
+    }
+
+    .loading-inner:hover{
+      border-color:rgba(94,225,255,0.9);
+      box-shadow:0 0 18px rgba(94,225,255,0.6), var(--shadow);
+    }
+
+    .loading-logo{
+      width:128px;
+      height:128px;
+      border-radius:22px;
+      object-fit:cover;
+      box-shadow:0 0 18px rgba(0,0,0,0.75);
+      flex-shrink:0;
+      animation:logoPulse 2.2s ease-in-out infinite;
+      background:#020617;
+    }
+
+    .loading-lines{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:4px;
+    }
+
+    .loading-main{
+      font-size:26px;
+      letter-spacing:0.12em;
+      color:#f9fafb;
+      text-shadow:0 0 14px rgba(0,0,0,0.9);
+      white-space:nowrap;
+    }
+
+    .loading-link-row{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:15px;
+      color:#5ee1ff;
+      font-weight:700;
+      text-shadow:0 0 10px rgba(15,23,42,0.85);
+      white-space:nowrap;
+    }
+
+    .loading-link-row span.dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:#5ee1ff;
+      box-shadow:0 0 8px rgba(94,225,255,0.8);
+    }
+
+    .loading-sub{
+      font-size:11px;
+      color:#cbd5f5;
+      opacity:0.95;
+      max-width:340px;
+      text-align:left;
+    }
+
+    @keyframes logoPulse{
+      0%{ transform:scale(1); box-shadow:0 0 16px rgba(94,225,255,0.25); }
+      50%{ transform:scale(1.03); box-shadow:0 0 28px rgba(94,225,255,0.6); }
+      100%{ transform:scale(1); box-shadow:0 0 16px rgba(94,225,255,0.25); }
+    }
+
+     
+    #staticMenu{
+      position:fixed;
+      left:12px;
+      top:12px;
+      z-index:9999;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      user-select:none;
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(135deg, rgba(20,20,28,.9), rgba(20,20,28,.6));
+      border:1px solid rgba(94,225,255,.35);
+      color:#e8f3ff;
+      box-shadow:var(--glow), var(--shadow);
+      font-size:14px;
+      animation:menuEnter .6s ease .15s both;
+    }
+    #staticMenu a{
+      color:#5ee1ff;
+      font-weight:800;
+      text-decoration:none;
+    }
+    #closeStaticMenu{
+      color:#f55;
+      cursor:pointer;
+      padding:2px 6px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.06);
+    }
+    @keyframes menuEnter{
+      from{opacity:0; transform:translateY(-8px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+     
+    #staticSlideMenu{
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      z-index:9999;
+      width:100px;
+      height:100px;
+      pointer-events:none;
+      opacity:0;
+      transform:translateX(140px) scale(.96);
+    }
+    #staticSlideMenu a{
+      display:block;
+      width:100%;
+      height:100%;
+    }
+    #staticSlideMenu img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      transition:opacity .25s ease;
+    }
+    .slide-in{
+      animation:slideIn 2s ease forwards;
+    }
+    .slide-out{
+      animation:slideOut 2s ease forwards;
+    }
+    @keyframes slideIn{
+      from{opacity:0; transform:translateX(140px) scale(.96);}
+      to{opacity:1; transform:translateX(0) scale(1);}
+    }
+    @keyframes slideOut{
+      from{opacity:1; transform:translateX(0) scale(1);}
+      to{opacity:0; transform:translateX(140px) scale(.96);}
+    }
+
+    .seo-hidden{
+      position:absolute;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
+    }
+
+    @media (max-width:720px){
+      .loading-inner{
+        padding:8px 12px;
+      }
+      .loading-main{
+        font-size:20px;
+      }
+      .loading-logo{
+        width:100px;
+        height:100px;
+      }
+      .loading-lines{
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width:600px){
+      #staticMenu{
+        font-size:13px;
+        padding:8px 12px;
+      }
+      #staticSlideMenu{
+        width:88px;
+        height:88px;
+      }
+      .loading-main{
+        font-size:18px;
+        letter-spacing:0.09em;
+      }
+      .loading-sub{
+        max-width:260px;
+      }
+    }
+  </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1290.0" data-gr-ext-installed="">
+  
+  <div id="staticMenu" role="region" aria-label="Static menu" style="display: flex;">
+    <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank" rel="noopener">
+      More Unblocked Games by Static
+    </a>
+    <span id="closeStaticMenu" title="Hide temporarily">✕</span>
+  </div>
+
+  
+  <div id="staticSlideMenu" aria-live="polite" class="slide-in" style="pointer-events: auto;">
+    <a id="staticSlideLink" href="https://sites.google.com/view/staticquasar931/google-form" target="_blank" rel="noopener" aria-label="Open Google Form">
+      <img id="staticSlideImg" src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png" alt="Google Form for feedback and game requests" style="opacity: 1;">
+    </a>
+  </div>
+
+  
+  
+
+  <div id="unity-container" class="unity-desktop">
+    <canvas id="unity-canvas" tabindex="-1" width="1401" height="1248" style="width: 1401px; height: 1248px; cursor: default;"></canvas>
+    <div id="unity-loading-bar" style="display: none;">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full" style="width: 100%;"></div>
+      </div>
+    </div>
+    <div id="unity-warning"></div>
+  </div>
+
+  <script>
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var warningBanner = document.querySelector("#unity-warning");
+
+    function unityShowBanner(msg, type) {
+      
+      console.warn("Unity banner:", type, msg);
+    }
+
+    function mergeFiles(fileParts) {
+      return new Promise((resolve, reject) => {
+        let buffers = [];
+        function fetchPart(index) {
+          if (index >= fileParts.length) {
+            let mergedBlob = new Blob(buffers);
+            let mergedFileUrl = URL.createObjectURL(mergedBlob);
+            resolve(mergedFileUrl);
+            return;
+          }
+          fetch(fileParts[index]).then((response) => response.arrayBuffer()).then((data) => {
+            buffers.push(data);
+            fetchPart(index + 1);
+          }).catch(reject);
+        }
+        fetchPart(0);
+      });
+    }
+
+    function getParts(file, start, end) {
+      let parts = [];
+      for (let i = start; i <= end; i++) {
+        parts.push(file + ".part" + i);
+      }
+      return parts;
+    }
+
+    Promise.all([
+      mergeFiles(getParts("Build/Build.wasm", 1, 3))
+    ]).then(([wasmUrl]) => {
+      container.hidden = false;
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Build.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/Build.data",
+        frameworkUrl: buildUrl + "/Build.framework.js",
+        codeUrl: wasmUrl,
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "SmashGames",
+        productName: "Kindergarten",
+        productVersion: "2.04",
+        showBanner: unityShowBanner
+      };
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        var meta = document.createElement("meta");
+        meta.name = "viewport";
+        meta.content = "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+        document.getElementsByTagName("head")[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+      } else {
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          canvas.style.width = window.innerWidth + "px";
+          canvas.style.height = window.innerHeight + "px";
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+      }
+
+      loadingBar.style.display = "block";
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = (100 * progress) + "%";
+        }).then(() => {
+          loadingBar.style.display = "none";
+          var lt = document.querySelector("#loading-text");
+          if (lt && lt.parentNode) lt.parentNode.removeChild(lt);
+        }).catch((message) => {
+          console.error("Unity load error:", message);
+        });
+      };
+      document.body.appendChild(script);
+    }).catch((err) => {
+      console.error("Error merging wasm parts:", err);
+    });
+  </script>
+
+  
+  <script>
+    window.onbeforeunload = () => "Are you sure you want to leave? Your session may be interrupted.";
+  </script>
+
+  
+  <script>
+    (function(){
+      const menu = document.getElementById("staticMenu");
+      const btn  = document.getElementById("closeStaticMenu");
+      const KEY  = "sq931_staticMenu_hidden_until";
+      const show = () => { if (menu) menu.style.display = "flex"; };
+      const hideFor3m = () => {
+        if (!menu) return;
+        menu.style.display = "none";
+        const until = Date.now() + 180000;
+        localStorage.setItem(KEY, String(until));
+        setTimeout(show, 180000);
+      };
+      const until = parseInt(localStorage.getItem(KEY)||"0", 10);
+      if (until && Date.now() < until){
+        if (menu) menu.style.display = "none";
+        setTimeout(show, until - Date.now());
+      } else {
+        show();
+      }
+      if (btn) btn.onclick = hideFor3m;
+    })();
+  </script>
+
+  
+  <script>
+    (function(){
+      const wrap = document.getElementById("staticSlideMenu");
+      const a    = document.getElementById("staticSlideLink");
+      const img  = document.getElementById("staticSlideImg");
+
+      const FORM = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png",
+        alt:  "Google Form for feedback and game requests",
+        link: "https://sites.google.com/view/staticquasar931/google-form"
+      };
+      const DISCORD = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Join_Our_DC_StaticQuassar931_lcplrf.png",
+        alt:  "Join the Static Discord for more unblocked games",
+        link: "https://discord.gg/DP2hM7RRhR"
+      };
+      const INSTA = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Follow-us--IG",
+        alt:  "Follow on Instagram for school game updates",
+        link: "https://www.instagram.com/freeschoolgamepage/"
+      };
+      const ROTATION = [FORM, DISCORD, INSTA];
+
+      ROTATION.forEach(o => { const p = new Image(); p.src = o.src; });
+
+      const T_IN = 2000, T_SHOW = 5000, T_OUT = 2000, T_HIDDEN = 20000;
+      let idx = 0;
+
+      function apply(state){
+        a.href = state.link;
+        img.alt = state.alt;
+        img.style.opacity = "0";
+        setTimeout(() => { img.src = state.src; }, 80);
+        img.onload = () => { img.style.opacity = "1"; };
+      }
+      function delay(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+      (async function cycle(){
+        for(;;){
+          apply(ROTATION[idx]);
+          wrap.style.pointerEvents = "auto";
+          wrap.classList.remove("slide-out");
+          wrap.classList.add("slide-in");
+          await delay(T_IN + T_SHOW);
+          wrap.classList.remove("slide-in");
+          wrap.classList.add("slide-out");
+          await delay(T_OUT);
+          wrap.style.pointerEvents = "none";
+          await delay(T_HIDDEN);
+          idx = (idx + 1) % ROTATION.length;
+        }
+      })();
+    })();
+  </script>
+
+  
+  <script>
+    (function(){
+      const idsToToggle = ["staticMenu", "staticSlideMenu"];
+      let seq = [];
+      const target = ["y","u","i"];
+      function toggle(){
+        idsToToggle.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el) return;
+          const isHidden = (el.style.display === "none" || getComputedStyle(el).display === "none");
+          el.style.display = isHidden ? (id === "staticMenu" ? "flex" : "block") : "none";
+        });
+      }
+      window.addEventListener("keydown", (e)=>{
+        seq.push(e.key.toLowerCase());
+        if (seq.length > 3) seq.shift();
+        if (seq.join("") === target.join("")) toggle();
+      });
+    })();
+  </script>
+
+  
+  <div class="seo-hidden" aria-hidden="true">
+    <h1>Kindergarten unblocked game - StaticQuasar931</h1>
+    <p>
+      Kindergarten unblocked, Kindergarten unblocked game, Kindergarten unblocked g@me, Kindergarten school, Kindergarten school game,
+      Kindergarten school g@me, Kindergarten working at school, Kindergarten online, Kindergarten browser game, Kindergarten fullscreen,
+      Kindergarten full screen, Kindergarten Unity WebGL, story game unblocked, dark comedy unblocked game.
+    </p>
+    <p>
+      This Kindergarten unblocked page uses a WebGL split build with wasm parts merged at runtime so it can work inside Google Sites, about blank loaders,
+      and standard browsers. The canvas is forced to one hundred percent of the viewport so the game stays centered and not cropped. Brand and search phrases
+      include static, static 931, staticquasar, staticquasar931, static 931 games, staticq, staticq931, 931 unblocked games, 931 unblocked g@mes, and more at
+      https://sites.google.com/view/staticquasar931.
+    </p>
+  </div>
+
+
+<script src="Build/Build.loader.js"></script><script src="Build/Build.framework.js"></script></body></html>

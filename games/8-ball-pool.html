@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>8 Ball Pool</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+  }
+
+  #game-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #ruffle-container,
+  ruffle-player,
+  ruffle-embed,
+  ruffle-object,
+  #ruffle-player {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    border: 0 !important;
+    outline: none !important;
+    background: #000 !important;
+  }
+
+  #loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 22px;
+  }
+
+  #loader-card {
+    width: min(540px, 92vw);
+  }
+
+  #loading-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  #loading-text {
+    font-size: 15px;
+    line-height: 1.45;
+    opacity: 0.92;
+    margin-bottom: 16px;
+  }
+
+  #bar {
+    width: 100%;
+    height: 16px;
+    border-radius: 999px;
+    background: #222;
+    overflow: hidden;
+    border: 1px solid #444;
+  }
+
+  #bar-fill {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.25s linear;
+  }
+
+  #small-note {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.68;
+  }
+
+  #start-overlay {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 999998;
+    display: none;
+  }
+
+  #start-button {
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 999px;
+    padding: 12px 18px;
+    background: rgba(0,0,0,.72);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+
+  #error-box {
+    display: none;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
+    color: #ffb3b3;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+</style>
+
+<script>
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+    autoplay: "on",
+    unmuteOverlay: "hidden",
+    splashScreen: false,
+    allowFullscreen: true,
+    letterbox: "on",
+    scale: "showAll",
+    forceScale: true,
+    forceAlign: true,
+    quality: "high",
+    backgroundColor: "#000000",
+    menu: false,
+    warnOnUnsupportedContent: false,
+    logLevel: "error",
+    allowScriptAccess: "always"
+  };
+</script>
+</head>
+
+<body>
+<div id="game-wrap">
+  <div id="ruffle-container"></div>
+</div>
+
+<div id="loader-screen">
+  <div id="loader-card">
+    <div id="loading-title">Loading 8 Ball Pool...</div>
+    <div id="loading-text">Starting Ruffle player...</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">Do not refresh while it loads.</div>
+    <div id="error-box"></div>
+  </div>
+</div>
+
+<div id="start-overlay">
+  <button id="start-button" type="button">Click here if the game needs sound or controls</button>
+</div>
+
+<script>
+(() => {
+  const SWF_URL = "https://cdn.jsdelivr.net/gh/illusionTBA/React-Ruffle@f37551ff7c55cc61002445a0f1e334742f6832e4/public/swf/8BallPool.swf";
+
+  const RUFFLE_SOURCES = [
+    "https://unpkg.com/@ruffle-rs/ruffle",
+    "https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@latest/ruffle.min.js",
+    "https://cdn.jsdelivr.net/gh/u-cvlassrom-y/google@main/ruffle.js"
+  ];
+
+  const container = document.getElementById("ruffle-container");
+  const loaderScreen = document.getElementById("loader-screen");
+  const loadingText = document.getElementById("loading-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+  const startOverlay = document.getElementById("start-overlay");
+  const startButton = document.getElementById("start-button");
+
+  let player = null;
+
+  function setProgress(percent, text) {
+    const safe = Math.max(0, Math.min(100, percent || 0));
+    barFill.style.width = safe + "%";
+    if (text) loadingText.textContent = text;
+  }
+
+  function showError(message) {
+    errorBox.style.display = "block";
+    errorBox.textContent = message;
+    loadingText.textContent = "The game could not finish loading.";
+    setProgress(100, "Loading stopped.");
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const old = document.querySelector(`script[data-loader-src="${src}"]`);
+      if (old) {
+        resolve();
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.dataset.loaderSrc = src;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Could not load: " + src));
+      document.head.appendChild(script);
+    });
+  }
+
+  function waitForRuffle(timeoutMs = 5000) {
+    return new Promise((resolve, reject) => {
+      const started = Date.now();
+
+      function check() {
+        if (window.RufflePlayer && typeof window.RufflePlayer.newest === "function") {
+          resolve();
+          return;
+        }
+
+        if (Date.now() - started > timeoutMs) {
+          reject(new Error("Ruffle did not become ready."));
+          return;
+        }
+
+        setTimeout(check, 100);
+      }
+
+      check();
+    });
+  }
+
+  async function loadRuffle() {
+    let lastError = null;
+
+    for (const src of RUFFLE_SOURCES) {
+      try {
+        setProgress(20, "Loading Ruffle player...");
+        await loadScript(src);
+        await waitForRuffle(5000);
+        return;
+      } catch (err) {
+        lastError = err;
+      }
+    }
+
+    throw lastError || new Error("Could not load Ruffle.");
+  }
+
+  function focusGame() {
+    try {
+      if (player && typeof player.focus === "function") player.focus();
+      const shadowCanvas = player && player.shadowRoot ? player.shadowRoot.querySelector("canvas") : null;
+      if (shadowCanvas) shadowCanvas.focus();
+    } catch (e) {}
+  }
+
+  function resizeGame() {
+    if (!player) return;
+    player.style.width = "100%";
+    player.style.height = "100%";
+  }
+
+  async function startGame() {
+    try {
+      setProgress(5, "Preparing game...");
+      await loadRuffle();
+
+      setProgress(50, "Creating player...");
+
+      const ruffle = window.RufflePlayer.newest();
+      player = ruffle.createPlayer();
+      player.id = "ruffle-player";
+      player.setAttribute("tabindex", "0");
+
+      container.innerHTML = "";
+      container.appendChild(player);
+      resizeGame();
+
+      window.addEventListener("resize", resizeGame);
+      window.addEventListener("click", focusGame);
+      window.addEventListener("keydown", focusGame);
+
+      startButton.addEventListener("click", () => {
+        startOverlay.style.display = "none";
+        focusGame();
+      });
+
+      setProgress(75, "Loading 8 Ball Pool SWF...");
+
+      const loadResult = player.load({
+        url: SWF_URL,
+        parameters: {},
+        allowScriptAccess: true
+      });
+
+      if (loadResult && typeof loadResult.then === "function") {
+        await loadResult;
+      }
+
+      setProgress(100, "Loaded.");
+      setTimeout(() => {
+        loaderScreen.style.display = "none";
+        startOverlay.style.display = "block";
+        focusGame();
+      }, 350);
+
+      setTimeout(() => {
+        if (startOverlay.style.display !== "none") {
+          startOverlay.style.display = "none";
+        }
+      }, 5000);
+
+    } catch (err) {
+      showError(String(err && err.message ? err.message : err));
+    }
+  }
+
+  startGame();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Apollo Justice - Ace Attorney</title>
+
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/genizy/emu@master/emulator.min.css">
+
+<style>
+  *{box-sizing:border-box}
+  html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+  }
+
+  #game-container,#game{
+    position:fixed;
+    inset:0;
+    width:100vw!important;
+    height:100vh!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+    background:#000!important;
+  }
+
+  #game canvas,
+  canvas.ejs_canvas{
+    width:100%!important;
+    height:100%!important;
+    display:block!important;
+    background:#000!important;
+    outline:none!important;
+  }
+
+  .ejs_parent{
+    width:100vw!important;
+    height:100vh!important;
+  }
+
+  .ejs_menu_bar{
+    opacity:.22;
+    transition:opacity .15s ease;
+  }
+  .ejs_menu_bar:hover,
+  .ejs_menu_bar:focus-within{
+    opacity:1;
+  }
+
+  #loader{
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:22px;
+  }
+
+  #loader-card{width:min(560px,92vw)}
+  #loader-title{font-size:24px;font-weight:700;margin-bottom:12px}
+  #loader-text{font-size:15px;line-height:1.45;opacity:.9;margin-bottom:16px}
+
+  #bar{
+    width:100%;
+    height:16px;
+    border:1px solid #444;
+    border-radius:999px;
+    background:#222;
+    overflow:hidden;
+  }
+  #bar-fill{
+    width:5%;
+    height:100%;
+    background:#fff;
+    transition:width .2s linear;
+  }
+
+  #small-note{margin-top:12px;font-size:12px;opacity:.65}
+  #error-box{
+    display:none;
+    margin-top:14px;
+    padding:10px;
+    border:1px solid #ff6666;
+    border-radius:10px;
+    color:#ffb3b3;
+    font-size:13px;
+    line-height:1.4;
+    word-break:break-word;
+  }
+</style>
+</head>
+
+<body>
+<div id="game-container">
+  <div id="game" tabindex="0"></div>
+</div>
+
+<div id="loader">
+  <div id="loader-card">
+    <div id="loader-title">Loading Apollo Justice...</div>
+    <div id="loader-text">Downloading ROM parts. Do not refresh.</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">Click the screen once after it loads so controls work.</div>
+    <div id="error-box"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const ROM_URL = "https://fastly.jsdelivr.net/gh/genizy/emujs@main/apollojustice/Apollo%20Justice%20-%20Ace%20Attorney%20(USA).zip";
+  const EMU_BASE = "https://fastly.jsdelivr.net/gh/genizy/emu@master/";
+  const GAME_NAME = "Apollo Justice - Ace Attorney";
+  const CORE = "nds";
+  const MIN_PART = 1;
+  const MAX_PART = 3;
+
+  const loader = document.getElementById("loader");
+  const loaderText = document.getElementById("loader-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+
+  let hidden = false;
+  let loadedBytes = 0;
+
+  function setProgress(percent, text){
+    barFill.style.width = Math.max(0, Math.min(100, percent)) + "%";
+    if(text) loaderText.textContent = text;
+  }
+
+  function showError(message){
+    errorBox.style.display = "block";
+    errorBox.textContent = String(message || "Unknown loading error");
+    loaderText.textContent = "The game could not finish loading. The error is shown below.";
+    barFill.style.width = "100%";
+  }
+
+  function hideLoader(){
+    if(hidden) return;
+    hidden = true;
+    setProgress(100, "Loaded.");
+    setTimeout(() => {
+      loader.style.display = "none";
+      fitGame();
+      const game = document.getElementById("game");
+      if(game) game.focus();
+    }, 600);
+  }
+
+  function fitGame(){
+    const game = document.getElementById("game");
+    if(game){
+      game.style.width = "100vw";
+      game.style.height = "100vh";
+      game.setAttribute("tabindex", "0");
+    }
+    document.querySelectorAll("canvas").forEach((canvas) => {
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.display = "block";
+      canvas.setAttribute("tabindex", "0");
+    });
+  }
+
+  function getParts(file,start,end){
+    const parts = [];
+    for(let i=start;i<=end;i++) parts.push(file + ".part" + i);
+    return parts;
+  }
+
+  async function fetchPart(url,index,total){
+    const response = await fetch(url,{cache:"force-cache"});
+    if(!response.ok) throw new Error("Could not load ROM part " + index + " — HTTP " + response.status);
+
+    const buffer = await response.arrayBuffer();
+    loadedBytes += buffer.byteLength;
+
+    const mb = (loadedBytes / (1024 * 1024)).toFixed(2);
+    const pct = 8 + (index / total) * 68;
+    setProgress(pct, "Downloading ROM... part " + index + "/" + total + " (" + mb + " MB)");
+    return buffer;
+  }
+
+  async function mergeFiles(fileParts){
+    const buffers = [];
+    for(let i=0;i<fileParts.length;i++){
+      buffers.push(await fetchPart(fileParts[i], i + 1, fileParts.length));
+    }
+    setProgress(78, "Merging ROM file...");
+    return URL.createObjectURL(new Blob(buffers, {type:"application/zip"}));
+  }
+
+  function loadScript(src){
+    return new Promise((resolve,reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Could not load script: " + src));
+      document.body.appendChild(script);
+    });
+  }
+
+  async function start(){
+    try{
+      const parts = getParts(ROM_URL, MIN_PART, MAX_PART);
+      setProgress(8, "Downloading ROM... 0/" + parts.length);
+
+      const gameUrl = await mergeFiles(parts);
+
+      setProgress(82, "Starting EmulatorJS loader...");
+
+      // This is the important part from the original working paste:
+      // it must load loader.js after the split ROM parts are merged.
+      window.EJS_player = "#game";
+      window.EJS_core = CORE;
+      window.EJS_gameName = GAME_NAME;
+      window.EJS_color = "#0064ff";
+      window.EJS_startOnLoaded = true;
+      window.EJS_pathtodata = EMU_BASE;
+      window.EJS_gameUrl = gameUrl;
+
+      const observer = new MutationObserver(() => {
+        fitGame();
+        if(document.querySelector("#game canvas, canvas.ejs_canvas, .ejs_menu_bar")){
+          setTimeout(hideLoader, 1200);
+        }
+      });
+      observer.observe(document.documentElement,{childList:true,subtree:true});
+
+      await loadScript(EMU_BASE + "loader.js");
+
+      setProgress(92, "Loading emulator screen...");
+      fitGame();
+
+      setTimeout(() => {
+        fitGame();
+        if(document.querySelector("#game canvas, canvas.ejs_canvas, .ejs_menu_bar")){
+          hideLoader();
+        }else if(!hidden){
+          setProgress(95, "Still loading emulator. NDS games can take a little while.");
+        }
+      }, 4500);
+
+      setTimeout(() => {
+        if(!hidden && document.querySelector("#game canvas, canvas.ejs_canvas, .ejs_menu_bar")){
+          hideLoader();
+        }
+      }, 9000);
+
+    }catch(err){
+      showError(err && err.message ? err.message : err);
+    }
+  }
+
+  window.addEventListener("resize", fitGame);
+  window.addEventListener("click", fitGame);
+  start();
+})();
+</script>
+</body>
+</html>

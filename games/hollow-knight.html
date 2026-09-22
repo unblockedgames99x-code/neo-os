@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fullscreen Unity Game</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #231f20;
+  }
+
+  #game-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #231f20;
+    overflow: hidden;
+  }
+
+  #loading-text {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+    text-align: center;
+    background: #231f20;
+  }
+
+  #unity-container {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #unity-canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block;
+    background: black;
+  }
+
+  #unity-loading-bar {
+    position: fixed;
+    left: 50%;
+    bottom: 35px;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 500px;
+    height: 18px;
+    border: 2px solid white;
+    display: block;
+    z-index: 20;
+  }
+
+  #unity-progress-bar-full {
+    width: 0%;
+    height: 100%;
+    background: white;
+  }
+
+  #unity-mobile-warning {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 30;
+    padding: 10px;
+    color: white;
+    background: rgba(0,0,0,0.85);
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+<div id="game-wrap">
+  <div id="loading-text">LOADING...</div>
+
+  <div id="unity-container">
+    <canvas id="unity-canvas"></canvas>
+
+    <div id="unity-loading-bar">
+      <div id="unity-progress-bar-full"></div>
+    </div>
+
+    <div id="unity-mobile-warning">
+      WebGL builds may not work correctly on mobile devices.
+    </div>
+  </div>
+</div>
+
+<script>
+const BASE_URL = "https://cdn.jsdelivr.net/gh/aukak/hollow-knight@2fc2e7149f0d5b2609b135ab48f00fd973930635/";
+
+const DB_NAME = "unity-cache-db";
+const STORE_NAME = "files";
+
+const loadingText = document.getElementById("loading-text");
+const progressBarFull = document.getElementById("unity-progress-bar-full");
+const canvas = document.getElementById("unity-canvas");
+const mobileWarning = document.getElementById("unity-mobile-warning");
+
+let loadedBytes = 0;
+const TOTAL_MB = "912.81";
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+  mobileWarning.style.display = "block";
+  setTimeout(() => {
+    mobileWarning.style.display = "none";
+  }, 5000);
+}
+
+async function openCacheDB() {
+  return new Promise((resolve, reject) => {
+    if (!window.indexedDB) {
+      reject("IndexedDB not supported");
+      return;
+    }
+
+    const req = indexedDB.open(DB_NAME, 1);
+
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME);
+      }
+    };
+
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function saveToCache(key, blob) {
+  try {
+    const db = await openCacheDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, "readwrite");
+      tx.objectStore(STORE_NAME).put(blob, key);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch (e) {
+    return;
+  }
+}
+
+async function loadFromCache(key) {
+  try {
+    const db = await openCacheDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, "readonly");
+      const req = tx.objectStore(STORE_NAME).get(key);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+  } catch (e) {
+    return null;
+  }
+}
+
+async function deleteFromCache(key) {
+  try {
+    const db = await openCacheDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, "readwrite");
+      tx.objectStore(STORE_NAME).delete(key);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch (e) {
+    return;
+  }
+}
+
+async function fetchWithProgress(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Failed to load: " + url);
+  }
+
+  const reader = response.body.getReader();
+  const chunks = [];
+  let received = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    received += value.length;
+    loadedBytes += value.length;
+    chunks.push(value);
+
+    const mbDone = (loadedBytes / (1024 * 1024)).toFixed(2);
+    loadingText.textContent = "LOADING... " + mbDone + " MB / " + TOTAL_MB + " MB";
+  }
+
+  const fullBuffer = new Uint8Array(received);
+  let offset = 0;
+
+  for (const chunk of chunks) {
+    fullBuffer.set(chunk, offset);
+    offset += chunk.length;
+  }
+
+  return fullBuffer.buffer;
+}
+
+function getParts(file, start, end) {
+  const parts = [];
+  for (let i = start; i <= end; i++) {
+    parts.push(BASE_URL + file + ".part" + i);
+  }
+  return parts;
+}
+
+async function mergeFiles(fileParts, cacheKey) {
+  const cached = await loadFromCache(cacheKey);
+
+  if (cached) {
+    return URL.createObjectURL(cached);
+  }
+
+  const buffers = await Promise.all(
+    fileParts.map(part => fetchWithProgress(part))
+  );
+
+  const mergedBlob = new Blob(buffers);
+  await saveToCache(cacheKey, mergedBlob);
+
+  return URL.createObjectURL(mergedBlob);
+}
+
+async function startGame() {
+  try {
+    const buildUrl = BASE_URL + "Build";
+
+    const dataUrl = await mergeFiles(
+      getParts("Build/hktruffled.data", 1, 45),
+      "hktruffled.data"
+    );
+
+    const wasmUrl = await mergeFiles(
+      getParts("Build/hktruffled.wasm", 1, 2),
+      "hktruffled.wasm"
+    );
+
+    const loaderUrl = buildUrl + "/hktruffled.loader.js";
+
+    const config = {
+      dataUrl: dataUrl,
+      frameworkUrl: buildUrl + "/hktruffled.framework.js",
+      codeUrl: wasmUrl,
+      streamingAssetsUrl: BASE_URL + "StreamingAssets",
+      companyName: "Unity",
+      productName: "Unity Game",
+      productVersion: "1.0",
+      devicePixelRatio: 1
+    };
+
+    const script = document.createElement("script");
+    script.src = loaderUrl;
+
+    script.onload = () => {
+      createUnityInstance(canvas, config, progress => {
+        progressBarFull.style.width = (progress * 100) + "%";
+      }).then(() => {
+        loadingText.style.display = "none";
+        document.getElementById("unity-loading-bar").style.display = "none";
+        resizeCanvas();
+      }).catch(async err => {
+        await deleteFromCache("hktruffled.wasm");
+        loadingText.textContent = "Game failed to load. Refresh and try again.";
+        console.error(err);
+      });
+    };
+
+    script.onerror = () => {
+      loadingText.textContent = "Could not load the Unity loader.";
+    };
+
+    document.body.appendChild(script);
+
+  } catch (err) {
+    loadingText.textContent = "Loading error. Refresh and try again.";
+    console.error(err);
+  }
+}
+
+startGame();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NEO Wallpaper Engine">
+  <circle cx="32" cy="32" r="30" fill="#7b58ca"/>
+  <rect x="13" y="15" width="38" height="29" rx="5" fill="none" stroke="#fff" stroke-width="4"/>
+  <circle cx="24" cy="25" r="4" fill="#fff"/>
+  <path d="m17 39 10-10 7 7 5-5 9 8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24 51h16M32 44v7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>

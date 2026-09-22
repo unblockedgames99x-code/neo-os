@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>3D Bowling</title>
+<base href="https://cdn.jsdelivr.net/gh/bubbls/youtube-playables@main/3d-bowling/">
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    touch-action: none;
+    overscroll-behavior: none;
+    user-select: none;
+    font-family: Arial, sans-serif;
+  }
+
+  #openfl-content {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+  }
+
+  #openfl-content canvas,
+  #openfl-content embed,
+  #openfl-content object {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block;
+    outline: none;
+  }
+
+  #loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 22px;
+  }
+
+  #loader-card {
+    width: min(520px, 92vw);
+  }
+
+  #loading-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  #loading-text {
+    font-size: 15px;
+    line-height: 1.45;
+    opacity: 0.9;
+    margin-bottom: 16px;
+  }
+
+  #bar {
+    width: 100%;
+    height: 16px;
+    border-radius: 999px;
+    background: #222;
+    overflow: hidden;
+    border: 1px solid #444;
+  }
+
+  #bar-fill {
+    width: 12%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.25s linear;
+  }
+
+  #small-note {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  #error-box {
+    display: none;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
+    color: #ffb3b3;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+</style>
+</head>
+
+<body>
+<div id="openfl-content"></div>
+
+<div id="loader-screen">
+  <div id="loader-card">
+    <div id="loading-title">Loading game...</div>
+    <div id="loading-text">Starting 3D Bowling. Do not refresh.</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">Loading OpenFL game files...</div>
+    <div id="error-box"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const BASE = "https://cdn.jsdelivr.net/gh/bubbls/youtube-playables@main/3d-bowling/";
+
+  const loaderScreen = document.getElementById("loader-screen");
+  const loadingText = document.getElementById("loading-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+
+  let failed = false;
+  let readyHidden = false;
+
+  function setProgress(percent, text) {
+    barFill.style.width = Math.max(0, Math.min(100, percent)) + "%";
+    if (text) loadingText.textContent = text;
+  }
+
+  function showError(message) {
+    failed = true;
+    errorBox.style.display = "block";
+    errorBox.textContent = message;
+    loadingText.textContent = "The game could not finish loading. The error is shown below.";
+    barFill.style.width = "100%";
+  }
+
+  function hideLoaderSoon() {
+    if (readyHidden || failed) return;
+    readyHidden = true;
+    setProgress(100, "Done");
+    setTimeout(() => {
+      if (!failed) loaderScreen.style.display = "none";
+    }, 400);
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Could not load script: " + src));
+      document.head.appendChild(script);
+    });
+  }
+
+  function resumeAudioIfNeeded() {
+    try {
+      if (window.Howler && Howler.ctx && (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted")) {
+        Howler.ctx.resume().catch(() => {});
+      }
+    } catch (e) {}
+  }
+
+  function watchForGameCanvas() {
+    const content = document.getElementById("openfl-content");
+
+    const observer = new MutationObserver(() => {
+      const canvas = content.querySelector("canvas");
+      if (canvas) {
+        canvas.setAttribute("tabindex", "0");
+        canvas.focus();
+        setTimeout(hideLoaderSoon, 700);
+      }
+    });
+
+    observer.observe(content, { childList: true, subtree: true });
+
+    setTimeout(() => {
+      const canvas = content.querySelector("canvas");
+      if (canvas) {
+        canvas.setAttribute("tabindex", "0");
+        canvas.focus();
+        hideLoaderSoon();
+      }
+    }, 2500);
+  }
+
+  async function startGame() {
+    try {
+      setProgress(18, "Loading YouTube Playables helper...");
+
+      // Safe fallback in case the YouTube helper does not initialize inside Google Sites.
+      window.ytgame = window.ytgame || {
+        game: {
+          firstFrameReady: function(){},
+          gameReady: function(){},
+          gameStart: function(){},
+          gameOver: function(){},
+          sendScore: function(){}
+        },
+        system: {
+          isAudioEnabled: function(){ return true; }
+        }
+      };
+
+      try {
+        await loadScript(BASE + "ytgame.js");
+      } catch (e) {
+        console.warn("ytgame helper did not load; using fallback.", e);
+      }
+
+      try {
+        if (window.ytgame && window.ytgame.game && typeof window.ytgame.game.firstFrameReady === "function") {
+          window.ytgame.game.firstFrameReady();
+        }
+      } catch (e) {}
+
+      setProgress(38, "Loading game interface...");
+      await loadScript(BASE + "game-interface.js?gameId=3d-bowling");
+
+      if (!window.GameInterface || typeof window.GameInterface.init !== "function") {
+        throw new Error("GameInterface did not load.");
+      }
+
+      setProgress(62, "Loading game files...");
+
+      await window.GameInterface.init([
+        "base64Logo.js",
+        "lib/howler.min.js",
+        "lib/pako.min.js",
+        "game.js"
+      ]);
+
+      if (!window.lime || typeof window.lime.embed !== "function") {
+        throw new Error("The game engine did not load.");
+      }
+
+      document.addEventListener("touchstart", resumeAudioIfNeeded, { passive: true });
+      document.addEventListener("mousedown", resumeAudioIfNeeded);
+      document.addEventListener("keydown", resumeAudioIfNeeded);
+
+      window.addEventListener("touchmove", function(event) {
+        event.preventDefault();
+      }, { passive: false });
+
+      setProgress(88, "Starting game...");
+      watchForGameCanvas();
+
+      window.lime.embed("openfl-content", 0, 0, "E4631D");
+
+      setTimeout(() => {
+        if (!failed) hideLoaderSoon();
+      }, 4500);
+
+    } catch (err) {
+      showError(String(err && err.message ? err.message : err));
+    }
+  }
+
+  window.addEventListener("click", () => {
+    resumeAudioIfNeeded();
+    const canvas = document.querySelector("#openfl-content canvas");
+    if (canvas) canvas.focus();
+  });
+
+  startGame();
+})();
+</script>
+</body>
+</html>

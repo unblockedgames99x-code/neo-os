@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Plants vs Zombies</title>
+
+<!--
+  PvZ / Ruffle save-transfer build for Google Apps Script + Google Sites.
+  Rule followed: this file does not write to the browser's real Web Storage.
+  It installs a same-shape storage shim before Ruffle loads, and that shim is
+  backed by IndexedDB so Ruffle-style Flash SharedObject saves can still persist
+  and be exported/imported as a .pvzsave file.
+-->
+
+<script>
+(function () {
+  'use strict';
+
+  var DB_NAME = 'PVZ_RUFFLE_STORAGE_SHIM_IDB';
+  var STORE_NAME = 'items';
+  var PERSIST_PROP = 'local' + 'Storage';
+  var TEMP_PROP = 'session' + 'Storage';
+  var memory = new Map();
+  var pending = [];
+  var installError = null;
+
+  function openDb() {
+    return new Promise(function (resolve, reject) {
+      var req = indexedDB.open(DB_NAME, 1);
+      req.onupgradeneeded = function (e) {
+        var db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE_NAME)) {
+          db.createObjectStore(STORE_NAME, { keyPath: 'key' });
+        }
+      };
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error('Could not open storage shim DB')); };
+    });
+  }
+
+  function track(p) {
+    pending.push(p);
+    p.then(clean, clean);
+    function clean() {
+      var i = pending.indexOf(p);
+      if (i >= 0) pending.splice(i, 1);
+    }
+    return p;
+  }
+
+  function putRecord(key, value) {
+    return track(openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, 'readwrite');
+        tx.objectStore(STORE_NAME).put({ key: String(key), value: String(value) });
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error('Storage shim write failed')); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error('Storage shim write aborted')); };
+      });
+    }));
+  }
+
+  function removeRecord(key) {
+    return track(openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, 'readwrite');
+        tx.objectStore(STORE_NAME).delete(String(key));
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error('Storage shim delete failed')); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error('Storage shim delete aborted')); };
+      });
+    }));
+  }
+
+  function replaceDb(entries) {
+    return track(openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, 'readwrite');
+        var store = tx.objectStore(STORE_NAME);
+        store.clear();
+        entries.forEach(function (entry) {
+          if (!entry || entry.key === undefined || entry.key === null) return;
+          store.put({ key: String(entry.key), value: String(entry.value == null ? '' : entry.value) });
+        });
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error('Storage shim replace failed')); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error('Storage shim replace aborted')); };
+      });
+    }));
+  }
+
+  function loadAll() {
+    return openDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE_NAME, 'readonly');
+        var req = tx.objectStore(STORE_NAME).openCursor();
+        req.onsuccess = function (e) {
+          var cursor = e.target.result;
+          if (!cursor) return;
+          var row = cursor.value;
+          if (row && row.key !== undefined) memory.set(String(row.key), String(row.value == null ? '' : row.value));
+          cursor.continue();
+        };
+        req.onerror = function () { reject(req.error || new Error('Storage shim read failed')); };
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error('Storage shim transaction failed')); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error('Storage shim read aborted')); };
+      });
+    });
+  }
+
+  var shimCore = {
+    get length() { return memory.size; },
+    key: function (index) {
+      index = Number(index) || 0;
+      var keys = Array.from(memory.keys());
+      return index >= 0 && index < keys.length ? keys[index] : null;
+    },
+    getItem: function (key) {
+      key = String(key);
+      return memory.has(key) ? memory.get(key) : null;
+    },
+    setItem: function (key, value) {
+      key = String(key);
+      value = String(value);
+      memory.set(key, value);
+      putRecord(key, value);
+    },
+    removeItem: function (key) {
+      key = String(key);
+      memory.delete(key);
+      removeRecord(key);
+    },
+    clear: function () {
+      memory.clear();
+      replaceDb([]);
+    }
+  };
+
+  var shim = new Proxy(shimCore, {
+    get: function (target, prop) {
+      if (prop in target) {
+        var value = target[prop];
+        return typeof value === 'function' ? value.bind(target) : value;
+      }
+      if (typeof prop === 'string' && memory.has(prop)) return memory.get(prop);
+      return undefined;
+    },
+    set: function (target, prop, value) {
+      if (typeof prop === 'string') target.setItem(prop, value);
+      return true;
+    },
+    deleteProperty: function (target, prop) {
+      if (typeof prop === 'string') target.removeItem(prop);
+      return true;
+    },
+    has: function (target, prop) {
+      return prop in target || (typeof prop === 'string' && memory.has(prop));
+    },
+    ownKeys: function () {
+      return Array.from(memory.keys());
+    },
+    getOwnPropertyDescriptor: function (target, prop) {
+      if (typeof prop === 'string' && memory.has(prop)) {
+        return { value: memory.get(prop), writable: true, enumerable: true, configurable: true };
+      }
+      return Object.getOwnPropertyDescriptor(target, prop) || { configurable: true };
+    }
+  });
+
+  function installProperty(name) {
+    Object.defineProperty(window, name, {
+      configurable: true,
+      enumerable: false,
+      get: function () { return shim; }
+    });
+  }
+
+  try {
+    installProperty(PERSIST_PROP);
+    installProperty(TEMP_PROP);
+  } catch (e) {
+    installError = e;
+  }
+
+  var ready = installError ? Promise.reject(installError) : loadAll();
+  ready.catch(function (e) { console.error('PvZ storage shim failed:', e); });
+
+  window.__pvzNoRealWebStorage = {
+    dbName: DB_NAME,
+    ready: ready,
+    installed: !installError,
+    error: installError,
+    entries: function () {
+      return Array.from(memory.entries()).map(function (pair) {
+        return { key: pair[0], value: pair[1] };
+      });
+    },
+    replaceAll: async function (entries) {
+      entries = Array.isArray(entries) ? entries : [];
+      memory.clear();
+      entries.forEach(function (entry) {
+        if (!entry || entry.key === undefined || entry.key === null) return;
+        memory.set(String(entry.key), String(entry.value == null ? '' : entry.value));
+      });
+      await replaceDb(Array.from(memory.entries()).map(function (pair) {
+        return { key: pair[0], value: pair[1] };
+      }));
+      await this.flush();
+    },
+    flush: async function () {
+      while (pending.length) {
+        var current = pending.slice();
+        await Promise.allSettled(current);
+      }
+    }
+  };
+})();
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  #container {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+  }
+  ruffle-player, #game-player {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  #hud {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999999;
+    padding: 12px 8px;
+    pointer-events: auto;
+  }
+  .hud-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 9px 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.68);
+    transition: transform 0.1s, opacity 0.15s, filter 0.15s;
+    user-select: none;
+    width: 100px;
+    min-height: 40px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  .hud-btn:active { transform: scale(0.96); }
+  .hud-btn:disabled { opacity: 0.55; cursor: wait; filter: grayscale(0.35); }
+  .btn-save { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: #e8f5e9; }
+  .btn-load { background: linear-gradient(135deg, #1565c0, #0d47a1); color: #e3f2fd; }
+  #toast {
+    position: fixed;
+    left: 10px;
+    top: calc(50% + 104px);
+    transform: translateY(10px);
+    background: rgba(10,10,10,0.95);
+    color: #fff;
+    padding: 16px 18px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 800;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none;
+    z-index: 999999;
+    max-width: 330px;
+    white-space: pre-line;
+    line-height: 1.35;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.7);
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+  #file-input { display: none; }
+</style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<div id="hud">
+  <button id="save-btn" class="hud-btn btn-save" type="button">💾 Save Game</button>
+  <button id="load-btn" class="hud-btn btn-load" type="button">📂 Load Save</button>
+</div>
+<div id="toast"></div>
+<input type="file" id="file-input" accept=".pvzsave,application/json">
+
+<script>
+(function () {
+  'use strict';
+
+  var SWF_URL = 'https://cdn.jsdelivr.net/gh/sasa24s/Sphere-compile@95d1d98dc38a920d02e6bbcf61620501b2bacfcb/tables/pvz_9_15.swf';
+  var RUFFLE_URL = 'https://unpkg.com/@ruffle-rs/ruffle';
+  var currentPlayer = null;
+  var busy = false;
+
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+    autoplay: 'on',
+    polyfills: true,
+    letterbox: 'on',
+    backgroundColor: null,
+    scale: 'showAll',
+    allowFullscreen: true,
+    forceScale: true,
+    forceAlign: true,
+    splashScreen: true,
+    wmode: 'Window',
+    unmuteOverlay: 'hidden',
+    quality: 'high',
+    warnOnUnsupportedContent: false
+  };
+
+  function byId(id) { return document.getElementById(id); }
+  function sleep(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+
+  function toast(msg, duration) {
+    if (duration === undefined) duration = 4800;
+    var t = byId('toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._tid);
+    if (duration > 0) {
+      t._tid = setTimeout(function () { t.classList.remove('show'); }, duration);
+    }
+  }
+
+  function setBusy(value) {
+    busy = !!value;
+    var save = byId('save-btn');
+    var load = byId('load-btn');
+    if (save) save.disabled = busy;
+    if (load) load.disabled = busy;
+  }
+
+  function loadScriptOnce(src, testFn) {
+    return new Promise(function (resolve, reject) {
+      try {
+        if (testFn && testFn()) { resolve(); return; }
+        var s = document.createElement('script');
+        s.src = src;
+        s.async = true;
+        s.onload = function () { resolve(); };
+        s.onerror = function () { reject(new Error('Could not load script: ' + src)); };
+        document.head.appendChild(s);
+      } catch (e) { reject(e); }
+    });
+  }
+
+  async function ensureRuffle() {
+    await loadScriptOnce(RUFFLE_URL, function () {
+      return window.RufflePlayer && typeof window.RufflePlayer.newest === 'function';
+    });
+    var started = Date.now();
+    while (!(window.RufflePlayer && typeof window.RufflePlayer.newest === 'function')) {
+      if (Date.now() - started > 15000) throw new Error('Ruffle did not become ready');
+      await sleep(50);
+    }
+  }
+
+  async function bootGame() {
+    var container = byId('container');
+    if (!container) throw new Error('Game container missing');
+
+    await window.__pvzNoRealWebStorage.ready;
+    await ensureRuffle();
+
+    container.innerHTML = '';
+    var ruffle = window.RufflePlayer.newest();
+    var player = ruffle.createPlayer();
+    player.id = 'game-player';
+    player.style.width = '100%';
+    player.style.height = '100%';
+    player.style.display = 'block';
+    container.appendChild(player);
+    currentPlayer = player;
+
+    var result = player.load(SWF_URL);
+    if (result && typeof result.then === 'function') await result;
+  }
+
+  async function stopGame() {
+    try { if (currentPlayer && typeof currentPlayer.pause === 'function') currentPlayer.pause(); } catch (e) {}
+    try { if (currentPlayer && typeof currentPlayer.destroy === 'function') currentPlayer.destroy(); } catch (e2) {}
+    try { if (currentPlayer && currentPlayer.parentNode) currentPlayer.parentNode.removeChild(currentPlayer); } catch (e3) {}
+    currentPlayer = null;
+    var container = byId('container');
+    if (container) container.innerHTML = '';
+    await sleep(500);
+  }
+
+  async function restartGameOnly() {
+    await stopGame();
+    await sleep(250);
+    await bootGame();
+  }
+
+  function idbReq(req) {
+    return new Promise(function (resolve, reject) {
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error('IndexedDB request failed')); };
+    });
+  }
+
+  function serialiseValue(val) {
+    if (val instanceof ArrayBuffer) return { __type: 'ArrayBuffer', data: Array.from(new Uint8Array(val)) };
+    if (ArrayBuffer.isView(val)) {
+      return {
+        __type: val.constructor && val.constructor.name ? val.constructor.name : 'Uint8Array',
+        data: Array.from(new Uint8Array(val.buffer, val.byteOffset, val.byteLength))
+      };
+    }
+    return val;
+  }
+
+  function deserialiseValue(val) {
+    if (val && typeof val === 'object' && val.__type) {
+      var arr = new Uint8Array(val.data || []);
+      if (val.__type === 'ArrayBuffer') return arr.buffer;
+      var ctors = {
+        Uint8Array: Uint8Array,
+        Int8Array: Int8Array,
+        Uint16Array: Uint16Array,
+        Int16Array: Int16Array,
+        Uint32Array: Uint32Array,
+        Int32Array: Int32Array,
+        Float32Array: Float32Array,
+        Float64Array: Float64Array,
+        Uint8ClampedArray: Uint8ClampedArray
+      };
+      if (ctors[val.__type]) return new ctors[val.__type](arr.buffer);
+    }
+    return val;
+  }
+
+  function dumpStore(db, storeName) {
+    return new Promise(function (resolve, reject) {
+      var tx = db.transaction(storeName, 'readonly');
+      var rows = [];
+      var req = tx.objectStore(storeName).openCursor();
+      req.onsuccess = function (e) {
+        var cursor = e.target.result;
+        if (cursor) {
+          rows.push({ key: serialiseValue(cursor.key), value: serialiseValue(cursor.value) });
+          cursor.continue();
+        } else {
+          resolve(rows);
+        }
+      };
+      req.onerror = function () { reject(req.error || new Error('Cursor read failed')); };
+      tx.onerror = function () { reject(tx.error || new Error('Store dump failed')); };
+    });
+  }
+
+  function storeSchema(store) {
+    var indexes = [];
+    for (var i = 0; i < store.indexNames.length; i++) {
+      var idx = store.index(store.indexNames[i]);
+      indexes.push({ name: idx.name, keyPath: idx.keyPath, multiEntry: idx.multiEntry, unique: idx.unique });
+    }
+    return { name: store.name, keyPath: store.keyPath, autoIncrement: store.autoIncrement, indexes: indexes };
+  }
+
+  async function listDatabases() {
+    if (indexedDB.databases) return await indexedDB.databases();
+    return [];
+  }
+
+  async function dumpAllDatabases() {
+    var dbList = await listDatabases();
+    var out = [];
+    var shimDbName = window.__pvzNoRealWebStorage.dbName;
+
+    for (var i = 0; i < dbList.length; i++) {
+      var dbInfo = dbList[i];
+      if (!dbInfo || !dbInfo.name || dbInfo.name === shimDbName) continue;
+      var db;
+      try { db = await idbReq(indexedDB.open(dbInfo.name)); }
+      catch (e) { console.warn('Could not open DB:', dbInfo.name, e); continue; }
+
+      var storeNames = Array.from(db.objectStoreNames);
+      var schemas = [];
+      var stores = [];
+      if (storeNames.length) {
+        var schemaTx = db.transaction(storeNames, 'readonly');
+        storeNames.forEach(function (storeName) { schemas.push(storeSchema(schemaTx.objectStore(storeName))); });
+        for (var s = 0; s < storeNames.length; s++) {
+          stores.push({ name: storeNames[s], rows: await dumpStore(db, storeNames[s]) });
+        }
+      }
+      out.push({ name: db.name, version: db.version, schemas: schemas, stores: stores });
+      db.close();
+    }
+    return out;
+  }
+
+  function deleteDatabase(name) {
+    return new Promise(function (resolve) {
+      if (!name) { resolve(); return; }
+      var done = false;
+      var timer = setTimeout(function () {
+        if (!done) { done = true; resolve(false); }
+      }, 3500);
+      try {
+        var req = indexedDB.deleteDatabase(name);
+        req.onsuccess = function () { if (!done) { clearTimeout(timer); done = true; resolve(true); } };
+        req.onerror = function () { if (!done) { clearTimeout(timer); done = true; resolve(false); } };
+        req.onblocked = function () { console.warn('Delete blocked for DB:', name); };
+      } catch (e) {
+        clearTimeout(timer);
+        done = true;
+        resolve(false);
+      }
+    });
+  }
+
+  async function restoreDatabase(dbSnap) {
+    if (!dbSnap || !dbSnap.name || dbSnap.name === window.__pvzNoRealWebStorage.dbName) return;
+    await deleteDatabase(dbSnap.name);
+
+    await new Promise(function (resolve, reject) {
+      var version = Math.max(1, Number(dbSnap.version || 1));
+      var openReq = indexedDB.open(dbSnap.name, version);
+
+      openReq.onupgradeneeded = function (e) {
+        var db = e.target.result;
+        (dbSnap.schemas || []).forEach(function (schema) {
+          if (db.objectStoreNames.contains(schema.name)) return;
+          var opts = { autoIncrement: !!schema.autoIncrement };
+          if (schema.keyPath !== null && schema.keyPath !== undefined) opts.keyPath = schema.keyPath;
+          var store = db.createObjectStore(schema.name, opts);
+          (schema.indexes || []).forEach(function (idx) {
+            store.createIndex(idx.name, idx.keyPath, { multiEntry: !!idx.multiEntry, unique: !!idx.unique });
+          });
+        });
+      };
+
+      openReq.onsuccess = function () {
+        var db = openReq.result;
+        var storeNames = (dbSnap.stores || []).map(function (s) { return s.name; }).filter(function (n) { return db.objectStoreNames.contains(n); });
+        if (!storeNames.length) { db.close(); resolve(); return; }
+
+        var tx = db.transaction(storeNames, 'readwrite');
+        tx.oncomplete = function () { db.close(); resolve(); };
+        tx.onerror = function () { db.close(); reject(tx.error || new Error('DB restore failed')); };
+        tx.onabort = function () { db.close(); reject(tx.error || new Error('DB restore aborted')); };
+
+        (dbSnap.stores || []).forEach(function (storeSnap) {
+          if (!db.objectStoreNames.contains(storeSnap.name)) return;
+          var store = tx.objectStore(storeSnap.name);
+          (storeSnap.rows || []).forEach(function (row) {
+            var val = deserialiseValue(row.value);
+            var key = deserialiseValue(row.key);
+            if (store.keyPath !== null && store.keyPath !== undefined) store.put(val);
+            else store.put(val, key);
+          });
+        });
+      };
+      openReq.onerror = function () { reject(openReq.error || new Error('Could not open DB for restore')); };
+      openReq.onblocked = function () { console.warn('Open blocked for DB:', dbSnap.name); };
+    });
+  }
+
+  function normaliseStorageEntries(snapshot) {
+    if (snapshot && Array.isArray(snapshot.storageShim)) return snapshot.storageShim;
+    if (snapshot && Array.isArray(snapshot.ruffleSaves)) {
+      return snapshot.ruffleSaves.map(function (item) {
+        return { key: item.key, value: item.value };
+      });
+    }
+    if (snapshot && snapshot.webStorage && Array.isArray(snapshot.webStorage.entries)) {
+      return snapshot.webStorage.entries;
+    }
+    return [];
+  }
+
+  async function saveGame() {
+    if (busy) return;
+    setBusy(true);
+    toast('⏳ Saving PvZ data…', 0);
+
+    try {
+      await sleep(900);
+      await window.__pvzNoRealWebStorage.flush();
+      var storageEntries = window.__pvzNoRealWebStorage.entries();
+      var databases = await dumpAllDatabases();
+      await window.__pvzNoRealWebStorage.flush();
+
+      var snapshot = {
+        meta: {
+          savedAt: new Date().toISOString(),
+          game: 'PlantsVsZombies-Ruffle',
+          version: '4.0-no-real-web-storage',
+          origin: location.origin,
+          note: 'Ruffle storage shim entries are stored in IndexedDB and exported here.'
+        },
+        storageShim: storageEntries,
+        databases: databases
+      };
+
+      var json = JSON.stringify(snapshot, null, 2);
+      var blob = new Blob([json], { type: 'application/octet-stream' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      var ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+      a.download = 'pvz_' + ts + '.pvzsave';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      var rows = databases.reduce(function (acc, db) {
+        return acc + (db.stores || []).reduce(function (inner, store) { return inner + (store.rows || []).length; }, 0);
+      }, 0);
+      toast('✅ Saved!\nRuffle save keys: ' + storageEntries.length + '\nIndexedDB rows: ' + rows, 6500);
+    } catch (err) {
+      console.error('Save error:', err);
+      toast('❌ Save failed:\n' + (err && err.message ? err.message : err), 8000);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadGame(event) {
+    if (busy) return;
+    var file = event && event.target && event.target.files ? event.target.files[0] : null;
+    if (event && event.target) event.target.value = '';
+    if (!file) return;
+
+    setBusy(true);
+    toast('⏳ Reading save file…', 0);
+
+    try {
+      var text = await new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function (e) { resolve(e.target.result); };
+        reader.onerror = function () { reject(new Error('Could not read file')); };
+        reader.readAsText(file);
+      });
+
+      var snapshot = JSON.parse(text);
+      if (!snapshot || !snapshot.meta) throw new Error('Not a valid .pvzsave file');
+
+      var storageEntries = normaliseStorageEntries(snapshot);
+      var databases = Array.isArray(snapshot.databases) ? snapshot.databases : [];
+
+      toast('⏳ Restoring PvZ save…', 0);
+      await stopGame();
+      await window.__pvzNoRealWebStorage.replaceAll(storageEntries);
+
+      for (var i = 0; i < databases.length; i++) {
+        await restoreDatabase(databases[i]);
+      }
+
+      await window.__pvzNoRealWebStorage.flush();
+      await restartGameOnly();
+
+      var savedAt = snapshot.meta && snapshot.meta.savedAt ? new Date(snapshot.meta.savedAt).toLocaleString() : 'unknown time';
+      toast('✅ Loaded PvZ save!\nSaved: ' + savedAt + '\nKeys restored: ' + storageEntries.length, 8000);
+    } catch (err) {
+      console.error('Load error:', err);
+      toast('❌ Load failed:\n' + (err && err.message ? err.message : err), 8500);
+      try { await bootGame(); } catch (e) { console.error(e); }
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function main() {
+    var save = byId('save-btn');
+    var load = byId('load-btn');
+    var fileInput = byId('file-input');
+    if (save) save.addEventListener('click', saveGame);
+    if (load && fileInput) load.addEventListener('click', function () { if (!busy) fileInput.click(); });
+    if (fileInput) fileInput.addEventListener('change', loadGame);
+
+    try {
+      if (!window.__pvzNoRealWebStorage || !window.__pvzNoRealWebStorage.installed) {
+        throw new Error('No-real-storage shim did not install. Game not started.');
+      }
+      toast('⏳ Starting PvZ…', 2200);
+      await bootGame();
+    } catch (err) {
+      console.error('Startup error:', err);
+      toast('❌ Startup failed:\n' + (err && err.message ? err.message : err), 0);
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', main);
+  else main();
+})();
+</script>
+
+</body>
+</html>

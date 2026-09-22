@@ -1,0 +1,739 @@
+{
+  "note": "Instrumented diagnostics are excluded from primary medians. Coverage counts source characters, not transfer bytes.",
+  "coverage": [
+    {
+      "phase": "after",
+      "valid": true,
+      "conditions": {
+        "targetUrl": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+        "profile": "desktop",
+        "cache": "cold",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "cpuSlowdown": 1,
+        "headless": true,
+        "isMobile": false,
+        "hasTouch": false,
+        "browserVersion": "152.0.7977.84",
+        "network": {
+          "latency": 0,
+          "downloadThroughput": -1,
+          "uploadThroughput": -1,
+          "offline": false,
+          "connectionType": "ethernet"
+        },
+        "locale": "en-US",
+        "timezoneId": "America/Chicago",
+        "colorScheme": "dark",
+        "reducedMotion": "no-preference",
+        "settleAfterDOMContentLoadedMs": 8000,
+        "navigationTimeoutMs": 60000,
+        "httpCacheEnabled": true,
+        "serviceWorkers": "allow",
+        "logicalCpus": 16,
+        "memoryBytes": 33408663552,
+        "instrumentation": {
+          "coverage": true,
+          "timeline": true,
+          "interactions": true,
+          "screenshots": true
+        }
+      },
+      "javascript": {
+        "allSourceCharacters": {
+          "totalCharacters": 933756,
+          "usedCharacters": 243503
+        },
+        "namedResources": [
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-boot.9b517a8e22562eff.min.js",
+            "totalCharacters": 16850,
+            "usedCharacters": 13401,
+            "unusedCharacters": 3449,
+            "usedPercent": 79.531
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 665,
+            "usedCharacters": 625,
+            "unusedCharacters": 40,
+            "usedPercent": 93.985
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 822,
+            "usedCharacters": 89,
+            "unusedCharacters": 733,
+            "usedPercent": 10.827
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 1537,
+            "usedCharacters": 619,
+            "unusedCharacters": 918,
+            "usedPercent": 40.273
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 921,
+            "usedCharacters": 704,
+            "unusedCharacters": 217,
+            "usedPercent": 76.439
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-shell.e687077f16b381d9.min.js",
+            "totalCharacters": 472329,
+            "usedCharacters": 97335,
+            "unusedCharacters": 374994,
+            "usedPercent": 20.607
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "totalCharacters": 21488,
+            "usedCharacters": 15831,
+            "unusedCharacters": 5657,
+            "usedPercent": 73.674
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-link-proxy.js",
+            "totalCharacters": 6797,
+            "usedCharacters": 1835,
+            "unusedCharacters": 4962,
+            "usedPercent": 26.997
+          }
+        ],
+        "namedTotalCharacters": 521409,
+        "namedUsedCharacters": 130439
+      },
+      "css": {
+        "allSourceCharacters": {
+          "totalCharacters": 554014,
+          "usedCharacters": 92818
+        },
+        "namedResources": [
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-shell.fbc3aaa544d7541f.min.css",
+            "totalCharacters": 554014,
+            "usedCharacters": 92818,
+            "unusedCharacters": 461196,
+            "usedPercent": 16.754
+          }
+        ],
+        "namedTotalCharacters": 554014,
+        "namedUsedCharacters": 92818
+      }
+    },
+    {
+      "phase": "before",
+      "valid": true,
+      "conditions": {
+        "targetUrl": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+        "profile": "desktop",
+        "cache": "cold",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "cpuSlowdown": 1,
+        "headless": true,
+        "isMobile": false,
+        "hasTouch": false,
+        "browserVersion": "152.0.7977.84",
+        "network": {
+          "latency": 0,
+          "downloadThroughput": -1,
+          "uploadThroughput": -1,
+          "offline": false,
+          "connectionType": "ethernet"
+        },
+        "locale": "en-US",
+        "timezoneId": "America/Chicago",
+        "colorScheme": "dark",
+        "reducedMotion": "no-preference",
+        "settleAfterDOMContentLoadedMs": 8000,
+        "navigationTimeoutMs": 60000,
+        "httpCacheEnabled": true,
+        "serviceWorkers": "allow",
+        "logicalCpus": 16,
+        "memoryBytes": 33408663552,
+        "instrumentation": {
+          "coverage": true,
+          "timeline": true,
+          "interactions": true,
+          "screenshots": true
+        }
+      },
+      "javascript": {
+        "allSourceCharacters": {
+          "totalCharacters": 924876,
+          "usedCharacters": 244762
+        },
+        "namedResources": [
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-boot.min.js",
+            "totalCharacters": 16862,
+            "usedCharacters": 13468,
+            "unusedCharacters": 3394,
+            "usedPercent": 79.872
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 665,
+            "usedCharacters": 625,
+            "unusedCharacters": 40,
+            "usedPercent": 93.985
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 822,
+            "usedCharacters": 89,
+            "unusedCharacters": 733,
+            "usedPercent": 10.827
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 1537,
+            "usedCharacters": 619,
+            "unusedCharacters": 918,
+            "usedPercent": 40.273
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+            "totalCharacters": 921,
+            "usedCharacters": 704,
+            "unusedCharacters": 217,
+            "usedPercent": 76.439
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-shell.min.js",
+            "totalCharacters": 466031,
+            "usedCharacters": 95794,
+            "unusedCharacters": 370237,
+            "usedPercent": 20.555
+          },
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "totalCharacters": 21580,
+            "usedCharacters": 16363,
+            "unusedCharacters": 5217,
+            "usedPercent": 75.825
+          }
+        ],
+        "namedTotalCharacters": 508418,
+        "namedUsedCharacters": 127662
+      },
+      "css": {
+        "allSourceCharacters": {
+          "totalCharacters": 553518,
+          "usedCharacters": 92818
+        },
+        "namedResources": [
+          {
+            "url": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/neo-shell.min.css",
+            "totalCharacters": 553518,
+            "usedCharacters": 92818,
+            "unusedCharacters": 460700,
+            "usedPercent": 16.769
+          }
+        ],
+        "namedTotalCharacters": 553518,
+        "namedUsedCharacters": 92818
+      }
+    }
+  ],
+  "drag": [
+    {
+      "phase": "after",
+      "valid": true,
+      "conditions": {
+        "targetUrl": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+        "profile": "desktop",
+        "cache": null,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "cpuSlowdown": 1,
+        "headless": true,
+        "isMobile": null,
+        "hasTouch": null,
+        "browserVersion": "152.0.7977.84",
+        "network": "unthrottled",
+        "locale": "en-US",
+        "timezoneId": "America/Chicago",
+        "colorScheme": "dark",
+        "reducedMotion": "no-preference",
+        "settleAfterDOMContentLoadedMs": null,
+        "navigationTimeoutMs": null,
+        "httpCacheEnabled": true,
+        "serviceWorkers": "allow",
+        "logicalCpus": 16,
+        "memoryBytes": null,
+        "instrumentation": {
+          "coverage": false,
+          "timeline": true,
+          "interactions": null,
+          "screenshots": null
+        }
+      },
+      "requested": {
+        "samples": 60,
+        "start": {
+          "x": 216,
+          "y": 79.5
+        },
+        "delta": {
+          "x": 220,
+          "y": 140
+        }
+      },
+      "actualDisplacement": {
+        "x": 220,
+        "y": 140
+      },
+      "frameIntervalsMs": {
+        "count": 126,
+        "p50": 2.8,
+        "p95": 2.9,
+        "min": 2.7,
+        "max": 27.8,
+        "mean": 3.109,
+        "over50Ms": 0,
+        "over33_3Ms": 0,
+        "values": [
+          13.868,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          8.3,
+          2.8,
+          2.8,
+          2.7,
+          2.7,
+          2.8,
+          2.8,
+          2.9,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.8,
+          2.7,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.7,
+          2.8,
+          2.8,
+          2.9,
+          2.7,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          27.8,
+          2.8,
+          2.8
+        ]
+      },
+      "elapsedMs": 410.7000000011176,
+      "cdpDurationDeltaMs": {
+        "TaskDuration": 191.405,
+        "ScriptDuration": 19.404,
+        "LayoutDuration": 6.593,
+        "RecalcStyleDuration": 67.78,
+        "DevToolsCommandDuration": 19.265,
+        "V8CompileDuration": 0
+      },
+      "duringPress": {
+        "left": 122,
+        "top": 60,
+        "width": 780,
+        "height": 560,
+        "observedAtMs": 3579.5,
+        "interactionClass": true,
+        "wallpaperPaused": true
+      },
+      "afterRelease": {
+        "left": 342,
+        "top": 200,
+        "width": 780,
+        "height": 560,
+        "observedAtMs": 3962.199999999255,
+        "interactionClass": false,
+        "wallpaperPaused": false
+      },
+      "interactionStateEvents": [
+        {
+          "active": true,
+          "atMs": 3550.4000000003725
+        },
+        {
+          "active": false,
+          "atMs": 3921.800000000745
+        }
+      ],
+      "pointermoveDispatchDelayMs": {
+        "count": 60,
+        "p50": 1.8,
+        "p95": 2,
+        "min": 0.9,
+        "max": 2.2,
+        "mean": 1.727
+      },
+      "eventTimingInteractionDurationMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "min": null,
+        "max": null,
+        "mean": null
+      },
+      "errorCount": 1,
+      "warningCount": 0
+    },
+    {
+      "phase": "before",
+      "valid": true,
+      "conditions": {
+        "targetUrl": "https://neo-os-desktop-20260907.c21burroughs.chatgpt.site/neo-os/",
+        "profile": "desktop",
+        "cache": null,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "cpuSlowdown": 1,
+        "headless": true,
+        "isMobile": null,
+        "hasTouch": null,
+        "browserVersion": "152.0.7977.84",
+        "network": "unthrottled",
+        "locale": "en-US",
+        "timezoneId": "America/Chicago",
+        "colorScheme": "dark",
+        "reducedMotion": "no-preference",
+        "settleAfterDOMContentLoadedMs": null,
+        "navigationTimeoutMs": null,
+        "httpCacheEnabled": true,
+        "serviceWorkers": "allow",
+        "logicalCpus": 16,
+        "memoryBytes": null,
+        "instrumentation": {
+          "coverage": false,
+          "timeline": true,
+          "interactions": null,
+          "screenshots": null
+        }
+      },
+      "requested": {
+        "samples": 60,
+        "start": {
+          "x": 216,
+          "y": 79.5
+        },
+        "delta": {
+          "x": 220,
+          "y": 140
+        }
+      },
+      "actualDisplacement": {
+        "x": 220,
+        "y": 140
+      },
+      "frameIntervalsMs": {
+        "count": 127,
+        "p50": 2.8,
+        "p95": 2.9,
+        "min": 2.6,
+        "max": 19.4,
+        "mean": 3.018,
+        "over50Ms": 0,
+        "over33_3Ms": 0,
+        "values": [
+          16.702,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.9,
+          2.6,
+          2.9,
+          2.7,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.9,
+          2.7,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.9,
+          2.6,
+          2.9,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.7,
+          2.9,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.9,
+          2.7,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.8,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.7,
+          2.9,
+          2.8,
+          2.7,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.8,
+          2.8,
+          2.8,
+          2.9,
+          2.6,
+          2.8,
+          2.7,
+          2.9,
+          2.7,
+          2.8,
+          2.9,
+          2.6,
+          3,
+          2.6,
+          19.4,
+          2.8,
+          2.8
+        ]
+      },
+      "elapsedMs": 403.30000000074506,
+      "cdpDurationDeltaMs": {
+        "TaskDuration": 212.268,
+        "ScriptDuration": 28.683,
+        "LayoutDuration": 0.959,
+        "RecalcStyleDuration": 69.659,
+        "DevToolsCommandDuration": 22.975,
+        "V8CompileDuration": 0
+      },
+      "duringPress": {
+        "left": 122,
+        "top": 60,
+        "width": 780,
+        "height": 560,
+        "observedAtMs": 7654.299999999814,
+        "interactionClass": true,
+        "wallpaperPaused": true
+      },
+      "afterRelease": {
+        "left": 342,
+        "top": 200,
+        "width": 780,
+        "height": 560,
+        "observedAtMs": 8025.700000000186,
+        "interactionClass": false,
+        "wallpaperPaused": false
+      },
+      "interactionStateEvents": [
+        {
+          "active": true,
+          "atMs": 7622.299999999814
+        },
+        {
+          "active": false,
+          "atMs": 7992.5
+        }
+      ],
+      "pointermoveDispatchDelayMs": {
+        "count": 60,
+        "p50": 1.7,
+        "p95": 1.905,
+        "min": 0.4,
+        "max": 2.7,
+        "mean": 1.722
+      },
+      "eventTimingInteractionDurationMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "min": null,
+        "max": null,
+        "mean": null
+      },
+      "errorCount": 10,
+      "warningCount": 0
+    }
+  ]
+}

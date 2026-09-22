@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <title>NEO Browser</title>
+  <script><![CDATA[
+    var browserFrame = null;
+    var workerUrl = new URL('sw.js?v=20260922-cinecat-source-recovery-v10', location.href).href;
+    var workerScope = new URL('./', location.href).pathname;
+    var controllerReloadKey = 'neo:browser-wrapper-controller:v1';
+
+    function escapeAttribute(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function prepareBrowser(source) {
+      var sourceUrl = location.href;
+      var baseUrl = new URL('./', sourceUrl).href;
+      var html = String(source || '')
+        .replace(/<meta\b[^>]*http-equiv=["']Content-Security-Policy["'][^>]*>/gi, '');
+      var injection = '<base href="' + escapeAttribute(baseUrl) + '" target="_self">' +
+        '<meta name="neo-source-url" content="' + escapeAttribute(sourceUrl) + '">';
+      if (/<head(?:\s[^>]*)?>/i.test(html)) {
+        return html.replace(/<head(?:\s[^>]*)?>/i, function (head) { return head + injection; });
+      }
+      return '<!doctype html><html><head>' + injection + '</head><body>' + html + '</body></html>';
+    }
+
+    function expectedController() {
+      var controller = navigator.serviceWorker && navigator.serviceWorker.controller;
+      return controller && controller.scriptURL === workerUrl ? controller : null;
+    }
+
+    function waitForController(timeout) {
+      if (expectedController()) return Promise.resolve(expectedController());
+      return new Promise(function (resolve) {
+        var timer = window.setTimeout(finish, timeout);
+        function finish() {
+          window.clearTimeout(timer);
+          navigator.serviceWorker.removeEventListener('controllerchange', changed);
+          resolve(expectedController());
+        }
+        function changed() {
+          if (expectedController()) finish();
+        }
+        navigator.serviceWorker.addEventListener('controllerchange', changed);
+      });
+    }
+
+    function ensureBrowserScope() {
+      if (!('serviceWorker' in navigator)) return Promise.reject(new Error('Service workers are unavailable.'));
+      if (expectedController()) {
+        try { sessionStorage.removeItem(controllerReloadKey); } catch (error) {}
+        return Promise.resolve();
+      }
+      return navigator.serviceWorker.register(workerUrl, { scope: workerScope })
+        .then(function (registration) {
+          return navigator.serviceWorker.ready.then(function () {
+            if (registration.active) registration.active.postMessage({ type: 'neo:jet:claim' });
+            return waitForController(4000);
+          });
+        })
+        .then(function (controller) {
+          if (controller) {
+            try { sessionStorage.removeItem(controllerReloadKey); } catch (error) {}
+            return;
+          }
+          var reloaded = false;
+          try {
+            reloaded = sessionStorage.getItem(controllerReloadKey) === workerUrl;
+            if (!reloaded) sessionStorage.setItem(controllerReloadKey, workerUrl);
+          } catch (error) {}
+          if (!reloaded) {
+            location.reload();
+            return new Promise(function () {});
+          }
+          throw new Error('The Browser network worker could not control its CDN page.');
+        });
+    }
+
+    window.addEventListener('message', function (event) {
+      if (!browserFrame) return;
+      if (event.source === browserFrame.contentWindow) {
+        if (parent !== window) parent.postMessage(event.data, '*');
+        return;
+      }
+      if (event.source === parent && parent !== window) {
+        browserFrame.contentWindow.postMessage(event.data, '*');
+      }
+    });
+
+    window.addEventListener('load', function () {
+      var host = document.getElementById('host');
+      ensureBrowserScope().then(function () {
+          var target = new URL('__neo_app__/', location.href);
+          target.search = location.search;
+          target.hash = location.hash;
+          var frame = document.createElementNS('http://www.w3.org/1999/xhtml', 'iframe');
+          browserFrame = frame;
+          frame.setAttribute('id', 'neo-browser');
+          frame.setAttribute('title', 'NEO Browser');
+          frame.setAttribute('allow', 'autoplay; picture-in-picture; clipboard-read; clipboard-write; fullscreen; gamepad; microphone; camera');
+          frame.setAttribute('allowfullscreen', 'true');
+          frame.setAttribute('style', 'position:fixed;inset:0;width:100%;height:100%;border:0;background:#0d1217');
+          frame.setAttribute('src', target.href);
+          host.textContent = '';
+          host.appendChild(frame);
+        })
+        .catch(function () {
+          host.textContent = 'NEO Browser could not load. Refresh to try again.';
+        });
+    });
+
+  ]]></script>
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml" id="host" style="position:fixed;inset:0;display:grid;place-items:center;background:#0d1217;color:#fff;font:14px system-ui,sans-serif">Loading NEO Browser…</div>
+  </foreignObject>
+</svg>

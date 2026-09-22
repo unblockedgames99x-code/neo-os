@@ -1,0 +1,1 @@
+(() => {'use strict';const value=new URLSearchParams(location.search).get('target')||'';document.getElementById('target').textContent=value;const link=document.getElementById('external');try{const url=new URL(value);if(!['http:','https:'].includes(url.protocol))throw new Error();link.href=url.href;}catch(_){link.hidden=true;}})();

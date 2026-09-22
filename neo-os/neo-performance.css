@@ -1,0 +1,227 @@
+/* NEO OS performance profiles. Loaded last so these inexpensive surfaces win. */
+
+.performance-settings {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background: #090b0d;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 10px;
+}
+
+.performance-heading {
+  align-items: center;
+  margin: 0;
+}
+
+.performance-status {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  color: #050505;
+  background: #f5f5f5;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.performance-mode-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.performance-mode-picker button {
+  min-width: 0;
+  min-height: 64px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 10px 12px;
+  color: #aeb4bc;
+  background: #111418;
+  border: 1px solid #2b3036;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.performance-mode-picker button:hover {
+  color: #ffffff;
+  border-color: #69717b;
+}
+
+.performance-mode-picker button.is-selected,
+.performance-mode-picker button[aria-pressed="true"] {
+  color: #050505;
+  background: #f5f5f5;
+  border-color: #ffffff;
+}
+
+.performance-mode-picker button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.performance-mode-picker strong,
+.performance-mode-picker small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.performance-mode-picker strong { font-size: 12px; }
+.performance-mode-picker small { color: inherit; opacity: 0.68; font-size: 9px; line-height: 1.35; }
+.performance-mode-note { margin: 0; color: #858c95; font-size: 10px; line-height: 1.5; }
+
+.auto-performance-toggle {
+  margin-top: 2px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html[data-auto-performance-active="true"] body,
+html[data-auto-performance-active="true"] .desktop {
+  background: #050505 !important;
+}
+
+html[data-auto-performance-active="true"] .wallpaper,
+html[data-auto-performance-active="true"] #weather-canvas,
+html[data-auto-performance-active="true"] .rainmeter-clock,
+html[data-auto-performance-active="true"] .rainmeter-editor,
+html[data-auto-performance-active="true"] .widget-layer {
+  display: none !important;
+}
+
+html[data-auto-performance-active="true"] .topbar,
+html[data-auto-performance-active="true"] .taskbar,
+html[data-auto-performance-active="true"] .neo-window,
+html[data-auto-performance-active="true"] .window-chrome,
+html[data-auto-performance-active="true"] .notification-center,
+html[data-auto-performance-active="true"] .desktop-context-menu,
+html[data-auto-performance-active="true"] .neo-taskbar-menu,
+html[data-auto-performance-active="true"] .now-playing-volume-flyout {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+html[data-performance-mode="performance"],
+html[data-performance-mode="ultimate"] {
+  scroll-behavior: auto !important;
+}
+
+html[data-performance-mode="performance"] body *,
+html[data-performance-mode="performance"] body *::before,
+html[data-performance-mode="performance"] body *::after,
+html[data-performance-mode="ultimate"] body *,
+html[data-performance-mode="ultimate"] body *::before,
+html[data-performance-mode="ultimate"] body *::after {
+  animation: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  scroll-behavior: auto !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+html[data-performance-mode="performance"] .topbar,
+html[data-performance-mode="performance"] .taskbar,
+html[data-performance-mode="performance"] .neo-window,
+html[data-performance-mode="performance"] .window-chrome,
+html[data-performance-mode="performance"] .app-launcher,
+html[data-performance-mode="performance"] .neo-widget,
+html[data-performance-mode="performance"] .notification-center,
+html[data-performance-mode="performance"] .desktop-context-menu,
+html[data-performance-mode="performance"] .neo-taskbar-menu,
+html[data-performance-mode="performance"] .now-playing-volume-flyout,
+html[data-performance-mode="ultimate"] .taskbar,
+html[data-performance-mode="ultimate"] .neo-window,
+html[data-performance-mode="ultimate"] .window-chrome,
+html[data-performance-mode="ultimate"] .app-launcher,
+html[data-performance-mode="ultimate"] .notification-center,
+html[data-performance-mode="ultimate"] .desktop-context-menu,
+html[data-performance-mode="ultimate"] .neo-taskbar-menu {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+html[data-performance-mode="performance"] .topbar,
+html[data-performance-mode="performance"] .taskbar,
+html[data-performance-mode="performance"] .app-launcher,
+html[data-performance-mode="performance"] .notification-center,
+html[data-performance-mode="performance"] .desktop-context-menu,
+html[data-performance-mode="performance"] .neo-taskbar-menu {
+  background: #080a0d !important;
+}
+
+html[data-performance-mode="performance"] .neo-window,
+html[data-performance-mode="performance"] .window-chrome {
+  background-color: #0b0d10 !important;
+}
+
+html[data-performance-mode="ultimate"] {
+  --topbar-height: 36px;
+  --wallpaper-blur: 0px !important;
+  --neo-taskbar-blur: 0px !important;
+}
+
+html[data-performance-mode="ultimate"] body,
+html[data-performance-mode="ultimate"] .desktop {
+  background: #050505 !important;
+}
+
+html[data-performance-mode="ultimate"] .wallpaper,
+html[data-performance-mode="ultimate"] #weather-canvas,
+html[data-performance-mode="ultimate"] .rainmeter-clock,
+html[data-performance-mode="ultimate"] .rainmeter-editor,
+html[data-performance-mode="ultimate"] .widget-layer {
+  display: none !important;
+}
+
+html[data-performance-mode="ultimate"] .window-layer {
+  top: var(--topbar-height) !important;
+}
+
+html[data-performance-mode="ultimate"] .taskbar,
+html[data-performance-mode="ultimate"] .app-launcher,
+html[data-performance-mode="ultimate"] .notification-center,
+html[data-performance-mode="ultimate"] .desktop-context-menu,
+html[data-performance-mode="ultimate"] .neo-taskbar-menu,
+html[data-performance-mode="ultimate"] .neo-window,
+html[data-performance-mode="ultimate"] .window-chrome {
+  background: #050505 !important;
+  border-color: #2b2b2b !important;
+}
+
+html[data-performance-mode="ultimate"] .neo-window.is-active {
+  border-color: #666666 !important;
+}
+
+html[data-performance-mode="ultimate"] .taskbar,
+html[data-performance-mode="ultimate"] .taskbar-center,
+html[data-performance-mode="ultimate"] .taskbar-start-button,
+html[data-performance-mode="ultimate"] .dock,
+html[data-performance-mode="ultimate"] .dock-button {
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Keep pointer-driven movement on the compositor. Heavy wallpaper and audio
+   effects retain their last frame and resume as soon as the gesture ends. */
+html.is-window-interacting .wallpaper *,
+html.is-window-interacting .widget-layer *,
+html.is-window-interacting .rainmeter-clock * {
+  animation-play-state: paused !important;
+}
+
+html.is-window-interacting iframe {
+  pointer-events: none !important;
+}
+
+@media (max-width: 620px) {
+  .performance-mode-picker { grid-template-columns: 1fr; }
+  .performance-mode-picker button { min-height: 52px; }
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" shape-rendering="geometricPrecision">
+  <title>Image placeholder</title>
+  <rect x="3" y="3" width="58" height="58" rx="7" fill="#050505" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="44" cy="21" r="6" fill="#ffffff"/>
+  <path d="M12 50 27 33l9 10 6-7 10 14H12Z" fill="#ffffff"/>
+</svg>

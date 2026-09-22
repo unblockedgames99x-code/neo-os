@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NEO Support</title>
+  <link rel="stylesheet" href="../neo-theme-system.css?v=20260907-theme-system-v2">
+  <link rel="stylesheet" href="./support.css?v=20260907-local-support-v1">
+  <script src="../neo-app-theme.js?v=20260907-theme-system-v2&amp;styles=launcher-picture-alignment-v12"></script>
+  <script src="./support.js?v=20260907-local-support-v1" defer></script>
+</head>
+<body>
+  <main class="support-shell">
+    <header>
+      <p class="eyebrow">NEO SUPPORT</p>
+      <h1>Report a problem</h1>
+      <p>Describe what happened. Your report stays on this device until you download or copy it.</p>
+    </header>
+    <form id="support-form">
+      <label>
+        App
+        <select id="support-app" name="app">
+          <option>NEO OS</option>
+          <option>Browser</option>
+          <option>NEO Music</option>
+          <option>NEO TV</option>
+          <option>NEO Cloud</option>
+          <option>Games</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <label>
+        What happened?
+        <textarea id="support-description" name="description" rows="8" maxlength="4000" required placeholder="Include what you opened, what you expected, and what appeared instead."></textarea>
+      </label>
+      <div class="support-actions">
+        <button type="submit">Save draft</button>
+        <button type="button" id="support-copy">Copy report</button>
+        <button type="button" id="support-download">Download report</button>
+        <button type="button" id="support-clear">Clear</button>
+      </div>
+      <p id="support-status" role="status" aria-live="polite"></p>
+    </form>
+    <section class="support-details" aria-labelledby="support-details-title">
+      <h2 id="support-details-title">Included automatically</h2>
+      <p id="support-diagnostics"></p>
+    </section>
+  </main>
+</body>
+</html>

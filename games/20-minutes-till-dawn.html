@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<script>
+(function(){
+  var R=/https?:\/\/((?:cdn|fastly|gcore|quantil|originfastly|testingcf)\.jsdelivr\.net|cdn\.statically\.io|rawcdn\.githack\.com|raw\.githack\.com)/g;
+  var D="cdn.jsdelivr.net";
+  var T="jsdelivr";
+
+  function fix(u){
+    if(!u || typeof u !== "string") return u;
+    var m=u.match(/https?:\/\/[^/]+\/(?:gh\/)?([^\/]+)\/([^@\/]+)[@\/]([^\/]+)\/(.*)/);
+    if(!m) return u;
+
+    var user=m[1], repo=m[2], tag=m[3], file=m[4];
+
+    if(T==="statically") return "https://cdn.statically.io/gh/"+user+"/"+repo+"@"+tag+"/"+file;
+    if(T==="rawcdn_githack") return "https://rawcdn.githack.com/"+user+"/"+repo+"/"+tag+"/"+file;
+    if(T==="raw_githack") return "https://raw.githack.com/"+user+"/"+repo+"/"+tag+"/"+file;
+
+    return "https://"+D+"/gh/"+user+"/"+repo+"@"+tag+"/"+file;
+  }
+
+  var oF=window.fetch;
+  window.fetch=function(i,n){
+    if(typeof i==="string") i=fix(i);
+    else if(i && i.url) i=new Request(fix(i.url),i);
+    return oF.apply(this,[i,n]);
+  };
+
+  var oX=XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open=function(m,u){
+    var a=Array.prototype.slice.call(arguments);
+    a[1]=fix(u);
+    return oX.apply(this,a);
+  };
+})();
+</script>
+
+<base href="https://cdn.jsdelivr.net/gh/web-ports/20-minutes@main/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+
+<title>Unity Web Player | 20 Minutes Till Dawn</title>
+
+<link rel="shortcut icon" href="TemplateData/favicon.ico">
+<link rel="stylesheet" href="TemplateData/style.css">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
+
+  body {
+    position: fixed;
+    inset: 0;
+  }
+
+  #unity-container {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #000;
+    overflow: hidden;
+  }
+
+  #unity-canvas {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block !important;
+    background: #000;
+    outline: none;
+  }
+
+  #unity-loading-bar {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 20;
+  }
+
+  #unity-warning {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 30;
+  }
+
+  #loading-text {
+    position: fixed;
+    top: 15px;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    text-align: center;
+    font-size: 34px;
+    font-family: cursive;
+    font-weight: bold;
+    pointer-events: none;
+
+    background: linear-gradient(
+      270deg,
+      #ff0000,
+      #ff7f00,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #8f00ff
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 3s ease infinite;
+  }
+
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+</head>
+
+<body>
+  <div id="loading-text">LOADING...</div>
+
+  <div id="unity-container">
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+
+    <div id="unity-warning"></div>
+  </div>
+
+<script>
+var loadingText = document.querySelector("#loading-text");
+let loadedBytes = 0;
+
+async function fetchWithProgress(url) {
+  const response = await fetch(url);
+  const reader = response.body.getReader();
+  let chunks = [];
+  let received = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    received += value.length;
+    loadedBytes += value.length;
+    chunks.push(value);
+
+    let mbDone = (loadedBytes / (1024 * 1024)).toFixed(2);
+    let mbTotal = "48.02";
+    loadingText.textContent = `LOADING... ${mbDone} MB / ${mbTotal} MB`;
+  }
+
+  let fullBuffer = new Uint8Array(received);
+  let offset = 0;
+
+  for (let chunk of chunks) {
+    fullBuffer.set(chunk, offset);
+    offset += chunk.length;
+  }
+
+  return fullBuffer.buffer;
+}
+
+async function mergeFiles(fileParts, cacheKey) {
+  const cache = await caches.open("20mins-cache");
+  const cachedResponse = await cache.match(cacheKey);
+
+  if (cachedResponse) {
+    const blob = await cachedResponse.blob();
+    return URL.createObjectURL(blob);
+  }
+
+  const buffers = await Promise.all(
+    fileParts.map(part => fetchWithProgress(part))
+  );
+
+  const mergedBlob = new Blob(buffers);
+  const response = new Response(mergedBlob);
+
+  await cache.put(cacheKey, response);
+
+  return URL.createObjectURL(mergedBlob);
+}
+
+function getParts(file, start, end) {
+  let parts = [];
+  for (let i = start; i <= end; i++) {
+    parts.push(file + ".part" + i);
+  }
+  return parts;
+}
+
+(async () => {
+  const [dataUrl, wasmUrl] = await Promise.all([
+    mergeFiles(getParts("Build/20minutes.data", 1, 2), "20minutes.data"),
+    mergeFiles(getParts("Build/20minutes.wasm", 1, 2), "20minutes.wasm"),
+  ]);
+
+  var container = document.querySelector("#unity-container");
+  var canvas = document.querySelector("#unity-canvas");
+  var loadingBar = document.querySelector("#unity-loading-bar");
+  var progressBarFull = document.querySelector("#unity-progress-bar-full");
+
+  function fitCanvas() {
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+  }
+
+  window.addEventListener("resize", fitCanvas);
+  fitCanvas();
+
+  function unityShowBanner(msg, type) {}
+
+  var buildUrl = "Build";
+  var loaderUrl = buildUrl + "/20minutes.loader.js";
+
+  var config = {
+    arguments: [],
+    dataUrl: dataUrl,
+    frameworkUrl: buildUrl + "/20minutes.framework.js",
+    codeUrl: wasmUrl,
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "Flanne",
+    productName: "MinutesTillDawn",
+    productVersion: "0.6.6",
+    showBanner: unityShowBanner
+  };
+
+  loadingBar.style.display = "block";
+
+  var script = document.createElement("script");
+  script.src = loaderUrl;
+
+  script.onload = () => {
+    createUnityInstance(canvas, config, (progress) => {
+      progressBarFull.style.width = 100 * progress + "%";
+    }).then((unityInstance) => {
+      loadingBar.style.display = "none";
+      loadingText.remove();
+      fitCanvas();
+    }).catch((message) => {
+      alert(message);
+    });
+  };
+
+  document.body.appendChild(script);
+})();
+</script>
+</body>
+</html>

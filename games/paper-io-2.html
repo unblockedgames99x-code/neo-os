@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fullscreen Game</title>
+
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  html,
+  body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#061828;
+  }
+
+  #iframe-container{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+  }
+
+  iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    display:block;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="iframe-container"></div>
+
+<script>
+  const container = document.getElementById("iframe-container");
+
+  container.innerHTML = `
+    <iframe
+      id="gameFrame"
+      src="https://script.google.com/macros/s/AKfycbwNxCzUuQVmLRWTwYK2D4yTqpWg2O-qge8BwCkxhLmqWd1DtXynwJXPEDClPt7ERZr-/exec"
+      allowfullscreen
+      tabindex="0">
+    </iframe>
+  `;
+
+  const frame = document.getElementById("gameFrame");
+
+  function focusGame() {
+    frame.focus();
+  }
+
+  window.addEventListener("load", focusGame);
+  document.addEventListener("click", focusGame);
+
+  const keyMap = {
+    w: {
+      key:"ArrowUp",
+      code:"ArrowUp",
+      keyCode:38
+    },
+    a: {
+      key:"ArrowLeft",
+      code:"ArrowLeft",
+      keyCode:37
+    },
+    s: {
+      key:"ArrowDown",
+      code:"ArrowDown",
+      keyCode:40
+    },
+    d: {
+      key:"ArrowRight",
+      code:"ArrowRight",
+      keyCode:39
+    }
+  };
+
+  function sendMappedKey(type, originalEvent) {
+    const k = originalEvent.key.toLowerCase();
+
+    if (!keyMap[k]) return;
+
+    originalEvent.preventDefault();
+
+    const mapped = keyMap[k];
+
+    const evt = new KeyboardEvent(type, {
+      key: mapped.key,
+      code: mapped.code,
+      bubbles: true,
+      cancelable: true
+    });
+
+    Object.defineProperty(evt, "keyCode", {
+      get: () => mapped.keyCode
+    });
+
+    Object.defineProperty(evt, "which", {
+      get: () => mapped.keyCode
+    });
+
+    window.dispatchEvent(evt);
+    document.dispatchEvent(evt);
+
+    try {
+      frame.contentWindow.dispatchEvent(evt);
+    } catch(err) {}
+  }
+
+  document.addEventListener("keydown", function(e){
+    sendMappedKey("keydown", e);
+  }, true);
+
+  document.addEventListener("keyup", function(e){
+    sendMappedKey("keyup", e);
+  }, true);
+</script>
+
+</body>
+</html>

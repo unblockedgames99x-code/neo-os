@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" shape-rendering="geometricPrecision">
+  <title>Profile picture placeholder</title>
+  <rect x="3" y="3" width="58" height="58" rx="7" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="32" cy="24" r="10" fill="#ffffff"/>
+  <path d="M14 53c1.8-10.1 8.4-15.2 18-15.2S48.2 42.9 50 53H14Z" fill="#ffffff"/>
+</svg>

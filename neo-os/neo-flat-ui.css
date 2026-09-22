@@ -1,0 +1,155 @@
+/* Final flat-design layer. Keep this after every shell stylesheet. */
+:root {
+  --neo-line: transparent;
+  --neo-line-strong: transparent;
+  --neo-shadow: none;
+  --neo-shadow-soft: none;
+}
+
+::selection {
+  color: var(--neo-accent-contrast, #000000);
+  background: var(--neo-accent-visible, #ffffff);
+}
+
+body *,
+body *::before,
+body *::after {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Remove panel gradients without touching artwork-backed cards or previews. */
+body :where(
+  .neo-window,
+  .window-titlebar,
+  .app-launcher,
+  .launcher-search,
+  .launcher-category,
+  .taskbar-shelf,
+  .taskbar-system,
+  .neo-taskbar-menu,
+  .desktop-context-menu,
+  .feature-dialog,
+  .neo-toast,
+  .notification-center
+) {
+  background-image: none !important;
+}
+
+/* UI artwork stays crisp and flat; wallpaper rendering keeps its own filters. */
+body :where(
+  button,
+  [role="button"],
+  .desktop-shortcut,
+  .launcher-app,
+  .dock-button,
+  .taskbar-app,
+  .app-image-icon,
+  .launcher-app-icon,
+  .dock-app-art,
+  .window-app-icon
+) :is(img, svg),
+body :where(
+  .app-image-icon,
+  .launcher-app-icon,
+  .dock-app-art,
+  .window-app-icon
+) {
+  filter: none !important;
+}
+
+/* The source logo has a pale antialias fringe at small rounded sizes. */
+.taskbar-start-button img {
+  background: #000 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  filter: brightness(.9) contrast(3) !important;
+}
+
+/* Keep keyboard focus obvious without drawing another ring or border. */
+body :where(
+  button,
+  input,
+  select,
+  textarea,
+  a,
+  [tabindex]:not([tabindex="-1"]),
+  [role="button"],
+  [role="menuitem"]
+):focus-visible {
+  background-color: var(--neo-accent-soft, rgba(255, 255, 255, 0.16)) !important;
+}
+
+body input[type="checkbox"],
+body input[type="radio"],
+body input[type="range"] {
+  accent-color: var(--neo-accent-visible, #ffffff);
+}
+
+body :where(input, textarea) {
+  caret-color: var(--neo-accent-visible, #ffffff);
+}
+
+body input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+body input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+body input[type="color"]::-webkit-color-swatch,
+body input[type="color"]::-moz-color-swatch {
+  border: 0 !important;
+}
+
+body input[type="range"]::-webkit-slider-thumb,
+body input[type="range"]::-moz-range-thumb {
+  background: var(--neo-accent-visible, #ffffff) !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+/* Wallpaper Studio shares the shell palette without expanding its critical CSS. */
+.we-source-tabs { border-bottom-color: var(--neo-accent-visible) !important; }
+.wallpaper-studio :is(.studio-nav button.is-active, .wallpaper-card.is-selected) {
+  color: var(--neo-accent-visible);
+  background: var(--neo-accent-soft);
+}
+.wallpaper-studio :is(.we-source-tabs button.is-active, .button.primary, .wallpaper-online-install:not(:disabled), .we-online-icon, .we-add-wallpaper) {
+  color: var(--neo-accent-contrast);
+  background: var(--neo-accent-visible);
+}
+.wallpaper-studio :is(.wallpaper-online-link, .we-online-pager button:hover:not(:disabled)) { color: var(--neo-accent-visible); }
+.wallpaper-studio :is(.wallpaper-online-link:hover, .we-online-pager button:hover:not(:disabled), .we-playlist-bar button:hover) {
+  background: var(--neo-accent-soft);
+}
+
+.wallpaper-search-submit,
+.wallpaper-search-clear {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--neo-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.wallpaper-search-clear[hidden] { display: none; }
+.wallpaper-search-submit .icon,
+.wallpaper-search-clear .icon { width: 12px; height: 12px; }
+.wallpaper-search-submit:is(:hover, :focus-visible),
+.wallpaper-search-clear:is(:hover, :focus-visible) { color: #fff; background: var(--neo-accent-soft); }
+.wallpaper-search-submit:active,
+.wallpaper-search-clear:active { transform: scale(0.94); }

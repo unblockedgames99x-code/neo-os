@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="../neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="description" content="NEO Cloud game catalog and Stratus-compatible cloud streaming client." />
+    <title>NEO Cloud</title>
+    <script src="../neo-app-theme.js?v=20260907-theme-system-v2&amp;styles=launcher-picture-alignment-v12"></script>
+    <link rel="icon" href="../assets/neo-cloud.svg?v=20260901-cloud-logo-v2" type="image/svg+xml" />
+    <link rel="preload" href="../assets/neo-cloud.svg?v=20260901-cloud-logo-v2" as="image" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260901-mobile-compat-v3" />
+    <link rel="stylesheet" href="../neo-fonts.css?v=20260912-native-fast-v1" />
+    <link rel="stylesheet" href="../neo-theme-system.css?v=20260907-theme-system-v2" />
+    <link rel="stylesheet" href="../neo-liquid-scrollbars.css?v=20260907-scroll-containers-v2" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="cloud-icon-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5M9.5 20v-6h5v6"/></symbol>
+      <symbol id="cloud-icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+      <symbol id="cloud-icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+      <symbol id="cloud-icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+      <symbol id="cloud-icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></symbol>
+      <symbol id="cloud-icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-3.7-3.7"/></symbol>
+      <symbol id="cloud-icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="cloud-icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+      <symbol id="cloud-icon-arrow" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+      <symbol id="cloud-icon-cloud" viewBox="0 0 24 24"><path d="M6.5 18.5h11a4.5 4.5 0 0 0 .6-8.96A7 7 0 0 0 4.9 8.1a5.2 5.2 0 0 0 1.6 10.4Z"/></symbol>
+      <symbol id="cloud-icon-signal" viewBox="0 0 24 24"><path d="M5 16a10 10 0 0 1 14 0M8 19a6 6 0 0 1 8 0M2 13a14 14 0 0 1 20 0"/><circle cx="12" cy="22" r=".75" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="cloud-icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></symbol>
+      <symbol id="cloud-icon-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></symbol>
+      <symbol id="cloud-icon-muted" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4ZM16 9l5 5M21 9l-5 5"/></symbol>
+      <symbol id="cloud-icon-exit" viewBox="0 0 24 24"><path d="M10 4H4v16h6M14 8l4 4-4 4M8 12h10"/></symbol>
+      <symbol id="cloud-icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+      <symbol id="cloud-icon-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5"/><path d="M18.5 10A7 7 0 0 0 6 7.5L4 11M5.5 14A7 7 0 0 0 18 16.5l2-3.5"/></symbol>
+      <symbol id="cloud-icon-eye" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    </svg>
+
+    <div class="app-shell" data-app-shell>
+      <header class="topbar">
+        <a class="brand" href="#home" data-view-link="home" aria-label="NEO Cloud home">
+          <img src="../assets/neo-cloud.svg?v=20260901-cloud-logo-v2" width="38" height="38" alt="" />
+          <span><strong>NEO</strong><small>CLOUD</small></span>
+        </a>
+
+        <nav class="primary-nav" aria-label="NEO Cloud sections">
+          <button type="button" class="nav-button is-active" data-view="home" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-home"></use></svg><span>Home</span></button>
+          <button type="button" class="nav-button" data-view="all" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-grid"></use></svg><span>Games</span></button>
+          <button type="button" class="nav-button" data-view="favorites" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-heart"></use></svg><span>Favorites</span></button>
+          <button type="button" class="nav-button" data-view="recent" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-clock"></use></svg><span>Recent</span></button>
+        </nav>
+
+        <div class="topbar-actions">
+          <label class="search-control">
+            <svg class="icon" aria-hidden="true"><use href="#cloud-icon-search"></use></svg>
+            <span class="sr-only">Search games</span>
+            <input type="search" data-search autocomplete="off" spellcheck="false" placeholder="Search games" />
+            <button type="button" class="search-clear" data-search-clear aria-label="Clear search" hidden><svg class="icon" aria-hidden="true"><use href="#cloud-icon-close"></use></svg></button>
+          </label>
+          <button class="status-button" type="button" data-open-settings aria-label="Open cloud service settings">
+            <span class="status-dot" data-status-dot></span>
+            <span data-status-label>Setup needed</span>
+          </button>
+          <button class="icon-button" type="button" data-open-settings aria-label="Settings"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-settings"></use></svg></button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" data-hero aria-labelledby="hero-title">
+          <div class="hero-backdrop" data-hero-backdrop></div>
+          <div class="hero-scrim"></div>
+          <div class="hero-content">
+            <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-cloud"></use></svg> FEATURED ON NEO CLOUD</p>
+            <h1 id="hero-title" data-hero-title>Cloud gaming, made cleaner.</h1>
+            <p class="hero-description" data-hero-description>Browse the complete catalog, save favorites, and connect to a compatible streaming service when you are ready.</p>
+            <div class="tag-row" data-hero-tags></div>
+            <div class="hero-actions">
+              <button class="button button-primary" type="button" data-hero-play disabled><svg class="icon" aria-hidden="true"><use href="#cloud-icon-play"></use></svg> Play now</button>
+              <button class="button button-secondary" type="button" data-hero-details disabled>View details <svg class="icon" aria-hidden="true"><use href="#cloud-icon-arrow"></use></svg></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="catalog" aria-labelledby="catalog-title">
+          <div class="catalog-heading">
+            <div>
+              <p class="eyebrow" data-view-eyebrow>YOUR CLOUD LIBRARY</p>
+              <h2 id="catalog-title" data-view-title>Featured games</h2>
+            </div>
+            <div class="catalog-meta">
+              <span data-result-count aria-live="polite">Loading catalog</span>
+              <label class="sort-control">Sort
+                <select data-sort aria-label="Sort games">
+                  <option value="featured">Featured</option>
+                  <option value="az">Name A-Z</option>
+                  <option value="za">Name Z-A</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="category-strip" data-category-strip aria-label="Filter by category"></div>
+
+          <div class="service-notice" data-service-notice>
+            <svg class="icon" aria-hidden="true"><use href="#cloud-icon-info"></use></svg>
+            <div><strong>NEO Cloud is ready</strong><span>The game service is configured automatically. The first launch may take a moment while it wakes.</span></div>
+            <button type="button" class="text-button" data-open-settings>Set up</button>
+          </div>
+
+          <div class="catalog-state" data-catalog-state role="status" aria-live="polite">
+            <span class="loader" aria-hidden="true"></span>
+            <strong>Loading NEO Cloud</strong>
+            <span>Preparing the local game catalog.</span>
+          </div>
+          <div class="game-grid" data-game-grid aria-label="Cloud games"></div>
+          <div class="load-more-wrap"><button class="button button-secondary" type="button" data-load-more hidden>Show more games</button></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>NEO Cloud</span>
+        <span>This website uses Stratus API to provide some of its services</span>
+        <a href="./THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener">Source notices</a>
+      </footer>
+    </div>
+
+    <dialog class="details-dialog" data-details-dialog aria-labelledby="cloud-details-title">
+      <button class="dialog-close" type="button" data-close-details aria-label="Close details"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-close"></use></svg></button>
+      <div class="details-cover"><img data-details-cover alt="" /></div>
+      <div class="details-body">
+        <p class="eyebrow">NEO CLOUD GAME</p>
+        <h2 id="cloud-details-title" data-details-title>Game</h2>
+        <div class="tag-row" data-details-tags></div>
+        <p data-details-description></p>
+        <div class="details-actions">
+          <button class="button button-primary" type="button" data-details-play><svg class="icon" aria-hidden="true"><use href="#cloud-icon-play"></use></svg> Start session</button>
+          <button class="button button-secondary favorite-action" type="button" data-details-favorite><svg class="icon" aria-hidden="true"><use href="#cloud-icon-heart"></use></svg><span>Add favorite</span></button>
+        </div>
+        <p class="details-footnote">Uses NEO's hosted Stratus-compatible service. The access key is configured automatically.</p>
+      </div>
+    </dialog>
+
+    <dialog class="settings-dialog" data-settings-dialog aria-labelledby="cloud-settings-title">
+      <form method="dialog" data-settings-form>
+        <header class="dialog-header">
+          <div><p class="eyebrow">CONNECTION</p><h2 id="cloud-settings-title">Cloud service</h2></div>
+          <button class="dialog-close" type="button" data-close-settings aria-label="Close settings"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-close"></use></svg></button>
+        </header>
+        <p class="dialog-copy">NEO's Stratus service and access key are configured automatically. Advanced users can enter another compatible endpoint.</p>
+        <label class="field"><span>Service endpoint</span><input type="url" data-endpoint required inputmode="url" placeholder="https://service.example" /></label>
+        <div class="connection-result" data-connection-result role="status" aria-live="polite"></div>
+        <div class="dialog-actions">
+          <button class="button button-secondary" type="button" data-test-connection><svg class="icon" aria-hidden="true"><use href="#cloud-icon-signal"></use></svg> Test connection</button>
+          <button class="button button-primary" type="submit">Save connection</button>
+        </div>
+      </form>
+    </dialog>
+
+    <section class="stream-stage" data-stream-stage hidden role="dialog" aria-modal="true" aria-label="Cloud game stream" tabindex="-1">
+      <video data-stream-video autoplay playsinline muted disablepictureinpicture></video>
+      <div class="stream-placeholder" data-stream-placeholder>
+        <img src="../assets/neo-cloud.svg?v=20260901-cloud-logo-v2" width="64" height="64" alt="" />
+        <span class="loader" aria-hidden="true"></span>
+        <strong data-stream-title>Starting cloud session</strong>
+        <p data-stream-message>Preparing your game.</p>
+        <div class="queue-meter" aria-hidden="true"><span data-queue-meter></span></div>
+      </div>
+      <button class="audio-prompt" type="button" data-audio-prompt hidden><svg class="icon" aria-hidden="true"><use href="#cloud-icon-volume"></use></svg> Turn on game audio</button>
+      <div class="stream-touch-controls" data-stream-touch-controls aria-label="Touch game controls">
+        <div class="touch-dpad" aria-label="Movement controls">
+          <button type="button" data-touch-key="87" aria-label="Move up">W</button>
+          <button type="button" data-touch-key="65" aria-label="Move left">A</button>
+          <button type="button" data-touch-key="83" aria-label="Move down">S</button>
+          <button type="button" data-touch-key="68" aria-label="Move right">D</button>
+        </div>
+        <div class="touch-actions" aria-label="Game actions">
+          <button type="button" data-touch-key="27" aria-label="Escape">ESC</button>
+          <button type="button" data-touch-key="13" aria-label="Enter">ENTER</button>
+          <button type="button" data-touch-key="32" aria-label="Jump or primary action">SPACE</button>
+        </div>
+      </div>
+      <div class="stream-toolbar">
+        <div><strong data-stream-game>NEO Cloud</strong><span data-session-time>Connecting</span></div>
+        <div class="stream-controls">
+          <button type="button" data-stream-mute aria-label="Turn on game audio"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-muted"></use></svg></button>
+          <button type="button" data-stream-fullscreen aria-label="Enter full screen"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-expand"></use></svg></button>
+          <button type="button" data-stream-exit aria-label="End cloud session"><svg class="icon" aria-hidden="true"><use href="#cloud-icon-exit"></use></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast-region" data-toast-region aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./app.js?v=20260909-server-wakeup-v1"></script>
+  </body>
+</html>

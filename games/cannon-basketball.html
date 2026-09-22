@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Cannon Basketball</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,sans-serif}#game{position:fixed;inset:0;width:100vw;height:100vh;background:#000;overflow:hidden}ruffle-player,#game>*{width:100vw!important;height:100vh!important;display:block!important;background:#000!important;outline:none}#loader{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;background:#000;color:#fff;text-align:center;padding:22px}#card{width:min(540px,92vw)}#title{font-size:24px;font-weight:700;margin-bottom:12px}#text{font-size:15px;line-height:1.45;opacity:.92;margin-bottom:16px}#bar{width:100%;height:16px;border-radius:999px;background:#222;overflow:hidden;border:1px solid #444}#fill{width:10%;height:100%;background:#fff;transition:width .25s linear}#note{margin-top:12px;font-size:12px;opacity:.65}#err{display:none;margin-top:14px;padding:10px;border:1px solid #f66;border-radius:10px;color:#ffb3b3;font-size:13px;line-height:1.4;word-break:break-word}
+</style>
+<script>
+window.RufflePlayer=window.RufflePlayer||{};
+window.RufflePlayer.config={autoplay:"on",unmuteOverlay:"hidden",splashScreen:false,backgroundColor:"#000000",letterbox:"off",scale:"exactFit",quality:"high",menu:false,allowFullscreen:true,allowScriptAccess:true,warnOnUnsupportedContent:false};
+</script>
+</head>
+<body>
+<div id="game"></div>
+<div id="loader"><div id="card"><div id="title">Loading Cannon Basketball...</div><div id="text">Starting Ruffle and loading the SWF. Do not refresh.</div><div id="bar"><div id="fill"></div></div><div id="note">Click the game once after it loads so controls work.</div><div id="err"></div></div></div>
+<script>
+(()=>{const SWF="https://fastly.jsdelivr.net/gh/jackilyna/lightspark@a0ef15891c7ae753c5d5117af8c919d9af994b1c/resources/cannon-basketball.swf";
+const SCRIPTS=["https://fastly.jsdelivr.net/gh/u-cvlassrom-y/google@main/ruffle.js","https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@latest/ruffle.js","https://unpkg.com/@ruffle-rs/ruffle"];
+const game=document.getElementById("game"),loader=document.getElementById("loader"),text=document.getElementById("text"),fill=document.getElementById("fill"),err=document.getElementById("err");
+let player=null,hidden=false;
+function prog(p,t){fill.style.width=Math.max(0,Math.min(100,p))+"%";if(t)text.textContent=t}
+function fail(m){err.style.display="block";err.textContent=String(m||"Unknown loading error");text.textContent="The game could not finish loading. The error is shown below.";fill.style.width="100%"}
+function fit(){if(player){player.style.width="100vw";player.style.height="100vh";player.style.display="block";player.setAttribute("tabindex","0")}}
+function hide(){if(hidden)return;hidden=true;prog(100,"Loaded.");setTimeout(()=>{fit();loader.style.display="none";if(player&&player.focus)player.focus()},650)}
+function loadScript(src){return new Promise((res,rej)=>{let s=document.createElement("script");s.src=src;s.async=true;s.onload=()=>res(src);s.onerror=()=>rej(new Error("Could not load Ruffle script: "+src));document.head.appendChild(s)})}
+async function loadRuffle(){for(const src of SCRIPTS){try{prog(30,"Loading Ruffle player...");await loadScript(src);if(window.RufflePlayer&&(window.RufflePlayer.newest||window.RufflePlayer.createPlayer))return}catch(e){console.warn(e)}}throw new Error("Ruffle failed to load from all script sources.")}
+function makePlayer(){const r=window.RufflePlayer?.newest?.()||window.RufflePlayer;if(!r||!r.createPlayer)throw new Error("Ruffle loaded, but createPlayer() was not found.");game.innerHTML="";player=r.createPlayer();fit();game.appendChild(player);player.addEventListener("loadedmetadata",hide);player.addEventListener("loadeddata",hide);player.addEventListener("canplay",hide);player.addEventListener("error",e=>fail(e?.message||"Ruffle reported a player error."));return player}
+async function start(){try{prog(10,"Preparing game...");await loadRuffle();prog(55,"Creating Flash player...");let p=makePlayer();prog(75,"Loading Cannon Basketball SWF...");let out;try{out=p.load({url:SWF,allowScriptAccess:true,parameters:{}})}catch(e){out=p.load(SWF)}if(out&&typeof out.then==="function")await out;prog(92,"Starting game...");setTimeout(hide,1800)}catch(e){fail(e&&e.message?e.message:e)}}
+window.addEventListener("resize",fit);window.addEventListener("click",()=>{fit();if(player&&player.focus)player.focus()});start();
+})();
+</script>
+</body>
+</html>

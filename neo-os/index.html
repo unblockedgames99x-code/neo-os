@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="en" data-boot="pending" data-neo-app="shell" data-interface-style="modern" data-wallpaper="we-steam-1403160205" data-performance-mode="normal" data-auto-performance-active="false" data-animation-speed="100" data-taskbar-position="left" data-taskbar-style="current" data-taskbar-surface="glass" data-taskbar-outline="true" data-taskbar-running-apps="true" data-taskbar-app-names="false" data-taskbar-app-mode="desktop" data-taskbar-app-state="desktop" data-window-bar-style="ultra" data-desktop-system-widget="false" data-desktop-active-app-widget="false" data-desktop-now-playing-widget="false">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://fastly.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: http://127.0.0.1:3092 http://localhost:3092; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' blob: http://127.0.0.1:3092 http://localhost:3092 https://a.luminsdk.com https://fastly.jsdelivr.net https://cdn.jsdelivr.net https://gcore.jsdelivr.net https://quantil.jsdelivr.net https://pipedapi.ducks.party https://api.piped.private.coffee https://lol.samidy.workers.dev https://lunchbreak.dyercountylawncare.workers.dev https://neo-stratus-api-w6nw.onrender.com wss://cdn.northstreetumc.org wss://cleanhost5896.b-cdn.net wss://nextnode9124.b-cdn.net wss://probuildingsupplies.com wss://wisp.mercurywork.shop; frame-src 'self' blob: https://a.luminsdk.com https://nextnode9124.b-cdn.net https://fastly.jsdelivr.net https://cdn.jsdelivr.net https://gcore.jsdelivr.net https://quantil.jsdelivr.net; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <script src="./neo-local-config.js?v=20260922-worker-version-check-v13&amp;theme=system-v1&amp;widgets=live-v1&amp;music=scholarnook-v1"></script>
+    <script src="./neo-desktop-config.js?v=20260912-acrylic-theme-v1"></script>
+    <script src="./neo-system-bridge.js?v=20260921-proxy-frame-v1"></script>
+    <script src="./neo-ad-shield.js?v=20260912-sitewide-v2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#080a0d" />
+    <meta
+      name="description"
+      content="NEO OS, a fast personal workspace for chat, media, browsing, and creativity."
+    />
+    <meta name="color-scheme" content="dark" />
+    <link rel="dns-prefetch" href="//cleanhost5896.b-cdn.net" />
+    <link rel="preconnect" href="https://cleanhost5896.b-cdn.net" crossorigin />
+    <script>
+      (function () {
+        var mode = "normal";
+        var interfaceStyle = "modern";
+        var windowBarStyle = "ultra";
+        var animationSpeed = 100;
+        var taskbarAppMode = "desktop";
+        try {
+          var saved = JSON.parse(localStorage.getItem("neo_os_settings_v1") || "{}");
+          mode = saved.performanceMode;
+          interfaceStyle = saved.interfaceStyle === "retro" || saved.interfaceStyle === "windows11" || saved.interfaceStyle === "kali" ? saved.interfaceStyle : "modern";
+          if (Number(saved.designVersion) >= 20 && (saved.windowBarStyle === "current" || saved.windowBarStyle === "pill" || saved.windowBarStyle === "ultra")) {
+            windowBarStyle = saved.windowBarStyle;
+          }
+          var savedAnimationSpeed = Number(saved.animationSpeed);
+          if (Number.isFinite(savedAnimationSpeed)) animationSpeed = Math.max(50, Math.min(200, Math.round(savedAnimationSpeed / 25) * 25));
+          if (mode !== "normal" && mode !== "performance" && mode !== "ultimate") {
+            mode = saved.performance === "low" ? "performance" : "normal";
+          }
+        } catch (error) {}
+        document.documentElement.dataset.performanceMode = mode;
+        document.documentElement.dataset.interfaceStyle = interfaceStyle;
+        document.documentElement.dataset.windowBarStyle = windowBarStyle;
+        document.documentElement.dataset.animationSpeed = String(animationSpeed);
+        document.documentElement.dataset.taskbarAppMode = taskbarAppMode;
+        var animationDurationScale = 100 / animationSpeed;
+        document.documentElement.style.setProperty("--neo-window-open-duration", Math.round(300 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-window-restore-duration", Math.round(260 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-window-close-duration", Math.round(210 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-command-open-duration", Math.round(340 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-command-close-duration", Math.round(210 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-command-content-duration", Math.round(250 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-command-stagger-one", Math.round(28 * animationDurationScale) + "ms");
+        document.documentElement.style.setProperty("--neo-command-stagger-two", Math.round(52 * animationDurationScale) + "ms");
+      })();
+    </script>
+    <script>
+      (function () {
+        if (window.location.protocol !== "file:") return;
+        var previewBases = ["http://127.0.0.1:3092/neo-os/", "http://localhost:3092/neo-os/"];
+        var candidate = 0;
+        function tryPreview() {
+          if (candidate >= previewBases.length) {
+            window.__neoLocalPreviewProbe = null;
+            return;
+          }
+          var previewBase = previewBases[candidate++];
+          var probe = new Image();
+          window.__neoLocalPreviewProbe = probe;
+          probe.onload = function () {
+            window.location.replace(previewBase + window.location.search + window.location.hash);
+          };
+          probe.onerror = tryPreview;
+          probe.src = previewBase + "assets/neo-logo.svg?preview=" + Date.now();
+        }
+        tryPreview();
+      })();
+    </script>
+    <link rel="icon" href="./assets/tab-appearance/classroom.png" type="image/png" />
+    <link
+      rel="preload"
+      href="./assets/neo-logo.svg"
+      as="image"
+      type="image/svg+xml"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="./neo-os.css?v=20260912-status-widget-toggles-v1&amp;boot=universal-loader-v3&amp;popout=resizable-v1" />
+    <link rel="stylesheet" href="./neo-taskbar-menu.css?v=20260919-logo-fit-v1" />
+    <link rel="stylesheet" href="./neo-taskbar-preview.css?v=20260913-current-state-v1" />
+    <link rel="stylesheet" href="./neo-apps.css?v=20260920-youtube-restored-v1" />
+    <link rel="stylesheet" href="./neo-window-resize.css?v=20260907-fullscreen-exit-v3" />
+    <link rel="stylesheet" href="./neo-wallpaper-engine.css?v=20260912-wallpaper-loading-outline-v2" />
+    <link rel="stylesheet" href="./neo-rainmeter.css?v=20260921-remove-mond-v1" />
+    <link rel="stylesheet" href="./neo-launcher-glass.css?v=20260820-profile-outline-v2" />
+    <link rel="stylesheet" href="./neo-browser-ui.css?v=20260825-home-tabs-v2" />
+    <link rel="stylesheet" href="./neo-flat-ui.css?v=20260819-launcher-oled-v1" />
+    <link rel="stylesheet" href="./neo-retro-theme.css?v=20260907-taskbar-launcher-v1" />
+    <link rel="stylesheet" href="./neo-topbar-autohide.css?v=20260910-always-visible-v1" />
+    <link rel="stylesheet" href="./neo-performance.css?v=20260910-taskbar-previews-v2" />
+    <link rel="stylesheet" href="./neo-mobile.css?v=20260901-mobile-compat-v4" />
+    <link rel="stylesheet" href="./neo-vertical-taskbar.css?v=20260919-clear-rail-v1" />
+    <link rel="stylesheet" href="./neo-chat.css?v=20260908-imessage-logo-v2" />
+    <title>Home - Classroom</title>
+    <link rel="stylesheet" href="./neo-desktop.css?v=20260907-equalizer-live-v2&amp;chat=utility-spacing-v1&amp;apps=style-passthrough-v1&amp;editor=network-preview-v1&amp;music=symbols-v1" />
+    <link rel="stylesheet" href="./neo-bottom-visualizer.css?v=20260920-taskbar-width-v1" />
+    <link rel="stylesheet" href="./neo-custom-cursors.css?v=20260912-import-cursor-v1" />
+    <link rel="stylesheet" href="./neo-fonts.css?v=20260912-native-fast-v1" />
+    <link rel="stylesheet" href="./neo-range.css?v=20260906-range-fill-v1" />
+    <link rel="stylesheet" href="./neo-skin-interactions.css?v=20260907-live-weather-v1&amp;background=transparent-v1" />
+    <link rel="stylesheet" href="./neo-theme-system.css?v=20260912-acrylic-theme-v1" />
+    <link rel="stylesheet" href="./neo-production-polish.css?v=20260919-browser-search-v1&amp;taskbar=surfaces-v1&amp;motion=window-drag-v3-animation-speed-v1&amp;themes=expanded-v1&amp;window=detached-v2&amp;launcher=motion-v1" />
+    <link rel="stylesheet" href="./neo-liquid-scrollbars.css?v=20260907-scroll-containers-v2" />
+    <link rel="stylesheet" href="./neo-dock-interactions.css?v=20260909-desktop-shortcuts-v2" />
+    <link rel="stylesheet" href="./neo-running-taskbar.css?v=20260913-running-line-center-v4" />
+    <link rel="stylesheet" href="./neo-command-palette.css?v=20260912-command-palette-v1" />
+    <link rel="stylesheet" href="./neo-taskbar-quick-settings.css?v=20260912-alignment-v2" />
+    <link rel="stylesheet" href="./neo-interface-styles.css?v=20260919-rounded-restored-windows-v1&amp;launcher=centered-v3&amp;settings=combined-v1&amp;widgets=no-scrollbars-v1&amp;previews=current-state-v1&amp;widget-background=transparent-v1" />
+    <link rel="stylesheet" href="./neo-xeno-taskbar.css?v=20260919-command-motion-v2" />
+    <link rel="stylesheet" href="./neo-taskbar-app-visibility.css?v=20260920-fullscreen-only-v4" />
+    <link rel="stylesheet" href="./neo-taskbar-now-playing.css?v=20260919-compact-player-v1" />
+    <link rel="stylesheet" href="./neo-launcher-alignment.css?v=20260920-category-label-v4" />
+  </head>
+  <body>
+    <a class="skip-link" href="#neo-desktop">Skip to desktop</a>
+
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="i-apps" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </symbol>
+      <symbol id="i-gamepad" viewBox="0 0 24 24">
+        <path d="M6 11h4M8 9v4M15 12h.01M18 10h.01" />
+        <path d="M17.3 5H6.7A4.7 4.7 0 0 0 2 9.7v4.6A4.7 4.7 0 0 0 6.7 19h10.6a4.7 4.7 0 0 0 4.7-4.7V9.7A4.7 4.7 0 0 0 17.3 5Z" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+        <path d="M8 8h8M8 12h5" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" />
+      </symbol>
+      <symbol id="i-image" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <circle cx="9" cy="9" r="2" />
+        <path d="m21 15-5-5L5 21" />
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
+        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z" />
+      </symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </symbol>
+      <symbol id="i-wifi" viewBox="0 0 24 24">
+        <path d="M5 12.6a11 11 0 0 1 14 0M8.5 16a6 6 0 0 1 7 0M12 20h.01M2 9a16 16 0 0 1 20 0" />
+      </symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24">
+        <path d="M11 5 6 9H2v6h4l5 4Z" />
+        <path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" />
+      </symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24">
+        <rect x="2" y="6" width="18" height="12" rx="2" />
+        <path d="M22 10v4M6 10v4M10 10v4M14 10v4" />
+      </symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5" /></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24">
+        <path d="M12 16V4M7 9l5-5 5 5M20 15v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4" />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="10" rx="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </symbol>
+      <symbol id="i-unlock" viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="10" rx="2" />
+        <path d="M7 11V7a5 5 0 0 1 9.5-2" />
+      </symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24">
+        <path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5ZM5 17l-.7 2.3L2 20l2.3.7L5 23l.7-2.3L8 20l-2.3-.7ZM19 14l-.8 2.2L16 17l2.2.8L19 20l.8-2.2L22 17l-2.2-.8Z" />
+      </symbol>
+      <symbol id="i-minimize" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
+      <symbol id="i-maximize" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1" /></symbol>
+      <symbol id="i-fullscreen" viewBox="0 0 24 24">
+        <path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 17v5M5 3h14M17 3l-1 7 4 2H4l4-2-1-7" /></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24">
+        <path d="M15 3h6v6M10 14 21 3" />
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      </symbol>
+      <symbol id="i-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 16v-4M12 8h.01" />
+      </symbol>
+      <symbol id="i-power" viewBox="0 0 24 24">
+        <path d="M18.4 6.6a9 9 0 1 1-12.8 0M12 2v10" />
+      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" />
+      </symbol>
+      <symbol id="i-music" viewBox="0 0 24 24">
+        <path d="M9 18V5l12-2v13M9 9l12-2" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
+      </symbol>
+      <symbol id="i-google-drive" viewBox="0 0 800 741.3696">
+        <mask id="i-drive-mask" width="168" height="154" x="12" y="18" maskUnits="userSpaceOnUse">
+          <path fill="#fff" d="M63.09 37c14.626-25.333 51.193-25.334 65.819 0l45.033 78c14.626 25.334-3.657 57.001-32.91 57.001H50.967c-29.253 0-47.536-31.667-32.91-57.001Z" />
+        </mask>
+        <g mask="url(#i-drive-mask)" transform="matrix(4.8140532 0 0 4.8140532 -62.146701 -86.652356)">
+          <path fill="url(#i-drive-yellow)" d="M206.905 172.02h-91.888l-19.015-32.934 45.944-79.578Z" />
+          <path fill="url(#i-drive-blue)" d="M-14.919 172.006 50.04 59.494v.002L31.032 92.422h38.02L115 172.004l-129.918.001Z" />
+          <path fill="url(#i-drive-green)" d="M96.007-20.085 141.954 59.5l-19.011 32.928H31.048Z" />
+        </g>
+        <defs>
+          <linearGradient id="i-drive-yellow" x1="193.6" x2="103.09" y1="165.6" y2="111.21" gradientUnits="userSpaceOnUse"><stop offset=".09" stop-color="#ffe921" /><stop offset="1" stop-color="#fec700" /></linearGradient>
+          <linearGradient id="i-drive-blue" x1="114.4" x2="15.53" y1="181.61" y2="121.8" gradientUnits="userSpaceOnUse"><stop offset=".15" stop-color="#a9a8ff" /><stop offset=".33" stop-color="#6d97ff" /><stop offset=".48" stop-color="#3186ff" /></linearGradient>
+          <linearGradient id="i-drive-green" x1="128.88" x2="28.7" y1="37.88" y2="84.64" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#0ebc5f" /><stop offset=".85" stop-color="#78c9ff" /></linearGradient>
+        </defs>
+      </symbol>
+      <symbol id="i-stream" viewBox="0 0 24 24">
+        <path d="M5 8.5c4.8-1.4 9.6-1.1 14 .9M6.3 12.3c3.9-1 7.7-.7 11.4.8M7.6 16c3-.7 5.9-.5 8.8.7" />
+      </symbol>
+      <symbol id="i-film" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M7 3v18M17 3v18M3 8h4M17 8h4M3 16h4M17 16h4" />
+      </symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m6 3 14 9-14 9Z" /></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" /></symbol>
+      <symbol id="i-skip-back" viewBox="0 0 24 24"><path d="M19 20 9 12l10-8ZM5 19V5" /></symbol>
+      <symbol id="i-skip-forward" viewBox="0 0 24 24"><path d="m5 4 10 8-10 8ZM19 5v14" /></symbol>
+      <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3" /></symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 11v6M14 11v6" /></symbol>
+      <symbol id="i-pip" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><rect x="12" y="11" width="7" height="5" rx="1" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" /></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6Z" /><path d="M14 2v5h5M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16" /></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8" /><path d="M5 10v11h14V10M9 21v-7h6v7" /></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12" /><circle cx="4" cy="6" r="1" /><circle cx="4" cy="12" r="1" /><circle cx="4" cy="18" r="1" /></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></symbol>
+      <symbol id="i-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2.5" /><path d="M7.5 6.5h9M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4" /></symbol>
+      <symbol id="i-record" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-brush" viewBox="0 0 24 24"><path d="m14 4 6 6-9 9H5v-6Z" /><path d="m12 6 6 6M5 19c-1.7 0-3 1.3-3 3 1.5 0 3-.5 4-1.5" /></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="m7 9 3 3-3 3M13 15h4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></symbol>
+      <symbol id="i-sort" viewBox="0 0 24 24"><path d="M8 6h12M8 12h9M8 18h6M4 4v16M2 18l2 2 2-2" /></symbol>
+      <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1" /><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /></symbol>
+    </svg>
+
+    <div id="boot-screen" class="boot-screen" role="status" aria-live="polite" aria-label="Loading NEO OS">
+      <video class="boot-screen-video" data-universal-loading-video autoplay muted playsinline preload="auto" aria-hidden="true" width="3840" height="2160" onloadeddata="this.dataset.ready='true'">
+        <source src="./assets/neo-os-loading.mp4" type="video/mp4" />
+      </video>
+      <span class="boot-screen-copy" data-universal-loading-copy>
+        <strong>NEO OS</strong>
+        <span>Loading your desktop</span>
+        <i class="boot-screen-progress" aria-hidden="true"><i></i></i>
+      </span>
+    </div>
+
+    <section id="neo-start-screen" class="neo-start-screen" role="dialog" aria-modal="true" aria-labelledby="neo-start-title">
+      <div class="neo-start-panel">
+        <h1 id="neo-start-title">How do you want to start?</h1>
+        <div class="neo-start-options" role="group" aria-label="Choose your device layout">
+          <button class="neo-start-option" type="button" data-start-mode="laptop">
+            <strong>Laptop</strong>
+            <small>Full desktop interface</small>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+          <button class="neo-start-option" type="button" data-start-mode="mobile">
+            <strong>Mobile</strong>
+            <small>Touch-first interface</small>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+        </div>
+        <div class="neo-start-actions" aria-label="Launch options">
+          <button type="button" data-start-fullscreen>Full screen</button>
+          <button type="button" data-start-blank>About:blank</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="neo-login-gate" class="neo-login-gate" role="dialog" aria-modal="true" aria-labelledby="neo-login-gate-title" tabindex="-1" hidden>
+      <div class="neo-login-app-rail" aria-hidden="true">
+        <span><svg class="icon"><use href="#i-folder"></use></svg></span>
+        <span><img src="./assets/imessage-logo.png?v=20260908-imessage-logo-v2" width="20" height="20" alt="" /></span>
+        <span><svg class="icon"><use href="#i-music"></use></svg></span>
+      </div>
+      <header class="neo-login-time" aria-label="Current date and time">
+        <time data-neo-login-clock>12:00:00</time>
+        <span data-neo-login-date>Tuesday, September 1</span>
+      </header>
+      <div class="neo-login-panel">
+        <img class="neo-login-logo" src="./assets/neo-logo.svg" width="64" height="64" alt="" />
+        <p class="neo-login-eyebrow">NEO ACCOUNT</p>
+        <h1 id="neo-login-gate-title">Welcome to NEO OS</h1>
+        <p class="neo-login-intro">Choose a saved profile or create one for Chat, then continue into your workspace.</p>
+        <div class="neo-login-auth-host" data-neo-login-auth></div>
+        <button class="neo-login-guest" type="button" data-neo-login-guest>Continue as guest</button>
+        <p class="neo-login-privacy">Guest mode stays on this device and does not join shared chat.</p>
+      </div>
+    </section>
+
+    <main id="neo-desktop" class="desktop" tabindex="-1">
+      <div class="wallpaper" aria-hidden="true">
+        <div id="wallpaper-media" class="wallpaper-media"></div>
+        <div id="wallpaper-loading" class="wallpaper-loading" data-wallpaper-loading aria-hidden="true">
+          <div class="wallpaper-loading-card">
+            <span class="wallpaper-loading-logo"><img src="./assets/neo-logo.svg" width="96" height="96" alt="" /></span>
+            <span class="wallpaper-loading-spinner"></span>
+            <strong>Loading wallpaper</strong>
+            <small>Preparing video</small>
+          </div>
+        </div>
+        <div class="wallpaper-logo"><img src="./assets/neo-logo.svg" width="1500" height="1500" alt="" fetchpriority="high" draggable="false" /></div>
+        <div class="wallpaper-image"></div>
+        <div class="wallpaper-aurora"></div>
+        <div class="wallpaper-stars"></div>
+        <canvas id="weather-canvas"></canvas>
+        <div class="wallpaper-vignette"></div>
+      </div>
+
+      <header class="topbar neo-status-strip" aria-label="System status bar">
+        <div class="topbar-cluster topbar-left">
+          <button class="topbar-logo" type="button" data-open-launcher aria-label="Open apps">
+            <img src="./assets/neo-logo.svg" width="28" height="28" alt="" />
+          </button>
+          <button class="topbar-media" type="button" data-topbar-media data-app="stream" aria-label="Open Music" hidden>
+            <span class="topbar-media-art"><img data-topbar-media-cover alt="" width="18" height="18" hidden /><img class="app-image-icon" data-topbar-media-fallback src="./assets/spotify-official.png?v=20260827-user-artwork-v1" width="18" height="18" alt="" /></span>
+            <strong data-topbar-media-title>Nothing playing</strong>
+            <span class="topbar-media-time" data-topbar-media-time hidden>0:00 / 0:00</span>
+            <span class="topbar-media-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </button>
+          <span id="active-app-label" class="active-app-label">Desktop</span>
+        </div>
+        <div class="topbar-cluster topbar-right">
+          <button class="topbar-action" type="button" data-neo-backup-download aria-label="Download NEO OS backup" title="Download backup">
+            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+          </button>
+          <button class="topbar-action" type="button" data-neo-backup-import aria-label="Import NEO OS backup" title="Import backup">
+            <svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg>
+          </button>
+          <input type="file" data-neo-backup-file accept=".neo-backup,.json,application/json" hidden />
+          <button class="topbar-action" type="button" data-open-launcher aria-label="Search apps" title="Search apps">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          </button>
+          <button class="topbar-action" type="button" data-app="chat" aria-label="Open NEO Chat" title="NEO Chat">
+            <svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg>
+          </button>
+          <button class="topbar-action" type="button" data-open-chat-section="servers" aria-label="Open chat spaces" title="Chat spaces">
+            <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+          </button>
+          <button class="topbar-action mobile-desktop-menu" type="button" data-mobile-desktop-menu aria-label="Open desktop options" title="Desktop options">
+            <svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg>
+          </button>
+          <button class="topbar-action mobile-notification-toggle" type="button" data-notification-toggle aria-label="Open notifications" aria-expanded="false" title="Notifications">
+            <svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg>
+          </button>
+          <button class="connection-state" id="connection-state" type="button" data-connection-toggle aria-label="Open network status" aria-expanded="false" aria-controls="connection-panel">
+            <span class="connection-dot"></span>
+            <span class="connection-label sr-only">Online</span>
+          </button>
+          <button class="topbar-battery" type="button" data-app="control" aria-label="Open settings, battery 100 percent" title="Battery">
+            <strong data-topbar-battery>100%</strong><svg class="icon" aria-hidden="true"><use href="#i-battery"></use></svg>
+          </button>
+          <button class="topbar-date" type="button" data-app="calendar" aria-label="Open date and time">
+            <span id="topbar-day">Thu Aug 20</span>
+            <strong id="topbar-clock">5:26 PM</strong>
+          </button>
+        </div>
+      </header>
+
+      <section id="rainmeter-clock" class="rainmeter-clock" aria-label="Current date and time">
+        <span class="rainmeter-kicker">LOCAL TIME</span>
+        <p id="rainmeter-time" class="rainmeter-time">- 10:32 AM -</p>
+        <h1 id="rainmeter-weekday" class="rainmeter-weekday" aria-label="Sunday"><span aria-hidden="true">S</span><span aria-hidden="true">U</span><span aria-hidden="true">N</span><span aria-hidden="true">D</span><span aria-hidden="true">A</span><span aria-hidden="true">Y</span></h1>
+        <p id="rainmeter-date" class="rainmeter-date">02 AUGUST, 2026.</p>
+      </section>
+
+      <canvas id="neo-bottom-visualizer" class="neo-bottom-visualizer" aria-label="Music spectrum visualizer" aria-hidden="true" hidden></canvas>
+
+      <section id="widget-layer" class="widget-layer" aria-label="Desktop widgets">
+        <article class="neo-widget system-widget" data-widget="system">
+          <div class="widget-heading">
+            <span>SYSTEM</span>
+            <button class="widget-menu" type="button" data-app="control" aria-label="Open taskbar settings">
+              <svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg>
+            </button>
+          </div>
+          <strong>System ready</strong>
+          <p>Everything is running locally.</p>
+        </article>
+
+        <article class="neo-widget active-widget" data-widget="activity">
+          <div class="widget-heading">
+            <span>ACTIVE APP</span>
+            <span class="status-pill">READY</span>
+          </div>
+          <button type="button" class="widget-action" data-app="browser" aria-label="Open web app">
+            <span class="widget-app-icon app-icon-shape app-icon-duckduckgo" data-active-app-icon><img class="app-image-icon" src="./assets/duckduckgo.png" width="24" height="24" alt="" /></span>
+            <span>
+              <strong id="widget-active-title" hidden></strong>
+              <small id="widget-active-copy">Private search with DuckDuckGo</small>
+            </span>
+            <svg class="icon chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+        </article>
+
+        <article class="neo-widget now-playing-widget" data-widget="now-playing" aria-live="polite" aria-atomic="true" hidden>
+          <div class="widget-heading">
+            <span>NOW PLAYING</span>
+            <span class="now-playing-heading-actions">
+              <button type="button" class="now-playing-volume-trigger" data-now-playing-volume-trigger aria-label="Show music volume" aria-controls="now-playing-volume-panel" aria-expanded="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg>
+              </button>
+              <span class="status-pill" data-now-playing-state>PAUSED</span>
+            </span>
+          </div>
+          <button type="button" class="widget-action now-playing-open" data-app="stream">
+            <span class="widget-app-icon now-playing-art" data-now-playing-art>
+              <img class="now-playing-cover" data-now-playing-cover width="40" height="40" alt="" referrerpolicy="no-referrer" hidden />
+              <span class="now-playing-art-fallback app-icon-stream" data-now-playing-fallback><img class="app-image-icon" src="./assets/spotify-official.png?v=20260827-user-artwork-v1" width="40" height="40" alt="" /></span>
+            </span>
+            <span class="now-playing-details">
+              <strong data-now-playing-title>Nothing playing</strong>
+              <small data-now-playing-copy>Open Music to choose a track</small>
+              <span class="now-playing-timing" data-now-playing-timing hidden><time data-now-playing-elapsed>0:00</time><span aria-hidden="true">/</span><time data-now-playing-duration>0:00</time></span>
+              <span class="now-playing-wave" data-now-playing-wave aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </span>
+            <svg class="icon chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+          <div class="now-playing-controls" aria-label="Playback controls" hidden>
+            <button type="button" data-now-playing-action="previous" aria-label="Previous track"><svg class="icon" aria-hidden="true"><use href="#i-skip-back"></use></svg></button>
+            <button type="button" data-now-playing-action="toggle" aria-label="Play" data-now-playing-toggle><svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg></button>
+            <button type="button" data-now-playing-action="next" aria-label="Next track"><svg class="icon" aria-hidden="true"><use href="#i-skip-forward"></use></svg></button>
+          </div>
+          <div id="now-playing-volume-panel" class="now-playing-volume-flyout" data-now-playing-volume-panel hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg>
+            <label>
+              <span class="sr-only">Music volume</span>
+              <input type="range" min="0" max="100" value="100" step="1" data-now-playing-volume aria-label="Music volume" />
+            </label>
+            <output data-now-playing-volume-output>100%</output>
+          </div>
+        </article>
+      </section>
+
+      <section id="window-layer" class="window-layer" aria-label="Open applications"></section>
+
+      <button id="launcher-dismiss-layer" class="launcher-dismiss-layer" type="button" tabindex="-1" aria-label="Close applications menu" hidden></button>
+
+      <section id="app-launcher" class="app-launcher" role="dialog" aria-modal="true" aria-labelledby="launcher-title" aria-hidden="true" hidden>
+        <h2 id="launcher-title" class="sr-only">Applications</h2>
+        <label class="launcher-search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <span class="sr-only">Search installed applications</span>
+          <input id="launcher-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search applications" aria-label="Search installed applications" />
+          <span class="launcher-local" title="Local applications only" aria-label="Local applications only">
+            <svg class="icon" aria-hidden="true"><use href="#i-monitor"></use></svg>
+          </span>
+        </label>
+
+        <div class="launcher-scroll-region">
+          <section class="launcher-section pinned-section" data-launcher-home>
+            <div class="launcher-section-title"><h3>Pinned</h3><span>Favorite applications</span></div>
+            <div id="launcher-grid" class="pinned-app-grid"></div>
+          </section>
+
+          <section class="launcher-section launcher-recent-section recent-section" data-launcher-home>
+            <div class="launcher-section-title"><h3>Recent</h3><span>Continue where you left off</span></div>
+            <div id="launcher-recent" class="launcher-recent recent-app-grid"></div>
+            <p id="launcher-recent-empty" class="launcher-empty">Apps you open will appear here.</p>
+          </section>
+
+          <section class="launcher-section launcher-category-section category-section" data-launcher-home>
+            <div class="launcher-section-title"><h3>Categories</h3><span>Browse the full library</span></div>
+            <div id="launcher-categories" class="launcher-categories category-grid"></div>
+          </section>
+
+          <section class="launcher-section launcher-results" data-launcher-results hidden aria-live="polite">
+            <div class="launcher-section-title"><h3>Applications</h3><span id="launcher-result-count">0 results</span></div>
+            <div id="launcher-result-list" class="search-result-list" role="listbox" aria-label="Application results"></div>
+            <p id="launcher-search-empty" class="launcher-empty" hidden>No application matches your search.</p>
+          </section>
+        </div>
+
+      </section>
+
+      <button id="xeno-command-dismiss" class="xeno-command-dismiss" type="button" tabindex="-1" aria-label="Close XENO navigation" hidden></button>
+
+      <section id="xeno-command-center" class="xeno-command-center" role="dialog" aria-modal="true" aria-labelledby="xeno-command-title" aria-hidden="true" data-mode="search" hidden>
+        <header class="xeno-command-searchbar">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <label class="sr-only" for="xeno-command-search">Search installed applications</label>
+          <input id="xeno-command-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search applications" />
+          <kbd data-xeno-command-key>SPACE</kbd>
+        </header>
+        <div class="xeno-command-heading">
+          <h2 id="xeno-command-title" data-xeno-command-title>APPS</h2>
+          <span data-xeno-command-hint>↑↓ Navigate · Enter Open · Esc Close</span>
+        </div>
+        <div id="xeno-command-results" class="xeno-command-results" role="listbox" aria-label="Installed applications"></div>
+        <p id="xeno-command-empty" class="xeno-command-empty" hidden>No applications match your search.</p>
+      </section>
+
+      <nav class="taskbar" aria-label="System taskbar">
+        <div class="taskbar-center">
+          <button class="taskbar-start-button" type="button" data-open-launcher aria-label="Open applications" aria-controls="app-launcher" aria-expanded="false" data-tooltip="Apps">
+            <svg class="icon taskbar-launcher-icon" aria-hidden="true"><use href="#i-apps"></use></svg>
+            <span class="sr-only">Apps</span>
+          </button>
+          <div class="dock" id="neo-dock" aria-label="Apps"></div>
+        </div>
+        <section class="taskbar-now-playing" data-taskbar-now-playing aria-label="Now playing" aria-live="polite" hidden>
+          <button class="taskbar-now-playing-open" type="button" data-taskbar-now-playing-open>
+            <span class="taskbar-now-playing-art">
+              <img data-taskbar-now-playing-cover width="32" height="32" alt="" referrerpolicy="no-referrer" hidden />
+              <span class="taskbar-now-playing-fallback app-icon-stream" data-taskbar-now-playing-fallback><img class="app-image-icon" src="./assets/spotify-official.png?v=20260827-user-artwork-v1" width="32" height="32" alt="" /></span>
+            </span>
+            <span class="taskbar-now-playing-copy">
+              <strong data-taskbar-now-playing-title>Nothing playing</strong>
+              <small data-taskbar-now-playing-subtitle>NEO Music</small>
+            </span>
+          </button>
+          <span class="taskbar-now-playing-controls" aria-label="Playback controls">
+            <button type="button" data-now-playing-action="previous" aria-label="Previous track"><svg class="icon" aria-hidden="true"><use href="#i-skip-back"></use></svg></button>
+            <button type="button" data-now-playing-action="toggle" data-taskbar-now-playing-toggle aria-label="Play"><svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg></button>
+            <button type="button" data-now-playing-action="next" aria-label="Next track"><svg class="icon" aria-hidden="true"><use href="#i-skip-forward"></use></svg></button>
+            <button type="button" data-taskbar-now-playing-volume aria-label="Mute"><svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg></button>
+          </span>
+        </section>
+        <div class="taskbar-tray" aria-label="System status">
+          <button class="taskbar-network taskbar-quick-button" id="taskbar-network" type="button" data-taskbar-quick-toggle aria-label="Open quick settings" aria-expanded="false" aria-controls="taskbar-quick-settings" title="Quick settings">
+            <span aria-hidden="true"></span><svg class="icon" aria-hidden="true"><use href="#i-wifi"></use></svg><svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg>
+          </button>
+          <span class="taskbar-clock" aria-label="Current date and time">
+            <strong id="taskbar-clock">10:32 AM</strong>
+            <small id="taskbar-date">8/2/2026</small>
+          </span>
+        </div>
+      </nav>
+
+      <aside id="taskbar-quick-settings" class="taskbar-quick-settings" role="dialog" aria-modal="false" aria-labelledby="taskbar-quick-title" hidden>
+        <header>
+          <div><span class="eyebrow">NEO OS</span><h2 id="taskbar-quick-title">Quick settings</h2></div>
+          <button class="icon-button" type="button" data-taskbar-quick-close aria-label="Close quick settings"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        </header>
+        <div class="taskbar-quick-grid" role="group" aria-label="Quick controls">
+          <button type="button" data-taskbar-quick-network data-connection-toggle aria-expanded="false" aria-controls="connection-panel"><svg class="icon" aria-hidden="true"><use href="#i-wifi"></use></svg><span><strong>Network</strong><small>Connection status</small></span></button>
+          <button type="button" data-notification-toggle aria-expanded="false" aria-controls="notification-center"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span><strong>Notifications</strong><small>View recent alerts</small></span></button>
+          <button type="button" data-taskbar-quick-dnd aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span><strong>Do Not Disturb</strong><small>Quiet visual alerts</small></span></button>
+          <button type="button" data-taskbar-quick-night aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg><span><strong>Night light</strong><small>Warmer screen color</small></span></button>
+          <button type="button" data-taskbar-quick-battery aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-battery"></use></svg><span><strong>Battery saver</strong><small>Reduce background effects</small></span></button>
+          <button type="button" data-app="control" data-taskbar-quick-settings-link><svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg><span><strong>All settings</strong><small>Taskbar and appearance</small></span></button>
+        </div>
+        <div class="taskbar-quick-sliders">
+          <label><svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg><span class="sr-only">Master volume</span><input type="range" min="0" max="100" value="70" data-taskbar-quick-volume aria-label="Master volume"><output data-taskbar-quick-volume-output>70%</output></label>
+          <label><svg class="icon" aria-hidden="true"><use href="#i-monitor"></use></svg><span class="sr-only">Screen brightness</span><input type="range" min="45" max="100" value="100" data-taskbar-quick-brightness aria-label="Screen brightness"><output data-taskbar-quick-brightness-output>100%</output></label>
+        </div>
+      </aside>
+      <div class="neo-night-light-layer" aria-hidden="true"></div>
+
+      <aside id="notification-center" class="notification-center" role="dialog" aria-modal="false" aria-labelledby="notification-title" hidden>
+        <header>
+          <div><span class="eyebrow">NEO OS</span><h2 id="notification-title">Notifications</h2></div>
+          <button class="icon-button" type="button" data-notification-close aria-label="Close notifications"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        </header>
+        <div class="notification-list" data-notification-list></div>
+        <footer><button type="button" data-notification-clear>Clear all</button><button type="button" data-app="control">System settings</button></footer>
+      </aside>
+
+      <aside id="connection-panel" class="connection-panel" role="dialog" aria-modal="false" aria-labelledby="connection-panel-title" hidden>
+        <header>
+          <span class="connection-panel-mark" aria-hidden="true"><svg class="icon"><use href="#i-wifi"></use></svg></span>
+          <div><span class="eyebrow">NETWORK</span><h2 id="connection-panel-title" data-connection-panel-label>Checking connection</h2></div>
+          <button class="icon-button" type="button" data-connection-refresh aria-label="Check connection again" title="Check again"><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg></button>
+        </header>
+        <p data-connection-panel-summary>Testing Wi-Fi, NEO apps, and live servers…</p>
+        <ul class="connection-service-list" data-connection-services aria-label="Connection details"></ul>
+        <footer><span data-connection-checked>Starting check…</span><button type="button" data-connection-refresh>Check again</button></footer>
+      </aside>
+
+      <div id="desktop-context-menu" class="desktop-context-menu" role="menu" aria-label="Desktop options" hidden>
+        <div class="context-menu-branch" role="none">
+          <button type="button" role="menuitem" aria-haspopup="menu" aria-expanded="false" data-context-submenu="new">
+            <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span>New</span><svg class="icon context-arrow" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+          <div class="context-submenu" role="menu" aria-label="Create new" data-context-panel="new" hidden>
+            <button class="context-back" type="button" role="menuitem" data-context-back><svg class="icon context-arrow" aria-hidden="true"><use href="#i-chevron"></use></svg><span>Back</span></button>
+            <button type="button" role="menuitem" data-desktop-action="new-folder"><svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg><span>Folder</span></button>
+            <button type="button" role="menuitem" data-desktop-action="new-text"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>Text document</span></button>
+          </div>
+        </div>
+        <button type="button" role="menuitem" data-desktop-action="add-files"><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg><span>Add file(s)</span></button>
+        <button type="button" role="menuitem" data-desktop-action="files"><svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg><span>Open File Explorer</span></button>
+        <button type="button" role="menuitem" data-desktop-action="record"><svg class="icon" aria-hidden="true"><use href="#i-record"></use></svg><span data-recording-label>Start Recording</span></button>
+        <button type="button" role="menuitem" data-desktop-action="customize"><svg class="icon" aria-hidden="true"><use href="#i-brush"></use></svg><span>Customize</span></button>
+        <button type="button" role="menuitem" data-desktop-action="background"><svg class="icon" aria-hidden="true"><use href="#i-image"></use></svg><span>Background</span></button>
+        <button type="button" role="menuitem" data-desktop-action="terminal"><svg class="icon" aria-hidden="true"><use href="#i-terminal"></use></svg><span>Open Terminal Here</span></button>
+        <span class="context-separator" role="separator"></span>
+        <div class="context-menu-branch" role="none">
+          <button type="button" role="menuitem" aria-haspopup="menu" aria-expanded="false" data-context-submenu="widgets">
+            <svg class="icon" aria-hidden="true"><use href="#i-apps"></use></svg><span>Widgets</span><svg class="icon context-arrow" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+          <div class="context-submenu" role="menu" aria-label="Widget options" data-context-panel="widgets" hidden>
+            <button class="context-back" type="button" role="menuitem" data-context-back><svg class="icon context-arrow" aria-hidden="true"><use href="#i-chevron"></use></svg><span>Back</span></button>
+            <button type="button" role="menuitem" data-widget-action="manage"><svg class="icon" aria-hidden="true"><use href="#i-apps"></use></svg><span>Add or customize widgets</span></button>
+            <button type="button" role="menuitemcheckbox" aria-checked="false" data-widget-action="bottom-visualizer"><svg class="icon" aria-hidden="true"><use href="#i-music"></use></svg><span data-bottom-visualizer-label>Add bottom music visualizer</span></button>
+            <span class="context-separator" role="separator"></span>
+            <button type="button" role="menuitemcheckbox" aria-checked="false" data-widget-action="system-status"><span class="context-check" aria-hidden="true"></span><span>System status</span></button>
+            <button type="button" role="menuitemcheckbox" aria-checked="false" data-widget-action="active-app"><span class="context-check" aria-hidden="true"></span><span>Active app</span></button>
+            <button type="button" role="menuitemcheckbox" aria-checked="false" data-widget-action="now-playing"><span class="context-check" aria-hidden="true"></span><span>Now playing</span></button>
+            <span class="context-separator" role="separator"></span>
+            <button type="button" role="menuitemcheckbox" aria-checked="true" data-widget-action="show"><span class="context-check" aria-hidden="true"></span><span>Show widgets</span></button>
+            <button type="button" role="menuitemcheckbox" aria-checked="true" data-widget-action="lock"><span class="context-check" aria-hidden="true"></span><span>Lock positions</span></button>
+            <span class="context-separator" role="separator"></span>
+            <button type="button" role="menuitem" data-widget-action="reset"><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg><span>Reset layout</span></button>
+          </div>
+        </div>
+        <button type="button" role="menuitem" data-desktop-action="fullscreen"><svg class="icon" aria-hidden="true"><use href="#i-fullscreen"></use></svg><span data-fullscreen-label>Enter fullscreen</span></button>
+        <span class="context-separator" role="separator"></span>
+        <button type="button" role="menuitem" data-desktop-action="refresh"><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg><span>Refresh</span></button>
+        <input type="file" data-desktop-import-input multiple hidden />
+      </div>
+
+      <div id="toast-region" class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+    </main>
+
+    <template id="browser-template">
+      <div class="neo-browser-app" data-neo-browser>
+        <section class="neo-browser-home" data-browser-home aria-labelledby="neo-browser-title">
+          <div class="neo-browser-start-tabbar" aria-label="Open pages">
+            <div class="neo-browser-start-tab">
+              <img src="./assets/duckduckgo.png" width="16" height="16" alt="" />
+              <span>New tab</span>
+              <button class="neo-browser-start-close" type="button" data-browser-start-close aria-label="Close new tab">&times;</button>
+            </div>
+            <button class="neo-browser-start-plus" type="button" data-browser-start-plus aria-label="New tab">+</button>
+          </div>
+          <div class="neo-browser-start-toolbar">
+            <div class="neo-browser-start-nav" aria-hidden="true">
+              <span><svg class="icon"><use href="#i-arrow-left"></use></svg></span>
+              <span><svg class="icon"><use href="#i-arrow-right"></use></svg></span>
+              <span><svg class="icon"><use href="#i-refresh"></use></svg></span>
+            </div>
+            <form class="neo-browser-search" data-browser-search-form role="search">
+              <img src="./assets/duckduckgo.png" width="18" height="18" alt="" />
+              <label class="sr-only" for="neo-browser-search-input">Search DuckDuckGo or enter a URL</label>
+              <input
+                id="neo-browser-search-input"
+                type="search"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Search DuckDuckGo or type a URL"
+                data-browser-search-input
+              />
+              <button class="neo-browser-search-open" type="submit" aria-label="Open address">
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </button>
+            </form>
+          </div>
+          <div class="neo-browser-newtab">
+            <img class="neo-browser-duck" src="./assets/duckduckgo.png" width="96" height="96" alt="" />
+            <h2 id="neo-browser-title">DuckDuckGo</h2>
+            <label class="neo-browser-newtab-prompt" for="neo-browser-search-input">
+              <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+              <span>Search DuckDuckGo or type a URL</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="neo-browser-session" data-browser-session hidden aria-live="polite">
+          <div class="neo-browser-loading" data-browser-loading hidden>
+            <span aria-hidden="true"></span>
+            <strong>Starting web session</strong>
+            <p>Preparing secure search.</p>
+          </div>
+          <div class="neo-browser-error" data-browser-error hidden role="alert">
+            <span class="neo-browser-error-icon" aria-hidden="true">
+              <svg class="icon"><use href="#i-lock"></use></svg>
+            </span>
+            <h2>This page is unavailable</h2>
+            <p data-browser-error-copy>Secure search could not be started.</p>
+            <button class="button primary" type="button" data-browser-retry>Retry</button>
+          </div>
+          <div class="neo-browser-content" data-browser-content hidden></div>
+        </section>
+      </div>
+    </template>
+
+    <template id="neo-account-sign-in-template">
+      <section class="neo-browser-sign-in" data-neo-sign-in-panel>
+        <div class="neo-browser-sign-in-card">
+          <span class="neo-browser-sign-in-icon" aria-hidden="true"><img src="./assets/imessage-logo.png?v=20260908-imessage-logo-v2" width="28" height="28" alt="" /></span>
+          <p class="neo-browser-sign-in-eyebrow">NEO CHAT</p>
+          <h2 data-neo-auth-title>Sign in to NEO</h2>
+          <p class="neo-browser-sign-in-copy" data-neo-auth-copy>Use your NEO username and password to open shared Chat.</p>
+          <span class="neo-auth-mode" data-neo-auth-mode></span>
+          <div class="neo-auth-tabs" role="tablist" aria-label="Account action">
+            <button type="button" role="tab" aria-selected="true" data-neo-auth-action="login">Sign in</button>
+            <button type="button" role="tab" aria-selected="false" data-neo-auth-action="create">Create profile</button>
+          </div>
+          <section class="neo-saved-accounts" data-neo-saved-accounts hidden aria-labelledby="neo-saved-accounts-title">
+            <p id="neo-saved-accounts-title">Saved profiles</p>
+            <div data-neo-saved-account-list role="list"></div>
+            <span class="neo-account-divider">or use a password</span>
+          </section>
+          <form data-neo-sign-in-form novalidate>
+            <label>
+              <span>Username</span>
+              <input type="text" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" minlength="3" maxlength="24" placeholder="your_name" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <span class="neo-auth-password-field"><input type="password" name="password" autocomplete="current-password" minlength="8" maxlength="72" placeholder="8–72 characters" required /><button type="button" data-neo-password-toggle aria-label="Show password">Show</button></span>
+            </label>
+            <button type="submit" data-neo-sign-in-submit>Sign in</button>
+            <p class="neo-browser-sign-in-feedback" data-neo-sign-in-feedback role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </template>
+
+    <template id="messages-template">
+      <div class="native-app neo-messages" data-messages-app>
+        <aside class="messages-sidebar" aria-label="Chats and spaces">
+          <header class="messages-sidebar-heading">
+            <span class="messages-brand-mark" aria-hidden="true"><img src="./assets/imessage-logo.png?v=20260908-imessage-logo-v2" width="28" height="28" alt="" /></span>
+            <h2>NEO Chat</h2>
+            <button class="messages-compose-shortcut" type="button" data-chat-compose aria-label="Find a person or chat" title="Find a person or chat">
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
+            </button>
+          </header>
+          <label class="messages-search">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            <span class="sr-only">Search chats or people</span>
+            <input type="search" data-chat-search placeholder="Search chats or people" autocomplete="off" />
+          </label>
+          <div class="messages-directory">
+            <section class="messages-pinned-section" data-chat-pinned-section aria-labelledby="messages-pinned-title">
+              <h3 id="messages-pinned-title">Spaces</h3>
+              <nav class="messages-pinned-list" data-chat-pinned-list aria-label="Pinned spaces">
+                <div class="messages-pinned-loading" aria-hidden="true"><span></span></div>
+              </nav>
+            </section>
+            <section class="messages-recent-section" aria-labelledby="messages-recent-title">
+              <h3 id="messages-recent-title">Direct messages</h3>
+              <nav class="messages-room-list" data-chat-room-list aria-label="Direct messages">
+                <div class="messages-room-loading" aria-hidden="true"><span></span><span></span><span></span></div>
+              </nav>
+            </section>
+            <section class="messages-server-section" data-chat-server-section aria-labelledby="messages-server-title" hidden>
+              <h3 id="messages-server-title">Shared spaces</h3>
+              <nav class="messages-room-list messages-server-list" data-chat-server-list aria-label="Shared spaces"></nav>
+            </section>
+          </div>
+          <footer class="messages-connection">
+            <span class="messages-connection-dot" data-chat-connection-dot aria-hidden="true"></span>
+            <span class="messages-connection-copy"><span data-chat-connection>Checking profile...</span><small data-chat-account>Guest</small></span>
+            <span class="messages-connection-actions">
+              <button class="messages-sign-in" data-chat-sign-in type="button">Create profile</button>
+              <button class="messages-sign-out" data-chat-sign-out type="button" hidden>Switch account</button>
+            </span>
+          </footer>
+        </aside>
+
+        <section class="messages-conversation" aria-labelledby="messages-conversation-title">
+          <header class="messages-conversation-heading">
+            <button class="messages-back" type="button" data-chat-back aria-label="Back to chats"><svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+            <div class="messages-heading-person">
+              <span class="messages-heading-avatar" data-chat-heading-avatar aria-hidden="true">N</span>
+              <div><h3 id="messages-conversation-title" data-chat-title>Global Chat</h3><p data-chat-subtitle>Connecting...</p></div>
+            </div>
+          </header>
+          <input class="messages-history-search" data-chat-message-search type="search" placeholder="Search this conversation" aria-label="Search this conversation" />
+          <div class="messages-thread" data-chat-thread role="log" aria-live="polite" aria-label="Global Chat messages">
+            <div class="messages-thread-state"><span class="library-spinner" aria-hidden="true"></span><strong>Opening NEO Chat</strong><p>Loading recent conversations.</p></div>
+          </div>
+          <form class="messages-composer" data-chat-form>
+            <div class="messages-attachment-preview" data-chat-attachment-preview hidden></div>
+            <div class="messages-composer-shell">
+              <button class="messages-attach-button" type="button" data-chat-attach aria-label="Add photo, video, audio, or file" title="Add attachment" disabled><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg></button>
+              <input type="file" data-chat-attachment-input accept="image/*,video/*,audio/*,.pdf,.txt,.zip" hidden />
+              <label class="sr-only" for="neo-message-input">Message</label>
+              <textarea id="neo-message-input" data-chat-input rows="1" maxlength="1000" placeholder="Message" disabled></textarea>
+              <button type="submit" data-chat-send aria-label="Send message" disabled><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+            </div>
+            <p data-chat-feedback aria-live="polite"></p>
+          </form>
+        </section>
+        <dialog class="messages-profile-sheet" data-chat-profile aria-labelledby="messages-profile-name">
+          <form method="dialog" class="messages-profile-card">
+            <button class="messages-profile-close" type="submit" aria-label="Close profile"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+            <span class="messages-profile-avatar messages-avatar" data-chat-profile-avatar aria-hidden="true">?</span>
+            <div class="messages-profile-copy">
+              <h3 id="messages-profile-name" data-chat-profile-name>Username</h3>
+              <p data-chat-profile-status>NEO member</p>
+            </div>
+            <button class="messages-profile-dm" type="button" data-chat-profile-dm><svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg><span>Message</span></button>
+            <p class="messages-profile-feedback" data-chat-profile-feedback role="status" aria-live="polite"></p>
+          </form>
+        </dialog>
+        <dialog class="messages-auth-dialog" data-chat-auth-dialog aria-label="Create or sign in to a NEO profile">
+          <div class="messages-auth-dialog-shell">
+            <button class="messages-auth-dialog-close" type="button" data-chat-auth-close aria-label="Close profile setup">
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+            <div class="messages-auth-dialog-mount" data-chat-auth-mount></div>
+          </div>
+        </dialog>
+      </div>
+    </template>
+
+    <template id="wallpaper-template">
+      <div class="native-app wallpaper-studio" data-wallpaper-studio data-wallpaper-view="installed">
+        <div class="studio-shell">
+          <aside class="studio-sidebar" aria-label="Wallpaper library">
+            <div class="studio-brand">
+              <span class="studio-brand-icon"><img src="./assets/wallpaper-engine.png" width="30" height="23" alt="" /></span>
+              <span><strong>Wallpaper Engine</strong><small>Web wallpaper library</small></span>
+            </div>
+            <nav class="studio-nav" aria-label="Wallpaper sections">
+              <button class="is-active" type="button" data-wallpaper-view-button="installed" aria-pressed="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-apps"></use></svg><span>Installed</span><small data-installed-count>6</small>
+              </button>
+              <button type="button" data-wallpaper-view-button="favorites" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-sparkles"></use></svg><span>Favorites</span><small data-favorite-count>0</small>
+              </button>
+              <button type="button" data-wallpaper-view-button="recent" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-monitor"></use></svg><span>Recent</span><small data-recent-count>0</small>
+              </button>
+              <button type="button" data-wallpaper-view-button="create" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg><span>Create</span>
+              </button>
+            </nav>
+            <div class="studio-sidebar-status">
+              <span class="engine-state"><span></span> Engine active</span>
+              <small>Motion pauses when hidden.</small>
+            </div>
+          </aside>
+
+          <section class="studio-library" aria-labelledby="wallpaper-library-title">
+            <div class="studio-library-scroll">
+            <nav class="we-source-tabs" aria-label="Wallpaper sources">
+              <button class="is-active" type="button" data-we-source="installed" aria-pressed="true">Installed</button>
+              <button type="button" data-we-source="discover" aria-pressed="false">Discover</button>
+              <button type="button" data-we-source="workshop" aria-pressed="false">Workshop</button>
+            </nav>
+            <header class="studio-toolbar">
+              <div><span class="eyebrow" data-wallpaper-view-label>LIBRARY</span><h2 id="wallpaper-library-title">Installed</h2></div>
+              <div class="studio-toolbar-actions">
+                <button class="we-filter-toggle" type="button" data-we-filter-toggle aria-expanded="true" hidden>
+                  <svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg><span>Filters</span>
+                </button>
+                <form class="studio-search" role="search" data-wallpaper-search-form>
+                  <button class="wallpaper-search-submit" type="submit" aria-label="Search wallpapers" title="Search">
+                    <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                  </button>
+                  <input type="search" data-wallpaper-search placeholder="Search wallpapers" autocomplete="off" aria-label="Search wallpapers" />
+                  <button class="wallpaper-search-clear" type="button" data-wallpaper-search-clear aria-label="Clear wallpaper search" hidden>
+                    <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+                  </button>
+                  <output class="sr-only" data-wallpaper-search-status aria-live="polite"></output>
+                </form>
+                <label class="studio-sort studio-type-sort">
+                  <span class="sr-only">Filter wallpaper type</span>
+                  <select data-wallpaper-type-filter aria-label="Filter wallpaper type">
+                    <option value="">All types</option>
+                    <option value="scene">Scene</option>
+                    <option value="video">Video</option>
+                    <option value="web">Web</option>
+                    <option value="application" data-online-only>Application</option>
+                    <option value="preview" data-installed-only>Standard</option>
+                    <option value="image" data-installed-only>Image</option>
+                  </select>
+                </label>
+                <label class="studio-sort">
+                  <span class="sr-only">Sort wallpapers</span>
+                  <select data-wallpaper-sort aria-label="Sort wallpapers">
+                    <option value="featured">Featured</option>
+                    <option value="name" data-installed-only>Name</option>
+                    <option value="recent" data-recent-sort>Recently used</option>
+                    <option value="popular" data-online-only>Most subscribed</option>
+                    <option value="rated" data-online-only>Top rated</option>
+                    <option value="updated" data-online-only>Recently updated</option>
+                    <option value="relevance" data-online-only>Search relevance</option>
+                  </select>
+                </label>
+              </div>
+            </header>
+
+            <nav class="we-discover-topics" aria-label="Discover wallpaper topics">
+              <button class="is-active" type="button" data-wallpaper-topic="" aria-pressed="true">For you</button>
+              <button type="button" data-wallpaper-topic="nature" aria-pressed="false">Nature</button>
+              <button type="button" data-wallpaper-topic="space" aria-pressed="false">Space</button>
+              <button type="button" data-wallpaper-topic="abstract" aria-pressed="false">Abstract</button>
+              <button type="button" data-wallpaper-topic="city" aria-pressed="false">City</button>
+              <button type="button" data-wallpaper-topic="ocean" aria-pressed="false">Ocean</button>
+              <button type="button" data-wallpaper-topic="rain" aria-pressed="false">Rain</button>
+              <button type="button" data-wallpaper-topic="calm" aria-pressed="false">Calm</button>
+            </nav>
+
+            <section class="we-source-intro" data-we-source-intro hidden>
+              <span class="we-online-icon" aria-hidden="true">i</span>
+              <div><h3 data-we-online-title>Discover</h3><p data-we-source-copy>Loading the live Wallpaper Engine catalog...</p></div>
+              <button class="button" type="button" data-we-online-retry>Refresh</button>
+            </section>
+
+            <div class="we-catalog-layout" data-we-catalog-layout>
+              <aside class="we-filter-panel" data-we-filter-panel aria-label="Wallpaper filters" hidden>
+                <header>
+                  <strong>Filter results</strong>
+                  <button type="button" data-we-filter-reset>Reset</button>
+                </header>
+                <fieldset>
+                  <legend>Show only</legend>
+                  <label data-we-filter-ready-row><input type="checkbox" data-we-filter-ready checked disabled /><span>Ready to download and use</span></label>
+                  <label><input type="checkbox" data-we-filter-installed /><span>Installed</span></label>
+                </fieldset>
+                <details open>
+                  <summary>Type</summary>
+                  <div class="we-filter-options">
+                    <label><input type="radio" name="wallpaper-online-type" value="" data-we-filter-type checked /><span>All types</span></label>
+                    <label><input type="radio" name="wallpaper-online-type" value="scene" data-we-filter-type /><span>Scene</span></label>
+                    <label><input type="radio" name="wallpaper-online-type" value="video" data-we-filter-type /><span>Video</span></label>
+                    <label><input type="radio" name="wallpaper-online-type" value="web" data-we-filter-type /><span>Web</span></label>
+                    <label><input type="radio" name="wallpaper-online-type" value="application" data-we-filter-type /><span>Application</span></label>
+                  </div>
+                </details>
+                <details open>
+                  <summary>Quality</summary>
+                  <div class="we-filter-options">
+                    <label><input type="radio" name="wallpaper-online-quality" value="" data-we-filter-quality checked /><span>Any quality</span></label>
+                    <label><input type="radio" name="wallpaper-online-quality" value="4k" data-we-filter-quality /><span>4K</span></label>
+                    <label><input type="radio" name="wallpaper-online-quality" value="1080p" data-we-filter-quality /><span>1080p+</span></label>
+                  </div>
+                </details>
+                <details open>
+                  <summary>Tags</summary>
+                  <div class="we-filter-options we-filter-tags" data-we-filter-tags>
+                    <span class="we-filter-placeholder">Tags load with results.</span>
+                  </div>
+                </details>
+                <output data-we-filter-status aria-live="polite"></output>
+              </aside>
+
+              <div class="we-catalog-results">
+            <div class="studio-grid" data-wallpaper-grid>
+              <article class="wallpaper-card" data-wallpaper-card="neo" data-wallpaper-name="NEO" data-wallpaper-copy="The original NEO mark on a deep black desktop.">
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="neo" aria-pressed="true">
+                  <span class="wallpaper-card-preview neo-preview"></span>
+                  <span class="wallpaper-card-copy"><strong>NEO</strong><small>Static · 4K ready</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="neo" aria-label="Favorite NEO" aria-pressed="false">+</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+              <article class="wallpaper-card" data-wallpaper-card="moonfall" data-wallpaper-name="Moonfall" data-wallpaper-copy="A cinematic landscape with a lightweight rain layer.">
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="moonfall" aria-pressed="false">
+                  <span class="wallpaper-card-preview moonfall-preview"></span>
+                  <span class="wallpaper-card-copy"><strong>Moonfall</strong><small>Scene · Rain</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="moonfall" aria-label="Favorite Moonfall" aria-pressed="false">+</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+              <article class="wallpaper-card" data-wallpaper-card="aurora" data-wallpaper-name="Quiet Aurora" data-wallpaper-copy="A calm low-power color field with slow ambient movement.">
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="aurora" aria-pressed="false">
+                  <span class="wallpaper-card-preview aurora-preview"></span>
+                  <span class="wallpaper-card-copy"><strong>Quiet Aurora</strong><small>Scene · Ambient</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="aurora" aria-label="Favorite Quiet Aurora" aria-pressed="false">+</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+              <article class="wallpaper-card" data-wallpaper-card="starfield" data-wallpaper-name="Deep Field" data-wallpaper-copy="A subtle star field tuned for darker rooms.">
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="starfield" aria-pressed="false">
+                  <span class="wallpaper-card-preview starfield-preview"></span>
+                  <span class="wallpaper-card-copy"><strong>Deep Field</strong><small>Scene · Stars</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="starfield" aria-label="Favorite Deep Field" aria-pressed="false">+</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+              <article class="wallpaper-card" data-wallpaper-card="signal" data-wallpaper-name="Signal Grid" data-wallpaper-copy="A live canvas scene rendered locally at an efficient frame rate.">
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="signal" aria-pressed="false">
+                  <span class="wallpaper-card-preview signal-preview" data-media-badge="CANVAS"></span>
+                  <span class="wallpaper-card-copy"><strong>Signal Grid</strong><small>Canvas · Animated</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="signal" aria-label="Favorite Signal Grid" aria-pressed="false">Save</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+              <article class="wallpaper-card" data-wallpaper-card="graphite" data-wallpaper-name="Graphite" data-wallpaper-copy="A still, neutral surface for maximum focus.">
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="graphite" aria-pressed="false">
+                  <span class="wallpaper-card-preview graphite-preview"></span>
+                  <span class="wallpaper-card-copy"><strong>Graphite</strong><small>Static · Low power</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="graphite" aria-label="Favorite Graphite" aria-pressed="false">+</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+              <article class="wallpaper-card" data-wallpaper-card="custom" data-wallpaper-name="My Wallpaper" data-wallpaper-copy="Your locally imported wallpaper." hidden>
+                <button class="wallpaper-card-select" type="button" data-wallpaper-option="custom" aria-pressed="false">
+                  <span class="wallpaper-card-preview custom-preview"></span>
+                  <span class="wallpaper-card-copy"><strong>My Wallpaper</strong><small>Local image</small></span>
+                </button>
+                <button class="wallpaper-favorite" type="button" data-wallpaper-favorite="custom" aria-label="Favorite My Wallpaper" aria-pressed="false">+</button>
+                <span class="wallpaper-active-badge">Active</span>
+              </article>
+            </div>
+
+            <nav class="we-online-pager" data-we-online-pager aria-label="Online wallpaper result pages" hidden>
+              <button type="button" data-we-page-action="previous">Previous</button>
+              <label>Page
+                <input type="number" min="1" max="1000" value="1" inputmode="numeric" data-we-page-input aria-label="Online catalog page" />
+              </label>
+              <span>of <strong data-we-total-pages>1</strong></span>
+              <button type="button" data-we-page-go>Go</button>
+              <button type="button" data-we-page-action="next">Next</button>
+              <output data-we-result-count aria-live="polite"></output>
+            </nav>
+
+            <div class="studio-empty" data-wallpaper-empty hidden>
+              <svg class="icon" aria-hidden="true"><use href="#i-image"></use></svg>
+              <strong data-wallpaper-empty-title>No wallpapers here yet</strong>
+              <p data-wallpaper-empty-copy>Choose another section or add a local image.</p>
+              <button class="button" type="button" data-wallpaper-empty-reset hidden>Clear search and filters</button>
+            </div>
+              </div>
+            </div>
+
+            <section class="studio-create" data-wallpaper-create hidden>
+              <span class="create-icon"><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg></span>
+              <h3>Add wallpapers from this device</h3>
+              <p>Media stays in NEO OS and is never uploaded.</p>
+              <div class="studio-import-formats" aria-label="Supported formats">
+                <span>PNG</span><span>JPG</span><span>WebP</span><span>GIF</span><span>MP4</span><span>WebM</span>
+              </div>
+              <button class="button primary" type="button" data-wallpaper-upload-trigger="wallpaper-upload-create">
+                <svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg>
+                Choose media
+              </button>
+              <input id="wallpaper-upload-create" class="wallpaper-upload-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm" data-wallpaper-upload multiple />
+              <small data-upload-note>Images, GIFs, MP4, or WebM up to 160 MB each</small>
+            </section>
+            </div>
+
+            <footer class="we-playlist-bar" aria-label="Wallpaper library actions">
+              <strong>Playlist</strong>
+              <button type="button" data-we-action="apply">Apply</button>
+              <button type="button" data-we-action="recent">Load</button>
+              <button type="button" data-we-action="favorite">Save</button>
+              <button type="button" data-we-action="configure">Configure</button>
+              <label class="we-add-wallpaper">
+                + Add wallpaper
+                <input id="wallpaper-upload-footer" class="wallpaper-upload-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm" data-wallpaper-upload aria-label="Add wallpaper" />
+              </label>
+            </footer>
+          </section>
+
+          <aside class="studio-inspector" aria-label="Wallpaper details">
+            <div class="inspector-preview neo-preview" data-inspector-preview></div>
+            <div class="inspector-heading">
+              <span class="eyebrow">SELECTED WALLPAPER</span>
+              <h3 data-inspector-title>NEO</h3>
+              <strong class="we-inspector-author" data-inspector-author>Wallpaper Engine</strong>
+              <p data-inspector-copy>The original NEO mark on a deep black desktop.</p>
+              <div class="we-inspector-meta"><span data-inspector-type>Scene</span><span data-inspector-state>Installed</span></div>
+            </div>
+            <button class="button primary studio-apply" type="button" data-wallpaper-apply>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+              Apply wallpaper
+            </button>
+
+            <div class="inspector-controls wallpaper-playback">
+              <h4>Playback</h4>
+              <div class="wallpaper-runtime-state" data-wallpaper-runtime-state>Static wallpaper</div>
+              <div class="wallpaper-transport">
+                <button class="button" type="button" data-wallpaper-command="toggle">
+                  <svg class="icon" aria-hidden="true"><use href="#i-pause"></use></svg><span data-wallpaper-play-label>Pause</span>
+                </button>
+                <button class="button" type="button" data-wallpaper-command="mute">
+                  <svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg><span data-wallpaper-mute-label>Muted</span>
+                </button>
+              </div>
+              <div class="wallpaper-control-grid">
+                <label>Fit
+                  <select data-setting="wallpaperFit">
+                    <option value="cover">Fill screen</option>
+                    <option value="contain">Fit inside</option>
+                    <option value="fill">Stretch</option>
+                    <option value="none">Original size</option>
+                  </select>
+                </label>
+                <label>Speed
+                  <select data-setting="wallpaperSpeed">
+                    <option value="0.5">0.5×</option>
+                    <option value="0.75">0.75×</option>
+                    <option value="1">Normal</option>
+                    <option value="1.25">1.25×</option>
+                    <option value="1.5">1.5×</option>
+                    <option value="2">2×</option>
+                  </select>
+                </label>
+              </div>
+              <label class="range-field">
+                <span><strong>Volume</strong><output data-output="wallpaperVolume">60%</output></span>
+                <input type="range" min="0" max="100" value="60" data-setting="wallpaperVolume" />
+              </label>
+              <label class="toggle-row">
+                <span><strong>Loop media</strong><small>Restart video automatically</small></span>
+                <input type="checkbox" data-setting="wallpaperLoop" checked />
+                <span class="switch" aria-hidden="true"></span>
+              </label>
+              <button class="button wallpaper-remove" type="button" data-wallpaper-remove hidden>Remove from library</button>
+            </div>
+
+            <div class="inspector-controls">
+              <h4>Appearance</h4>
+              <label class="range-field">
+                <span><strong>Brightness</strong><output data-output="brightness">92%</output></span>
+                <input type="range" min="45" max="115" value="92" data-setting="brightness" />
+              </label>
+              <label class="range-field">
+                <span><strong>Saturation</strong><output data-output="saturation">82%</output></span>
+                <input type="range" min="0" max="140" value="82" data-setting="saturation" />
+              </label>
+              <label class="range-field">
+                <span><strong>Soft focus</strong><output data-output="blur">0px</output></span>
+                <input type="range" min="0" max="12" value="0" data-setting="blur" />
+              </label>
+            </div>
+
+            <div class="inspector-controls">
+              <h4>Performance</h4>
+              <label class="toggle-row">
+                <span><strong>Ambient motion</strong><small>Pauses when hidden</small></span>
+                <input type="checkbox" data-setting="motion" checked />
+                <span class="switch" aria-hidden="true"></span>
+              </label>
+              <label class="toggle-row">
+                <span><strong>Weather layer</strong><small>Rain or stars</small></span>
+                <input type="checkbox" data-setting="weather" checked />
+                <span class="switch" aria-hidden="true"></span>
+              </label>
+              <label class="toggle-row">
+                <span><strong>Battery saver</strong><small>Still frame on mobile</small></span>
+                <input type="checkbox" data-setting="batterySaver" />
+                <span class="switch" aria-hidden="true"></span>
+              </label>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </template>
+
+    <template id="control-template">
+      <div class="native-app control-center">
+        <header class="native-app-heading">
+          <div>
+            <span class="eyebrow">SYSTEM SETTINGS</span>
+            <h2>Settings</h2>
+            <p>Personalize the interface, sound, performance, taskbar, and browser tab.</p>
+          </div>
+        </header>
+
+        <section class="settings-section taskbar-settings taskbar-settings-only">
+          <div class="performance-settings" aria-labelledby="performance-mode-title">
+            <div class="section-heading performance-heading">
+              <div>
+                <h3 id="performance-mode-title">Performance mode</h3>
+                <p data-performance-summary aria-live="polite">Full visuals and animated wallpapers.</p>
+              </div>
+              <span class="performance-status" data-performance-status>NORMAL</span>
+            </div>
+            <div class="performance-mode-picker" role="group" aria-label="System performance mode">
+              <button type="button" data-performance-mode-button="normal" aria-pressed="true">
+                <strong>Normal</strong>
+                <small>Full visuals</small>
+              </button>
+              <button type="button" data-performance-mode-button="performance" aria-pressed="false">
+                <strong>Performance</strong>
+                <small>Still wallpaper, lighter UI</small>
+              </button>
+              <button type="button" data-performance-mode-button="ultimate" aria-pressed="false">
+                <strong>Ultimate</strong>
+                <small>Bare-bones desktop</small>
+              </button>
+            </div>
+            <p class="performance-mode-note">Apps, full-song playback, browsing, and games stay available in every mode.</p>
+            <label class="toggle-row auto-performance-toggle">
+              <span><strong>Auto performance mode</strong><small>Pause and hide wallpaper effects while an app or game is open</small></span>
+              <input type="checkbox" data-setting="autoPerformanceMode" />
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+          </div>
+          <div class="taskbar-option-group window-bar-option-group">
+            <div class="taskbar-option-title"><strong>Application top bar</strong><small>Choose the frame used by every app</small></div>
+            <div class="taskbar-option-picker window-bar-style-picker" role="group" aria-label="Application top bar style">
+              <button type="button" data-window-bar-style-option="ultra" aria-pressed="true"><span class="window-bar-style-preview is-ultra" aria-hidden="true"></span><span><strong>Ultra thin</strong><small>32px full-width bar · Default</small></span></button>
+              <button type="button" data-window-bar-style-option="current" aria-pressed="false"><span class="window-bar-style-preview is-current" aria-hidden="true"></span><span><strong>Standard</strong><small>Full-width controls</small></span></button>
+              <button type="button" data-window-bar-style-option="pill" aria-pressed="false"><span class="window-bar-style-preview is-pill" aria-hidden="true"></span><span><strong>Floating pill</strong><small>App icon and controls only</small></span></button>
+            </div>
+          </div>
+          <button class="settings-app-link" type="button" data-app="wallpaper">
+            <span class="settings-app-link-icon app-icon-shape app-icon-wallpaper"><img class="app-image-icon" src="./assets/wallpaper-engine.png" width="34" height="34" alt="" /></span>
+            <span><strong>Wallpaper Engine</strong><small>Choose, import, and control desktop wallpaper</small></span>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+          </button>
+          <div class="taskbar-option-group desktop-status-widget-options">
+            <div class="taskbar-option-title"><strong>Desktop status cards</strong><small>Choose which cards appear on the desktop · Off by default</small></div>
+            <label class="toggle-row">
+              <span><strong>System status</strong><small>Show the System ready card</small></span>
+              <input type="checkbox" data-setting="desktopSystemWidget" />
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+            <label class="toggle-row">
+              <span><strong>Active app</strong><small>Show the app currently in focus</small></span>
+              <input type="checkbox" data-setting="desktopActiveAppWidget" />
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+            <label class="toggle-row">
+              <span><strong>Now playing</strong><small>Show song details and playback controls</small></span>
+              <input type="checkbox" data-setting="desktopNowPlayingWidget" />
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+          </div>
+          <div class="section-heading taskbar-options-heading">
+            <div><h3>Taskbar options</h3><p>Move the taskbar and choose how its surface looks.</p></div>
+            <span class="taskbar-options-status" data-taskbar-options-summary aria-live="polite">Left · Floating · Glass</span>
+          </div>
+          <div class="taskbar-option-group">
+            <div class="taskbar-option-title"><strong>Placement</strong><small>Choose any screen edge</small></div>
+            <div class="taskbar-option-picker taskbar-placement-picker" role="group" aria-label="Taskbar placement">
+              <button type="button" data-taskbar-position-option="top" aria-pressed="false"><span class="taskbar-placement-preview is-top" aria-hidden="true"></span><strong>Top</strong></button>
+              <button type="button" data-taskbar-position-option="right" aria-pressed="false"><span class="taskbar-placement-preview is-right" aria-hidden="true"></span><strong>Right</strong></button>
+              <button type="button" data-taskbar-position-option="bottom" aria-pressed="false"><span class="taskbar-placement-preview is-bottom" aria-hidden="true"></span><strong>Bottom</strong></button>
+              <button type="button" data-taskbar-position-option="left" aria-pressed="true"><span class="taskbar-placement-preview is-left" aria-hidden="true"></span><strong>Left</strong></button>
+            </div>
+          </div>
+          <div class="taskbar-option-group">
+            <div class="taskbar-option-title"><strong>Style</strong><small>Current is the default</small></div>
+            <div class="taskbar-option-picker taskbar-style-picker" role="group" aria-label="Taskbar style">
+              <button type="button" data-taskbar-style-option="current" aria-pressed="true"><span class="taskbar-style-preview is-current" aria-hidden="true"></span><span><strong>Floating</strong><small>Compact rounded dock</small></span></button>
+              <button type="button" data-taskbar-style-option="transparent" aria-pressed="false"><span class="taskbar-style-preview is-transparent" aria-hidden="true"></span><span><strong>Transparent</strong><small>Vertical glass rail</small></span></button>
+              <button type="button" data-taskbar-style-option="typical" aria-pressed="false"><span class="taskbar-style-preview is-typical" aria-hidden="true"></span><span><strong>Typical</strong><small>Full edge bar</small></span></button>
+              <button type="button" data-taskbar-style-option="xeno" aria-pressed="false"><span class="taskbar-style-preview is-xeno" aria-hidden="true"></span><span><strong>XENO</strong><small>Running apps · Space search · Ctrl menu</small></span></button>
+            </div>
+          </div>
+          <div class="taskbar-option-group">
+            <div class="taskbar-option-title"><strong>Surface</strong><small>Choose the dock material</small></div>
+            <div class="taskbar-option-picker taskbar-surface-picker" role="group" aria-label="Taskbar surface">
+              <button type="button" data-taskbar-surface-option="glass" aria-pressed="true"><span class="taskbar-surface-preview is-glass" aria-hidden="true"></span><span><strong>Liquid glass</strong><small>Blurred and reflective</small></span></button>
+              <button type="button" data-taskbar-surface-option="solid" aria-pressed="false"><span class="taskbar-surface-preview is-solid" aria-hidden="true"></span><span><strong>Solid</strong><small>One clean color</small></span></button>
+              <button type="button" data-taskbar-surface-option="gradient" aria-pressed="false"><span class="taskbar-surface-preview is-gradient" aria-hidden="true"></span><span><strong>Gradient</strong><small>Blend two colors</small></span></button>
+            </div>
+          </div>
+          <div class="taskbar-option-group">
+            <div class="taskbar-option-title"><strong>Color</strong><small>Choose the primary surface color</small></div>
+            <div class="taskbar-tint-picker" role="group" aria-label="Taskbar tint presets">
+              <button type="button" data-taskbar-tint-preset="#767c84" aria-label="Graphite tint" aria-pressed="true"><span style="--taskbar-swatch: #767c84"></span></button>
+              <button type="button" data-taskbar-tint-preset="#000000" aria-label="Black tint" aria-pressed="false"><span style="--taskbar-swatch: #000000"></span></button>
+              <button type="button" data-taskbar-tint-preset="#e8e8e8" aria-label="Silver tint" aria-pressed="false"><span style="--taskbar-swatch: #e8e8e8"></span></button>
+              <button type="button" data-taskbar-tint-preset="#315f9b" aria-label="Blue tint" aria-pressed="false"><span style="--taskbar-swatch: #315f9b"></span></button>
+              <button type="button" data-taskbar-tint-preset="#654f91" aria-label="Purple tint" aria-pressed="false"><span style="--taskbar-swatch: #654f91"></span></button>
+              <button type="button" data-taskbar-tint-preset="#42735b" aria-label="Green tint" aria-pressed="false"><span style="--taskbar-swatch: #42735b"></span></button>
+              <button type="button" data-taskbar-tint-preset="#8d4a4a" aria-label="Red tint" aria-pressed="false"><span style="--taskbar-swatch: #8d4a4a"></span></button>
+              <label class="taskbar-custom-tint"><span>Custom</span><input type="color" value="#767c84" data-setting="taskbarTint" aria-label="Custom taskbar tint" /></label>
+            </div>
+            <label class="taskbar-gradient-color" data-taskbar-gradient-control>
+              <span><strong>Gradient end</strong><small>Second color used by the gradient surface</small></span>
+              <input type="color" value="#315f9b" data-setting="taskbarGradientEnd" aria-label="Taskbar gradient end color" />
+            </label>
+            <label class="range-field taskbar-tint-strength" data-taskbar-glass-control>
+              <span><strong>Glass transparency</strong><output data-output="taskbarTransparency">62%</output></span>
+              <input type="range" min="0" max="100" step="1" value="62" data-setting="taskbarTransparency" aria-label="Taskbar glass transparency" />
+            </label>
+          </div>
+          <div class="taskbar-option-group">
+            <label class="toggle-row taskbar-outline-toggle">
+              <span><strong>Outline</strong><small>Show the glass edge and highlight ring</small></span>
+              <input type="checkbox" data-setting="taskbarOutline" checked />
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+            <label class="toggle-row taskbar-app-names-toggle">
+              <span><strong>Show app names</strong><small>Display full names beside taskbar icons</small></span>
+              <input type="checkbox" data-setting="taskbarAppNames" />
+              <span class="switch" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+    </template>
+
+    <template id="search-template">
+      <div class="native-app system-search">
+        <header class="native-app-heading search-heading">
+          <div><span class="eyebrow">NEO SEARCH</span><h2>Find something to play</h2><p>The catalog loads only after you start typing.</p></div>
+        </header>
+        <label class="hero-search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <span class="sr-only">Search HTML games</span>
+          <input type="search" data-zone-search autocomplete="off" placeholder="Search HTML games" aria-label="Search HTML games" />
+          <span class="search-count" data-search-count>Ready</span>
+        </label>
+        <div class="search-state" data-search-state>
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <strong>Start typing to search</strong>
+          <p>Titles are matched locally after one catalog request.</p>
+        </div>
+        <div class="search-results" data-search-results role="listbox" aria-label="HTML game search results"></div>
+      </div>
+    </template>
+
+    <template id="library-template">
+      <div class="native-app neo-library" data-library-app>
+        <header class="arcade-topbar">
+          <div class="arcade-brand" aria-label="Steam">
+            <img class="arcade-brand-mark" src="./assets/steam.svg?v=20260919-current-steam-logo-v2" alt="">
+            <strong>STEAM</strong>
+          </div>
+          <nav class="arcade-nav" aria-label="Games navigation">
+            <button class="arcade-nav-button is-active" type="button" data-library-nav="home" aria-pressed="true">
+              <svg class="icon" aria-hidden="true"><use href="#i-gamepad"></use></svg><span>Games</span>
+            </button>
+            <button class="arcade-nav-button" type="button" data-library-nav="favorites" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Favorites</span>
+              <span class="arcade-nav-count" data-library-favorite-count>0</span>
+            </button>
+          </nav>
+          <div class="arcade-actions">
+            <button class="arcade-icon-button" type="button" data-library-sound aria-pressed="false" aria-label="Mute interface sounds" title="Mute interface sounds">
+              <svg class="icon" aria-hidden="true"><use href="#i-volume"></use></svg>
+            </button>
+            <button class="arcade-settings-button" type="button" data-library-settings aria-expanded="false">
+              <svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg><span>Settings</span>
+            </button>
+          </div>
+          <div class="arcade-settings-panel" data-library-settings-panel hidden>
+            <strong>Games settings</strong>
+            <label><input type="checkbox" data-library-compact /> <span>Compact game cards</span></label>
+            <label><input type="checkbox" data-library-reduce-effects /> <span>Reduce visual effects</span></label>
+            <small>All titles and game launches stay inside NEO's local library.</small>
+          </div>
+        </header>
+
+        <main class="arcade-main">
+          <section class="arcade-catalog" data-library-catalog>
+            <section class="arcade-gateway arcade-pulse-hero" data-library-home aria-labelledby="neo-games-title">
+              <div class="arcade-gateway-copy">
+                <span class="arcade-kicker">NEO GAME PORTAL</span>
+                <h2 id="neo-games-title">UNBLOCKED GAMES</h2>
+                <p>All your favorite games in one place.</p>
+                <form class="arcade-gateway-search" data-library-home-form>
+                  <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                  <input type="search" data-library-home-search autocomplete="off" placeholder="Search unblocked games..." aria-label="Search games" />
+                </form>
+              </div>
+            </section>
+
+            <header class="arcade-catalog-heading">
+              <div>
+                <h2 data-library-heading>Featured Games</h2>
+              </div>
+              <span class="arcade-network-pill">NEO LOCAL · NO EMBEDS</span>
+            </header>
+
+            <section class="arcade-spotlight" data-library-spotlight aria-label="Featured game">
+              <div class="arcade-spotlight-copy">
+                <div class="arcade-spotlight-labels"><span>FEATURED</span><span>NEO GAMES</span></div>
+                <h3 data-library-spotlight-name>Loading featured game</h3>
+                <p>Choose a title and play it directly from the full NEO games library.</p>
+                <div class="arcade-spotlight-actions">
+                  <button class="arcade-primary-button" type="button" data-library-spotlight-play disabled>
+                    <svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg><span>Play Now</span>
+                  </button>
+                  <button class="arcade-icon-button" type="button" data-library-spotlight-favorite disabled aria-label="Add featured game to favorites">
+                    <svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="arcade-spotlight-visual">
+                <div class="arcade-spotlight-cover" data-library-spotlight-cover>
+                  <svg class="icon" aria-hidden="true"><use href="#i-gamepad"></use></svg>
+                </div>
+                <div class="arcade-spotlight-controls">
+                  <button type="button" data-library-spotlight-prev aria-label="Previous featured game"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+                  <span data-library-spotlight-position>1 / 1</span>
+                  <button type="button" data-library-spotlight-next aria-label="Next featured game"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+                </div>
+              </div>
+            </section>
+
+            <section class="arcade-filters" aria-label="Game filters">
+              <label>
+                <span>GAME LIBRARY</span>
+                <select data-library-source aria-label="Game library">
+                  <option value="all">All libraries</option>
+                  <option value="neo-local">NEO Classics</option>
+                  <option value="gn-math">GN Collection</option>
+                  <option value="staticquasar">Quasar Collection</option>
+                </select>
+              </label>
+              <label class="arcade-filter-search">
+                <span>SEARCH GAMES</span>
+                <span class="arcade-filter-control">
+                  <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                  <input type="search" data-library-search autocomplete="off" placeholder="Search unblocked games..." aria-label="Search all games" />
+                </span>
+              </label>
+              <label>
+                <span>SORT BY</span>
+                <select data-library-sort aria-label="Sort game results">
+                  <option value="featured" selected>Recently added</option>
+                  <option value="az">Name (A-Z)</option>
+                  <option value="za">Name (Z-A)</option>
+                </select>
+              </label>
+            </section>
+
+            <header class="arcade-grid-heading">
+              <h3><span aria-hidden="true"></span><strong data-library-grid-title>All Games</strong></h3>
+              <div><span data-library-count aria-live="polite">Loading</span><span data-library-visible>0 shown</span></div>
+            </header>
+            <div class="library-state is-loading" data-library-state role="status" aria-live="polite">
+              <span class="library-spinner" aria-hidden="true"></span>
+              <strong>Loading your library</strong>
+              <p>Reading the local catalog.</p>
+            </div>
+            <div class="library-grid" data-library-grid aria-label="Local game library"></div>
+            <div class="library-footer">
+              <button class="arcade-secondary-button" type="button" data-library-more hidden>Show more</button>
+            </div>
+          </section>
+        </main>
+        <footer class="arcade-footer" data-library-footer>NEO OS · GAMES</footer>
+      </div>
+    </template>
+
+    <template id="calendar-template">
+      <div class="native-app calendar-app">
+        <span class="eyebrow">TODAY</span>
+        <p class="calendar-weekday" data-calendar-weekday>Monday</p>
+        <p class="calendar-date" data-calendar-date>August 2</p>
+        <p class="calendar-time" data-calendar-time>12:00 PM</p>
+        <div class="calendar-note"><span></span><p><strong>NEO OS workspace</strong><small>Your local calendar and activity.</small></p></div>
+      </div>
+    </template>
+
+    <script src="./neo-audio-spectrum-bridge.js?v=20260909-all-audio-v1" defer></script>
+    <script src="./neo-frame-loader.js?v=20260913-direct-games-v1" defer></script>
+    <script src="./neo-apps.js?v=20260922-youtube-core-v1&amp;close=hard-v1" defer></script>
+    <script src="./neo-music-runtime.js?v=20260831-fast-full-stream-v5&amp;equalizer=live-v2&amp;close=hard-v1" defer></script>
+    <script src="./neo-bottom-visualizer.js?v=20260920-taskbar-width-v1" defer></script>
+    <script src="./neo-wallpaper-engine.js?v=20260910-auto-resume-v2&amp;loading=failsafe-v1&amp;auto-performance=v2&amp;images=bundled-v1" defer></script>
+    <script src="./neo-wallpaper-quality.js?v=20260831-performance-modes-v2" defer></script>
+    <script src="./neo-taskbar-preview.js?v=20260913-current-state-v1" defer></script>
+    <script src="./neo-chat-transport.js?v=20260920-shared-message-actions-v1" defer></script>
+    <script src="./neo-account-signin.js?v=20260907-profile-menu-v1" defer></script>
+    <script src="./neo-connection-monitor.js?v=20260909-server-fallback-v2" defer></script>
+    <script src="./neo-skins.js?v=20260909-all-audio-v1&amp;scale=300-v1&amp;equalizer=live-v2&amp;music=symbols-v1&amp;background=transparent-v1" defer></script>
+    <script src="./neo-chat-experience.js" defer></script>
+    <script src="./neo-desktop-platform.js?v=20260919-browser-search-v1&amp;styles=kali-v1&amp;tab=custom-url-v1&amp;themes=expanded-v1&amp;rainmeter=controls-v1&amp;editor=proxy-links-v2&amp;settings=combined-v1&amp;motion=animation-speed-v1" defer></script>
+    <script src="./neo-leave-guard.js?v=20260907-anti-close-v1" defer></script>
+    <script src="./neo-os.js?v=20260920-ai-restored-v1&amp;styles=kali-v1&amp;apps=cleanup-v1&amp;taskbar=compact-player-v1&amp;drive=polish-v1&amp;theme=20260912-acrylic-theme-v1&amp;runtime=20260907-runtime-recovery-v2&amp;motion=window-drag-v3-animation-speed-v1&amp;custom=tab-url-v1&amp;tab=classroom-default-v1&amp;context=hover-v1&amp;launcher=aligned-grid-v2&amp;wallpaper=resume-v2&amp;auto-performance=v2&amp;boot=universal-loader-v2&amp;chat=standalone-v1&amp;taskbar-visibility=fullscreen-only-v4&amp;artwork=stable-cover-v2&amp;rainmeter=remove-mond-v1&amp;widgets=logo-v1&amp;desktop=no-home-apps-v1&amp;settings=combined-v1&amp;music-widgets=live-v1&amp;windows=flush-fullscreen-v2&amp;window-bar=maximized-ultra-v1&amp;proxy=resource-v2&amp;games=fern-only-v1&amp;taskbar-glass=transparency-v1&amp;xeno=command-motion-v2&amp;figure=removed-v1&amp;close=hard-v1" defer></script>
+    <script src="./neo-command-palette.js?v=20260912-command-palette-v1" defer></script>
+    <script src="./neo-taskbar-quick-settings.js?v=20260910-quick-settings-v1" defer></script>
+    <script src="./neo-backup.js?v=20260830-backup-v1" defer></script>
+    <script src="./neo-window-resize.js?v=20260901-mobile-compat-v1" defer></script>
+    <script src="./neo-taskbar-menu.js?v=20260901-clean-desktop-v1" defer></script>
+    <script src="./neo-rainmeter.js?v=20260921-remove-mond-v1" defer></script>
+    <script src="./neo-topbar-autohide.js?v=20260912-ultra-window-bar-v1" defer></script>
+    <script src="./neo-mobile.js?v=20260909-desktop-shortcuts-v1" defer></script>
+  </body>
+</html>

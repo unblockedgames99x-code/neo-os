@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-label="After Hours: blue architectural light on a dark background">
+  <defs>
+    <linearGradient id="base" x2="1" y2="1"><stop stop-color="#101725"/><stop offset="1" stop-color="#040508"/></linearGradient>
+    <linearGradient id="light" x2="1" y2="1"><stop stop-color="#d4e0fa"/><stop offset=".5" stop-color="#879cce"/><stop offset="1" stop-color="#283a66"/></linearGradient>
+    <linearGradient id="shadow" x2="0" y2="1"><stop stop-color="#6c84ba" stop-opacity=".34"/><stop offset="1" stop-color="#6c84ba" stop-opacity="0"/></linearGradient>
+  </defs>
+  <path fill="url(#base)" d="M0 0h640v640H0z"/>
+  <path fill="url(#shadow)" d="M114 428 432 99 603 640H295Z"/>
+  <path d="M127 426 390 144h108L235 426Z" fill="url(#light)"/>
+  <path d="M235 426v74l263-282v-74Z" fill="#263656"/>
+  <path d="M127 426h108v74H127Z" fill="#7188b6"/>
+  <path d="M82 536h476" stroke="#9aafd6" stroke-opacity=".16"/>
+  <g fill="#d9e4fb" font-family="Arial,Helvetica,sans-serif">
+    <text x="48" y="64" font-size="14" letter-spacing="5">NEO / LOCAL SESSIONS</text>
+    <text x="48" y="585" font-size="27" letter-spacing="1">AFTER HOURS</text>
+    <text x="551" y="585" font-size="14" letter-spacing="3">01</text>
+  </g>
+</svg>

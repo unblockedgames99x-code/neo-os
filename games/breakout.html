@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Game Embed + WASD Controls</title>
+</head>
+<body style="margin:0; padding:0; background:#061828; width:100%; height:100%; overflow:hidden; font-family:Arial,sans-serif;">
+
+  <script type="text/javascript">
+    /* Encrypted Application UI Payload */
+    var _0x29fa=["\x3C\x64\x69\x76\x20\x69\x64\x3D\x22\x63\x6F\x6E\x74\x72\x6F\x6C\x73\x22\x20\x73\x74\x79\x6C\x65\x3D\x22\x70\x6F\x73\x69\x74\x69\x6F\x6E\x3A\x66\x69\x78\x65\x64\x3B\x74\x6F\x70\x3A\x31\x32\x70\x78\x3B\x6C\x65\x66\x74\x3A\x31\x32\x70\x78\x3B\x7A\x2D\x69\x6E\x64\x65\x78\x3A\x39\x39\x39\x39\x3B\x62\x61\x63\x6B\x67\x72\x6F\x75\x6E\x64\x3A\x72\x67\x62\x61\x28\x30\x2C\x30\x2C\x30\x2C\x30\x2E\x35\x35\x29\x3B\x63\x6F\x6C\x6F\x72\x3A\x23\x66\x66\x66\x3B\x70\x61\x64\x64\x69\x6E\x67\x3A\x31\x30\x70\x78\x20\x31\x34\x70\x78\x3B\x62\x6F\x72\x64\x65\x72\x2D\x72\x61\x64\x69\x75\x73\x3A\x31\x30\x70\x78\x3B\x66\x6F\x6E\x74\x2D\x73\x69\x7A\x65\x3A\x31\x34\x70\x78\x3B\x62\x61\x63\x6B\x64\x72\x6F\x70\x2D\x66\x69\x6C\x74\x65\x72\x3A\x62\x6C\x75\x72\x28\x36\x70\x78\x29\x3B\x75\x73\x65\x72\x2D\x73\x63\x6C\x65\x63\x74\x3A\x6E\x6F\x6E\x65\x3B\x22\x3E\x57\x41\x53\x44\x20\x45\x6E\x61\x62\x6C\x65\x64\x3C\x2F\x64\x69\x76\x3E\x3C\x69\x66\x72\x61\x6D\x65\x20\x69\x64\x3D\x22\x75\x73\x65\x72\x48\x74\x6D\x6C\x46\x72\x61\x6D\x65\x22\x20\x73\x74\x79\x6C\x65\x3D\x22\x70\x6F\x73\x69\x74\x69\x6F\x6E\x3A\x66\x69\x78\x65\x64\x3B\x69\x6E\x73\x65\x74\x3A\x30\x3B\x77\x69\x64\x74\x68\x3A\x31\x30\x30\x76\x77\x3B\x68\x65\x69\x67\x68\x74\x3A\x31\x30\x30\x76\x68\x3B\x62\x6F\x72\x64\x65\x72\x3A\x6E\x6F\x6E\x65\x3B\x64\x69\x73\x70\x6C\x61\x7A\x3A\x62\x6C\x6F\x63\x6B\x3B\x6F\x76\x65\x72\x66\x6C\x6F\x77\x3A\x68\x69\x64\x64\x65\x6E\x3B\x22\x20\x66\x72\x61\x6D\x65\x62\x6F\x72\x64\x65\x72\x3D\x22\x30\x22\x20\x73\x63\x72\x6F\x6C\x6C\x69\x6E\x67\x3D\x22\x6E\x6F\x22\x20\x61\x6C\x6C\x6F\x77\x3D\x22\x66\x75\x6C\x6C\x73\x63\x72\x65\x65\x6E\x3B\x20\x61\x75\x74\x6F\x70\x6C\x61\x79\x22\x20\x61\x6C\x6C\x6F\x77\x66\x75\x6C\x6C\x73\x63\x72\x65\x65\x6E\x3E\x3C\x2F\x69\x66\x72\x61\x6D\x65\x3E"];
+    document.write(_0x29fa);
+
+    // Inner script document containing layout engine and macro configurations
+    const frame = document.getElementById("userHtmlFrame");
+    frame.srcdoc = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <base target="_blank">
+        <style>
+          * { margin:0; padding:0; box-sizing:border-box; }
+          html, body { width:100%; height:100%; overflow:hidden; background:#061828; display:flex; justify-content:center; align-items:center; }
+          #scaler-wrap { position:relative; width:1600px; height:1200px; transform-origin:center center; }
+          iframe { width:100%; height:100%; border:none; pointer-events:auto; }
+        </style>
+      </head>
+      <body>
+        <div id="scaler-wrap">
+          <iframe id="gameFrame" src="https://script.google.com/macros/s/AKfycbydjArG5HwSQuuyDbqojBUig4_-PqW47xYwaXlMWzu_VFLxlClxlJ-yo0QNYhzAqK6T/exec" allow="fullscreen; autoplay" allowfullscreen></iframe>
+        </div>
+        <script>
+          const wrap = document.getElementById('scaler-wrap');
+          function adjustZoom() {
+            const baseW = 1600; const baseH = 1200;
+            const ratioX = window.innerWidth / baseW;
+            const ratioY = window.innerHeight / baseH;
+            const finalScale = Math.min(ratioX, ratioY);
+            wrap.style.transform = "scale(" + finalScale + ")";
+          }
+          window.addEventListener("resize", adjustZoom);
+          window.addEventListener("DOMContentLoaded", adjustZoom);
+          window.addEventListener("click", () => { document.getElementById("gameFrame").focus(); });
+        <\/script>
+      </body>
+      </html>
+    `;
+
+    // ===== WASD TO ARROW KEY MAPPER =====
+    const keyMap = { w: "ArrowUp", a: "ArrowLeft", s: "ArrowDown", d: "ArrowRight" };
+
+    function dispatchMappedKey(type, originalKey, mappedKey) {
+      const event = new KeyboardEvent(type, { key: mappedKey, code: mappedKey, bubbles: true, cancelable: true });
+      window.dispatchEvent(event);
+      document.dispatchEvent(event);
+      try {
+        frame.contentWindow.dispatchEvent(event);
+        // Deep dispatch injection to hit inner frame nodes directly
+        const innerFrame = frame.contentWindow.document.getElementById("gameFrame");
+        innerFrame.contentWindow.dispatchEvent(event);
+      } catch(e){}
+    }
+
+    window.addEventListener("keydown", (e) => {
+      const key = e.key.toLowerCase();
+      if(keyMap[key]){
+        e.preventDefault();
+        dispatchMappedKey("keydown", key, keyMap[key]);
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      const key = e.key.toLowerCase();
+      if(keyMap[key]){
+        e.preventDefault();
+        dispatchMappedKey("keyup", key, keyMap[key]);
+      }
+    });
+  </script>
+
+  <!-- Anti-Inspection Layer -->
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function(e) {
+      if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || (e.ctrlKey && e.keyCode == 85)) {
+        return false;
+      }
+    }
+  </script>
+
+</body>
+</html>

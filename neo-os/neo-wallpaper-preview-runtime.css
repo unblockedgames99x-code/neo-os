@@ -1,0 +1,67 @@
+.wallpaper-preview-source,
+.wallpaper-discover-animated-source,
+.wallpaper-preview-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.wallpaper-animated-image-source {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: auto;
+  backface-visibility: hidden;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.wallpaper-discover-animated-source {
+  z-index: 2;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
+  filter:
+    brightness(var(--wallpaper-brightness))
+    saturate(var(--wallpaper-saturation))
+    blur(var(--wallpaper-blur));
+}
+
+.wallpaper-preview-source {
+  z-index: 1;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
+  filter:
+    brightness(var(--wallpaper-brightness))
+    saturate(var(--wallpaper-saturation))
+    blur(var(--wallpaper-blur));
+  transform: translate3d(0, 0, 0) scale(1.002);
+  animation: neo-preview-source-drift 28s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.wallpaper-preview-canvas {
+  z-index: 2;
+  object-fit: cover;
+}
+
+html[data-wallpaper-playback="paused"] .wallpaper-preview-source {
+  animation-play-state: paused;
+}
+
+@keyframes neo-preview-source-drift {
+  from { transform: translate3d(-0.18%, 0, 0) scale(1.002); }
+  to { transform: translate3d(0.18%, -0.12%, 0) scale(1.012); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper-preview-source {
+    animation: none;
+  }
+}

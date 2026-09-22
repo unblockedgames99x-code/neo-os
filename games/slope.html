@@ -1,0 +1,496 @@
+<html lang="en-us"><head><base target="_blank">
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slope - Free Unblocked Game | StaticQuasar931</title>
+
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  base-uri 'self';
+  frame-ancestors *;
+  object-src 'none';
+
+  script-src
+    'self'
+    'unsafe-inline'
+    'unsafe-eval'
+    'wasm-unsafe-eval'
+    blob:
+    https://cdn.jsdelivr.net
+    https://www.googletagmanager.com
+    https://www.google-analytics.com;
+
+  style-src
+    'self'
+    'unsafe-inline'
+    https://cdn.jsdelivr.net;
+
+  img-src
+    'self'
+    data:
+    blob:
+    https://res.cloudinary.com
+    https://cdn.jsdelivr.net
+    https://www.google-analytics.com
+    https://www.googletagmanager.com;
+
+  font-src
+    'self'
+    data:
+    https://cdn.jsdelivr.net;
+
+  media-src
+    'self'
+    blob:
+    https://cdn.jsdelivr.net;
+
+  connect-src
+    'self'
+    https://cdn.jsdelivr.net
+    https://www.google-analytics.com
+    https://www.googletagmanager.com;
+
+  worker-src
+    'self'
+    blob:
+    https://cdn.jsdelivr.net;
+
+  frame-src
+    'self'
+    blob:;
+
+  child-src
+    'self'
+    blob:;
+
+  prefetch-src
+    https://cdn.jsdelivr.net;
+
+  manifest-src
+    'self'
+    https://cdn.jsdelivr.net;
+">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/slope_Staticquasar931_stable_agqxto.png">
+
+  <!-- SEO / OG -->
+  <meta name="description" content="Play Slope free and unblocked on StaticQuasar931. Official stable version that works at school. Chromebook and mobile friendly.">
+  <meta name="keywords" content="Slope, Slope unblocked, play Slope online, Slope game, unblocked games for school, StaticQuasar931, Static 931">
+  <meta name="theme-color" content="#131419">
+  <meta property="og:title" content="Play Slope - Official Stable Version | StaticQuasar931">
+  <meta property="og:description" content="Slope. Fast. Smooth. Unblocked. Works with internet enabled on more school networks.">
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/slope_Staticquasar931_stable_agqxto.png">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://staticquasar931.github.io/slope/">
+
+  <!-- GA preconnects -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="">
+
+  <!-- GA4 bootstrap (custom loader style, restored + safe) -->
+  <script>
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+
+      // Queue GA boot events before the script loads
+      gtag("js", new Date());
+      gtag("config", "G-27S3Y4TS0Y", {
+        transport_type: "beacon",
+        anonymize_ip: true
+      });
+
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-27S3Y4TS0Y";
+      s.onerror = function(){
+        console.warn("GA blocked or failed to load");
+      };
+      s.onload = function(){
+        try {
+          gtag("event","sq_ga_loaded",{value:1});
+        } catch(e){}
+      };
+      document.head.appendChild(s);
+    })();
+  </script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-27S3Y4TS0Y"></script>
+
+  <!-- Unity default loader assets from jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/slope@main/style/style.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/gh/StaticQuasar931/slope@main/UnityLoader.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/gh/StaticQuasar931/slope@main/UnityProgress.js" crossorigin="anonymous"></script>
+
+  <!-- Tips from jsDelivr -->
+  <script src="https://cdn.jsdelivr.net/gh/StaticQuasar931/slope@main/tips.js" defer="" crossorigin="anonymous"></script>
+
+  <style>
+    html,body{margin:0;padding:0;height:100%;overflow:hidden;background:radial-gradient(circle at center,#17191d,#0c0d11);color:#f5f8ff;font-family:"Segoe UI",Roboto,Arial,sans-serif}
+    .webgl-content{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+    #gameContainer{position:fixed;top:0;left:0;width:100vw;height:100vh;background:transparent}
+    .webgl-content .footer{display:none !important}
+    #sqBrand{position:fixed;top:5px;left:50%;transform:translateX(-50%);z-index:20;text-align:center;padding:14px 18px;border-radius:14px;background:linear-gradient(145deg,rgba(10,12,18,.7),rgba(10,12,18,.45));border:1px solid rgba(255,255,255,.15);box-shadow:0 16px 40px rgba(0,0,0,.45);backdrop-filter:blur(10px);max-width:min(960px,96vw);animation:brandPop .6s ease forwards}
+    @keyframes brandPop{from{opacity:0;transform:translate(-50%,-4px) scale(.98)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+    #sqBrand img{width:64px;height:64px;border-radius:12px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.45);vertical-align:middle;margin-right:12px;opacity:0;animation:logoIn .5s ease .05s forwards}
+    @keyframes logoIn{to{opacity:1}}
+    #sqBrand .line{display:block;opacity:0;transform:translateY(3px);font-weight:900;text-shadow:0 2px 10px rgba(0,0,0,.5);letter-spacing:.25px;animation:lineFade .5s ease forwards}
+    #sqBrand .line1{font-size:20px;color:#6ce0ff;animation-delay:.15s}
+    #sqBrand .line2{font-size:26px;color:#ffffff;animation-delay:.25s}
+    #sqBrand .line3{font-size:16px;color:#cfe7ff;opacity:.95;animation-delay:.35s}
+    @keyframes lineFade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+    #sqTip{position:fixed;left:14px;bottom:16px;z-index:20;font-size:15px;color:#dfeaff;padding:12px 14px;background:rgba(15,18,28,.65);border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 6px 25px rgba(0,0,0,.5);max-width:min(560px,80vw);line-height:1.35;opacity:0;animation:tipIn .6s ease .4s forwards}
+    @keyframes tipIn{to{opacity:1}}
+    #staticMenu{position:fixed;top:12px;left:12px;z-index:21;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,rgba(20,20,28,.92),rgba(20,20,28,.6));border:1px solid rgba(94,225,255,.35);box-shadow:0 8px 28px rgba(0,0,0,.45);font-size:14px;backdrop-filter:blur(8px)}
+    #staticMenu a{color:#5ee1ff;text-decoration:none;font-weight:800}
+    #closeStaticMenu{color:#f55;cursor:pointer;padding:2px 6px;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);user-select:none}
+    #staticSlideMenu{position:fixed;bottom:24px;right:24px;z-index:21;width:100px;height:100px;pointer-events:none;opacity:0;transform:translateX(140px) scale(.96);filter:drop-shadow(0 6px 18px rgba(0,0,0,.45))}
+    #staticSlideMenu a{display:block;width:100%;height:100%}
+    #staticSlideMenu img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .slide-in{animation:slideIn 1.1s ease forwards}
+    .slide-out{animation:slideOut 1.0s ease forwards}
+    @keyframes slideIn{from{opacity:0;transform:translateX(140px) scale(.96)}to{opacity:1;transform:translateX(0) scale(1)}}
+    @keyframes slideOut{from{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(140px) scale(.96)}}
+    @media (max-width:768px){#staticSlideMenu{width:84px;height:84px}}
+    .fly{position:fixed;z-index:22;pointer-events:auto;padding:12px 16px;border-radius:12px;background:rgba(20,24,36,.92);border:1px solid rgba(94,225,255,.35);color:#bfe7ff;font-weight:800;text-decoration:none;box-shadow:0 8px 28px rgba(0,0,0,.45);top:14%;left:-40%;will-change:transform,opacity;animation:flyAcross 8s ease-in-out forwards}
+    @keyframes flyAcross{0%{left:-40%;opacity:0}10%{left:2%;opacity:1}50%{left:48%;opacity:1}95%{left:96%;opacity:1}100%{left:110%;opacity:0}}
+    .fly.t2{top:22%}.fly.t3{top:30%}.fly.t4{top:18%}.fly.t5{top:26%}
+    .fade-out{animation:fadeOut .25s ease forwards}
+    @keyframes fadeOut{to{opacity:0;visibility:hidden}}
+    .gone{display:none !important}
+    .seo-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+
+  <!-- id.net hard block plus Unity URL fixup -->
+  <script>
+    (function(){
+      var RX_ID = /id\.net\/api\/user_data/i;
+
+      function mapUnityUrl(url){
+        try{
+          var u = String(url);
+          if (!/cdn\.jsdelivr\.net\/gh\/StaticQuasar931\/slope@main\//i.test(u)) return url;
+          u = u.replace(/slope_new\.data\.unityweb/gi, "slope_newdata.unityweb");
+          u = u.replace(/slope_new\.wasm\.code\.unityweb/gi, "slope_newwasmcode.unityweb");
+          u = u.replace(/slope_new\.wasm\.framework\.unityweb/gi, "slope_newwasmframework.unityweb");
+          u = u.replace(/slope_new\.wasm\.memory\.unityweb/gi, "slope_newmemory.unityweb");
+          u = u.replace(/slope_new\.framework\.js\.unityweb/gi, "slope_newframework.unityweb");
+          return u;
+        }catch(e){ return url; }
+      }
+
+      var ap = Node.prototype.appendChild, ib = Node.prototype.insertBefore;
+      function guard(n){
+        try{
+          if (n && n.tagName === "SCRIPT"){
+            var src = String(n.src || "");
+            if (RX_ID.test(src)){ n.remove(); return true; }
+            var mapped = mapUnityUrl(src);
+            if (mapped !== src){ n.crossOrigin = "anonymous"; n.src = mapped; }
+          }
+        }catch(e){}
+        return false;
+      }
+      Node.prototype.appendChild = function(n){ if (guard(n)) return n; return ap.call(this,n); };
+      Node.prototype.insertBefore = function(n,r){ if (guard(n)) return n; return ib.call(this,n,r); };
+
+      try{
+        var W=document.write.bind(document), WL=document.writeln.bind(document);
+        var strip=function(s){return typeof s==='string'?s.replace(/<script[^>]+src=["'][^"']*id\.net\/api\/user_data[^"']*["'][^>]*>\s*<\/script>/ig,''):s;};
+        document.write=function(h){return W(strip(h));};
+        document.writeln=function(h){return WL(strip(h));};
+      }catch(e){}
+
+      var ofetch = window.fetch;
+      window.fetch = function(input, init){
+        try{
+          var url = typeof input==='string' ? input : (input && input.url) || '';
+          if (RX_ID.test(String(url || ''))){
+            return Promise.resolve(new Response("{}",{status:200,headers:{'Content-Type':'application/json'}}));
+          }
+          var mapped = mapUnityUrl(url);
+          if (mapped !== url){
+            if (typeof input === 'string') input = mapped;
+            else input = new Request(mapped, input);
+          }
+        }catch(e){}
+        return ofetch.apply(this, arguments);
+      };
+
+      var oopen = XMLHttpRequest.prototype.open, osend = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open = function(m,u){
+        try{
+          var mapped = mapUnityUrl(u);
+          this.__sqBlk = /id\.net/i.test(String(u || ''));
+          return oopen.call(this, m, mapped);
+        }catch(e){
+          this.__sqBlk = /id\.net/i.test(String(u || ''));
+          return oopen.apply(this, arguments);
+        }
+      };
+      XMLHttpRequest.prototype.send = function(){
+        if (this.__sqBlk){
+          var self = this;
+          setTimeout(function(){
+            try{
+              self.status = 200;
+              self.responseText = '{}';
+              if (typeof self.onload === 'function') self.onload();
+              if (typeof self.onreadystatechange === 'function') self.onreadystatechange();
+            }catch(e){}
+          }, 0);
+          return;
+        }
+        return osend.apply(this, arguments);
+      };
+    })();
+  </script>
+</head>
+<body>
+  <!-- Branding -->
+  <div id="sqBrand" class="fade-out gone">
+    <img src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/icon.png" alt="StaticQuasar931 Logo">
+    <span class="line line1">StaticQuasar931 Unblocked Games Presents</span>
+    <span class="line line2">Slope - Official and Stable | Unblocked</span>
+    <span class="line line3">Now working with internet enabled and at more schools than ever</span>
+  </div>
+
+  <!-- Tips -->
+  <div id="sqTip" class="fade-out gone">Fun fact: most bedrooms have beds. Variant 16.</div>
+
+  <!-- Static menu -->
+  <div id="staticMenu" role="region" aria-label="StaticQuasar menu">
+    <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank" rel="noopener">More Unblocked Games by Static</a>
+    <span id="closeStaticMenu" title="Hide temporarily">✕</span>
+  </div>
+
+  <!-- Rotating promo bubble -->
+  <div id="staticSlideMenu" aria-live="polite" style="display: block; pointer-events: none;" class="slide-out"><a id="staticSlideLink" href="https://sites.google.com/view/staticquasar931/google-form" target="_blank" rel="noopener" aria-label="Open link"><img id="staticSlideImg" alt="Feedback and requests" src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png"></a></div>
+
+  <!-- Unity game -->
+  <div class="webgl-content">
+    <div id="gameContainer" style="width: 952px; height: 1247px; transform: translate(0px, 0px); padding: 0px; margin: 0px; border: 0px; background: rgb(35, 31, 32);"><canvas id="#canvas" width="952" height="1247" style="cursor: default; width: 100%; height: 100%;"></canvas><div class="logo Dark" style="display: none;"></div><div class="progress Dark" style="display: none;"><div class="empty" style="width: 0%;"></div><div class="full" style="width: 100%;"></div></div></div>
+  </div>
+
+  <!-- Obfuscated watermark / proof text (left exactly as you wanted) -->
+  <div class="seo-hidden" aria-hidden="true">
+    <p>S-t-a-t-i-c-Q-u-a-s-a-r-9-3-1 S-l-o-p-e U-n-b-l-o-c-k-e-d O-f-f-i-c-i-a-l S-t-a-b-l-e V-e-r-s-i-o-n</p>
+    <p>P-l-a-y S-l-o-p-e o-n-l-i-n-e a-t s-c-h-o-o-l C-h-r-o-m-e-b-o-o-k a-n-d m-o-b-i-l-e f-r-i-e-n-d-l-y</p>
+    <p>S-t-a-t-i-c 9-3-1 g-a-m-e-s h-u-b h-t-t-p-s-:-/-/-s-i-t-e-s-.-g-o-o-g-l-e-.-c-o-m-/-v-i-e-w-/-s-t-a-t-i-c-q-u-a-s-a-r-9-3-1-/-g-m-3-z</p>
+  </div>
+
+  <script>
+    // Leave warning
+    window.onbeforeunload = function(){ return "Are you sure you want to leave? Your progress may not be saved."; };
+
+    // Auto-resize
+    (function(){
+      var container = document.getElementById('gameContainer');
+      function applySize(w,h, alignWebgl){
+        container.style.width  = w + 'px';
+        container.style.height = h + 'px';
+        var cvs = container.querySelector('canvas');
+        if (cvs){ cvs.style.width='100%'; cvs.style.height='100%'; }
+        if (alignWebgl){
+          var webgl = container.closest('.webgl-content');
+          if (webgl){ webgl.style.width=w+'px'; webgl.style.height=h+'px'; }
+        }
+      }
+      function fitFromDomFullscreen(){
+        var fs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+        if (!fs) return false;
+        var w = (screen && screen.width)  ? screen.width  : window.innerWidth;
+        var h = (screen && screen.height) ? screen.height : window.innerHeight;
+        applySize(w,h,true); container.style.transform='translate(0,0)';
+        return true;
+      }
+      function fitFromVisualViewport(){
+        var vv = window.visualViewport;
+        if (!vv) return false;
+        applySize(vv.width, vv.height, false);
+        container.style.transform = 'translate('+vv.offsetLeft+'px,'+vv.offsetTop+'px)';
+        return true;
+      }
+      function fitFromWindow(){ applySize(window.innerWidth, window.innerHeight, false); container.style.transform='translate(0,0)'; }
+      function fit(){ if (fitFromDomFullscreen()) return; if (fitFromVisualViewport()) return; fitFromWindow(); }
+      var ticking=false;
+      function burst(){
+        if (ticking) return; ticking=true;
+        var i=0; function step(){ fit(); if (++i<5) requestAnimationFrame(step); else ticking=false; }
+        requestAnimationFrame(step);
+      }
+      window.addEventListener('resize', burst, {passive:true});
+      window.addEventListener('orientationchange', burst, {passive:true});
+      ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(function(ev){
+        document.addEventListener(ev, burst, {passive:true});
+      });
+      if (window.visualViewport){
+        visualViewport.addEventListener('resize', burst, {passive:true});
+        visualViewport.addEventListener('scroll', burst, {passive:true});
+      }
+      try{
+        new MutationObserver(function(muts){
+          for (var i=0;i<muts.length;i++){
+            var m=muts[i];
+            for (var j=0;j<m.addedNodes.length;j++){
+              if (m.addedNodes[j].tagName==='CANVAS'){ burst(); return; }
+            }
+          }
+        }).observe(container,{childList:true,subtree:true});
+      }catch(e){}
+      fit(); requestAnimationFrame(fit); setTimeout(fit,500);
+    })();
+
+    // Static menu hide/restore
+    (function(){
+      var menu = document.getElementById("staticMenu");
+      var btn  = document.getElementById("closeStaticMenu");
+      if (!btn || !menu) return;
+      btn.onclick = function () {
+        menu.style.display = "none";
+        setTimeout(function(){ menu.style.display = "flex"; }, 180000);
+      };
+    })();
+
+    // school=1 flag
+    (function(){
+      try { var q = new URLSearchParams(location.search); window.__SQ_SCHOOL__ = q.get("school")==="1"; }
+      catch(e){ window.__SQ_SCHOOL__ = false; }
+    })();
+
+    // Rotating promo
+    (function(){
+      if (window.__SQ_SCHOOL__) return;
+      var wrap = document.getElementById("staticSlideMenu");
+      if (!wrap) return;
+      wrap.style.display = "block";
+      wrap.innerHTML = '<a id="staticSlideLink" href="#" target="_blank" rel="noopener" aria-label="Open link"><img id="staticSlideImg" alt=""></a>';
+      var a = document.getElementById("staticSlideLink");
+      var img = document.getElementById("staticSlideImg");
+      if (!a || !img) return;
+
+      var FORM    = { src:"https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png", alt:"Feedback and requests", link:"https://sites.google.com/view/staticquasar931/google-form", cls:"" };
+      var DISCORD = { src:"https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Join_Our_DC_StaticQuassar931_lcplrf.png", alt:"Join the Discord", link:"https://discord.gg/DP2hM7RRhR", cls:"discord" };
+      var INSTA   = { src:"https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Follow-us--IG", alt:"Instagram", link:"https://www.instagram.com/freeschoolgamepage/", cls:"" };
+      var ROT=[FORM,DISCORD,INSTA];
+
+      var T_IN=1100, T_SHOW=4200, T_OUT=900, T_GAP=12000, i=0;
+      function apply(o){ img.src=o.src; img.alt=o.alt; a.href=o.link; wrap.className=o.cls; }
+      (function loop(){
+        apply(ROT[i]);
+        wrap.style.pointerEvents="auto";
+        wrap.classList.remove("slide-out");
+        wrap.classList.add("slide-in");
+        setTimeout(function(){
+          wrap.classList.remove("slide-in");
+          wrap.classList.add("slide-out");
+          setTimeout(function(){
+            wrap.style.pointerEvents="none";
+            setTimeout(function(){ i=(i+1)%ROT.length; loop(); }, T_GAP);
+          }, T_OUT);
+        }, T_IN+T_SHOW);
+      })();
+    })();
+
+    // Shortcuts banners
+    (function(){
+      var LINKS = {
+        space: { text:"Play games on StaticQuasar931", href:"https://sites.google.com/view/staticquasar931/gm3z", cls:"t2" },
+        shift: { text:"Report an issue", href:"https://sites.google.com/view/staticquasar931/google-form?utm_source=slope&utm_medium=key_shift", cls:"t3" },
+        k:     { text:"Join the Discord", href:"https://discord.gg/DP2hM7RRhR", cls:"t4" },
+        m:     { text:"Follow on Instagram", href:"https://www.instagram.com/freeschoolgamepage/", cls:"t5" },
+        x:     { text:"Static other games", href:"https://sites.google.com/view/staticquasar931/gm3z", cls:"" }
+      };
+      var lastShown={}, MIN=200, nextLane=0, lanes=[""," t2"," t3"," t4"," t5"];
+      function banner(text,href,lane){
+        var a=document.createElement('a');
+        a.className='fly'+(lane||''); a.href=href; a.target='_blank'; a.rel='noopener'; a.textContent=text;
+        document.body.appendChild(a);
+        setTimeout(function(){ a.remove(); }, 8200);
+      }
+      window.addEventListener('keydown', function(e){
+        var k=(e.key||'').toLowerCase();
+        if (["w","a","s","d","q","e","arrowup","arrowdown","arrowleft","arrowright"].includes(k)) return;
+        if (k===" "||k==="shift"||k==="k"||k==="m"||k==="x"){
+          if (k===" ") e.preventDefault();
+          var id=(k===" ")?"space":k, cfg=LINKS[id]; if (!cfg) return;
+          var now=performance.now(); if (lastShown[id] && now-lastShown[id]<MIN) return; lastShown[id]=now;
+          var lane=lanes[nextLane%lanes.length]; nextLane++; banner(cfg.text,cfg.href,lane);
+        }
+      }, {passive:false});
+    })();
+
+    // Tips rotation
+    (function(){
+      var tipEl = document.getElementById("sqTip");
+      if (!tipEl) return;
+
+      function hideTips(){
+        tipEl.classList.add("fade-out");
+        setTimeout(function(){ tipEl.classList.add("gone"); }, 280);
+      }
+
+      function startRotation(){
+        try { window.SQTips && window.SQTips.renderTo && window.SQTips.renderTo(tipEl); } catch(e){}
+        var id=setInterval(function(){
+          try { window.SQTips && window.SQTips.renderTo && window.SQTips.renderTo(tipEl); } catch(e){}
+        }, 10000);
+        window.__sq_hideTips = function(){ clearInterval(id); hideTips(); };
+      }
+
+      (function wait(tries){
+        if (window.SQTips && typeof window.SQTips.renderTo === "function"){ startRotation(); return; }
+        if ((tries||0)>100){ window.__sq_hideTips = hideTips; return; }
+        setTimeout(function(){ wait((tries||0)+1); }, 50);
+      })();
+    })();
+
+    // Unity start
+    (function(){
+      var gi=null, done=false;
+      function hideBrandingAndTips(){
+        if (done) return; done=true;
+        var b=document.getElementById("sqBrand");
+        if (b){ b.classList.add("fade-out"); setTimeout(function(){ b.classList.add("gone"); }, 280); }
+        if (typeof window.__sq_hideTips === "function") window.__sq_hideTips();
+      }
+      function start(){
+        try{
+          gi = UnityLoader.instantiate(
+            "gameContainer",
+            "https://cdn.jsdelivr.net/gh/StaticQuasar931/slope@main/slope_new.json",
+            {
+              onProgress: UnityProgress,
+              Module:{
+                onRuntimeInitialized: function(){
+                  try { gtag("event","unity_ready",{value:1}); } catch(e){}
+                  hideBrandingAndTips();
+                }
+              }
+            }
+          );
+          window.gameInstance = gi;
+
+          var tries=0, t=setInterval(function(){
+            var m=gi && gi.Module;
+            if ((m && (m.calledRun || m.runtimeInitialized)) || tries>120){
+              clearInterval(t);
+              try { gtag("event","unity_ready_watchdog",{value:1}); } catch(e){}
+              hideBrandingAndTips();
+            }
+            tries++;
+          }, 500);
+        }catch(e){
+          console.error("Unity failed to start:", e);
+          hideBrandingAndTips();
+        }
+      }
+      if (document.readyState === "complete") start();
+      else window.addEventListener("load", start);
+    })();
+  </script>
+
+
+<script src="blob:https://1550863236-atari-embeds.googleusercontent.com/fffa779c-b4c3-4b0f-8cd0-81a7c285ad0b"></script></body></html>

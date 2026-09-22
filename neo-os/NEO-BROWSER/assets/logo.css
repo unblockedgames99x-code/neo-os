@@ -1,0 +1,50 @@
+.neo-mark,
+.neo-about-mark,
+.neo-logo {
+  display: block;
+  flex: none;
+  object-fit: contain;
+  object-position: center;
+}
+
+.neo-mark {
+  width: 92px;
+  height: 92px;
+  margin: -17px -12px -17px -15px;
+}
+
+.neo-about-mark {
+  width: 88px;
+  height: 88px;
+  margin: -15px -12px -15px -17px;
+}
+
+.brand .neo-logo {
+  width: 44px;
+  height: 44px;
+  margin: -9px -7px -9px -8px;
+  border-radius: 0;
+}
+
+.homepage-brand-wrap .neo-logo {
+  width: 96px;
+  height: 96px;
+  margin: -19px -15px -19px -19px;
+  border-radius: 0;
+}
+
+@media (max-width: 700px) {
+  .neo-mark {
+    width: 76px;
+    height: 76px;
+    margin: -15px -11px -15px -13px;
+  }
+}
+
+@media (max-width: 560px) {
+  .homepage-brand-wrap .neo-logo {
+    width: 76px;
+    height: 76px;
+    margin: -16px -13px -16px -16px;
+  }
+}

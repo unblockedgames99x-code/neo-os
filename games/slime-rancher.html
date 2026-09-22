@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>Slime Rancher</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+  }
+
+  #gameContainer {
+    position: fixed;
+    inset: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #gameContainer canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block;
+    outline: none;
+    background: #000;
+  }
+
+  #loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 22px;
+  }
+
+  #loader-card {
+    width: min(540px, 92vw);
+  }
+
+  #loading-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  #loading-text {
+    font-size: 15px;
+    line-height: 1.45;
+    opacity: 0.92;
+    margin-bottom: 16px;
+  }
+
+  #bar {
+    width: 100%;
+    height: 16px;
+    border-radius: 999px;
+    background: #222;
+    overflow: hidden;
+    border: 1px solid #444;
+  }
+
+  #bar-fill {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    transition: width 0.2s linear;
+  }
+
+  #small-note {
+    margin-top: 12px;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  #error-box {
+    display: none;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #ff6666;
+    border-radius: 10px;
+    color: #ffb3b3;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+</style>
+</head>
+
+<body>
+<div id="gameContainer"></div>
+
+<div id="loader-screen">
+  <div id="loader-card">
+    <div id="loading-title">Loading game...</div>
+    <div id="loading-text">This can take a while the first time. Do not refresh.</div>
+    <div id="bar"><div id="bar-fill"></div></div>
+    <div id="small-note">Loading Unity WebGL files...</div>
+    <div id="error-box"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const BASE = "https://cdn.jsdelivr.net/gh/web-ports/slime-ranchers@f0c5856ac43cf0cfbab4c58139282fc75f9b1861/";
+  const TOTAL_MB = 54.5;
+
+  const loaderScreen = document.getElementById("loader-screen");
+  const loadingText = document.getElementById("loading-text");
+  const barFill = document.getElementById("bar-fill");
+  const errorBox = document.getElementById("error-box");
+
+  let loadedBytes = 0;
+  let unityStarted = false;
+
+  function showError(message) {
+    errorBox.style.display = "block";
+    errorBox.textContent = message;
+    loadingText.textContent = "The game could not finish loading. The error is shown below.";
+  }
+
+  function setProgress(percent, text) {
+    const safePercent = Math.max(0, Math.min(100, percent || 0));
+    barFill.style.width = safePercent + "%";
+    if (text) loadingText.textContent = text;
+  }
+
+  function resizeGame() {
+    const container = document.getElementById("gameContainer");
+    const canvas = container.querySelector("canvas");
+
+    container.style.width = window.innerWidth + "px";
+    container.style.height = window.innerHeight + "px";
+
+    if (canvas) {
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      canvas.setAttribute("tabindex", "0");
+      canvas.focus();
+    }
+  }
+
+  function getParts(file, start, end) {
+    const parts = [];
+    for (let i = start; i <= end; i++) {
+      parts.push(BASE + file + ".part" + i);
+    }
+    return parts;
+  }
+
+  async function fetchWithProgress(url) {
+    const response = await fetch(url, { cache: "force-cache" });
+
+    if (!response.ok) {
+      throw new Error("Could not load " + url + " — HTTP " + response.status);
+    }
+
+    if (!response.body || !response.body.getReader) {
+      const buffer = await response.arrayBuffer();
+      loadedBytes += buffer.byteLength;
+      const mbDone = (loadedBytes / (1024 * 1024)).toFixed(2);
+      const percent = Math.min((mbDone / TOTAL_MB) * 92, 92);
+      setProgress(percent, `Loading... ${mbDone} MB / ${TOTAL_MB} MB`);
+      return buffer;
+    }
+
+    const reader = response.body.getReader();
+    const chunks = [];
+    let received = 0;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      received += value.length;
+      loadedBytes += value.length;
+      chunks.push(value);
+
+      const mbDone = (loadedBytes / (1024 * 1024)).toFixed(2);
+      const percent = Math.min((mbDone / TOTAL_MB) * 92, 92);
+      setProgress(percent, `Loading... ${mbDone} MB / ${TOTAL_MB} MB`);
+    }
+
+    const fullBuffer = new Uint8Array(received);
+    let offset = 0;
+
+    for (const chunk of chunks) {
+      fullBuffer.set(chunk, offset);
+      offset += chunk.length;
+    }
+
+    return fullBuffer.buffer;
+  }
+
+  async function mergeFiles(fileParts) {
+    const buffers = await Promise.all(fileParts.map(fetchWithProgress));
+    return URL.createObjectURL(new Blob(buffers));
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Could not load script: " + src));
+      document.head.appendChild(script);
+    });
+  }
+
+  async function startGame() {
+    try {
+      setProgress(2, "Downloading game files...");
+
+      const dataUrl = await mergeFiles(getParts("Build/slimeBUILDS.data.unityweb", 1, 3));
+
+      setProgress(93, "Loading Unity engine...");
+
+      await loadScript(BASE + "Build/UnityLoader.js");
+
+      const unityConfig = {
+        companyName: "Snubs",
+        productName: "Slime Rancher Prototype",
+        dataUrl: dataUrl,
+        wasmCodeUrl: BASE + "Build/slimeBUILDS.wasm.code.unityweb",
+        wasmFrameworkUrl: BASE + "Build/slimeBUILDS.framework.unityweb",
+        TOTAL_MEMORY: 536870912,
+        graphicsAPI: ["WebGL 2.0", "WebGL 1.0"],
+        webglContextAttributes: {
+          preserveDrawingBuffer: false
+        },
+        splashScreenStyle: "Dark"
+      };
+
+      const configBlobUrl = URL.createObjectURL(
+        new Blob([JSON.stringify(unityConfig)], { type: "application/json" })
+      );
+
+      setProgress(96, "Starting game...");
+
+      window.addEventListener("resize", resizeGame);
+
+      UnityLoader.instantiate("gameContainer", configBlobUrl, {
+        onProgress: function(gameInstance, progress) {
+          if (!unityStarted) {
+            const pct = 96 + (progress || 0) * 4;
+            setProgress(pct, "Starting game... " + Math.round(pct) + "%");
+          }
+        },
+        Module: {
+          onRuntimeInitialized: function() {
+            unityStarted = true;
+            resizeGame();
+            setProgress(100, "Done");
+            setTimeout(() => {
+              loaderScreen.style.display = "none";
+              resizeGame();
+            }, 350);
+          }
+        }
+      });
+
+      setTimeout(resizeGame, 1000);
+      setTimeout(resizeGame, 2500);
+
+    } catch (err) {
+      showError(String(err && err.message ? err.message : err));
+    }
+  }
+
+  window.addEventListener("click", () => {
+    const canvas = document.querySelector("#gameContainer canvas");
+    if (canvas) canvas.focus();
+  });
+
+  startGame();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,819 @@
+{
+	"approved" : true,
+	"contentrating" : "Everyone",
+	"description" : "This wallpaper allows you to use multifunctional widgets over a static background image.\nWidgets can be moved by dragging and expanded by double-clicking (on some widgets) to display more information.\nWidgets will snap to each other's corners or corner extensions, making it easy to align them neatly.\nAll widgets can be individually shown or hidden.\nHere is the list of available widgets:\n[list]\n[*]Clock Widget — Expandable. When expanded, you can set up to three world clocks.\n[*]Date Widget — Expandable. When expanded, it shows a list of this week's days.\n[*]Visualizer Widget — Expandable. When expanded, it displays the album title and track duration.\n[*]Weather Widget — Expandable. When expanded, it shows the current wind speed and precipitation probability.\n[*]Custom Widget — Expandable. When expanded, it displays additional custom text.\n[*]Progress Widget — Not expandable. You can add up to four progress widgets.\n[*]Performance Widget — Expandable. When expanded, it can monitor up to five items.\n[*]Performance Widget (Individual) — Not expandable. You can add up to six performance widgets. For CPU and GPU, the temperature is also displayed if available.\nTo set up performance monitor, download [url=https://github.com/sheetau/PerformanceMonitor]PerformanceMonitor app[/url] from GitHub.\n[*]Countdown Widget — Not expandable. You can add up to ten countdown widgets.\n[/list]\nFor more detailed information, please refer to the description in the wallpaper's user properties.\nIf you have issue with performance monitor, please ask on [url=https://discord.gg/2dXs5HwXuW]my discord server[/url] with details (not just \"it doesn't work\") and not my dm.\n\n\nwallpaper creator (design & code): sheet4.vn(sheeta)\nmade with HTML, CSS, Javascript.\n[url=https://ko-fi.com/sheeta]👉🏻 support me on ko-fi here 👈🏻[/url]\n\nbackground: [url=https://i.redd.it/rudl2pml5aad1.jpeg]source[/url]\ntags: customizable, world clock, clock, date, time, day, process, audio responsive, music player, interactive, visualizer, album cover, duration, web, animation, 4k, 21:9, progress, countdown, performance monitor, performance, task manager, weather",
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"brbr" : 
+			{
+				"index" : 60,
+				"order" : 160,
+				"text" : "<br><br>",
+				"type" : "text",
+				"value" : false
+			},
+			"cityname" : 
+			{
+				"condition" : "weatherwidget.value == true;",
+				"index" : 32,
+				"order" : 132,
+				"text" : "city name",
+				"type" : "textinput",
+				"value" : "Tokyo, Japan"
+			},
+			"clockdescription" : 
+			{
+				"condition" : "clockwidget.value == true;",
+				"index" : 15,
+				"order" : 115,
+				"text" : "<small><font color=\"#808080\">With \"dynamic background\" on, the background turns white during the day and black at night (via SunCalc). It won’t work correctly if the set latitude and longitude in wether widget settings do not match the time zone of the system running the code.</font></small><br><br>",
+				"type" : "text",
+				"value" : false
+			},
+			"clockwidget" : 
+			{
+				"index" : 14,
+				"order" : 114,
+				"text" : "<h4>clock widget</h4>",
+				"type" : "bool",
+				"value" : true
+			},
+			"cornerradius" : 
+			{
+				"fraction" : false,
+				"index" : 7,
+				"max" : 25,
+				"min" : 0,
+				"order" : 107,
+				"text" : "corner radius (10)",
+				"type" : "slider",
+				"value" : 10
+			},
+			"countdown1" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 66,
+				"order" : 166,
+				"text" : "date 1",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown10" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 84,
+				"order" : 184,
+				"text" : "date 10",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown2" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 68,
+				"order" : 168,
+				"text" : "date 2",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown3" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 70,
+				"order" : 170,
+				"text" : "date 3",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown4" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 72,
+				"order" : 172,
+				"text" : "date 4",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown5" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 74,
+				"order" : 174,
+				"text" : "date 5",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown6" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 76,
+				"order" : 176,
+				"text" : "date 6",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown7" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 78,
+				"order" : 178,
+				"text" : "date 7",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown8" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 80,
+				"order" : 180,
+				"text" : "date 8",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdown9" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 82,
+				"order" : 182,
+				"text" : "date 9",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdowndescription" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 65,
+				"order" : 165,
+				"text" : "<small>Enter a date into the \"date\" field using the <code>mm-dd-yyyy</code> format to display a countdown. You can also enter <code>mm-dd</code>, <code>dd</code>, or a day like <code>mon</code>, <code>tue</code>, <code>wed</code>, etc. for it to repeat yearly, monthly, or weekly, respectively.</small>",
+				"type" : "text",
+				"value" : false
+			},
+			"countdownname1" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 67,
+				"order" : 167,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname10" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 85,
+				"order" : 185,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname2" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 69,
+				"order" : 169,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname3" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 71,
+				"order" : 171,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname4" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 73,
+				"order" : 173,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname5" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 75,
+				"order" : 175,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname6" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 77,
+				"order" : 177,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname7" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 79,
+				"order" : 179,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname8" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 81,
+				"order" : 181,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownname9" : 
+			{
+				"condition" : "countdownwidget.value == true;",
+				"index" : 83,
+				"order" : 183,
+				"text" : "┕ name",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"countdownwidget" : 
+			{
+				"index" : 64,
+				"order" : 164,
+				"text" : "<h4>countdown widget</h4>",
+				"type" : "bool",
+				"value" : false
+			},
+			"customdescription" : 
+			{
+				"condition" : "h4customwidgeth4.value == true;",
+				"index" : 37,
+				"order" : 137,
+				"text" : "<small>You can enter any text to display. Use <code>\\n</code> to insert a line break. You can include dynamic info in your text by typing <u>day</u>, <u>day3</u>, <u>month</u>, <u>date</u>, <u>year</u>, <u>time12</u>, <u>time24</u>, <u>forecast</u>, <u>temp</u>, <u>precip</u>, <u>wind</u>, <u>sunrise</u>, and <u>sunset</u> (weather and sunrise/sunset info requires longitude and latitude settings). You can also type <u>precip2</u>, <u>wind2</u>, <u>sunrise2</u>, or <u>sunset2</u> to include an icon at the beginning. Words are recognized when separated by spaces or symbols like <code>:</code>, <code>.</code>, <code>-</code>, etc. For example:<br><code>day,\\n date month \\n forecast \\n temp</code></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"customimage" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "background",
+				"type" : "file",
+				"value" : ""
+			},
+			"customvideo" : 
+			{
+				"fileType" : "video",
+				"index" : 2,
+				"order" : 102,
+				"text" : "",
+				"type" : "file",
+				"value" : ""
+			},
+			"customvideodescription" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "video background<br><small><font color=\"#808080\">Only .webm, .ogg and .ogv are supported.<br>Unlink the video file to swtich to the image.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"customwidget" : 
+			{
+				"condition" : "h4customwidgeth4.value == true;",
+				"index" : 38,
+				"order" : 138,
+				"text" : "",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"datedescription" : 
+			{
+				"condition" : "datewidget.value == true;",
+				"index" : 23,
+				"order" : 123,
+				"text" : "<small><font color=\"#808080\">CW (Calendar Week) refers to the standardized numbering of weeks in a year, where each week starts on Monday. CW1 is the first week with at least four days in January, meaning a year can begin or end in the middle of a calendar week. There are usually 52 calendar weeks in a year.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"datewidget" : 
+			{
+				"index" : 22,
+				"order" : 122,
+				"text" : "<h4>date widget</h4>",
+				"type" : "bool",
+				"value" : true
+			},
+			"description" : 
+			{
+				"index" : 4,
+				"order" : 104,
+				"text" : "<small>Widgets can be repositioned by <u>dragging</u> and expanded to show more information by <u>double-clicking</u>. <font color=\"#808080\">They snap to each other's corners or corner extensions, making it easy to align them neatly. Once positioned, you can enable \"Lock Widget\" to disable dragging.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"dynamicbackground" : 
+			{
+				"index" : 9,
+				"order" : 109,
+				"text" : "dynamic background",
+				"type" : "bool",
+				"value" : true
+			},
+			"dynamicbackgrounddescription" : 
+			{
+				"index" : 10,
+				"order" : 110,
+				"text" : "<small><font color=\"#808080\">While \"Dynamic Background\" is enabled, the \"Clock Widget\" glows white when the sun is up at your set latitude and longitude, the \"Weather Widget\" changes color to reflect current weather conditions, and the \"Countdown Widget\" glows white on the countdown day. When disabled, all widgets maintain a uniform appearance with a black background and white text.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"h4compactperformancewidgeth4" : 
+			{
+				"index" : 53,
+				"order" : 153,
+				"text" : "<h4>performance widget (individual)</h4>",
+				"type" : "bool",
+				"value" : false
+			},
+			"h4customwidgeth4" : 
+			{
+				"index" : 36,
+				"order" : 136,
+				"text" : "<h4>custom widget</h4>",
+				"type" : "bool",
+				"value" : false
+			},
+			"h4progresswidgeth4" : 
+			{
+				"condition" : "",
+				"index" : 40,
+				"order" : 140,
+				"text" : "<h4>progress widget</h4>",
+				"type" : "bool",
+				"value" : false
+			},
+			"highresdescription" : 
+			{
+				"index" : 12,
+				"order" : 112,
+				"text" : "<small><font color=\"#808080\">For users with high-resolution monitors who may find UI lines appearing too thin or faint. If everything looks fine, there's no need to change this setting.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"horizontalbar" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 51,
+				"order" : 151,
+				"text" : "horizontal bar",
+				"type" : "bool",
+				"value" : false
+			},
+			"horizontalbardescription" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 52,
+				"order" : 152,
+				"text" : "<small><font color=\"#808080\">Display up to monitor 4. For drive usage, the used capacity and available capacity will be displayed in GB/TB.</font></small><br><br><br>",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size10" : 
+			{
+				"index" : 21,
+				"order" : 121,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size101" : 
+			{
+				"index" : 13,
+				"order" : 113,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size102" : 
+			{
+				"index" : 35,
+				"order" : 135,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size103" : 
+			{
+				"index" : 24,
+				"order" : 124,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size104" : 
+			{
+				"index" : 27,
+				"order" : 127,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size105" : 
+			{
+				"index" : 86,
+				"order" : 186,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size106" : 
+			{
+				"index" : 39,
+				"order" : 139,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size107" : 
+			{
+				"index" : 43,
+				"order" : 143,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"hrwidth280size109" : 
+			{
+				"index" : 63,
+				"order" : 163,
+				"text" : "<hr width=\"280\" size=\"10\">",
+				"type" : "text",
+				"value" : false
+			},
+			"joinmydiscord" : 
+			{
+				"index" : 89,
+				"order" : 189,
+				"text" : "join my discord",
+				"type" : "textinput",
+				"value" : "https://discord.gg/2dXs5HwXuW"
+			},
+			"latitude" : 
+			{
+				"condition" : "weatherwidget.value == true;",
+				"index" : 30,
+				"order" : 130,
+				"text" : "latitude",
+				"type" : "textinput",
+				"value" : "35.6764"
+			},
+			"latitudelongitude" : 
+			{
+				"condition" : "weatherwidget.value == true;",
+				"index" : 29,
+				"order" : 129,
+				"text" : "<small>Enter latitude and longitude for weather.<br><font color=\"#808080\">e.g., 40.7128 -74.0060 (New York), 34.0522 -118.2437 (Los Angeles), 31.2304 121.4737 (Shanghai), 22.5726 88.3639 (Kolkata), 55.7558 37.6173 (Moscow), -23.5505 -46.6333 (Sao Paulo), 35.682839 139.759455 (Tokyo), 51.5074 -0.1278 (London), 48.8566 2.3522 (Paris), 52.5200 13.4050 (Berlin), -6.2088 106.8456 (Jakarta)</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"lockwidget" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "lock widget",
+				"type" : "bool",
+				"value" : false
+			},
+			"longitude" : 
+			{
+				"condition" : "weatherwidget.value == true;",
+				"index" : 31,
+				"order" : 131,
+				"text" : "longitude",
+				"type" : "textinput",
+				"value" : "139.6500"
+			},
+			"mediainforeload" : 
+			{
+				"condition" : "visualizerwidget.value == true;",
+				"index" : 26,
+				"order" : 126,
+				"text" : "<small><font color=\"#808080\">If the media info is incorrect, clicking the thumbnail will reload it.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"monitor1" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 46,
+				"order" : 146,
+				"text" : "monitor 1",
+				"type" : "textinput",
+				"value" : "cpu"
+			},
+			"monitor2" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 47,
+				"order" : 147,
+				"text" : "monitor 2",
+				"type" : "textinput",
+				"value" : "ram"
+			},
+			"monitor3" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 48,
+				"order" : 148,
+				"text" : "monitor 3",
+				"type" : "textinput",
+				"value" : "gpu"
+			},
+			"monitor4" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 49,
+				"order" : 149,
+				"text" : "monitor 4",
+				"type" : "textinput",
+				"value" : "vram"
+			},
+			"monitor5" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 50,
+				"order" : 150,
+				"text" : "monitor 5",
+				"type" : "textinput",
+				"value" : "c"
+			},
+			"newproperty" : 
+			{
+				"index" : 57,
+				"order" : 157,
+				"text" : "",
+				"type" : "textinput",
+				"value" : "https://github.com/sheetau/PerformanceMonitor"
+			},
+			"newproperty1" : 
+			{
+				"condition" : "",
+				"index" : 59,
+				"order" : 159,
+				"text" : "",
+				"type" : "textinput",
+				"value" : "https://discord.gg/2dXs5HwXuW"
+			},
+			"opacity" : 
+			{
+				"fraction" : true,
+				"index" : 5,
+				"max" : 1,
+				"min" : 0,
+				"order" : 105,
+				"precision" : 3,
+				"step" : 0.01,
+				"text" : "widget opacity",
+				"type" : "slider",
+				"value" : 1
+			},
+			"orcheck" : 
+			{
+				"condition" : "",
+				"index" : 58,
+				"order" : 158,
+				"text" : "<br>Join my discord:",
+				"type" : "text",
+				"value" : false
+			},
+			"performancedescription" : 
+			{
+				"condition" : "performancewidget.value == true;",
+				"index" : 45,
+				"order" : 145,
+				"text" : "<small>Enter drive leter such as <u>c</u>, <u>d</u>, or <u>e</u>, or enter <u>cpu</u>, <u>ram</u>, <u>gpu</u>, or <u>vram</u> to monitor them. <br><font color=\"#808080\">Please note that GPU and VRAM monitoring is only compatible with NVIDIA GPUs.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"performanceindividualdescription" : 
+			{
+				"condition" : "h4compactperformancewidgeth4.value == true;",
+				"index" : 54,
+				"order" : 154,
+				"text" : "<small> Enter <u>cpu</u>, <u>ram</u>, <u>gpu</u>, <u>vram</u>, <u>up</u>, or <u>down</u> (internet upload and download speeds) to monitor them.<br>  Separate multiple entries with a space. The order does not matter. For example: <code>cpu ram up</code><br>  <font color=\"#808080\">For CPU and GPU, temperature is also displayed if available.<br>Please note that GPU and VRAM monitoring is only compatible with NVIDIA GPUs.</font> </small>",
+				"type" : "text",
+				"value" : false
+			},
+			"performancewidget" : 
+			{
+				"index" : 44,
+				"order" : 144,
+				"text" : "<h4>performance widget</h4>",
+				"type" : "bool",
+				"value" : false
+			},
+			"performancewidgetindividual" : 
+			{
+				"condition" : "h4compactperformancewidgeth4.value == true;",
+				"index" : 55,
+				"order" : 155,
+				"text" : "monitor 1-6",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"pfpcropperbrsmallfontcolor808080createdbymefontsmall" : 
+			{
+				"index" : 88,
+				"order" : 188,
+				"text" : "pfp cropper<br><small><font color=\"#808080\">created by me</font></small>",
+				"type" : "textinput",
+				"value" : "https://sheetau.github.io/pfpcropper/"
+			},
+			"port" : 
+			{
+				"index" : 61,
+				"order" : 161,
+				"text" : "<font color=\"#808080\">Port</font>",
+				"type" : "textinput",
+				"value" : "5000"
+			},
+			"portdescription" : 
+			{
+				"index" : 62,
+				"order" : 162,
+				"text" : "<small><font color=\"#808080\"> Do not change this value unless you have changed the port number in the app.</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"progressdescription" : 
+			{
+				"condition" : "h4progresswidgeth4.value == true;",
+				"index" : 41,
+				"order" : 141,
+				"text" : "<small>Enter <u>day</u>, <u>week</u>, <u>month</u>, or <u>year</u> to display today’s progress within that range.<br>Separate multiple entries with a space. The order does not matter. For example: <code>day year month</code></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"progresswidget" : 
+			{
+				"condition" : "h4progresswidgeth4.value == true;",
+				"index" : 42,
+				"order" : 142,
+				"text" : "",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"scalepixel" : 
+			{
+				"fraction" : false,
+				"index" : 11,
+				"max" : 5,
+				"min" : 1,
+				"order" : 111,
+				"text" : "scale pixel (1)",
+				"type" : "slider",
+				"value" : 1
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"texteditorbrsmallfontcolor808080createdbymefontsmall" : 
+			{
+				"index" : 87,
+				"order" : 187,
+				"text" : "Text editor<br><small><font color=\"#808080\">created by me</font></small>",
+				"type" : "textinput",
+				"value" : "sheetau.github.io/monapad/"
+			},
+			"thisdoesnotaffect" : 
+			{
+				"condition" : "weatherwidget.value == true;",
+				"index" : 33,
+				"order" : 133,
+				"text" : "<small><font color=\"#808080\">city name does not affect weather display. name it however you like.</font></small><br><br>",
+				"type" : "text",
+				"value" : false
+			},
+			"timezoneid" : 
+			{
+				"condition" : "clockwidget.value == true;",
+				"index" : 16,
+				"order" : 116,
+				"text" : "<small>Use IANA (TZDB) Time Zone ID to enter time zones.<br><font color=\"#808080\">e.g., America/New_York, America/Los_Angeles, Asia/Shanghai, Asia/Kolkata, Europe/Moscow, America/Sao_Paulo, Asia/Tokyo,  Europe/London, Europe/Paris, Europe/Berlin, Asia/Jakarta</font></small>",
+				"type" : "text",
+				"value" : false
+			},
+			"tosetup" : 
+			{
+				"index" : 56,
+				"order" : 156,
+				"text" : "<br><br><b>To set up performance monitor, download PerformanceMonitor app from GitHub:</b>",
+				"type" : "text",
+				"value" : false
+			},
+			"use24hclock" : 
+			{
+				"index" : 20,
+				"order" : 120,
+				"text" : "use 24h clock",
+				"type" : "bool",
+				"value" : false
+			},
+			"usefahrenheit" : 
+			{
+				"condition" : "weatherwidget.value == true;",
+				"index" : 34,
+				"order" : 134,
+				"text" : "use fahrenheit",
+				"type" : "bool",
+				"value" : false
+			},
+			"visualizerwidget" : 
+			{
+				"index" : 25,
+				"order" : 125,
+				"text" : "<h4>visualizer widget</h4>",
+				"type" : "bool",
+				"value" : true
+			},
+			"weatherwidget" : 
+			{
+				"index" : 28,
+				"order" : 128,
+				"text" : "<h4>weather widget</h4>",
+				"type" : "bool",
+				"value" : false
+			},
+			"widgetborder" : 
+			{
+				"fraction" : false,
+				"index" : 8,
+				"max" : 5,
+				"min" : 0,
+				"order" : 108,
+				"text" : "border thickness (1)",
+				"type" : "slider",
+				"value" : 1
+			},
+			"widgetsize" : 
+			{
+				"fraction" : false,
+				"index" : 6,
+				"max" : 30,
+				"min" : 1,
+				"order" : 106,
+				"text" : "widget row (12)<br><small><font color=\"#808080\">The higher the value, the smaller the widget.</font></small>",
+				"type" : "slider",
+				"value" : 12
+			},
+			"worldclock1" : 
+			{
+				"condition" : "clockwidget.value == true;",
+				"index" : 17,
+				"order" : 117,
+				"text" : "world clock 1",
+				"type" : "textinput",
+				"value" : "Asia/Tokyo"
+			},
+			"worldclock2" : 
+			{
+				"condition" : "clockwidget.value == true;",
+				"index" : 18,
+				"order" : 118,
+				"text" : "world clock 2",
+				"type" : "textinput",
+				"value" : "Europe/London"
+			},
+			"worldclock3" : 
+			{
+				"condition" : "clockwidget.value == true;",
+				"index" : 19,
+				"order" : 119,
+				"text" : "world clock 3",
+				"type" : "textinput",
+				"value" : "America/New_York"
+			}
+		},
+		"supportsaudioprocessing" : true
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"tags" : [ "Technology" ],
+	"title" : "Widget Wallpaper",
+	"type" : "web",
+	"version" : 17,
+	"visibility" : "public",
+	"workshopid" : "3470738721",
+	"workshopurl" : "steam://url/CommunityFilePage/3470738721"
+}

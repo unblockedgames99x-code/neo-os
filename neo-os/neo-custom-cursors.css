@@ -1,0 +1,208 @@
+:root {
+  --neo-cursor-arrow: auto;
+  --neo-cursor-pointer: pointer;
+}
+
+html[data-cursor-theme="neo"] {
+  --neo-cursor-arrow: url("./assets/cursors/neo-arrow.svg") 3 2, auto;
+  --neo-cursor-pointer: url("./assets/cursors/neo-pointer.svg") 12 4, pointer;
+}
+
+html[data-cursor-theme="neon"] {
+  --neo-cursor-arrow: url("./assets/cursors/neon-arrow.svg") 3 2, auto;
+  --neo-cursor-pointer: url("./assets/cursors/neon-pointer.svg") 12 4, pointer;
+}
+
+html[data-cursor-theme="pixel"] {
+  --neo-cursor-arrow: url("./assets/cursors/pixel-arrow.svg") 4 3, auto;
+  --neo-cursor-pointer: url("./assets/cursors/pixel-pointer.svg") 12 4, pointer;
+}
+
+html[data-cursor-theme="contrast"] {
+  --neo-cursor-arrow: url("./assets/cursors/contrast-arrow.svg") 4 3, auto;
+  --neo-cursor-pointer: url("./assets/cursors/contrast-pointer.svg") 14 6, pointer;
+}
+
+html[data-cursor-theme="custom"] {
+  --neo-cursor-arrow: var(--neo-custom-cursor-arrow, auto);
+  --neo-cursor-pointer: var(--neo-custom-cursor-pointer, pointer);
+}
+
+html[data-cursor-theme]:not([data-cursor-theme="system"]),
+html[data-cursor-theme]:not([data-cursor-theme="system"]) body {
+  cursor: var(--neo-cursor-arrow);
+}
+
+html[data-cursor-theme]:not([data-cursor-theme="system"]) :where(
+  a[href],
+  area[href],
+  button:not(:disabled),
+  label[for],
+  select:not(:disabled),
+  summary,
+  [role="button"]:not([aria-disabled="true"]),
+  [role="link"]:not([aria-disabled="true"]),
+  [data-app],
+  [data-command],
+  [data-action]
+) {
+  cursor: var(--neo-cursor-pointer) !important;
+}
+
+html[data-cursor-theme]:not([data-cursor-theme="system"]) :where(
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+  textarea,
+  [contenteditable="true"]
+) {
+  cursor: text !important;
+}
+
+html[data-cursor-theme]:not([data-cursor-theme="system"]) :where(
+  input[type="button"]:not(:disabled),
+  input[type="submit"]:not(:disabled),
+  input[type="reset"]:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="range"]:not(:disabled),
+  input[type="color"]:not(:disabled)
+) {
+  cursor: var(--neo-cursor-pointer) !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  :root {
+    --neo-cursor-arrow: auto;
+    --neo-cursor-pointer: pointer;
+  }
+}
+
+.cursor-theme-grid {
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+}
+
+.cursor-theme-choice {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 72px auto;
+  gap: 9px;
+  padding: 8px !important;
+  overflow: hidden;
+  text-align: left;
+}
+
+.cursor-theme-choice.is-selected,
+.cursor-theme-choice[aria-pressed="true"] {
+  border-color: var(--desktop-accent);
+  box-shadow: inset 0 0 0 1px var(--desktop-accent);
+}
+
+.cursor-theme-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--desktop-line);
+  border-radius: 5px;
+  background: linear-gradient(135deg, var(--desktop-surface), var(--desktop-bg));
+}
+
+.cursor-theme-preview::after {
+  content: "";
+  position: absolute;
+  inset: 50% 10px auto;
+  border-top: 1px dashed color-mix(in srgb, var(--desktop-muted) 35%, transparent);
+}
+
+.cursor-theme-preview img {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 4px #0008);
+}
+
+.cursor-theme-preview.is-contrast img {
+  width: 44px;
+  height: 44px;
+}
+
+.cursor-theme-preview.is-custom {
+  background:
+    linear-gradient(45deg, color-mix(in srgb, var(--desktop-text) 7%, transparent) 25%, transparent 25% 75%, color-mix(in srgb, var(--desktop-text) 7%, transparent) 75%),
+    linear-gradient(45deg, color-mix(in srgb, var(--desktop-text) 7%, transparent) 25%, transparent 25% 75%, color-mix(in srgb, var(--desktop-text) 7%, transparent) 75%),
+    var(--desktop-bg);
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+  cursor: var(--neo-custom-cursor-arrow, pointer) !important;
+}
+
+.cursor-theme-preview.is-custom img {
+  width: 44px;
+  height: 44px;
+}
+
+.cursor-custom-placeholder {
+  position: relative;
+  z-index: 1;
+  color: var(--desktop-text);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.cursor-import-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.cursor-import-actions button {
+  min-height: 36px;
+  padding: 0 14px;
+}
+
+.cursor-import-actions .cursor-import-remove {
+  color: var(--desktop-muted);
+  background: transparent;
+}
+
+.cursor-import-status {
+  flex: 1 1 260px;
+  min-width: min(260px, 100%);
+  margin: 0 0 0 4px !important;
+  color: var(--desktop-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.cursor-system-glyph {
+  position: relative;
+  z-index: 1;
+  color: var(--desktop-text);
+  font: 700 42px/1 system-ui;
+  transform: translateY(-2px);
+  text-shadow: 0 2px 2px #0008;
+}
+
+.cursor-theme-copy {
+  display: block;
+  min-width: 0;
+  padding: 0 3px 3px;
+}
+
+.cursor-theme-copy strong,
+.cursor-theme-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cursor-theme-copy small {
+  margin-top: 2px;
+  color: var(--desktop-muted);
+  font-size: 11px;
+}
